@@ -1,0 +1,127 @@
+# IPMI 工具故障注入 Case 模板
+# 本模板展示 IPMI 工具故障注入的完整参数配置
+
+name: ipmitool_computer_operator
+description: ipmitool_computer_operator
+type: ipmitool
+fault_type: soft  # soft/off/on/reset/cycle/status/warm/cold
+
+# BMC 匹配规则
+ipmitool_match:
+  name:
+    - bmc_remote1  # 支持多个 BMC，配置信息从 config.yaml 的 bmc_environments 获取
+    - bmc_remote2
+    - bmc_remote3
+    - bmc_remote4
+
+# 故障持续时间
+duration: 60s
+
+# 循环执行次数
+loop_count: 1
+
+# ============ 故障类型说明 ============
+#
+# soft: 软关机（ACPI 关机）
+#   - 发送 ACPI 关机信号，让操作系统优雅关闭
+#   - 适用于需要正常关机的场景
+#   - 命令: ipmitool -I lanplus -H <IP> -U <user> -P <passwd> chassis power soft
+#
+# off: 强制关机
+#   - 立即切断电源，可能导致数据丢失
+#   - 适用于需要立即关机的场景
+#   - 命令: ipmitool -I lanplus -H <IP> -U <user> -P <passwd> chassis power off
+#
+# on: 开机
+#   - 远程开机
+#   - 适用于需要远程启动服务器的场景
+#   - 命令: ipmitool -I lanplus -H <IP> -U <user> -P <passwd> chassis power on
+#
+# reset: 重启
+#   - 立即重启服务器（不进行优雅关机）
+#   - 适用于需要快速重启的场景
+#   - 命令: ipmitool -I lanplus -H <IP> -U <user> -P <passwd> chassis power reset
+#
+# cycle: 电源循环
+#   - 关机后再开机（完全断电重启）
+#   - 适用于需要完全重启的场景
+#   - 命令: ipmitool -I lanplus -H <IP> -U <user> -P <passwd> chassis power cycle
+#
+# status: 查询电源状态
+#   - 查询服务器当前电源状态
+#   - 适用于监控和检查场景
+#   - 命令: ipmitool -I lanplus -H <IP> -U <user> -P <passwd> chassis power status
+#
+# warm: BMC 热重启
+#   - 重启 BMC 控制器（不影响服务器运行）
+#   - 适用于 BMC 故障恢复场景
+#   - 命令: ipmitool -I lanplus -H <IP> -U <user> -P <passwd> mc reset warm
+#
+# cold: BMC 冷重启
+#   - 完全重启 BMC 控制器（完全断电重启）
+#   - 适用于 BMC 严重故障场景
+#   - 命令: ipmitool -I lanplus -H <IP> -U <user> -P <passwd> mc reset cold
+#
+# ============ 使用示例 ============
+#
+# 示例 1: 软关机
+# fault_type: soft
+# ipmitool_match:
+#   name:
+#     - bmc_remote1
+#
+# 示例 2: 强制关机
+# fault_type: off
+# ipmitool_match:
+#   name:
+#     - bmc_remote1
+#     - bmc_remote2
+#
+# 示例 3: 开机
+# fault_type: on
+# ipmitool_match:
+#   name:
+#     - bmc_remote1
+#     - bmc_remote2
+#     - bmc_remote3
+#
+# 示例 4: 重启
+# fault_type: reset
+# ipmitool_match:
+#   name:
+#     - bmc_remote1
+#
+# 示例 5: 电源循环
+# fault_type: cycle
+# ipmitool_match:
+#   name:
+#     - bmc_remote1
+#
+# 示例 6: 查询电源状态
+# fault_type: status
+# ipmitool_match:
+#   name:
+#     - bmc_remote1
+#     - bmc_remote2
+#
+# 示例 7: BMC 热重启
+# fault_type: warm
+# ipmitool_match:
+#   name:
+#     - bmc_remote1
+#
+# 示例 8: BMC 冷重启
+# fault_type: cold
+# ipmitool_match:
+#   name:
+#     - bmc_remote1
+#
+# ============ 注意事项 ============
+#
+# 1. 确保本地已安装 ipmitool 工具
+# 2. 确保 BMC 网络可达
+# 3. 确保 BMC 用户名和密码正确
+# 4. off 操作会立即切断电源，可能导致数据丢失
+# 5. on 操作用于开机，确保服务器已关机
+# 6. 多个 BMC 会并发执行命令
+# 7. duration 参数由上层框架控制，无需手动恢复

@@ -63,6 +63,28 @@ sw_environments:
     passwd: "Gsta.123yjy"
     nodename: "eor2"
 
+# 环境配置
+bmc_environments:
+  bmc_remote1:
+    ip: "10.230.246.175"
+    user: "admin"
+    passwd: "admin"
+  bmc_remote2:
+    ip: "10.230.246.176"
+    user: "admin"
+    passwd: "admin"
+  bmc_remote3:
+    ip: "10.230.246.177"
+    user: "admin"
+    passwd: "admin"
+  bmc_remote4:
+    ip: "10.230.246.178"
+    user: "admin"
+    passwd: "admin"
+
+
+
+
 # 默认配置
 defaults:
   namespace: "ns-dupf"

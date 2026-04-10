@@ -1,0 +1,105 @@
+# 网络数据包重排序故障注入 Case 模板
+# 本模板展示网络数据包重排序故障注入的完整参数配置
+
+name: network_reorder
+description: Network reorder fault test
+type: network
+environment: 1_ssh_remote
+fault_type: reorder
+pod_match:
+  name: dupf-upu-dupf01-1
+
+# 网络数据包重排序参数配置
+# 所有参数均为可选，不指定时使用默认值或随机生成
+parameters:
+  # device: 网卡设备名
+  # - 可选参数
+  # - 优先级: 参数 > config.yaml > 默认值 eth0
+  # - 不指定时从 config.yaml 的 device 字段获取
+  # - 示例: eth0, eth1, ens33
+  
+  # percent: 立即发送（不延迟）的包所占比例
+  # - 可选参数，默认值: 随机 0.5%~10%
+  # - 支持格式:
+  #   1. 固定值: "0.5%"
+  #   2. 范围值: ["0.5%", "10%"] - 在范围内随机选择
+  #   3. 不指定: 自动随机生成 0.5%~10%
+  percent: 0.5%
+  
+  # correlation: 重排序事件的相关性
+  # - 可选参数，默认值: 随机 1%~90%
+  # - 支持格式:
+  #   1. 固定值: "25%"
+  #   2. 范围值: ["10%", "90%"] - 在范围内随机选择
+  #   3. 不指定: 自动随机生成 1%~90%
+  # - 说明: 相关性越高，重排序事件越容易连续发生
+  correlation: 25%
+  
+  # gap: 指定重排序的周期性模式
+  # - 可选参数，默认值: 随机 1~100
+  # - 支持格式:
+  #   1. 固定值: 5
+  #   2. 范围值: [1, 100] - 在范围内随机选择
+  #   3. 不指定: 自动随机生成 1~100
+  # - 说明: 每 gap 个包中，第 gap 个包有 percent 概率立即发送
+  gap: 5
+
+# 故障持续时间
+duration: 60s
+
+# 循环执行次数
+loop_count: 1
+
+# 是否自动清除故障
+auto_clear: true
+
+# ============ 参数组合示例 ============
+#
+# 示例 1: 最简配置（所有参数随机生成）
+# parameters: {}
+#
+# 示例 2: 指定重排序比例
+# parameters:
+#   percent: 20%
+#
+# 示例 3: 指定重排序比例和相关性
+# parameters:
+#   percent: 20%
+#   correlation: 50%
+#
+# 示例 4: 指定所有参数
+# parameters:
+#   percent: 20%
+#   correlation: 50%
+#   gap: 5
+#
+# 示例 5: 使用范围值
+# parameters:
+#   percent: ["0.5%", "5%"]
+#   correlation: ["20%", "50%"]
+#   gap: [1, 10]
+#
+# 示例 6: 指定网卡设备
+# parameters:
+#   device: eth1
+#   percent: 1%
+#   correlation: 30%
+#   gap: 3
+#
+# ============ tc 命令示例 ============
+#
+# 基本命令:
+# tc qdisc add dev eth0 root netem delay 100ms reorder 20% 50% gap 5
+#
+# 说明:
+# - delay 100ms: 基础延迟 100ms
+# - reorder 20%: 20% 的包会立即发送（不延迟）
+# - 50%: 重排序事件之间的相关性为 50%
+# - gap 5: 每 5 个包中，第 5 个包有 20% 概率立即发送
+#
+# 效果:
+# - 数据包会被重新排序，导致接收方收到乱序的数据包
+# - 适用于测试应用层对乱序数据包的处理能力
+# - 每 gap 个包中，前 gap-1 个包会被延迟，第 gap 个包有 percent 概率立即发送
+# - 相关性越高，重排序事件越容易连续发生（模拟突发性乱序）
+# - 注意: 乱序的数据包可能会导致 TCP 重传或应用层逻辑错误

@@ -2008,5 +2008,177 @@
     "start_time": "2026-04-10 14:33:31.309319",
     "end_time": "2026-04-10T14:34:29.215061",
     "error_message": null
+  },
+  "delay_dupf-upu-dupf01-1-75fd8b6bbd-jqdjw_ns-dupf_1775803717": {
+    "fault_id": "delay_dupf-upu-dupf01-1-75fd8b6bbd-jqdjw_ns-dupf_1775803717",
+    "case_name": "network_delay",
+    "fault_type": "delay",
+    "target": {
+      "name": "dupf-upu-dupf01-1-75fd8b6bbd-jqdjw",
+      "ip": "10.233.81.12",
+      "namespace": "ns-dupf"
+    },
+    "parameters": {
+      "time": [
+        "200ms",
+        "800ms"
+      ],
+      "jitter": [
+        "20ms",
+        "100ms"
+      ],
+      "correlation": [
+        "10%",
+        "90%"
+      ],
+      "distribution": "paretonormal"
+    },
+    "status": "recovered",
+    "start_time": "2026-04-10 14:48:37.435957",
+    "end_time": "2026-04-10T14:49:34.433490",
+    "error_message": null
+  },
+  "loss_dupf-upu-dupf01-1-75fd8b6bbd-jqdjw_ns-dupf_1775803823": {
+    "fault_id": "loss_dupf-upu-dupf01-1-75fd8b6bbd-jqdjw_ns-dupf_1775803823",
+    "case_name": "network_loss",
+    "fault_type": "loss",
+    "target": {
+      "name": "dupf-upu-dupf01-1-75fd8b6bbd-jqdjw",
+      "ip": "10.233.81.12",
+      "namespace": "ns-dupf"
+    },
+    "parameters": {
+      "ecn": "random",
+      "model": {
+        "random": {
+          "percent": [
+            "10%",
+            "80%"
+          ]
+        },
+        "state": {
+          "p13": [
+            "0.01%",
+            "0.06%"
+          ],
+          "p31": [
+            "1%",
+            "8%"
+          ],
+          "p23": [
+            "30%",
+            "70%"
+          ],
+          "p32": [
+            "10%",
+            "40%"
+          ],
+          "p14": [
+            "0.01%",
+            "0.08%"
+          ]
+        },
+        "gemodel": {
+          "p": [
+            "20%",
+            "75%"
+          ],
+          "pr": [
+            "20%",
+            "85%"
+          ],
+          "pr1-h": [
+            "40%",
+            "75%"
+          ],
+          "pr1-h1-k": [
+            "0.2%",
+            "0.75%"
+          ]
+        }
+      }
+    },
+    "status": "recovered",
+    "start_time": "2026-04-10 14:50:23.584683",
+    "end_time": "2026-04-10T14:51:20.526816",
+    "error_message": null
+  },
+  "corrupt_dupf-upu-dupf01-1-75fd8b6bbd-dlrmh_ns-dupf_1775810433": {
+    "fault_id": "corrupt_dupf-upu-dupf01-1-75fd8b6bbd-dlrmh_ns-dupf_1775810433",
+    "case_name": "network_corrupt",
+    "fault_type": "corrupt",
+    "target": {
+      "name": "dupf-upu-dupf01-1-75fd8b6bbd-dlrmh",
+      "ip": "10.233.81.70",
+      "namespace": "ns-dupf"
+    },
+    "parameters": {
+      "percent": "1%",
+      "correlation": "25%"
+    },
+    "status": "recovered",
+    "start_time": "2026-04-10 16:40:34.101643",
+    "end_time": "2026-04-10T16:41:31.371220",
+    "error_message": null
+  },
+  "corrupt_dupf-upu-dupf01-1-75fd8b6bbd-dlrmh_ns-dupf_1775810579": {
+    "fault_id": "corrupt_dupf-upu-dupf01-1-75fd8b6bbd-dlrmh_ns-dupf_1775810579",
+    "case_name": "network_corrupt",
+    "fault_type": "corrupt",
+    "target": {
+      "name": "dupf-upu-dupf01-1-75fd8b6bbd-dlrmh",
+      "ip": "10.233.81.70",
+      "namespace": "ns-dupf"
+    },
+    "parameters": {
+      "percent": "1%",
+      "correlation": "25%"
+    },
+    "status": "recovered",
+    "start_time": "2026-04-10 16:42:59.976471",
+    "end_time": "2026-04-10T16:43:57.240104",
+    "error_message": null
+  },
+  "corrupt_dupf-upu-dupf01-1-75fd8b6bbd-dlrmh_ns-dupf_1775810713": {
+    "fault_id": "corrupt_dupf-upu-dupf01-1-75fd8b6bbd-dlrmh_ns-dupf_1775810713",
+    "case_name": "network_corrupt",
+    "fault_type": "corrupt",
+    "target": {
+      "name": "dupf-upu-dupf01-1-75fd8b6bbd-dlrmh",
+      "ip": "10.233.81.70",
+      "namespace": "ns-dupf"
+    },
+    "parameters": {
+      "percent": "1%",
+      "correlation": "25%"
+    },
+    "status": "recovered",
+    "start_time": "2026-04-10 16:45:13.305363",
+    "end_time": "2026-04-10T16:46:10.448464",
+    "error_message": null
+  },
+  "corrupt_dupf-upu-dupf01-1-75fd8b6bbd-dlrmh_ns-dupf_1775810822": {
+    "fault_id": "corrupt_dupf-upu-dupf01-1-75fd8b6bbd-dlrmh_ns-dupf_1775810822",
+    "case_name": "network_corrupt",
+    "fault_type": "corrupt",
+    "target": {
+      "name": "dupf-upu-dupf01-1-75fd8b6bbd-dlrmh",
+      "ip": "10.233.81.70",
+      "namespace": "ns-dupf"
+    },
+    "parameters": {
+      "percent": [
+        "10%",
+        "90%"
+      ],
+      "correlation": [
+        "30%",
+        "90%"
+      ]
+    },
+    "status": "recovered",
+    "start_time": "2026-04-10 16:47:02.398318",
+    "end_time": "2026-04-10T16:47:59.484555",
+    "error_message": null
   }
 }

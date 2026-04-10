@@ -79,7 +79,6 @@ class NetworkFaultInjector(FaultInjector):
         pod_name = target.get("name")
         namespace = target.get("namespace")
         
-        # 生成故障 ID
         timestamp = int(datetime.now().timestamp())
         self.fault_id = f"{fault_type}_{pod_name}_{namespace}_{timestamp}"
         
@@ -88,6 +87,12 @@ class NetworkFaultInjector(FaultInjector):
                 return self._inject_delay(target, parameters)
             elif fault_type == "loss":
                 return self._inject_loss(target, parameters)
+            elif fault_type == "corrupt":
+                return self._inject_corrupt(target, parameters)
+            elif fault_type == "duplicate":
+                return self._inject_duplicate(target, parameters)
+            elif fault_type == "reorder":
+                return self._inject_reorder(target, parameters)
             else:
                 raise ValueError(f"未知的故障类型：{fault_type}")
         except Exception as e:
@@ -637,6 +642,312 @@ class NetworkFaultInjector(FaultInjector):
         self.logger.info(f"网络丢包注入成功")
         return True
     
+    def _inject_corrupt(self, target: Dict, parameters: Dict) -> bool:
+        """注入网络数据包破坏
+        
+        Args:
+            target: 目标 Pod 信息
+            parameters: 故障参数，支持：
+                - device: 网卡名，默认从 config.yaml 获取或 eth0
+                - percent: 被损坏的数据包所占比例，默认随机 1%~90%
+                - correlation: 损坏事件之间的相关性，默认随机 1%~90%
+                
+        Returns:
+            bool: 成功标志
+        """
+        pod_name = target.get("name")
+        namespace = target.get("namespace")
+        
+        device = self._get_device(parameters)
+        percent = self._parse_corrupt_percent_param(parameters.get("percent"))
+        correlation = self._parse_corrupt_correlation_param(parameters.get("correlation"))
+        
+        pause_container_id = self._get_pause_container_id(pod_name)
+        if not pause_container_id:
+            self.logger.error(f"无法获取 Pod {pod_name} 的 pause 容器 ID")
+            return False
+        
+        pause_container_pid = self._get_container_pid(pause_container_id)
+        if not pause_container_pid:
+            self.logger.error(f"无法获取 Pod {pod_name} 的 pause 容器 PID")
+            return False
+        
+        tc_command = self._build_tc_corrupt_command(device, percent, correlation)
+        command = f"nsenter -t {pause_container_pid} -n {tc_command}"
+        
+        self.logger.info(f"为 Pod {pod_name} 注入网络数据包破坏")
+        self.logger.info(f"损坏比例: {percent}")
+        self.logger.info(f"相关性: {correlation}")
+        self.logger.info(f"tc 命令: {tc_command}")
+        
+        success, output = self.remote_executor.execute(command)
+        if not success:
+            self.logger.error(f"网络数据包破坏注入失败：{output}")
+            return False
+        
+        self.logger.info(f"网络数据包破坏注入成功")
+        return True
+    
+    def _parse_corrupt_percent_param(self, percent_param: Optional[Union[str, List[str]]]) -> str:
+        """解析数据包破坏比例参数
+        
+        Args:
+            percent_param: 比例参数，可以是字符串、列表或 None
+            
+        Returns:
+            str: 比例值（如 "1%"）
+        """
+        if percent_param is None:
+            return f"{random.randint(1, 90)}%"
+        
+        if isinstance(percent_param, list):
+            return self._parse_percent_range(percent_param)
+        
+        return percent_param
+    
+    def _parse_corrupt_correlation_param(self, correlation_param: Optional[Union[str, List[str]]]) -> str:
+        """解析数据包破坏相关性参数
+        
+        Args:
+            correlation_param: 相关性参数，可以是字符串、列表或 None
+            
+        Returns:
+            str: 相关性值（如 "25%"）
+        """
+        if correlation_param is None:
+            return f"{random.randint(1, 90)}%"
+        
+        if isinstance(correlation_param, list):
+            return self._parse_percent_range(correlation_param)
+        
+        return correlation_param
+    
+    def _build_tc_corrupt_command(self, device: str, percent: str, correlation: str) -> str:
+        """构建 tc 数据包破坏命令
+        
+        Args:
+            device: 网卡设备名
+            percent: 损坏比例
+            correlation: 相关性
+            
+        Returns:
+            str: tc 命令
+        """
+        return f"tc qdisc add dev {device} root netem corrupt {percent} {correlation}"
+    
+    def _inject_duplicate(self, target: Dict, parameters: Dict) -> bool:
+        """注入网络数据包重复
+        
+        Args:
+            target: 目标 Pod 信息
+            parameters: 故障参数，支持：
+                - device: 网卡名，默认从 config.yaml 获取或 eth0
+                - percent: 被复制的数据包所占比例，默认随机 0.5%~10%
+                - correlation: 重复事件之间的相关性，默认随机 1%~90%
+                
+        Returns:
+            bool: 成功标志
+        """
+        pod_name = target.get("name")
+        namespace = target.get("namespace")
+        
+        device = self._get_device(parameters)
+        percent = self._parse_duplicate_percent_param(parameters.get("percent"))
+        correlation = self._parse_duplicate_correlation_param(parameters.get("correlation"))
+        
+        pause_container_id = self._get_pause_container_id(pod_name)
+        if not pause_container_id:
+            self.logger.error(f"无法获取 Pod {pod_name} 的 pause 容器 ID")
+            return False
+        
+        pause_container_pid = self._get_container_pid(pause_container_id)
+        if not pause_container_pid:
+            self.logger.error(f"无法获取 Pod {pod_name} 的 pause 容器 PID")
+            return False
+        
+        tc_command = self._build_tc_duplicate_command(device, percent, correlation)
+        command = f"nsenter -t {pause_container_pid} -n {tc_command}"
+        
+        self.logger.info(f"为 Pod {pod_name} 注入网络数据包重复")
+        self.logger.info(f"重复比例: {percent}")
+        self.logger.info(f"相关性: {correlation}")
+        self.logger.info(f"tc 命令: {tc_command}")
+        
+        success, output = self.remote_executor.execute(command)
+        if not success:
+            self.logger.error(f"网络数据包重复注入失败：{output}")
+            return False
+        
+        self.logger.info(f"网络数据包重复注入成功")
+        return True
+    
+    def _parse_duplicate_percent_param(self, percent_param: Optional[Union[str, List[str]]]) -> str:
+        """解析数据包重复比例参数
+        
+        Args:
+            percent_param: 比例参数，可以是字符串、列表或 None
+            
+        Returns:
+            str: 比例值（如 "0.5%"）
+        """
+        if percent_param is None:
+            value = random.uniform(0.5, 10)
+            return f"{value:.1f}%"
+        
+        if isinstance(percent_param, list):
+            return self._parse_percent_range(percent_param)
+        
+        return percent_param
+    
+    def _parse_duplicate_correlation_param(self, correlation_param: Optional[Union[str, List[str]]]) -> str:
+        """解析数据包重复相关性参数
+        
+        Args:
+            correlation_param: 相关性参数，可以是字符串、列表或 None
+            
+        Returns:
+            str: 相关性值（如 "25%"）
+        """
+        if correlation_param is None:
+            return f"{random.randint(1, 90)}%"
+        
+        if isinstance(correlation_param, list):
+            return self._parse_percent_range(correlation_param)
+        
+        return correlation_param
+    
+    def _build_tc_duplicate_command(self, device: str, percent: str, correlation: str) -> str:
+        """构建 tc 数据包重复命令
+        
+        Args:
+            device: 网卡设备名
+            percent: 重复比例
+            correlation: 相关性
+            
+        Returns:
+            str: tc 命令
+        """
+        return f"tc qdisc add dev {device} root netem duplicate {percent} {correlation}"
+    
+    def _inject_reorder(self, target: Dict, parameters: Dict) -> bool:
+        """注入网络数据包重排序
+        
+        Args:
+            target: 目标 Pod 信息
+            parameters: 故障参数，支持：
+                - device: 网卡名，默认从 config.yaml 获取或 eth0
+                - percent: 立即发送（不延迟）的包所占比例，默认随机 0.5%~10%
+                - correlation: 重排序事件的相关性，默认随机 1%~90%
+                - gap: 指定重排序的周期性模式，默认随机 1~100
+                
+        Returns:
+            bool: 成功标志
+        """
+        pod_name = target.get("name")
+        namespace = target.get("namespace")
+        
+        device = self._get_device(parameters)
+        percent = self._parse_reorder_percent_param(parameters.get("percent"))
+        correlation = self._parse_reorder_correlation_param(parameters.get("correlation"))
+        gap = self._parse_reorder_gap_param(parameters.get("gap"))
+        
+        pause_container_id = self._get_pause_container_id(pod_name)
+        if not pause_container_id:
+            self.logger.error(f"无法获取 Pod {pod_name} 的 pause 容器 ID")
+            return False
+        
+        pause_container_pid = self._get_container_pid(pause_container_id)
+        if not pause_container_pid:
+            self.logger.error(f"无法获取 Pod {pod_name} 的 pause 容器 PID")
+            return False
+        
+        tc_command = self._build_tc_reorder_command(device, percent, correlation, gap)
+        command = f"nsenter -t {pause_container_pid} -n {tc_command}"
+        
+        self.logger.info(f"为 Pod {pod_name} 注入网络数据包重排序")
+        self.logger.info(f"重排序比例: {percent}")
+        self.logger.info(f"相关性: {correlation}")
+        self.logger.info(f"Gap: {gap}")
+        self.logger.info(f"tc 命令: {tc_command}")
+        
+        success, output = self.remote_executor.execute(command)
+        if not success:
+            self.logger.error(f"网络数据包重排序注入失败：{output}")
+            return False
+        
+        self.logger.info(f"网络数据包重排序注入成功")
+        return True
+    
+    def _parse_reorder_percent_param(self, percent_param: Optional[Union[str, List[str]]]) -> str:
+        """解析数据包重排序比例参数
+        
+        Args:
+            percent_param: 比例参数，可以是字符串、列表或 None
+            
+        Returns:
+            str: 比例值（如 "0.5%"）
+        """
+        if percent_param is None:
+            value = random.uniform(0.5, 10)
+            return f"{value:.1f}%"
+        
+        if isinstance(percent_param, list):
+            return self._parse_percent_range(percent_param)
+        
+        return percent_param
+    
+    def _parse_reorder_correlation_param(self, correlation_param: Optional[Union[str, List[str]]]) -> str:
+        """解析数据包重排序相关性参数
+        
+        Args:
+            correlation_param: 相关性参数，可以是字符串、列表或 None
+            
+        Returns:
+            str: 相关性值（如 "25%"）
+        """
+        if correlation_param is None:
+            return f"{random.randint(1, 90)}%"
+        
+        if isinstance(correlation_param, list):
+            return self._parse_percent_range(correlation_param)
+        
+        return correlation_param
+    
+    def _parse_reorder_gap_param(self, gap_param: Optional[Union[int, List[int]]]) -> int:
+        """解析数据包重排序 gap 参数
+        
+        Args:
+            gap_param: gap 参数，可以是整数、列表或 None
+            
+        Returns:
+            int: gap 值（如 5）
+        """
+        if gap_param is None:
+            return random.randint(1, 100)
+        
+        if isinstance(gap_param, list):
+            min_val = int(gap_param[0])
+            max_val = int(gap_param[1])
+            if min_val > max_val:
+                min_val, max_val = max_val, min_val
+            return random.randint(min_val, max_val)
+        
+        return int(gap_param)
+    
+    def _build_tc_reorder_command(self, device: str, percent: str, correlation: str, gap: int) -> str:
+        """构建 tc 数据包重排序命令
+        
+        Args:
+            device: 网卡设备名
+            percent: 重排序比例
+            correlation: 相关性
+            gap: 重排序周期
+            
+        Returns:
+            str: tc 命令
+        """
+        return f"tc qdisc add dev {device} root netem delay 100ms reorder {percent} {correlation} gap {gap}"
+    
     def _get_pause_container_id(self, pod_name: str) -> Optional[str]:
         """获取 Pod 的 pause 容器 ID
         
@@ -1147,6 +1458,199 @@ class ComputerFaultInjector(FaultInjector):
             bool: 成功标志
         """
         self.logger.info(f"物理机重启后自动恢复：{fault_id}")
+        return True
+    
+    def get_fault_id(self) -> Optional[str]:
+        """获取故障 ID"""
+        return self.fault_id
+
+
+@FaultInjectorRegistry.register("ipmitool")
+class IpmiToolFaultInjector(FaultInjector):
+    """IPMI 工具故障注入器"""
+    
+    def __init__(self, config_manager, logger):
+        """初始化 IPMI 工具故障注入器
+        
+        Args:
+            config_manager: 配置管理器
+            logger: 日志记录器
+        """
+        self.config_manager = config_manager
+        self.logger = logger
+        self.fault_id = None
+    
+    def inject(self, target: Dict, parameters: Dict) -> bool:
+        """注入 IPMI 故障
+        
+        Args:
+            target: 目标信息
+                - name: BMC 名称列表（如 ["bmc_remote1", "bmc_remote2"]）
+            parameters: 故障参数
+                - fault_type: 故障类型（soft/off/on/reset/cycle/status/warm/cold）
+            
+        Returns:
+            bool: 成功标志
+        """
+        fault_type = parameters.get("fault_type", "status")
+        bmc_names = target.get("name", [])
+        
+        if not isinstance(bmc_names, list):
+            bmc_names = [bmc_names]
+        
+        timestamp = int(datetime.now().timestamp())
+        self.fault_id = f"ipmitool_{fault_type}_{'_'.join(bmc_names)}_{timestamp}"
+        
+        try:
+            return self._execute_on_multiple_bmc(bmc_names, fault_type)
+        except Exception as e:
+            self.logger.error(f"IPMI 故障注入失败：{e}")
+            return False
+    
+    def _execute_on_multiple_bmc(self, bmc_names: List[str], fault_type: str) -> bool:
+        """并发执行多个 BMC 的命令
+        
+        Args:
+            bmc_names: BMC 名称列表
+            fault_type: 故障类型
+            
+        Returns:
+            bool: 成功标志
+        """
+        from concurrent.futures import ThreadPoolExecutor, as_completed
+        
+        all_success = True
+        
+        with ThreadPoolExecutor(max_workers=len(bmc_names)) as executor:
+            futures = {
+                executor.submit(self._execute_on_single_bmc, bmc_name, fault_type): bmc_name
+                for bmc_name in bmc_names
+            }
+            
+            for future in as_completed(futures):
+                bmc_name = futures[future]
+                try:
+                    success = future.result()
+                    if not success:
+                        all_success = False
+                except Exception as e:
+                    self.logger.error(f"BMC {bmc_name} 执行失败：{e}")
+                    all_success = False
+        
+        return all_success
+    
+    def _execute_on_single_bmc(self, bmc_name: str, fault_type: str) -> bool:
+        """执行单个 BMC 的命令
+        
+        Args:
+            bmc_name: BMC 名称
+            fault_type: 故障类型
+            
+        Returns:
+            bool: 成功标志
+        """
+        bmc_config = self._get_bmc_config(bmc_name)
+        if not bmc_config:
+            self.logger.error(f"BMC 配置不存在：{bmc_name}")
+            return False
+        
+        command = self._build_ipmitool_command(bmc_config, fault_type)
+        if not command:
+            self.logger.error(f"不支持的故障类型：{fault_type}")
+            return False
+        
+        self.logger.info(f"为 BMC {bmc_name} 执行 IPMI 命令")
+        self.logger.info(f"故障类型: {fault_type}")
+        self.logger.info(f"命令: {command}")
+        
+        success, output = self._execute_local_command(command)
+        
+        if not success:
+            self.logger.error(f"BMC {bmc_name} 命令执行失败：{output}")
+            return False
+        
+        self.logger.info(f"BMC {bmc_name} 命令执行成功：{output}")
+        return True
+    
+    def _get_bmc_config(self, bmc_name: str) -> Optional[Dict]:
+        """获取 BMC 配置信息
+        
+        Args:
+            bmc_name: BMC 名称
+            
+        Returns:
+            Optional[Dict]: BMC 配置信息
+        """
+        bmc_environments = self.config_manager.config.get("bmc_environments", {})
+        return bmc_environments.get(bmc_name)
+    
+    def _build_ipmitool_command(self, bmc_config: Dict, fault_type: str) -> Optional[str]:
+        """构建 ipmitool 命令
+        
+        Args:
+            bmc_config: BMC 配置信息
+            fault_type: 故障类型
+            
+        Returns:
+            Optional[str]: ipmitool 命令
+        """
+        ip = bmc_config.get("ip")
+        user = bmc_config.get("user")
+        passwd = bmc_config.get("passwd")
+        
+        command_map = {
+            "soft": f"ipmitool -I lanplus -H {ip} -U {user} -P {passwd} chassis power soft",
+            "off": f"ipmitool -I lanplus -H {ip} -U {user} -P {passwd} chassis power off",
+            "on": f"ipmitool -I lanplus -H {ip} -U {user} -P {passwd} chassis power on",
+            "reset": f"ipmitool -I lanplus -H {ip} -U {user} -P {passwd} chassis power reset",
+            "cycle": f"ipmitool -I lanplus -H {ip} -U {user} -P {passwd} chassis power cycle",
+            "status": f"ipmitool -I lanplus -H {ip} -U {user} -P {passwd} chassis power status",
+            "warm": f"ipmitool -I lanplus -H {ip} -U {user} -P {passwd} mc reset warm",
+            "cold": f"ipmitool -I lanplus -H {ip} -U {user} -P {passwd} mc reset cold",
+        }
+        
+        return command_map.get(fault_type)
+    
+    def _execute_local_command(self, command: str) -> Tuple[bool, str]:
+        """执行本地命令
+        
+        Args:
+            command: 要执行的命令
+            
+        Returns:
+            Tuple[bool, str]: (是否成功, 输出内容)
+        """
+        import subprocess
+        
+        try:
+            result = subprocess.run(
+                command,
+                shell=True,
+                capture_output=True,
+                text=True,
+                timeout=30
+            )
+            
+            output = result.stdout + result.stderr
+            success = result.returncode == 0
+            
+            return success, output
+            
+        except subprocess.TimeoutExpired:
+            return False, "命令执行超时"
+        except Exception as e:
+            return False, str(e)
+    
+    def recover(self, fault_id: str) -> bool:
+        """恢复 IPMI 故障
+        
+        Args:
+            fault_id: 故障 ID
+            
+        Returns:
+            bool: 成功标志
+        """
+        self.logger.info(f"IPMI 故障无需恢复：{fault_id}")
         return True
     
     def get_fault_id(self) -> Optional[str]:
