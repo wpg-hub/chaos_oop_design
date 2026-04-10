@@ -24,7 +24,7 @@ parameters:
   #   1. 固定值: "300ms" 或 "2s"
   #   2. 范围值: ["200ms", "800ms"] - 在范围内随机选择
   #   3. 不指定: 自动随机生成 100ms~1000ms
-  time: 300ms
+  time: ["200ms", "800ms"]
   
   # jitter: 随机抖动最大幅度
   # - 可选参数，默认值: 随机 0ms~100ms
@@ -33,7 +33,7 @@ parameters:
   #   2. 范围值: ["20ms", "100ms"] - 在范围内随机选择
   #   3. 不指定: 自动随机生成 0ms~100ms
   # - 注意: jitter 必须配合 time 使用
-  jitter: 100ms
+  jitter: ["20ms", "100ms"]
   
   # correlation: 相关性（延迟值之间的相关性）
   # - 可选参数，默认值: 随机 20%~90%
@@ -42,7 +42,7 @@ parameters:
   #   2. 范围值: ["10%", "90%"] - 在范围内随机选择
   #   3. 不指定: 自动随机生成 20%~90%
   # - 注意: correlation 必须配合 jitter 使用
-  correlation: 20%
+  correlation: ["10%", "90%"]
   
   # distribution: 抖动值的统计分布模型
   # - 可选参数，默认值: 随机选择

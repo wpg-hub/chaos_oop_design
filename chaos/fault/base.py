@@ -353,36 +353,288 @@ class NetworkFaultInjector(FaultInjector):
         
         return " ".join(cmd_parts)
     
+    def _parse_ecn_param(self, ecn_param: Optional[Union[str, bool]]) -> bool:
+        """解析 ECN 参数
+        
+        Args:
+            ecn_param: ECN 参数，可以是 true/false/random/True/False/None
+            
+        Returns:
+            bool: ECN 标志
+        """
+        if ecn_param is None or ecn_param == "random":
+            return random.choice([True, False])
+        
+        if isinstance(ecn_param, bool):
+            return ecn_param
+        
+        if isinstance(ecn_param, str):
+            if ecn_param.lower() == "true":
+                return True
+            elif ecn_param.lower() == "false":
+                return False
+            elif ecn_param.lower() == "random":
+                return random.choice([True, False])
+        
+        return False
+    
+    def _build_loss_params(self, parameters: Dict) -> tuple:
+        """构建丢包参数
+        
+        随机选择一种丢包模型并构建参数
+        
+        Args:
+            parameters: 原始参数字典
+            
+        Returns:
+            tuple: (模型名称, 参数字典)
+        """
+        model_config = parameters.get("model", {})
+        
+        available_models = ["random", "state", "gemodel"]
+        configured_models = [m for m in available_models if m in model_config]
+        
+        if not configured_models:
+            model_name = random.choice(available_models)
+        else:
+            model_name = random.choice(configured_models)
+        
+        model_params = model_config.get(model_name, {})
+        
+        if model_name == "random":
+            params = self._build_loss_params_random(model_params)
+        elif model_name == "state":
+            params = self._build_loss_params_state(model_params)
+        elif model_name == "gemodel":
+            params = self._build_loss_params_gemodel(model_params)
+        else:
+            params = {}
+        
+        return model_name, params
+    
+    def _build_loss_params_random(self, model_params: Dict) -> Dict:
+        """构建 random 模型参数
+        
+        Args:
+            model_params: 模型参数字典
+            
+        Returns:
+            Dict: 构建后的参数
+        """
+        percent = model_params.get("percent")
+        if percent is None:
+            percent = f"{random.randint(10, 50)}%"
+        elif isinstance(percent, list):
+            percent = self._parse_percent_range(percent)
+        
+        return {"percent": percent}
+    
+    def _build_loss_params_state(self, model_params: Dict) -> Dict:
+        """构建 state 模型参数
+        
+        Args:
+            model_params: 模型参数字典
+            
+        Returns:
+            Dict: 构建后的参数
+        """
+        p13 = model_params.get("p13")
+        if p13 is None:
+            p13 = f"{random.uniform(0.01, 0.5):.2f}%"
+        elif isinstance(p13, list):
+            p13 = self._parse_percent_range(p13)
+        
+        p31 = model_params.get("p31")
+        if p31 is None:
+            p31 = f"{random.randint(1, 5)}%"
+        elif isinstance(p31, list):
+            p31 = self._parse_percent_range(p31)
+        
+        p23 = model_params.get("p23")
+        if p23 is None:
+            p23 = f"{random.randint(30, 80)}%"
+        elif isinstance(p23, list):
+            p23 = self._parse_percent_range(p23)
+        
+        p32 = model_params.get("p32")
+        if p32 is None:
+            p32 = f"{random.randint(10, 30)}%"
+        elif isinstance(p32, list):
+            p32 = self._parse_percent_range(p32)
+        
+        p14 = model_params.get("p14")
+        if p14 is None:
+            p14 = f"{random.uniform(0.01, 0.5):.2f}%"
+        elif isinstance(p14, list):
+            p14 = self._parse_percent_range(p14)
+        
+        return {
+            "p13": p13,
+            "p31": p31,
+            "p23": p23,
+            "p32": p32,
+            "p14": p14
+        }
+    
+    def _build_loss_params_gemodel(self, model_params: Dict) -> Dict:
+        """构建 gemodel 模型参数
+        
+        Args:
+            model_params: 模型参数字典
+            
+        Returns:
+            Dict: 构建后的参数
+        """
+        p = model_params.get("p")
+        if p is None:
+            p = f"{random.randint(30, 80)}%"
+        elif isinstance(p, list):
+            p = self._parse_percent_range(p)
+        
+        pr = model_params.get("pr")
+        if pr is None:
+            pr = f"{random.randint(70, 90)}%"
+        elif isinstance(pr, list):
+            pr = self._parse_percent_range(pr)
+        
+        pr1_h = model_params.get("pr1-h")
+        if pr1_h is None:
+            pr1_h = f"{random.randint(20, 90)}%"
+        elif isinstance(pr1_h, list):
+            pr1_h = self._parse_percent_range(pr1_h)
+        
+        pr1_h1_k = model_params.get("pr1-h1-k")
+        if pr1_h1_k is None:
+            pr1_h1_k = f"{random.uniform(0.1, 0.5):.2f}%"
+        elif isinstance(pr1_h1_k, list):
+            pr1_h1_k = self._parse_percent_range(pr1_h1_k)
+        
+        return {
+            "p": p,
+            "pr": pr,
+            "pr1-h": pr1_h,
+            "pr1-h1-k": pr1_h1_k
+        }
+    
+    def _parse_percent_range(self, percent_range: List[str]) -> str:
+        """解析百分比范围
+        
+        Args:
+            percent_range: 百分比范围，如 ["10%", "90%"]
+            
+        Returns:
+            str: 随机选择的百分比值
+        """
+        min_val = self._parse_percent_value(percent_range[0])
+        max_val = self._parse_percent_value(percent_range[1])
+        
+        if min_val > max_val:
+            min_val, max_val = max_val, min_val
+        
+        if min_val < 1:
+            value = random.uniform(min_val, max_val)
+            return f"{value:.2f}%"
+        else:
+            value = random.randint(int(min_val), int(max_val))
+            return f"{value}%"
+    
+    def _parse_percent_value(self, percent_str: str) -> float:
+        """解析百分比值
+        
+        Args:
+            percent_str: 百分比字符串，如 "10%", "0.5%"
+            
+        Returns:
+            float: 百分比数值
+        """
+        return float(percent_str.strip("%"))
+    
+    def _build_tc_loss_command(self, device: str, model_name: str, params: Dict, ecn: bool) -> str:
+        """构建 tc 丢包命令
+        
+        Args:
+            device: 网卡设备名
+            model_name: 模型名称
+            params: 丢包参数字典
+            ecn: ECN 标志
+            
+        Returns:
+            str: tc 命令
+        """
+        cmd_parts = [f"tc qdisc add dev {device} root netem loss {model_name}"]
+        
+        if model_name == "random":
+            cmd_parts.append(params["percent"])
+        elif model_name == "state":
+            p13 = params["p13"]
+            p31 = params["p31"]
+            p23 = params["p23"]
+            p32 = params["p32"]
+            p14 = params["p14"]
+            cmd_parts.extend([p13, p31, p23, p32, p14])
+        elif model_name == "gemodel":
+            p = params["p"]
+            pr = params["pr"]
+            pr1_h = params["pr1-h"]
+            pr1_h1_k = params["pr1-h1-k"]
+            cmd_parts.extend([p, pr, pr1_h, pr1_h1_k])
+        
+        if ecn:
+            cmd_parts.append("ecn")
+        
+        return " ".join(cmd_parts)
+    
     def _inject_loss(self, target: Dict, parameters: Dict) -> bool:
-        """注入网络丢包"""
+        """注入网络丢包
+        
+        Args:
+            target: 目标 Pod 信息
+            parameters: 故障参数，支持：
+                - device: 网卡名，默认从 config.yaml 获取或 eth0
+                - ecn: true/false/random，默认 random
+                - model: 丢包模型配置
+                    - random: 独立随机丢包模型
+                        - percent: 丢包率，默认随机 10%~50%
+                    - state: 状态马尔可夫模型（最高 4 态）
+                        - p13, p31, p23, p32, p14: 各状态转移概率
+                    - gemodel: 吉尔伯特‑埃利奥特模型
+                        - p, pr, pr1-h, pr1-h1-k: 模型参数
+                
+        Returns:
+            bool: 成功标志
+        """
         pod_name = target.get("name")
         namespace = target.get("namespace")
-        loss = parameters.get("loss", "10%")
-        device = parameters.get("device", "eth0")
         
-        # 获取 pause 容器 ID
+        device = self._get_device(parameters)
+        ecn = self._parse_ecn_param(parameters.get("ecn"))
+        model_name, loss_params = self._build_loss_params(parameters)
+        
         pause_container_id = self._get_pause_container_id(pod_name)
         if not pause_container_id:
             self.logger.error(f"无法获取 Pod {pod_name} 的 pause 容器 ID")
             return False
         
-        # 获取 pause 容器 PID
         pause_container_pid = self._get_container_pid(pause_container_id)
         if not pause_container_pid:
             self.logger.error(f"无法获取 Pod {pod_name} 的 pause 容器 PID")
             return False
         
-        # 构建 tc 命令（使用 nsenter 进入容器网络命名空间）
-        command = f"nsenter -t {pause_container_pid} -n tc qdisc add dev {device} root netem loss {loss}"
+        tc_command = self._build_tc_loss_command(device, model_name, loss_params, ecn)
+        command = f"nsenter -t {pause_container_pid} -n {tc_command}"
         
-        self.logger.info(f"为 Pod {pod_name} 注入网络丢包：{loss}")
+        self.logger.info(f"为 Pod {pod_name} 注入网络丢包")
+        self.logger.info(f"丢包模型: {model_name}")
+        self.logger.info(f"丢包参数: {loss_params}")
+        self.logger.info(f"ECN: {ecn}")
+        self.logger.info(f"tc 命令: {tc_command}")
         
-        # 执行命令
         success, output = self.remote_executor.execute(command)
         if not success:
             self.logger.error(f"网络丢包注入失败：{output}")
             return False
         
+        self.logger.info(f"网络丢包注入成功")
         return True
     
     def _get_pause_container_id(self, pod_name: str) -> Optional[str]:

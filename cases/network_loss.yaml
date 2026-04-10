@@ -1,0 +1,170 @@
+# 网络丢包故障注入 Case 模板
+# 本模板展示网络丢包故障注入的完整参数配置
+
+name: network_loss
+description: Network loss fault test
+type: network
+environment: 1_ssh_remote
+fault_type: loss
+pod_match:
+  name: dupf-upu-dupf01-1
+
+# 网络丢包参数配置
+# 所有参数均为可选，不指定时使用默认值或随机生成
+parameters:
+  # device: 网卡设备名
+  # - 可选参数
+  # - 优先级: 参数 > config.yaml > 默认值 eth0
+  # - 不指定时从 config.yaml 的 device 字段获取
+  # - 示例: eth0, eth1, ens33
+  
+  # ecn: ECN 标志（显式拥塞通知）
+  # - 可选参数，默认值: random（随机 true 或 false）
+  # - 可选值:
+  #   1. true - 启用 ECN，内核会标记 IP 头部的 ECN 位（CE），而不是丢弃
+  #   2. false - 禁用 ECN，直接丢弃数据包
+  #   3. random - 随机选择 true 或 false
+  # - 注意: 接收端如果支持 ECN 会感知拥塞而不必重传
+  ecn: random
+  
+  # model: 丢包模型配置
+  # - 可选参数，不指定时随机选择一种模型
+  # - 支持三种模型: random, state, gemodel
+  # - 如果指定了多个模型，会随机选择其中一个执行
+  model:
+    # random: 独立随机丢包模型
+    # - 最简单的丢包模型，每个数据包独立地以一定概率被丢弃
+    random:
+      # percent: 丢包率
+      # - 可选参数，默认值: 随机 10%~50%
+      # - 支持格式:
+      #   1. 固定值: "10%"
+      #   2. 范围值: ["10%", "90%"] - 在范围内随机选择
+      #   3. 不指定: 自动随机生成 10%~50%
+      percent: ["10%", "80%"]
+    
+    # state: 状态马尔可夫模型（最高 4 态）
+    # - 使用马尔可夫链模拟网络丢包的突发性和相关性
+    # - 适用于模拟真实的网络丢包场景
+    state:
+      # p13: 状态转移概率 p13
+      # - 可选参数，默认值: 随机 0.01%~0.5%
+      # - 支持格式: 固定值或范围值
+      p13: ["0.01%", "0.06%"]
+      
+      # p31: 状态转移概率 p31
+      # - 可选参数，默认值: 随机 1%~5%
+      # - 支持格式: 固定值或范围值
+      p31: ["1%", "8%"]
+      
+      # p23: 状态转移概率 p23
+      # - 可选参数，默认值: 随机 30%~80%
+      # - 支持格式: 固定值或范围值
+      # - 注意: p23 一般大约等于 p32
+      p23: ["30%", "70%"]
+      
+      # p32: 状态转移概率 p32
+      # - 可选参数，默认值: 随机 10%~30%
+      # - 支持格式: 固定值或范围值
+      p32: ["10%", "40%"]
+      
+      # p14: 状态转移概率 p14
+      # - 可选参数，默认值: 随机 0.01%~0.5%
+      # - 支持格式: 固定值或范围值
+      p14: ["0.01%", "0.08%"]
+    
+    # gemodel: 吉尔伯特‑埃利奥特模型（GE 模型）
+    # - 两状态马尔可夫模型，专门用于模拟突发性丢包
+    # - 比简单的 random 模型更接近真实网络行为
+    gemodel:
+      # p: 模型参数 p
+      # - 可选参数，默认值: 随机 30%~80%
+      # - 支持格式: 固定值或范围值
+      p: ["20%", "75%"]
+      
+      # pr: 模型参数 pr
+      # - 可选参数，默认值: 随机 70%~90%
+      # - 支持格式: 固定值或范围值
+      pr: ["20%", "85%"]
+      
+      # pr1-h: 模型参数 pr1-h
+      # - 可选参数，默认值: 随机 20%~90%
+      # - 支持格式: 固定值或范围值
+      pr1-h: ["40%", "75%"]
+      
+      # pr1-h1-k: 模型参数 pr1-h1-k
+      # - 可选参数，默认值: 随机 0.1%~0.5%
+      # - 支持格式: 固定值或范围值
+      pr1-h1-k: ["0.2%", "0.75%"]
+
+# 故障持续时间
+duration: 60s
+
+# 循环执行次数
+loop_count: 1
+
+# 是否自动清除故障
+auto_clear: true
+
+# ============ 参数组合示例 ============
+#
+# 示例 1: 最简配置（所有参数随机生成）
+# parameters: {}
+#
+# 示例 2: 指定 ECN 标志
+# parameters:
+#   ecn: true
+#
+# 示例 3: 指定 random 模型
+# parameters:
+#   model:
+#     random:
+#       percent: 20%
+#
+# 示例 4: 指定 state 模型
+# parameters:
+#   model:
+#     state:
+#       p13: 0.1%
+#       p31: 1%
+#       p23: 30%
+#       p32: 20%
+#       p14: 0.1%
+#
+# 示例 5: 指定 gemodel 模型
+# parameters:
+#   model:
+#     gemodel:
+#       p: 30%
+#       pr: 70%
+#       pr1-h: 20%
+#       pr1-h1-k: 0.1%
+#
+# 示例 6: 配置多个模型（随机选择一个执行）
+# parameters:
+#   model:
+#     random:
+#       percent: 15%
+#     gemodel:
+#       p: 40%
+#       pr: 80%
+#       pr1-h: 30%
+#       pr1-h1-k: 0.2%
+#
+# 示例 7: 使用范围值
+# parameters:
+#   model:
+#     random:
+#       percent: ["10%", "30%"]
+#
+# ============ tc 命令示例 ============
+#
+# ECN 为 false 时:
+# random -> tc qdisc add dev eth0 root netem loss random 10%
+# state -> tc qdisc add dev eth0 root netem loss state 0.1% 1% 30% 20% 0.1%
+# gemodel -> tc qdisc add dev eth0 root netem loss gemodel 30% 70% 20% 0.1%
+#
+# ECN 为 true 时:
+# random -> tc qdisc add dev eth0 root netem loss random 10% ecn
+# state -> tc qdisc add dev eth0 root netem loss state 0.1% 1% 30% 20% 0.1% ecn
+# gemodel -> tc qdisc add dev eth0 root netem loss gemodel 30% 70% 20% 0.1% ecn

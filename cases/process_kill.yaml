@@ -11,4 +11,7 @@ pod_match:
 duration: 10s
 loop_count: 1
 namespace: ns-dupf
+parameters:
+  signal: 11
+  main_process_pid: 1
 auto_clear: false
