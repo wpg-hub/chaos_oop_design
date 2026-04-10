@@ -262,10 +262,10 @@ class TestNetworkFaultInjectorLoss(unittest.TestCase):
     @patch.object(NetworkFaultInjector, '_get_container_pid')
     def test_inject_loss_success(self, mock_get_pid, mock_get_container_id):
         """测试注入丢包 - 成功"""
-        mock_get_container_id.return_value = "container123"
-        mock_get_pid.return_value = 12345
-        self.mock_remote_executor.execute.return_value = (True, "")
-        
+        mock_node_executor = MagicMock()
+        mock_node_executor.execute.return_value = (True, "")
+        mock_get_container_id.return_value = ("container123", mock_node_executor)
+        mock_get_pid.return_value = 12345        
         target = {
             "name": "test-pod",
             "namespace": "default"
@@ -285,9 +285,9 @@ class TestNetworkFaultInjectorLoss(unittest.TestCase):
         self.assertTrue(result)
         mock_get_container_id.assert_called_once()
         mock_get_pid.assert_called_once()
-        self.mock_remote_executor.execute.assert_called_once()
+        mock_node_executor.execute.assert_called_once()
         
-        call_args = self.mock_remote_executor.execute.call_args
+        call_args = mock_node_executor.execute.call_args
         command = call_args[0][0]
         self.assertIn("nsenter", command)
         self.assertIn("tc qdisc add", command)
@@ -315,7 +315,9 @@ class TestNetworkFaultInjectorLoss(unittest.TestCase):
     @patch.object(NetworkFaultInjector, '_get_container_pid')
     def test_inject_loss_no_pid(self, mock_get_pid, mock_get_container_id):
         """测试注入丢包 - 无法获取 PID"""
-        mock_get_container_id.return_value = "container123"
+        mock_node_executor = MagicMock()
+        mock_node_executor.execute.return_value = (True, "")
+        mock_get_container_id.return_value = ("container123", mock_node_executor)
         mock_get_pid.return_value = None
         
         target = {

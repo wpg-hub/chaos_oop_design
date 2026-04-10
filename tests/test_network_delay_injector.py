@@ -238,9 +238,10 @@ class TestNetworkFaultInjectorDelay(unittest.TestCase):
     @patch.object(NetworkFaultInjector, '_get_container_pid')
     def test_inject_delay_success(self, mock_get_pid, mock_get_container_id):
         """测试注入延迟 - 成功"""
-        mock_get_container_id.return_value = "container123"
+        mock_node_executor = MagicMock()
+        mock_node_executor.execute.return_value = (True, "")
+        mock_get_container_id.return_value = ("container123", mock_node_executor)
         mock_get_pid.return_value = 12345
-        self.mock_remote_executor.execute.return_value = (True, "")
         
         target = {
             "name": "test-pod",
@@ -258,8 +259,8 @@ class TestNetworkFaultInjectorDelay(unittest.TestCase):
         
         self.assertTrue(result)
         self.assertIsNotNone(self.injector.get_fault_id())
-        mock_get_container_id.assert_called_once_with("test-pod")
-        mock_get_pid.assert_called_once_with("container123")
+        mock_get_container_id.assert_called_once_with("test-pod", "default")
+        mock_get_pid.assert_called_once_with("container123", mock_node_executor)
     
     @patch.object(NetworkFaultInjector, '_get_pause_container_id')
     def test_inject_delay_no_container(self, mock_get_container_id):
@@ -283,7 +284,9 @@ class TestNetworkFaultInjectorDelay(unittest.TestCase):
     @patch.object(NetworkFaultInjector, '_get_container_pid')
     def test_inject_delay_no_pid(self, mock_get_pid, mock_get_container_id):
         """测试注入延迟 - 无法获取 PID"""
-        mock_get_container_id.return_value = "container123"
+        mock_node_executor = MagicMock()
+        mock_node_executor.execute.return_value = (True, "")
+        mock_get_container_id.return_value = ("container123", mock_node_executor)
         mock_get_pid.return_value = None
         
         target = {
@@ -303,9 +306,10 @@ class TestNetworkFaultInjectorDelay(unittest.TestCase):
     @patch.object(NetworkFaultInjector, '_get_container_pid')
     def test_inject_delay_execution_failed(self, mock_get_pid, mock_get_container_id):
         """测试注入延迟 - 命令执行失败"""
-        mock_get_container_id.return_value = "container123"
+        mock_node_executor = MagicMock()
+        mock_node_executor.execute.return_value = (False, "Error")
+        mock_get_container_id.return_value = ("container123", mock_node_executor)
         mock_get_pid.return_value = 12345
-        self.mock_remote_executor.execute.return_value = (False, "Error")
         
         target = {
             "name": "test-pod",

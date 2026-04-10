@@ -120,12 +120,14 @@ class NetworkFaultInjector(FaultInjector):
         device = self._get_device(parameters)
         delay_params = self._build_delay_params(parameters)
         
-        pause_container_id = self._get_pause_container_id(pod_name)
-        if not pause_container_id:
+        result = self._get_pause_container_id(pod_name, namespace)
+        if not result:
             self.logger.error(f"无法获取 Pod {pod_name} 的 pause 容器 ID")
             return False
         
-        pause_container_pid = self._get_container_pid(pause_container_id)
+        pause_container_id, node_executor = result
+        
+        pause_container_pid = self._get_container_pid(pause_container_id, node_executor)
         if not pause_container_pid:
             self.logger.error(f"无法获取 Pod {pod_name} 的 pause 容器 PID")
             return False
@@ -137,7 +139,7 @@ class NetworkFaultInjector(FaultInjector):
         self.logger.info(f"延迟参数: {delay_params}")
         self.logger.info(f"tc 命令: {tc_command}")
         
-        success, output = self.remote_executor.execute(command)
+        success, output = node_executor.execute(command)
         if not success:
             self.logger.error(f"网络延迟注入失败：{output}")
             return False
@@ -615,12 +617,14 @@ class NetworkFaultInjector(FaultInjector):
         ecn = self._parse_ecn_param(parameters.get("ecn"))
         model_name, loss_params = self._build_loss_params(parameters)
         
-        pause_container_id = self._get_pause_container_id(pod_name)
-        if not pause_container_id:
+        result = self._get_pause_container_id(pod_name, namespace)
+        if not result:
             self.logger.error(f"无法获取 Pod {pod_name} 的 pause 容器 ID")
             return False
         
-        pause_container_pid = self._get_container_pid(pause_container_id)
+        pause_container_id, node_executor = result
+        
+        pause_container_pid = self._get_container_pid(pause_container_id, node_executor)
         if not pause_container_pid:
             self.logger.error(f"无法获取 Pod {pod_name} 的 pause 容器 PID")
             return False
@@ -634,7 +638,7 @@ class NetworkFaultInjector(FaultInjector):
         self.logger.info(f"ECN: {ecn}")
         self.logger.info(f"tc 命令: {tc_command}")
         
-        success, output = self.remote_executor.execute(command)
+        success, output = node_executor.execute(command)
         if not success:
             self.logger.error(f"网络丢包注入失败：{output}")
             return False
@@ -662,12 +666,14 @@ class NetworkFaultInjector(FaultInjector):
         percent = self._parse_corrupt_percent_param(parameters.get("percent"))
         correlation = self._parse_corrupt_correlation_param(parameters.get("correlation"))
         
-        pause_container_id = self._get_pause_container_id(pod_name)
-        if not pause_container_id:
+        result = self._get_pause_container_id(pod_name, namespace)
+        if not result:
             self.logger.error(f"无法获取 Pod {pod_name} 的 pause 容器 ID")
             return False
         
-        pause_container_pid = self._get_container_pid(pause_container_id)
+        pause_container_id, node_executor = result
+        
+        pause_container_pid = self._get_container_pid(pause_container_id, node_executor)
         if not pause_container_pid:
             self.logger.error(f"无法获取 Pod {pod_name} 的 pause 容器 PID")
             return False
@@ -680,7 +686,7 @@ class NetworkFaultInjector(FaultInjector):
         self.logger.info(f"相关性: {correlation}")
         self.logger.info(f"tc 命令: {tc_command}")
         
-        success, output = self.remote_executor.execute(command)
+        success, output = node_executor.execute(command)
         if not success:
             self.logger.error(f"网络数据包破坏注入失败：{output}")
             return False
@@ -755,12 +761,14 @@ class NetworkFaultInjector(FaultInjector):
         percent = self._parse_duplicate_percent_param(parameters.get("percent"))
         correlation = self._parse_duplicate_correlation_param(parameters.get("correlation"))
         
-        pause_container_id = self._get_pause_container_id(pod_name)
-        if not pause_container_id:
+        result = self._get_pause_container_id(pod_name, namespace)
+        if not result:
             self.logger.error(f"无法获取 Pod {pod_name} 的 pause 容器 ID")
             return False
         
-        pause_container_pid = self._get_container_pid(pause_container_id)
+        pause_container_id, node_executor = result
+        
+        pause_container_pid = self._get_container_pid(pause_container_id, node_executor)
         if not pause_container_pid:
             self.logger.error(f"无法获取 Pod {pod_name} 的 pause 容器 PID")
             return False
@@ -773,7 +781,7 @@ class NetworkFaultInjector(FaultInjector):
         self.logger.info(f"相关性: {correlation}")
         self.logger.info(f"tc 命令: {tc_command}")
         
-        success, output = self.remote_executor.execute(command)
+        success, output = node_executor.execute(command)
         if not success:
             self.logger.error(f"网络数据包重复注入失败：{output}")
             return False
@@ -851,12 +859,14 @@ class NetworkFaultInjector(FaultInjector):
         correlation = self._parse_reorder_correlation_param(parameters.get("correlation"))
         gap = self._parse_reorder_gap_param(parameters.get("gap"))
         
-        pause_container_id = self._get_pause_container_id(pod_name)
-        if not pause_container_id:
+        result = self._get_pause_container_id(pod_name, namespace)
+        if not result:
             self.logger.error(f"无法获取 Pod {pod_name} 的 pause 容器 ID")
             return False
         
-        pause_container_pid = self._get_container_pid(pause_container_id)
+        pause_container_id, node_executor = result
+        
+        pause_container_pid = self._get_container_pid(pause_container_id, node_executor)
         if not pause_container_pid:
             self.logger.error(f"无法获取 Pod {pod_name} 的 pause 容器 PID")
             return False
@@ -870,7 +880,7 @@ class NetworkFaultInjector(FaultInjector):
         self.logger.info(f"Gap: {gap}")
         self.logger.info(f"tc 命令: {tc_command}")
         
-        success, output = self.remote_executor.execute(command)
+        success, output = node_executor.execute(command)
         if not success:
             self.logger.error(f"网络数据包重排序注入失败：{output}")
             return False
@@ -948,38 +958,124 @@ class NetworkFaultInjector(FaultInjector):
         """
         return f"tc qdisc add dev {device} root netem delay 100ms reorder {percent} {correlation} gap {gap}"
     
-    def _get_pause_container_id(self, pod_name: str) -> Optional[str]:
-        """获取 Pod 的 pause 容器 ID
+    def _get_pause_container_id_and_executor(self, pod_name: str, namespace: str = None) -> Optional[Tuple[str, object]]:
+        """获取 Pod 的 pause 容器 ID 和节点执行器
         
         Args:
             pod_name: Pod 名称
+            namespace: 命名空间
             
         Returns:
-            Optional[str]: pause 容器 ID
+            Optional[Tuple[str, object]]: (pause 容器 ID, 节点执行器) 或 None
         """
         self.logger.info(f"获取 Pod {pod_name} 的 pause 容器 ID")
+        
+        # 获取 Pod 所在的节点
+        from ..utils.pod import PodManager
+        pod_manager = PodManager(self.remote_executor, self.logger, self.config_manager)
+        node_name = pod_manager.get_pod_node(pod_name, namespace)
+        
+        if not node_name:
+            self.logger.error(f"无法获取 Pod {pod_name} 所在的节点")
+            return None
+        
+        self.logger.info(f"Pod {pod_name} 运行在节点 {node_name}")
+        
+        # 根据节点名称找到对应的 environment
+        node_executor = self._get_executor_by_node(node_name)
+        if not node_executor:
+            self.logger.error(f"无法找到节点 {node_name} 对应的执行器")
+            return None
         
         # 构建 docker ps 命令
         docker_cmd = f"docker ps | grep '{pod_name}' | grep k8s_POD | awk '{{print $1}}'"
         
-        # 执行命令
-        success, output = self.remote_executor.execute(docker_cmd)
+        # 在正确的节点上执行命令
+        success, output = node_executor.execute(docker_cmd)
         
-        if not success or not output:
-            self.logger.error(f"无法获取 Pod {pod_name} 的 pause 容器 ID")
+        if not success:
+            self.logger.error(f"执行 docker ps 命令失败")
+            self.logger.error(f"命令输出: {output}")
+            return None
+        
+        if not output or not output.strip():
+            self.logger.error(f"未找到 Pod {pod_name} 的 pause 容器")
+            self.logger.error(f"尝试查看所有容器: docker ps | grep '{pod_name}'")
+            
+            # 尝试查看所有相关容器
+            debug_cmd = f"docker ps | grep '{pod_name}'"
+            debug_success, debug_output = node_executor.execute(debug_cmd)
+            if debug_success and debug_output:
+                self.logger.error(f"相关容器列表:\n{debug_output}")
+            else:
+                self.logger.error(f"未找到任何相关容器")
+            
             return None
         
         # 解析输出，提取容器 ID
-        container_id = output.strip()
+        container_id = output.strip().split('\n')[0]  # 取第一行
         self.logger.info(f"解析后的 pause 容器 ID: {container_id}")
         
-        return container_id
+        return (container_id, node_executor)
     
-    def _get_container_pid(self, container_id: str) -> Optional[int]:
+    def _get_pause_container_id(self, pod_name: str, namespace: str = None) -> Optional[Tuple[str, object]]:
+        """获取 Pod 的 pause 容器 ID 和节点执行器（向后兼容的别名）
+        
+        Args:
+            pod_name: Pod 名称
+            namespace: 命名空间
+            
+        Returns:
+            Optional[Tuple[str, object]]: (pause 容器 ID, 节点执行器) 或 None
+        """
+        return self._get_pause_container_id_and_executor(pod_name, namespace)
+    
+    def _get_executor_by_node(self, node_name: str):
+        """根据节点名称获取对应的执行器
+        
+        Args:
+            node_name: 节点名称
+            
+        Returns:
+            执行器（如果找到）或 None
+        """
+        if not self.config_manager:
+            self.logger.error("配置管理器未初始化")
+            return None
+        
+        # 遍历所有环境，找到匹配的节点
+        environments = self.config_manager.config.get("environments", {})
+        
+        for env_name, env_config in environments.items():
+            if env_config.get("nodename") == node_name:
+                self.logger.info(f"找到节点 {node_name} 对应的环境: {env_name}")
+                
+                # 获取该环境的执行器
+                from ..utils.remote import get_ssh_pool
+                pool = get_ssh_pool()
+                
+                executor = pool.get_connection(
+                    host=env_config.get("ip"),
+                    port=env_config.get("port"),
+                    user=env_config.get("user"),
+                    passwd=env_config.get("passwd")
+                )
+                
+                if not executor.is_alive() and not executor.connect():
+                    self.logger.error(f"无法连接到环境 {env_name}")
+                    return None
+                
+                return executor
+        
+        self.logger.error(f"未找到节点 {node_name} 对应的环境配置")
+        return None
+    
+    def _get_container_pid(self, container_id: str, node_executor=None) -> Optional[int]:
         """获取容器的 PID
         
         Args:
             container_id: 容器 ID
+            node_executor: 节点执行器（可选，如果不提供则使用默认执行器）
             
         Returns:
             Optional[int]: 容器 PID
@@ -990,8 +1086,11 @@ class NetworkFaultInjector(FaultInjector):
         # 构建 docker inspect 命令
         docker_cmd = f"docker inspect {container_id} | grep Pid"
         
+        # 选择执行器
+        executor = node_executor if node_executor else self.remote_executor
+        
         # 执行命令
-        success, output = self.remote_executor.execute(docker_cmd)
+        success, output = executor.execute(docker_cmd)
         
         if not success or not output:
             self.logger.error("无法获取容器 PID")
@@ -1021,16 +1120,19 @@ class NetworkFaultInjector(FaultInjector):
         """恢复网络故障"""
         device = "eth0"  # 默认设备
         
-        # 获取 Pod 名称（从 fault_id 中提取）
+        # 获取 Pod 名称和 namespace（从 fault_id 中提取）
         parts = fault_id.split('_')
-        if len(parts) >= 2:
+        if len(parts) >= 3:
             pod_name = parts[1]
+            namespace = parts[2]
             
-            # 获取 pause 容器 ID
-            pause_container_id = self._get_pause_container_id(pod_name)
-            if pause_container_id:
+            # 获取 pause 容器 ID 和节点执行器
+            result = self._get_pause_container_id(pod_name, namespace)
+            if result:
+                pause_container_id, node_executor = result
+                
                 # 获取 pause 容器 PID
-                pause_container_pid = self._get_container_pid(pause_container_id)
+                pause_container_pid = self._get_container_pid(pause_container_id, node_executor)
                 if pause_container_pid:
                     # 构建恢复命令（使用 nsenter 进入容器网络命名空间）
                     command = f"nsenter -t {pause_container_pid} -n tc qdisc del dev {device} root"
@@ -1038,7 +1140,7 @@ class NetworkFaultInjector(FaultInjector):
                     self.logger.info(f"恢复网络故障：{fault_id}")
                     
                     # 执行命令
-                    success, output = self.remote_executor.execute(command, ignore_errors=True)
+                    success, output = node_executor.execute(command, ignore_errors=True)
                     if not success:
                         # 如果命令失败，可能是因为没有设置 qdisc，这是正常的
                         self.logger.warning(f"恢复网络故障时发生警告：{output}")

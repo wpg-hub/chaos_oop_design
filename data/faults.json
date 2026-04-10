@@ -2180,5 +2180,44 @@
     "start_time": "2026-04-10 16:47:02.398318",
     "end_time": "2026-04-10T16:47:59.484555",
     "error_message": null
+  },
+  "corrupt_dupf-ddb-shd-0-2_ns-dupf_1775814011": {
+    "fault_id": "corrupt_dupf-ddb-shd-0-2_ns-dupf_1775814011",
+    "case_name": "network_corrupt",
+    "fault_type": "corrupt",
+    "target": {
+      "name": "dupf-ddb-shd-0-2",
+      "ip": "10.233.126.38",
+      "namespace": "ns-dupf"
+    },
+    "parameters": {
+      "percent": [
+        "10%",
+        "90%"
+      ],
+      "correlation": [
+        "30%",
+        "90%"
+      ]
+    },
+    "status": "recovered",
+    "start_time": "2026-04-10 17:40:14.354067",
+    "end_time": "2026-04-10T17:41:11.517114",
+    "error_message": null
+  },
+  "delete_dupf-ddb-shd-0-0_ns-dupf_1775814154": {
+    "fault_id": "delete_dupf-ddb-shd-0-0_ns-dupf_1775814154",
+    "case_name": "upc_talker_failure",
+    "fault_type": "delete",
+    "target": {
+      "name": "dupf-ddb-shd-0-0",
+      "ip": "10.233.66.244",
+      "namespace": "ns-dupf"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-04-10 17:42:34.523090",
+    "end_time": "2026-04-10T17:43:02.960226",
+    "error_message": null
   }
 }

@@ -118,6 +118,45 @@ class PodManager:
         self.logger.info(f"找到 {len(pod_ip_map)} 个 Pod")
         return pod_ip_map
     
+    def get_pod_node(self, pod_name: str, namespace: str = None) -> Optional[str]:
+        """获取 Pod 所在的节点名称
+        
+        Args:
+            pod_name: Pod 名称
+            namespace: 命名空间（可选，默认从配置文件获取）
+            
+        Returns:
+            Optional[str]: 节点名称
+        """
+        namespace = self._get_namespace(namespace)
+        self.logger.info(f"获取 Pod {pod_name} 所在的节点，namespace: {namespace}")
+        
+        # 构建 kubectl 命令
+        kubectl_cmd = f'kubectl get pod {pod_name} -n {namespace} -o wide'
+        
+        # 执行命令
+        success, output = self.remote_executor.execute(kubectl_cmd)
+        
+        if not success or not output:
+            self.logger.error(f"获取 Pod {pod_name} 信息失败")
+            return None
+        
+        # 解析输出
+        lines = output.strip().split('\n')
+        if len(lines) < 2:
+            self.logger.error(f"Pod {pod_name} 不存在")
+            return None
+        
+        # 跳过标题行，解析 Pod 信息
+        parts = lines[1].split()
+        if len(parts) >= 7:
+            node_name = parts[6]
+            self.logger.info(f"Pod {pod_name} 运行在节点 {node_name}")
+            return node_name
+        
+        self.logger.error(f"无法解析 Pod {pod_name} 的节点信息")
+        return None
+    
     def get_db_service_ip(self, namespace: str = None, port: int = 8082, 
                          service_name: Optional[str] = None) -> Optional[str]:
         """获取 DB Service IP
