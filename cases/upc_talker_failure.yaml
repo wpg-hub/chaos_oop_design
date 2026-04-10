@@ -1,0 +1,14 @@
+# UPC Pod 故障测试 Case 示例 - 使用 upc-talker 过滤规则
+name: upc_talker_failure
+description: UPC talker pod failure fault test
+type: pod
+environment: 1_ssh_remote
+fault_type: delete
+pod_match:
+  name:
+    - upc-talker
+  interval: 5
+duration: 30s
+loop_count: 1
+namespace: ns-dupf
+auto_clear: false

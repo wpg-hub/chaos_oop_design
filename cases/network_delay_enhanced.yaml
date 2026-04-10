@@ -1,0 +1,16 @@
+name: network_delay_enhanced
+description: Enhanced network delay fault test with full parameters
+type: network
+environment: 1_ssh_remote
+fault_type: delay
+pod_match:
+  name: dupf-upu-dupf01-1
+parameters:
+  device: eth0
+  time: 300ms
+  jitter: 100ms
+  correlation: 20%
+  distribution: paretonormal
+duration: 60s
+loop_count: 1
+auto_clear: true

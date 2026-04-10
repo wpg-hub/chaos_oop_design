@@ -1,0 +1,21 @@
+# 多 Pod 随机选择示例
+name: multi_pod_random_select
+description: Multiple pod random selection test
+type: pod
+environment: 1_ssh_remote
+fault_type: delete
+pod_match:
+  name: dupf-upu-dupf01-*
+  namespace: ns-dupf
+  labels:
+    app: dupf
+    component: upu
+  random: true  # 随机选择
+  count: 2      # 选择 2 个 Pod
+duration: 30s
+loop_count: 1
+parameters:
+  action: kill
+  grace_period: 30
+namespace: ns-dupf
+auto_clear: false

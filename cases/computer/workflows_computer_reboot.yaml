@@ -1,0 +1,67 @@
+# 物理机串行重启工作流
+# 依次重启 1_ssh_remote, 2_ssh_remote, 3_ssh_remote, 4_ssh_remote
+
+workflow:
+  id: computer_reboot_serial_001
+  name: 物理机串行重启工作流
+  description: 按顺序依次重启物理机节点，确保服务逐步恢复
+  execution_mode: serial
+  
+  timing:
+    start_delay: 5              # 整体启动延迟 5 秒
+    node_interval: 5          # 节点间延迟 300 秒（等待前一个节点完全恢复）
+    task_timeout: 180          # 单任务超时 30 分钟
+    global_timeout: 540        # 全局超时 2 小时
+
+  tasks:
+    - id: reboot_1_ssh_remote
+      name: 重启 1_ssh_remote
+      case:
+        name: computer_reboot_1
+        type: computer
+        fault_type: reboot
+        computer_match:
+          name:
+            - 1_ssh_remote
+        duration: 720s
+        loop_count: 1
+        auto_clear: false
+
+    - id: reboot_2_ssh_remote
+      name: 重启 2_ssh_remote
+      case:
+        name: computer_reboot_2
+        type: computer
+        fault_type: reboot
+        computer_match:
+          name:
+            - 2_ssh_remote
+        duration: 720s
+        loop_count: 1
+        auto_clear: false
+
+    - id: reboot_3_ssh_remote
+      name: 重启 3_ssh_remote
+      case:
+        name: computer_reboot_3
+        type: computer
+        fault_type: reboot
+        computer_match:
+          name:
+            - 3_ssh_remote
+        duration: 720s
+        loop_count: 1
+        auto_clear: false
+
+    - id: reboot_4_ssh_remote
+      name: 重启 4_ssh_remote
+      case:
+        name: computer_reboot_4
+        type: computer
+        fault_type: reboot
+        computer_match:
+          name:
+            - 4_ssh_remote
+        duration: 720s
+        loop_count: 1
+        auto_clear: false

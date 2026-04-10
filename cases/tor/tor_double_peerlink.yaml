@@ -1,0 +1,25 @@
+name: tor_double_horizontal_updown.yaml
+description: tor_double_horizontal_updown
+type: sw
+environment: sw_ssh_remote1
+fault_type: command
+sw_match:
+  commands:
+    - cmd: screen-length disable
+    - cmd: sys
+    - cmd: interface WGE1/0/31
+    - cmd: shutdown
+    - cmd: display this
+    - cmd: interface WGE1/0/32
+    - cmd: shutdown
+    - cmd: display this
+      wait: 60
+    - cmd: interface WGE1/0/31
+    - cmd: undo shutdown
+    - cmd: display this
+      wait: 10
+    - cmd: interface WGE1/0/32
+    - cmd: undo shutdown
+    - cmd: display this
+      wait: 60
+  loop_count: 1

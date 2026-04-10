@@ -1,0 +1,1917 @@
+{
+  "kill_dupf-upu-dupf01-1-688fc66ddb-bpd5h_ns-dupf_1774358926": {
+    "fault_id": "kill_dupf-upu-dupf01-1-688fc66ddb-bpd5h_ns-dupf_1774358926",
+    "case_name": "pod_failure",
+    "fault_type": "kill",
+    "target": {
+      "name": "dupf-upu-dupf01-1-688fc66ddb-bpd5h",
+      "ip": "10.233.81.240",
+      "namespace": "ns-dupf"
+    },
+    "parameters": {
+      "action": "kill",
+      "grace_period": 30
+    },
+    "status": "recovered",
+    "start_time": "2026-03-24 21:29:04.790152",
+    "end_time": "2026-03-24T21:30:04.848137",
+    "error_message": null
+  },
+  "kill_dupf-upu-dupf01-1-688fc66ddb-jd2kp_ns-dupf_1774359006": {
+    "fault_id": "kill_dupf-upu-dupf01-1-688fc66ddb-jd2kp_ns-dupf_1774359006",
+    "case_name": "pod_failure",
+    "fault_type": "kill",
+    "target": {
+      "name": "dupf-upu-dupf01-1-688fc66ddb-jd2kp",
+      "ip": "10.233.81.188",
+      "namespace": "ns-dupf"
+    },
+    "parameters": {
+      "action": "kill",
+      "grace_period": 30
+    },
+    "status": "recovered",
+    "start_time": "2026-03-24 21:30:22.100868",
+    "end_time": "2026-03-24T21:31:22.162253",
+    "error_message": null
+  },
+  "kill_dupf-upu-dupf01-1-7c8d6f799b-pwfdf_ns-dupf_1774406810": {
+    "fault_id": "kill_dupf-upu-dupf01-1-7c8d6f799b-pwfdf_ns-dupf_1774406810",
+    "case_name": "multi_pod_failure",
+    "fault_type": "kill",
+    "target": {
+      "name": "dupf-upu-dupf01-1-7c8d6f799b-pwfdf",
+      "ip": "10.233.81.113",
+      "namespace": "ns-dupf"
+    },
+    "parameters": {
+      "action": "kill",
+      "grace_period": 30
+    },
+    "status": "recovered",
+    "start_time": "2026-03-25 10:47:15.364625",
+    "end_time": "2026-03-25T10:47:46.532785",
+    "error_message": null
+  },
+  "kill_dupf-upu-dupf01-2-6546d4546c-p9d2s_ns-dupf_1774406866": {
+    "fault_id": "kill_dupf-upu-dupf01-2-6546d4546c-p9d2s_ns-dupf_1774406866",
+    "case_name": "multi_pod_failure",
+    "fault_type": "kill",
+    "target": {
+      "name": "dupf-upu-dupf01-2-6546d4546c-p9d2s",
+      "ip": "10.233.81.184",
+      "namespace": "ns-dupf"
+    },
+    "parameters": {
+      "action": "kill",
+      "grace_period": 30
+    },
+    "status": "recovered",
+    "start_time": "2026-03-25 10:48:05.942081",
+    "end_time": "2026-03-25T10:48:35.973896",
+    "error_message": null
+  },
+  "kill_dupf-upu-dupf01-3-668b6d4486-hhblf_ns-dupf_1774408346": {
+    "fault_id": "kill_dupf-upu-dupf01-3-668b6d4486-hhblf_ns-dupf_1774408346",
+    "case_name": "multi_pod_random_select",
+    "fault_type": "kill",
+    "target": {
+      "name": "dupf-upu-dupf01-3-668b6d4486-hhblf",
+      "ip": "10.233.81.173",
+      "namespace": "ns-dupf"
+    },
+    "parameters": {
+      "action": "kill",
+      "grace_period": 30
+    },
+    "status": "recovered",
+    "start_time": "2026-03-25 11:12:55.490826",
+    "end_time": "2026-03-25T11:13:26.950452",
+    "error_message": null
+  },
+  "kill_dupf-upu-dupf01-1-7c8d6f799b-jrns6_ns-dupf_1774408406": {
+    "fault_id": "kill_dupf-upu-dupf01-1-7c8d6f799b-jrns6_ns-dupf_1774408406",
+    "case_name": "multi_pod_random_select",
+    "fault_type": "kill",
+    "target": {
+      "name": "dupf-upu-dupf01-1-7c8d6f799b-jrns6",
+      "ip": "10.233.81.201",
+      "namespace": "ns-dupf"
+    },
+    "parameters": {
+      "action": "kill",
+      "grace_period": 30
+    },
+    "status": "recovered",
+    "start_time": "2026-03-25 11:13:44.695390",
+    "end_time": "2026-03-25T11:14:16.674253",
+    "error_message": null
+  },
+  "kill_dupf-upu-dupf01-1-7c8d6f799b-4dlzr_ns-dupf_1774408526": {
+    "fault_id": "kill_dupf-upu-dupf01-1-7c8d6f799b-4dlzr_ns-dupf_1774408526",
+    "case_name": "multi_pod_failure",
+    "fault_type": "kill",
+    "target": {
+      "name": "dupf-upu-dupf01-1-7c8d6f799b-4dlzr",
+      "ip": "10.233.81.147",
+      "namespace": "ns-dupf"
+    },
+    "parameters": {
+      "action": "kill",
+      "grace_period": 30
+    },
+    "status": "recovered",
+    "start_time": "2026-03-25 11:15:40.863753",
+    "end_time": "2026-03-25T11:16:12.318937",
+    "error_message": null
+  },
+  "kill_dupf-upu-dupf01-2-6546d4546c-46qgb_ns-dupf_1774408572": {
+    "fault_id": "kill_dupf-upu-dupf01-2-6546d4546c-46qgb_ns-dupf_1774408572",
+    "case_name": "multi_pod_failure",
+    "fault_type": "kill",
+    "target": {
+      "name": "dupf-upu-dupf01-2-6546d4546c-46qgb",
+      "ip": "10.233.81.242",
+      "namespace": "ns-dupf"
+    },
+    "parameters": {
+      "action": "kill",
+      "grace_period": 30
+    },
+    "status": "recovered",
+    "start_time": "2026-03-25 11:16:28.266884",
+    "end_time": "2026-03-25T11:16:59.670060",
+    "error_message": null
+  },
+  "kill_dupf-upu-dupf01-1-7c8d6f799b-scwnc_ns-dupf_1774408766": {
+    "fault_id": "kill_dupf-upu-dupf01-1-7c8d6f799b-scwnc_ns-dupf_1774408766",
+    "case_name": "multi_pod_failure",
+    "fault_type": "kill",
+    "target": {
+      "name": "dupf-upu-dupf01-1-7c8d6f799b-scwnc",
+      "ip": "10.233.81.135",
+      "namespace": "ns-dupf"
+    },
+    "parameters": {
+      "action": "kill",
+      "grace_period": 30
+    },
+    "status": "recovered",
+    "start_time": "2026-03-25 11:19:40.751753",
+    "end_time": "2026-03-25T11:20:12.306387",
+    "error_message": null
+  },
+  "kill_dupf-upu-dupf01-2-6546d4546c-rxtbs_ns-dupf_1774408812": {
+    "fault_id": "kill_dupf-upu-dupf01-2-6546d4546c-rxtbs_ns-dupf_1774408812",
+    "case_name": "multi_pod_failure",
+    "fault_type": "kill",
+    "target": {
+      "name": "dupf-upu-dupf01-2-6546d4546c-rxtbs",
+      "ip": "10.233.81.66",
+      "namespace": "ns-dupf"
+    },
+    "parameters": {
+      "action": "kill",
+      "grace_period": 30
+    },
+    "status": "recovered",
+    "start_time": "2026-03-25 11:20:35.167901",
+    "end_time": "2026-03-25T11:21:06.661040",
+    "error_message": null
+  },
+  "kill_dupf-upu-dupf01-1-7c8d6f799b-xr5kd_ns-dupf_1774409342": {
+    "fault_id": "kill_dupf-upu-dupf01-1-7c8d6f799b-xr5kd_ns-dupf_1774409342",
+    "case_name": "multi_pod_failure",
+    "fault_type": "kill",
+    "target": {
+      "name": "dupf-upu-dupf01-1-7c8d6f799b-xr5kd",
+      "ip": "10.233.81.6",
+      "namespace": "ns-dupf"
+    },
+    "parameters": {
+      "action": "kill",
+      "grace_period": 30
+    },
+    "status": "recovered",
+    "start_time": "2026-03-25 11:29:26.104058",
+    "end_time": "2026-03-25T11:29:57.072080",
+    "error_message": null
+  },
+  "kill_dupf-upu-dupf01-2-6546d4546c-dd7ss_ns-dupf_1774409402": {
+    "fault_id": "kill_dupf-upu-dupf01-2-6546d4546c-dd7ss_ns-dupf_1774409402",
+    "case_name": "multi_pod_failure",
+    "fault_type": "kill",
+    "target": {
+      "name": "dupf-upu-dupf01-2-6546d4546c-dd7ss",
+      "ip": "10.233.81.27",
+      "namespace": "ns-dupf"
+    },
+    "parameters": {
+      "action": "kill",
+      "grace_period": 30
+    },
+    "status": "recovered",
+    "start_time": "2026-03-25 11:30:25.995090",
+    "end_time": "2026-03-25T11:30:55.997765",
+    "error_message": null
+  },
+  "delay_dupf-upu-dupf01-1-7c8d6f799b-vjk2l_ns-dupf_1774424787": {
+    "fault_id": "delay_dupf-upu-dupf01-1-7c8d6f799b-vjk2l_ns-dupf_1774424787",
+    "case_name": "network_delay_with_clear",
+    "fault_type": "delay",
+    "target": {
+      "name": "dupf-upu-dupf01-1-7c8d6f799b-vjk2l",
+      "ip": "10.233.81.200",
+      "namespace": "ns-dupf"
+    },
+    "parameters": {
+      "delay": "1000ms",
+      "device": "eth0",
+      "direction": "both",
+      "jitter": "100ms",
+      "loss": "0%"
+    },
+    "status": "recovered",
+    "start_time": "2026-03-25 15:46:30.127773",
+    "end_time": "2026-03-25T15:47:30.394598",
+    "error_message": null
+  },
+  "stop_dupf-upu-dupf01-1-56897ffc98-sjz8r_ns-dupf_1774440555": {
+    "fault_id": "stop_dupf-upu-dupf01-1-56897ffc98-sjz8r_ns-dupf_1774440555",
+    "case_name": "pod_stop_example",
+    "fault_type": "stop",
+    "target": {
+      "name": "dupf-upu-dupf01-1-56897ffc98-sjz8r",
+      "ip": "10.233.81.95",
+      "namespace": "ns-dupf"
+    },
+    "parameters": {
+      "action": "stop"
+    },
+    "status": "recovered",
+    "start_time": "2026-03-25 20:09:27.975800",
+    "end_time": "2026-03-25T20:09:59.649255",
+    "error_message": null
+  },
+  "process_kill_dupf-upc-789b5c4786-hcjw9_ns-dupf_15_1_1774602669": {
+    "fault_id": "process_kill_dupf-upc-789b5c4786-hcjw9_ns-dupf_15_1_1774602669",
+    "case_name": "process_kill_example",
+    "fault_type": "kill",
+    "target": {
+      "name": "dupf-upc-789b5c4786-hcjw9",
+      "ip": "10.233.69.127",
+      "namespace": "ns-dupf"
+    },
+    "parameters": {
+      "signal": 15,
+      "main_process_pid": 1
+    },
+    "status": "recovered",
+    "start_time": "2026-03-27 17:11:11.416754",
+    "end_time": "2026-03-27T17:12:13.529731",
+    "error_message": null
+  },
+  "process_kill_dupf-upc-789b5c4786-lr758_ns-dupf_15_1_1774602733": {
+    "fault_id": "process_kill_dupf-upc-789b5c4786-lr758_ns-dupf_15_1_1774602733",
+    "case_name": "process_kill_example",
+    "fault_type": "kill",
+    "target": {
+      "name": "dupf-upc-789b5c4786-lr758",
+      "ip": "10.233.81.60",
+      "namespace": "ns-dupf"
+    },
+    "parameters": {
+      "signal": 15,
+      "main_process_pid": 1
+    },
+    "status": "recovered",
+    "start_time": "2026-03-27 17:12:15.476655",
+    "end_time": "2026-03-27T17:13:17.613027",
+    "error_message": null
+  },
+  "process_kill_dupf-upc-789b5c4786-pww6v_ns-dupf_15_1_1774602797": {
+    "fault_id": "process_kill_dupf-upc-789b5c4786-pww6v_ns-dupf_15_1_1774602797",
+    "case_name": "process_kill_example",
+    "fault_type": "kill",
+    "target": {
+      "name": "dupf-upc-789b5c4786-pww6v",
+      "ip": "10.233.66.162",
+      "namespace": "ns-dupf"
+    },
+    "parameters": {
+      "signal": 15,
+      "main_process_pid": 1
+    },
+    "status": "recovered",
+    "start_time": "2026-03-27 17:13:19.578553",
+    "end_time": "2026-03-27T17:14:20.632294",
+    "error_message": null
+  },
+  "process_kill_dupf-upc-789b5c4786-r4qwq_ns-dupf_15_1_1774602860": {
+    "fault_id": "process_kill_dupf-upc-789b5c4786-r4qwq_ns-dupf_15_1_1774602860",
+    "case_name": "process_kill_example",
+    "fault_type": "kill",
+    "target": {
+      "name": "dupf-upc-789b5c4786-r4qwq",
+      "ip": "10.233.81.138",
+      "namespace": "ns-dupf"
+    },
+    "parameters": {
+      "signal": 15,
+      "main_process_pid": 1
+    },
+    "status": "recovered",
+    "start_time": "2026-03-27 17:14:22.656697",
+    "end_time": "2026-03-30T14:30:01.336792",
+    "error_message": null
+  },
+  "process_kill_dupf-upc-789b5c4786-ts922_ns-dupf_15_1_1774603605": {
+    "fault_id": "process_kill_dupf-upc-789b5c4786-ts922_ns-dupf_15_1_1774603605",
+    "case_name": "process_kill_example",
+    "fault_type": "kill",
+    "target": {
+      "name": "dupf-upc-789b5c4786-ts922",
+      "ip": "10.233.126.16",
+      "namespace": "ns-dupf"
+    },
+    "parameters": {
+      "signal": 15,
+      "main_process_pid": 1
+    },
+    "status": "recovered",
+    "start_time": "2026-03-27 17:26:47.059531",
+    "end_time": "2026-03-27T17:27:49.064277",
+    "error_message": null
+  },
+  "process_kill_dupf-upc-789b5c4786-pww6v_ns-dupf_15_1_1774603702": {
+    "fault_id": "process_kill_dupf-upc-789b5c4786-pww6v_ns-dupf_15_1_1774603702",
+    "case_name": "process_kill_example",
+    "fault_type": "kill",
+    "target": {
+      "name": "dupf-upc-789b5c4786-pww6v",
+      "ip": "10.233.66.162",
+      "namespace": "ns-dupf"
+    },
+    "parameters": {
+      "signal": 15,
+      "main_process_pid": 1
+    },
+    "status": "recovered",
+    "start_time": "2026-03-27 17:28:23.951775",
+    "end_time": "2026-03-27T17:29:26.062271",
+    "error_message": null
+  },
+  "process_kill_dupf-upc-789b5c4786-ts922_ns-dupf_15_1_1774603826": {
+    "fault_id": "process_kill_dupf-upc-789b5c4786-ts922_ns-dupf_15_1_1774603826",
+    "case_name": "process_kill_example",
+    "fault_type": "kill",
+    "target": {
+      "name": "dupf-upc-789b5c4786-ts922",
+      "ip": "10.233.126.16",
+      "namespace": "ns-dupf"
+    },
+    "parameters": {
+      "signal": 15,
+      "main_process_pid": 1
+    },
+    "status": "recovered",
+    "start_time": "2026-03-27 17:30:28.633020",
+    "end_time": "2026-03-27T17:31:30.909694",
+    "error_message": null
+  },
+  "process_kill_dupf-upc-789b5c4786-lr758_ns-dupf_11_1_1774605729": {
+    "fault_id": "process_kill_dupf-upc-789b5c4786-lr758_ns-dupf_11_1_1774605729",
+    "case_name": "process_kill_example",
+    "fault_type": "kill",
+    "target": {
+      "name": "dupf-upc-789b5c4786-lr758",
+      "ip": "10.233.81.60",
+      "namespace": "ns-dupf"
+    },
+    "parameters": {
+      "signal": 11,
+      "main_process_pid": 1
+    },
+    "status": "recovered",
+    "start_time": "2026-03-27 18:02:10.886345",
+    "end_time": "2026-03-27T18:02:20.898505",
+    "error_message": null
+  },
+  "command_sw_ssh_remote1_1774928948": {
+    "fault_id": "command_sw_ssh_remote1_1774928948",
+    "case_name": "tor_command_execution",
+    "fault_type": "command",
+    "target": {
+      "name": "sw_ssh_remote1",
+      "type": "tor"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-03-31 11:49:16.241916",
+    "end_time": "2026-03-31T11:49:16.245253",
+    "error_message": null
+  },
+  "command_sw_ssh_remote1_1774929184": {
+    "fault_id": "command_sw_ssh_remote1_1774929184",
+    "case_name": "tor_command_execution",
+    "fault_type": "command",
+    "target": {
+      "name": "sw_ssh_remote1",
+      "type": "tor"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-03-31 11:53:12.906442",
+    "end_time": "2026-03-31T11:53:12.908278",
+    "error_message": null
+  },
+  "command_sw_ssh_remote1_1774936682": {
+    "fault_id": "command_sw_ssh_remote1_1774936682",
+    "case_name": "tor_command_execution",
+    "fault_type": "command",
+    "target": {
+      "name": "sw_ssh_remote1",
+      "type": "tor"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-03-31 13:58:10.693746",
+    "end_time": "2026-03-31T13:58:10.694949",
+    "error_message": null
+  },
+  "command_sw_ssh_remote1_1774937084": {
+    "fault_id": "command_sw_ssh_remote1_1774937084",
+    "case_name": "tor_command_execution",
+    "fault_type": "command",
+    "target": {
+      "name": "sw_ssh_remote1",
+      "type": "tor"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-03-31 14:04:53.715991",
+    "end_time": "2026-03-31T14:04:53.717199",
+    "error_message": null
+  },
+  "command_sw_ssh_remote1_1774937383": {
+    "fault_id": "command_sw_ssh_remote1_1774937383",
+    "case_name": "tor_command_execution",
+    "fault_type": "command",
+    "target": {
+      "name": "sw_ssh_remote1",
+      "type": "tor"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-03-31 14:09:51.174818",
+    "end_time": "2026-03-31T14:09:51.175838",
+    "error_message": null
+  },
+  "command_sw_ssh_remote1_1774937590": {
+    "fault_id": "command_sw_ssh_remote1_1774937590",
+    "case_name": "tor_command_execution",
+    "fault_type": "command",
+    "target": {
+      "name": "sw_ssh_remote1",
+      "type": "tor"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-03-31 14:13:19.971824",
+    "end_time": "2026-03-31T14:13:19.972933",
+    "error_message": null
+  },
+  "command_sw_ssh_remote1_1774938052": {
+    "fault_id": "command_sw_ssh_remote1_1774938052",
+    "case_name": "tor_command_execution",
+    "fault_type": "command",
+    "target": {
+      "name": "sw_ssh_remote1",
+      "type": "tor"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-03-31 14:21:00.165268",
+    "end_time": "2026-03-31T14:21:00.167931",
+    "error_message": null
+  },
+  "command_sw_ssh_remote1_1774938135": {
+    "fault_id": "command_sw_ssh_remote1_1774938135",
+    "case_name": "tor_command_execution",
+    "fault_type": "command",
+    "target": {
+      "name": "sw_ssh_remote1",
+      "type": "tor"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-03-31 14:22:23.497917",
+    "end_time": "2026-03-31T14:22:23.499960",
+    "error_message": null
+  },
+  "command_sw_ssh_remote1_1774939571": {
+    "fault_id": "command_sw_ssh_remote1_1774939571",
+    "case_name": "tor1_one_peerlink_down.yaml",
+    "fault_type": "command",
+    "target": {
+      "name": "sw_ssh_remote1",
+      "type": "tor"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-03-31 14:46:31.396963",
+    "end_time": "2026-03-31T14:46:31.398245",
+    "error_message": null
+  },
+  "command_sw_ssh_remote1_1774939671": {
+    "fault_id": "command_sw_ssh_remote1_1774939671",
+    "case_name": "tor1_one_peerlink_down.yaml",
+    "fault_type": "command",
+    "target": {
+      "name": "sw_ssh_remote1",
+      "type": "tor"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-03-31 14:48:19.193123",
+    "end_time": "2026-03-31T14:48:19.194249",
+    "error_message": null
+  },
+  "command_sw_ssh_remote1_1774941501": {
+    "fault_id": "command_sw_ssh_remote1_1774941501",
+    "case_name": "tor_command_execution",
+    "fault_type": "command",
+    "target": {
+      "name": "sw_ssh_remote1",
+      "type": "tor"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-03-31 15:18:31.171545",
+    "end_time": "2026-03-31T15:18:31.173340",
+    "error_message": null
+  },
+  "command_sw_ssh_remote1_1774941724": {
+    "fault_id": "command_sw_ssh_remote1_1774941724",
+    "case_name": "tor_command_execution",
+    "fault_type": "command",
+    "target": {
+      "name": "sw_ssh_remote1",
+      "type": "tor"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-03-31 15:22:14.795564",
+    "end_time": "2026-03-31T15:22:14.797480",
+    "error_message": null
+  },
+  "command_sw_ssh_remote1_1774941864": {
+    "fault_id": "command_sw_ssh_remote1_1774941864",
+    "case_name": "tor_command_execution",
+    "fault_type": "command",
+    "target": {
+      "name": "sw_ssh_remote1",
+      "type": "tor"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-03-31 15:24:36.776998",
+    "end_time": "2026-03-31T15:24:36.778689",
+    "error_message": null
+  },
+  "command_sw_ssh_remote1_1774943187": {
+    "fault_id": "command_sw_ssh_remote1_1774943187",
+    "case_name": "tor_command_execution",
+    "fault_type": "command",
+    "target": {
+      "name": "sw_ssh_remote1",
+      "type": "tor"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-03-31 15:46:37.961099",
+    "end_time": "2026-03-31T15:46:37.963537",
+    "error_message": null
+  },
+  "command_sw_ssh_remote1_1774943248": {
+    "fault_id": "command_sw_ssh_remote1_1774943248",
+    "case_name": "tor_command_execution",
+    "fault_type": "command",
+    "target": {
+      "name": "sw_ssh_remote1",
+      "type": "tor"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-03-31 15:47:39.838353",
+    "end_time": "2026-03-31T15:47:39.839767",
+    "error_message": null
+  },
+  "command_sw_ssh_remote1_1774943287": {
+    "fault_id": "command_sw_ssh_remote1_1774943287",
+    "case_name": "tor_command_execution",
+    "fault_type": "command",
+    "target": {
+      "name": "sw_ssh_remote1",
+      "type": "tor"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-03-31 15:48:23.121321",
+    "end_time": "2026-03-31T15:48:23.122973",
+    "error_message": null
+  },
+  "command_sw_ssh_remote1_1774943653": {
+    "fault_id": "command_sw_ssh_remote1_1774943653",
+    "case_name": "tor1_one_peerlink_down.yaml",
+    "fault_type": "command",
+    "target": {
+      "name": "sw_ssh_remote1",
+      "type": "tor"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-03-31 15:56:41.248822",
+    "end_time": "2026-03-31T15:56:41.251655",
+    "error_message": null
+  },
+  "command_sw_ssh_remote1_1774948445": {
+    "fault_id": "command_sw_ssh_remote1_1774948445",
+    "case_name": "sw1_double_peerlink_down.yaml",
+    "fault_type": "command",
+    "target": {
+      "name": "sw_ssh_remote1",
+      "type": "sw"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-03-31 17:16:22.325643",
+    "end_time": "2026-03-31T17:16:22.329503",
+    "error_message": null
+  },
+  "command_sw_ssh_remote3_1774951742": {
+    "fault_id": "command_sw_ssh_remote3_1774951742",
+    "case_name": "eor_double_horizontal_updown.yaml",
+    "fault_type": "command",
+    "target": {
+      "name": "sw_ssh_remote3",
+      "type": "sw"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-03-31 18:16:26.943389",
+    "end_time": "2026-03-31T18:16:26.945844",
+    "error_message": null
+  },
+  "command_sw_ssh_remote3_1774955930": {
+    "fault_id": "command_sw_ssh_remote3_1774955930",
+    "case_name": "eor_double_horizontal_updown.yaml",
+    "fault_type": "command",
+    "target": {
+      "name": "sw_ssh_remote3",
+      "type": "sw"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-03-31 19:25:58.928138",
+    "end_time": "2026-03-31T19:25:58.933686",
+    "error_message": null
+  },
+  "command_sw_ssh_remote3_1774956359": {
+    "fault_id": "command_sw_ssh_remote3_1774956359",
+    "case_name": "eor_double_peerlink.yaml",
+    "fault_type": "command",
+    "target": {
+      "name": "sw_ssh_remote3",
+      "type": "sw"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-03-31 19:32:38.675396",
+    "end_time": "2026-03-31T19:32:38.677479",
+    "error_message": null
+  },
+  "command_sw_ssh_remote3_1774957358": {
+    "fault_id": "command_sw_ssh_remote3_1774957358",
+    "case_name": "eor_one_peerlink.yaml",
+    "fault_type": "command",
+    "target": {
+      "name": "sw_ssh_remote3",
+      "type": "sw"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-03-31 19:49:18.468875",
+    "end_time": "2026-03-31T19:49:18.470386",
+    "error_message": null
+  },
+  "command_sw_ssh_remote1_1774957758": {
+    "fault_id": "command_sw_ssh_remote1_1774957758",
+    "case_name": "tor_double_horizontal_updown.yaml",
+    "fault_type": "command",
+    "target": {
+      "name": "sw_ssh_remote1",
+      "type": "sw"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-03-31 19:56:26.596950",
+    "end_time": "2026-03-31T19:56:26.599901",
+    "error_message": null
+  },
+  "command_sw_ssh_remote1_1774958186": {
+    "fault_id": "command_sw_ssh_remote1_1774958186",
+    "case_name": "tor_double_horizontal_updown.yaml",
+    "fault_type": "command",
+    "target": {
+      "name": "sw_ssh_remote1",
+      "type": "sw"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-03-31 20:03:34.821297",
+    "end_time": "2026-03-31T20:03:34.825379",
+    "error_message": null
+  },
+  "command_sw_ssh_remote1_1774959214": {
+    "fault_id": "command_sw_ssh_remote1_1774959214",
+    "case_name": "tor_one_peerlink_down.yaml",
+    "fault_type": "command",
+    "target": {
+      "name": "sw_ssh_remote1",
+      "type": "sw"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-03-31 20:23:33.537881",
+    "end_time": "2026-03-31T20:23:33.540782",
+    "error_message": null
+  },
+  "command_sw_ssh_remote3_1774959813": {
+    "fault_id": "command_sw_ssh_remote3_1774959813",
+    "case_name": "eor_double_horizontal_updown.yaml",
+    "fault_type": "command",
+    "target": {
+      "name": "sw_ssh_remote3",
+      "type": "sw"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-03-31 20:30:42.040412",
+    "end_time": "2026-03-31T20:30:42.042508",
+    "error_message": null
+  },
+  "command_sw_ssh_remote3_1774960242": {
+    "fault_id": "command_sw_ssh_remote3_1774960242",
+    "case_name": "eor_double_peerlink.yaml",
+    "fault_type": "command",
+    "target": {
+      "name": "sw_ssh_remote3",
+      "type": "sw"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-03-31 20:37:21.725592",
+    "end_time": "2026-03-31T20:37:21.727092",
+    "error_message": null
+  },
+  "command_sw_ssh_remote3_1774961242": {
+    "fault_id": "command_sw_ssh_remote3_1774961242",
+    "case_name": "eor_one_peerlink.yaml",
+    "fault_type": "command",
+    "target": {
+      "name": "sw_ssh_remote3",
+      "type": "sw"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-03-31 20:54:01.628923",
+    "end_time": "2026-03-31T20:54:01.632681",
+    "error_message": null
+  },
+  "command_sw_ssh_remote1_1774961641": {
+    "fault_id": "command_sw_ssh_remote1_1774961641",
+    "case_name": "tor_double_horizontal_updown.yaml",
+    "fault_type": "command",
+    "target": {
+      "name": "sw_ssh_remote1",
+      "type": "sw"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-03-31 21:01:10.201177",
+    "end_time": "2026-03-31T21:01:10.203157",
+    "error_message": null
+  },
+  "command_sw_ssh_remote1_1774962070": {
+    "fault_id": "command_sw_ssh_remote1_1774962070",
+    "case_name": "tor_double_horizontal_updown.yaml",
+    "fault_type": "command",
+    "target": {
+      "name": "sw_ssh_remote1",
+      "type": "sw"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-03-31 21:08:18.535951",
+    "end_time": "2026-03-31T21:08:18.538686",
+    "error_message": null
+  },
+  "command_sw_ssh_remote1_1774963098": {
+    "fault_id": "command_sw_ssh_remote1_1774963098",
+    "case_name": "tor_one_peerlink_down.yaml",
+    "fault_type": "command",
+    "target": {
+      "name": "sw_ssh_remote1",
+      "type": "sw"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-03-31 21:28:17.280779",
+    "end_time": "2026-03-31T21:28:17.284857",
+    "error_message": null
+  },
+  "command_sw_ssh_remote3_1774963697": {
+    "fault_id": "command_sw_ssh_remote3_1774963697",
+    "case_name": "eor_double_horizontal_updown.yaml",
+    "fault_type": "command",
+    "target": {
+      "name": "sw_ssh_remote3",
+      "type": "sw"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-03-31 21:35:25.652213",
+    "end_time": "2026-03-31T21:35:25.655083",
+    "error_message": null
+  },
+  "command_sw_ssh_remote3_1774964125": {
+    "fault_id": "command_sw_ssh_remote3_1774964125",
+    "case_name": "eor_double_peerlink.yaml",
+    "fault_type": "command",
+    "target": {
+      "name": "sw_ssh_remote3",
+      "type": "sw"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-03-31 21:42:05.315411",
+    "end_time": "2026-03-31T21:42:05.319225",
+    "error_message": null
+  },
+  "command_sw_ssh_remote3_1774965125": {
+    "fault_id": "command_sw_ssh_remote3_1774965125",
+    "case_name": "eor_one_peerlink.yaml",
+    "fault_type": "command",
+    "target": {
+      "name": "sw_ssh_remote3",
+      "type": "sw"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-03-31 21:58:45.012603",
+    "end_time": "2026-03-31T21:58:45.015931",
+    "error_message": null
+  },
+  "command_sw_ssh_remote1_1774965525": {
+    "fault_id": "command_sw_ssh_remote1_1774965525",
+    "case_name": "tor_double_horizontal_updown.yaml",
+    "fault_type": "command",
+    "target": {
+      "name": "sw_ssh_remote1",
+      "type": "sw"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-03-31 22:05:53.600214",
+    "end_time": "2026-03-31T22:05:53.602018",
+    "error_message": null
+  },
+  "command_sw_ssh_remote1_1774965953": {
+    "fault_id": "command_sw_ssh_remote1_1774965953",
+    "case_name": "tor_double_horizontal_updown.yaml",
+    "fault_type": "command",
+    "target": {
+      "name": "sw_ssh_remote1",
+      "type": "sw"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-03-31 22:13:01.931004",
+    "end_time": "2026-03-31T22:13:01.934628",
+    "error_message": null
+  },
+  "command_sw_ssh_remote1_1774966982": {
+    "fault_id": "command_sw_ssh_remote1_1774966982",
+    "case_name": "tor_one_peerlink_down.yaml",
+    "fault_type": "command",
+    "target": {
+      "name": "sw_ssh_remote1",
+      "type": "sw"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-03-31 22:33:00.679812",
+    "end_time": "2026-03-31T22:33:00.682076",
+    "error_message": null
+  },
+  "command_sw_ssh_remote3_1774967580": {
+    "fault_id": "command_sw_ssh_remote3_1774967580",
+    "case_name": "eor_double_horizontal_updown.yaml",
+    "fault_type": "command",
+    "target": {
+      "name": "sw_ssh_remote3",
+      "type": "sw"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-03-31 22:40:09.130100",
+    "end_time": "2026-03-31T22:40:09.132504",
+    "error_message": null
+  },
+  "command_sw_ssh_remote3_1774968009": {
+    "fault_id": "command_sw_ssh_remote3_1774968009",
+    "case_name": "eor_double_peerlink.yaml",
+    "fault_type": "command",
+    "target": {
+      "name": "sw_ssh_remote3",
+      "type": "sw"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-03-31 22:46:48.925401",
+    "end_time": "2026-03-31T22:46:48.928357",
+    "error_message": null
+  },
+  "command_sw_ssh_remote3_1774969009": {
+    "fault_id": "command_sw_ssh_remote3_1774969009",
+    "case_name": "eor_one_peerlink.yaml",
+    "fault_type": "command",
+    "target": {
+      "name": "sw_ssh_remote3",
+      "type": "sw"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-03-31 23:03:28.729639",
+    "end_time": "2026-03-31T23:03:28.732950",
+    "error_message": null
+  },
+  "command_sw_ssh_remote1_1774969408": {
+    "fault_id": "command_sw_ssh_remote1_1774969408",
+    "case_name": "tor_double_horizontal_updown.yaml",
+    "fault_type": "command",
+    "target": {
+      "name": "sw_ssh_remote1",
+      "type": "sw"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-03-31 23:10:37.257521",
+    "end_time": "2026-03-31T23:10:37.260665",
+    "error_message": null
+  },
+  "command_sw_ssh_remote1_1774969837": {
+    "fault_id": "command_sw_ssh_remote1_1774969837",
+    "case_name": "tor_double_horizontal_updown.yaml",
+    "fault_type": "command",
+    "target": {
+      "name": "sw_ssh_remote1",
+      "type": "sw"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-03-31 23:17:45.562297",
+    "end_time": "2026-03-31T23:17:45.565249",
+    "error_message": null
+  },
+  "command_sw_ssh_remote1_1774970865": {
+    "fault_id": "command_sw_ssh_remote1_1774970865",
+    "case_name": "tor_one_peerlink_down.yaml",
+    "fault_type": "command",
+    "target": {
+      "name": "sw_ssh_remote1",
+      "type": "sw"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-03-31 23:37:44.310812",
+    "end_time": "2026-03-31T23:37:44.313872",
+    "error_message": null
+  },
+  "command_sw_ssh_remote3_1774971464": {
+    "fault_id": "command_sw_ssh_remote3_1774971464",
+    "case_name": "eor_double_horizontal_updown.yaml",
+    "fault_type": "command",
+    "target": {
+      "name": "sw_ssh_remote3",
+      "type": "sw"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-03-31 23:44:53.220062",
+    "end_time": "2026-03-31T23:44:53.223619",
+    "error_message": null
+  },
+  "command_sw_ssh_remote3_1774971893": {
+    "fault_id": "command_sw_ssh_remote3_1774971893",
+    "case_name": "eor_double_peerlink.yaml",
+    "fault_type": "command",
+    "target": {
+      "name": "sw_ssh_remote3",
+      "type": "sw"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-03-31 23:51:32.892089",
+    "end_time": "2026-03-31T23:51:32.893911",
+    "error_message": null
+  },
+  "command_sw_ssh_remote3_1774972894": {
+    "fault_id": "command_sw_ssh_remote3_1774972894",
+    "case_name": "eor_one_peerlink.yaml",
+    "fault_type": "command",
+    "target": {
+      "name": "sw_ssh_remote3",
+      "type": "sw"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-04-01 00:08:14.310634",
+    "end_time": "2026-04-01T00:08:14.316301",
+    "error_message": null
+  },
+  "command_sw_ssh_remote1_1774973294": {
+    "fault_id": "command_sw_ssh_remote1_1774973294",
+    "case_name": "tor_double_horizontal_updown.yaml",
+    "fault_type": "command",
+    "target": {
+      "name": "sw_ssh_remote1",
+      "type": "sw"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-04-01 00:15:22.842272",
+    "end_time": "2026-04-01T00:15:22.845810",
+    "error_message": null
+  },
+  "command_sw_ssh_remote1_1774973722": {
+    "fault_id": "command_sw_ssh_remote1_1774973722",
+    "case_name": "tor_double_horizontal_updown.yaml",
+    "fault_type": "command",
+    "target": {
+      "name": "sw_ssh_remote1",
+      "type": "sw"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-04-01 00:22:33.741798",
+    "end_time": "2026-04-01T00:22:33.745453",
+    "error_message": null
+  },
+  "command_sw_ssh_remote1_1774974757": {
+    "fault_id": "command_sw_ssh_remote1_1774974757",
+    "case_name": "tor_one_peerlink_down.yaml",
+    "fault_type": "command",
+    "target": {
+      "name": "sw_ssh_remote1",
+      "type": "sw"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-04-01 00:42:36.880499",
+    "end_time": "2026-04-01T00:42:36.884364",
+    "error_message": null
+  },
+  "command_sw_ssh_remote3_1774975357": {
+    "fault_id": "command_sw_ssh_remote3_1774975357",
+    "case_name": "eor_double_horizontal_updown.yaml",
+    "fault_type": "command",
+    "target": {
+      "name": "sw_ssh_remote3",
+      "type": "sw"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-04-01 00:49:46.380518",
+    "end_time": "2026-04-01T00:49:46.386954",
+    "error_message": null
+  },
+  "command_sw_ssh_remote3_1774975786": {
+    "fault_id": "command_sw_ssh_remote3_1774975786",
+    "case_name": "eor_double_peerlink.yaml",
+    "fault_type": "command",
+    "target": {
+      "name": "sw_ssh_remote3",
+      "type": "sw"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-04-01 00:56:27.848593",
+    "end_time": "2026-04-01T00:56:27.854017",
+    "error_message": null
+  },
+  "command_sw_ssh_remote3_1774976795": {
+    "fault_id": "command_sw_ssh_remote3_1774976795",
+    "case_name": "eor_one_peerlink.yaml",
+    "fault_type": "command",
+    "target": {
+      "name": "sw_ssh_remote3",
+      "type": "sw"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-04-01 01:13:17.370347",
+    "end_time": "2026-04-01T01:13:17.372815",
+    "error_message": null
+  },
+  "command_sw_ssh_remote1_1774977197": {
+    "fault_id": "command_sw_ssh_remote1_1774977197",
+    "case_name": "tor_double_horizontal_updown.yaml",
+    "fault_type": "command",
+    "target": {
+      "name": "sw_ssh_remote1",
+      "type": "sw"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-04-01 01:20:30.812820",
+    "end_time": "2026-04-01T01:20:30.819003",
+    "error_message": null
+  },
+  "command_sw_ssh_remote1_1774977630": {
+    "fault_id": "command_sw_ssh_remote1_1774977630",
+    "case_name": "tor_double_horizontal_updown.yaml",
+    "fault_type": "command",
+    "target": {
+      "name": "sw_ssh_remote1",
+      "type": "sw"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-04-01 01:27:45.526550",
+    "end_time": "2026-04-01T01:27:45.531964",
+    "error_message": null
+  },
+  "command_sw_ssh_remote1_1774978668": {
+    "fault_id": "command_sw_ssh_remote1_1774978668",
+    "case_name": "tor_one_peerlink_down.yaml",
+    "fault_type": "command",
+    "target": {
+      "name": "sw_ssh_remote1",
+      "type": "sw"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-04-01 01:47:50.916750",
+    "end_time": "2026-04-01T01:47:50.920842",
+    "error_message": null
+  },
+  "command_sw_ssh_remote3_1774979271": {
+    "fault_id": "command_sw_ssh_remote3_1774979271",
+    "case_name": "eor_double_horizontal_updown.yaml",
+    "fault_type": "command",
+    "target": {
+      "name": "sw_ssh_remote3",
+      "type": "sw"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-04-01 01:55:00.219918",
+    "end_time": "2026-04-01T01:55:00.223077",
+    "error_message": null
+  },
+  "command_sw_ssh_remote3_1774979700": {
+    "fault_id": "command_sw_ssh_remote3_1774979700",
+    "case_name": "eor_double_peerlink.yaml",
+    "fault_type": "command",
+    "target": {
+      "name": "sw_ssh_remote3",
+      "type": "sw"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-04-01 02:01:39.987010",
+    "end_time": "2026-04-01T02:01:39.990785",
+    "error_message": null
+  },
+  "command_sw_ssh_remote3_1774980700": {
+    "fault_id": "command_sw_ssh_remote3_1774980700",
+    "case_name": "eor_one_peerlink.yaml",
+    "fault_type": "command",
+    "target": {
+      "name": "sw_ssh_remote3",
+      "type": "sw"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-04-01 02:18:19.792256",
+    "end_time": "2026-04-01T02:18:19.795014",
+    "error_message": null
+  },
+  "command_sw_ssh_remote1_1774981099": {
+    "fault_id": "command_sw_ssh_remote1_1774981099",
+    "case_name": "tor_double_horizontal_updown.yaml",
+    "fault_type": "command",
+    "target": {
+      "name": "sw_ssh_remote1",
+      "type": "sw"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-04-01 02:25:28.355789",
+    "end_time": "2026-04-01T02:25:28.362252",
+    "error_message": null
+  },
+  "command_sw_ssh_remote1_1774981528": {
+    "fault_id": "command_sw_ssh_remote1_1774981528",
+    "case_name": "tor_double_horizontal_updown.yaml",
+    "fault_type": "command",
+    "target": {
+      "name": "sw_ssh_remote1",
+      "type": "sw"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-04-01 02:32:36.774479",
+    "end_time": "2026-04-01T02:32:36.777255",
+    "error_message": null
+  },
+  "command_sw_ssh_remote1_1774982556": {
+    "fault_id": "command_sw_ssh_remote1_1774982556",
+    "case_name": "tor_one_peerlink_down.yaml",
+    "fault_type": "command",
+    "target": {
+      "name": "sw_ssh_remote1",
+      "type": "sw"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-04-01 02:52:34.991740",
+    "end_time": "2026-04-01T02:52:34.996229",
+    "error_message": null
+  },
+  "command_sw_ssh_remote3_1774983155": {
+    "fault_id": "command_sw_ssh_remote3_1774983155",
+    "case_name": "eor_double_horizontal_updown.yaml",
+    "fault_type": "command",
+    "target": {
+      "name": "sw_ssh_remote3",
+      "type": "sw"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-04-01 02:59:43.465309",
+    "end_time": "2026-04-01T02:59:43.470429",
+    "error_message": null
+  },
+  "command_sw_ssh_remote3_1774983583": {
+    "fault_id": "command_sw_ssh_remote3_1774983583",
+    "case_name": "eor_double_peerlink.yaml",
+    "fault_type": "command",
+    "target": {
+      "name": "sw_ssh_remote3",
+      "type": "sw"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-04-01 03:06:23.237920",
+    "end_time": "2026-04-01T03:06:23.241949",
+    "error_message": null
+  },
+  "command_sw_ssh_remote3_1774984583": {
+    "fault_id": "command_sw_ssh_remote3_1774984583",
+    "case_name": "eor_one_peerlink.yaml",
+    "fault_type": "command",
+    "target": {
+      "name": "sw_ssh_remote3",
+      "type": "sw"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-04-01 03:23:02.896817",
+    "end_time": "2026-04-01T03:23:02.900328",
+    "error_message": null
+  },
+  "command_sw_ssh_remote1_1774984983": {
+    "fault_id": "command_sw_ssh_remote1_1774984983",
+    "case_name": "tor_double_horizontal_updown.yaml",
+    "fault_type": "command",
+    "target": {
+      "name": "sw_ssh_remote1",
+      "type": "sw"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-04-01 03:30:11.472044",
+    "end_time": "2026-04-01T03:30:11.475239",
+    "error_message": null
+  },
+  "command_sw_ssh_remote1_1774985411": {
+    "fault_id": "command_sw_ssh_remote1_1774985411",
+    "case_name": "tor_double_horizontal_updown.yaml",
+    "fault_type": "command",
+    "target": {
+      "name": "sw_ssh_remote1",
+      "type": "sw"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-04-01 03:37:19.757139",
+    "end_time": "2026-04-01T03:37:19.762001",
+    "error_message": null
+  },
+  "command_sw_ssh_remote1_1774986439": {
+    "fault_id": "command_sw_ssh_remote1_1774986439",
+    "case_name": "tor_one_peerlink_down.yaml",
+    "fault_type": "command",
+    "target": {
+      "name": "sw_ssh_remote1",
+      "type": "sw"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-04-01 03:57:18.545113",
+    "end_time": "2026-04-01T03:57:18.547873",
+    "error_message": null
+  },
+  "command_sw_ssh_remote3_1774987038": {
+    "fault_id": "command_sw_ssh_remote3_1774987038",
+    "case_name": "eor_double_horizontal_updown.yaml",
+    "fault_type": "command",
+    "target": {
+      "name": "sw_ssh_remote3",
+      "type": "sw"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-04-01 04:04:27.154140",
+    "end_time": "2026-04-01T04:04:27.157183",
+    "error_message": null
+  },
+  "command_sw_ssh_remote3_1774987467": {
+    "fault_id": "command_sw_ssh_remote3_1774987467",
+    "case_name": "eor_double_peerlink.yaml",
+    "fault_type": "command",
+    "target": {
+      "name": "sw_ssh_remote3",
+      "type": "sw"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-04-01 04:11:06.940057",
+    "end_time": "2026-04-01T04:11:06.944788",
+    "error_message": null
+  },
+  "command_sw_ssh_remote3_1774988467": {
+    "fault_id": "command_sw_ssh_remote3_1774988467",
+    "case_name": "eor_one_peerlink.yaml",
+    "fault_type": "command",
+    "target": {
+      "name": "sw_ssh_remote3",
+      "type": "sw"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-04-01 04:27:46.741415",
+    "end_time": "2026-04-01T04:27:46.743597",
+    "error_message": null
+  },
+  "command_sw_ssh_remote1_1774988866": {
+    "fault_id": "command_sw_ssh_remote1_1774988866",
+    "case_name": "tor_double_horizontal_updown.yaml",
+    "fault_type": "command",
+    "target": {
+      "name": "sw_ssh_remote1",
+      "type": "sw"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-04-01 04:34:55.352682",
+    "end_time": "2026-04-01T04:34:55.358973",
+    "error_message": null
+  },
+  "command_sw_ssh_remote1_1774989295": {
+    "fault_id": "command_sw_ssh_remote1_1774989295",
+    "case_name": "tor_double_horizontal_updown.yaml",
+    "fault_type": "command",
+    "target": {
+      "name": "sw_ssh_remote1",
+      "type": "sw"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-04-01 04:42:03.592110",
+    "end_time": "2026-04-01T04:42:03.595508",
+    "error_message": null
+  },
+  "command_sw_ssh_remote1_1774990323": {
+    "fault_id": "command_sw_ssh_remote1_1774990323",
+    "case_name": "tor_one_peerlink_down.yaml",
+    "fault_type": "command",
+    "target": {
+      "name": "sw_ssh_remote1",
+      "type": "sw"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-04-01 05:02:02.427090",
+    "end_time": "2026-04-01T05:02:02.430242",
+    "error_message": null
+  },
+  "command_sw_ssh_remote3_1774990922": {
+    "fault_id": "command_sw_ssh_remote3_1774990922",
+    "case_name": "eor_double_horizontal_updown.yaml",
+    "fault_type": "command",
+    "target": {
+      "name": "sw_ssh_remote3",
+      "type": "sw"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-04-01 05:09:10.982612",
+    "end_time": "2026-04-01T05:09:10.987538",
+    "error_message": null
+  },
+  "command_sw_ssh_remote3_1774991351": {
+    "fault_id": "command_sw_ssh_remote3_1774991351",
+    "case_name": "eor_double_peerlink.yaml",
+    "fault_type": "command",
+    "target": {
+      "name": "sw_ssh_remote3",
+      "type": "sw"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-04-01 05:15:50.767839",
+    "end_time": "2026-04-01T05:15:50.772254",
+    "error_message": null
+  },
+  "command_sw_ssh_remote3_1774992350": {
+    "fault_id": "command_sw_ssh_remote3_1774992350",
+    "case_name": "eor_one_peerlink.yaml",
+    "fault_type": "command",
+    "target": {
+      "name": "sw_ssh_remote3",
+      "type": "sw"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-04-01 05:32:30.498920",
+    "end_time": "2026-04-01T05:32:30.504575",
+    "error_message": null
+  },
+  "command_sw_ssh_remote1_1774992750": {
+    "fault_id": "command_sw_ssh_remote1_1774992750",
+    "case_name": "tor_double_horizontal_updown.yaml",
+    "fault_type": "command",
+    "target": {
+      "name": "sw_ssh_remote1",
+      "type": "sw"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-04-01 05:39:39.001207",
+    "end_time": "2026-04-01T05:39:39.005023",
+    "error_message": null
+  },
+  "command_sw_ssh_remote1_1774993179": {
+    "fault_id": "command_sw_ssh_remote1_1774993179",
+    "case_name": "tor_double_horizontal_updown.yaml",
+    "fault_type": "command",
+    "target": {
+      "name": "sw_ssh_remote1",
+      "type": "sw"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-04-01 05:46:47.387703",
+    "end_time": "2026-04-01T05:46:47.393266",
+    "error_message": null
+  },
+  "command_sw_ssh_remote1_1774994207": {
+    "fault_id": "command_sw_ssh_remote1_1774994207",
+    "case_name": "tor_one_peerlink_down.yaml",
+    "fault_type": "command",
+    "target": {
+      "name": "sw_ssh_remote1",
+      "type": "sw"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-04-01 06:06:46.267013",
+    "end_time": "2026-04-01T06:06:46.269263",
+    "error_message": null
+  },
+  "command_sw_ssh_remote3_1774994806": {
+    "fault_id": "command_sw_ssh_remote3_1774994806",
+    "case_name": "eor_double_horizontal_updown.yaml",
+    "fault_type": "command",
+    "target": {
+      "name": "sw_ssh_remote3",
+      "type": "sw"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-04-01 06:13:54.824873",
+    "end_time": "2026-04-01T06:13:54.829384",
+    "error_message": null
+  },
+  "command_sw_ssh_remote3_1774995234": {
+    "fault_id": "command_sw_ssh_remote3_1774995234",
+    "case_name": "eor_double_peerlink.yaml",
+    "fault_type": "command",
+    "target": {
+      "name": "sw_ssh_remote3",
+      "type": "sw"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-04-01 06:20:34.580949",
+    "end_time": "2026-04-01T06:20:34.587847",
+    "error_message": null
+  },
+  "command_sw_ssh_remote3_1774996234": {
+    "fault_id": "command_sw_ssh_remote3_1774996234",
+    "case_name": "eor_one_peerlink.yaml",
+    "fault_type": "command",
+    "target": {
+      "name": "sw_ssh_remote3",
+      "type": "sw"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-04-01 06:37:14.416480",
+    "end_time": "2026-04-01T06:37:14.418719",
+    "error_message": null
+  },
+  "command_sw_ssh_remote1_1774996634": {
+    "fault_id": "command_sw_ssh_remote1_1774996634",
+    "case_name": "tor_double_horizontal_updown.yaml",
+    "fault_type": "command",
+    "target": {
+      "name": "sw_ssh_remote1",
+      "type": "sw"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-04-01 06:44:22.974551",
+    "end_time": "2026-04-01T06:44:22.979318",
+    "error_message": null
+  },
+  "command_sw_ssh_remote1_1774997063": {
+    "fault_id": "command_sw_ssh_remote1_1774997063",
+    "case_name": "tor_double_horizontal_updown.yaml",
+    "fault_type": "command",
+    "target": {
+      "name": "sw_ssh_remote1",
+      "type": "sw"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-04-01 06:51:31.464282",
+    "end_time": "2026-04-01T06:51:31.471761",
+    "error_message": null
+  },
+  "command_sw_ssh_remote1_1774998091": {
+    "fault_id": "command_sw_ssh_remote1_1774998091",
+    "case_name": "tor_one_peerlink_down.yaml",
+    "fault_type": "command",
+    "target": {
+      "name": "sw_ssh_remote1",
+      "type": "sw"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-04-01 07:11:30.366518",
+    "end_time": "2026-04-01T07:11:30.372117",
+    "error_message": null
+  },
+  "command_sw_ssh_remote3_1774998690": {
+    "fault_id": "command_sw_ssh_remote3_1774998690",
+    "case_name": "eor_double_horizontal_updown.yaml",
+    "fault_type": "command",
+    "target": {
+      "name": "sw_ssh_remote3",
+      "type": "sw"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-04-01 07:18:39.002598",
+    "end_time": "2026-04-01T07:18:39.005617",
+    "error_message": null
+  },
+  "command_sw_ssh_remote3_1774999119": {
+    "fault_id": "command_sw_ssh_remote3_1774999119",
+    "case_name": "eor_double_peerlink.yaml",
+    "fault_type": "command",
+    "target": {
+      "name": "sw_ssh_remote3",
+      "type": "sw"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-04-01 07:25:18.857753",
+    "end_time": "2026-04-01T07:25:18.861581",
+    "error_message": null
+  },
+  "command_sw_ssh_remote3_1775000119": {
+    "fault_id": "command_sw_ssh_remote3_1775000119",
+    "case_name": "eor_one_peerlink.yaml",
+    "fault_type": "command",
+    "target": {
+      "name": "sw_ssh_remote3",
+      "type": "sw"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-04-01 07:41:58.740071",
+    "end_time": "2026-04-01T07:41:58.747083",
+    "error_message": null
+  },
+  "command_sw_ssh_remote1_1775000518": {
+    "fault_id": "command_sw_ssh_remote1_1775000518",
+    "case_name": "tor_double_horizontal_updown.yaml",
+    "fault_type": "command",
+    "target": {
+      "name": "sw_ssh_remote1",
+      "type": "sw"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-04-01 07:49:07.357339",
+    "end_time": "2026-04-01T07:49:07.364252",
+    "error_message": null
+  },
+  "command_sw_ssh_remote1_1775000947": {
+    "fault_id": "command_sw_ssh_remote1_1775000947",
+    "case_name": "tor_double_horizontal_updown.yaml",
+    "fault_type": "command",
+    "target": {
+      "name": "sw_ssh_remote1",
+      "type": "sw"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-04-01 07:56:15.673492",
+    "end_time": "2026-04-01T07:56:15.680272",
+    "error_message": null
+  },
+  "command_sw_ssh_remote1_1775001975": {
+    "fault_id": "command_sw_ssh_remote1_1775001975",
+    "case_name": "tor_one_peerlink_down.yaml",
+    "fault_type": "command",
+    "target": {
+      "name": "sw_ssh_remote1",
+      "type": "sw"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-04-01 08:16:14.556355",
+    "end_time": "2026-04-01T08:16:14.561472",
+    "error_message": null
+  },
+  "command_sw_ssh_remote3_1775002574": {
+    "fault_id": "command_sw_ssh_remote3_1775002574",
+    "case_name": "eor_double_horizontal_updown.yaml",
+    "fault_type": "command",
+    "target": {
+      "name": "sw_ssh_remote3",
+      "type": "sw"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-04-01 08:23:23.038530",
+    "end_time": "2026-04-01T08:23:23.041619",
+    "error_message": null
+  },
+  "command_sw_ssh_remote3_1775003003": {
+    "fault_id": "command_sw_ssh_remote3_1775003003",
+    "case_name": "eor_double_peerlink.yaml",
+    "fault_type": "command",
+    "target": {
+      "name": "sw_ssh_remote3",
+      "type": "sw"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-04-01 08:30:02.740161",
+    "end_time": "2026-04-01T08:30:02.745458",
+    "error_message": null
+  },
+  "command_sw_ssh_remote3_1775004002": {
+    "fault_id": "command_sw_ssh_remote3_1775004002",
+    "case_name": "eor_one_peerlink.yaml",
+    "fault_type": "command",
+    "target": {
+      "name": "sw_ssh_remote3",
+      "type": "sw"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-04-01 08:46:42.516895",
+    "end_time": "2026-04-01T08:46:42.521591",
+    "error_message": null
+  },
+  "command_sw_ssh_remote1_1775004402": {
+    "fault_id": "command_sw_ssh_remote1_1775004402",
+    "case_name": "tor_double_horizontal_updown.yaml",
+    "fault_type": "command",
+    "target": {
+      "name": "sw_ssh_remote1",
+      "type": "sw"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-04-01 08:53:51.170086",
+    "end_time": "2026-04-01T08:53:51.175200",
+    "error_message": null
+  },
+  "command_sw_ssh_remote1_1775004831": {
+    "fault_id": "command_sw_ssh_remote1_1775004831",
+    "case_name": "tor_double_horizontal_updown.yaml",
+    "fault_type": "command",
+    "target": {
+      "name": "sw_ssh_remote1",
+      "type": "sw"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-04-01 09:00:59.323480",
+    "end_time": "2026-04-01T09:00:59.326560",
+    "error_message": null
+  },
+  "command_sw_ssh_remote1_1775005259": {
+    "fault_id": "command_sw_ssh_remote1_1775005259",
+    "case_name": "tor_one_horizontal_down.yaml",
+    "fault_type": "command",
+    "target": {
+      "name": "sw_ssh_remote1",
+      "type": "sw"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-04-01 09:11:11.359879",
+    "end_time": "2026-04-01T09:11:11.364201",
+    "error_message": null
+  },
+  "command_sw_ssh_remote3_1775006336": {
+    "fault_id": "command_sw_ssh_remote3_1775006336",
+    "case_name": "eor_double_horizontal_updown.yaml",
+    "fault_type": "command",
+    "target": {
+      "name": "sw_ssh_remote3",
+      "type": "sw"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-04-01 09:26:04.634052",
+    "end_time": "2026-04-01T09:26:04.640595",
+    "error_message": null
+  },
+  "reboot_1_ssh_remote_1775182150": {
+    "fault_id": "reboot_1_ssh_remote_1775182150",
+    "case_name": "computer_reboot",
+    "fault_type": "reboot",
+    "target": {
+      "name": [
+        "1_ssh_remote"
+      ],
+      "type": "computer"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-04-03 10:09:17.652532",
+    "end_time": "2026-04-03T10:09:17.660858",
+    "error_message": null
+  },
+  "reboot_1_ssh_remote_1775182637": {
+    "fault_id": "reboot_1_ssh_remote_1775182637",
+    "case_name": "computer_reboot",
+    "fault_type": "reboot",
+    "target": {
+      "name": [
+        "1_ssh_remote"
+      ],
+      "type": "computer"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-04-03 10:17:19.554500",
+    "end_time": "2026-04-03T10:17:19.557558",
+    "error_message": null
+  },
+  "reboot_2_ssh_remote_3_ssh_remote_4_ssh_remote_1775182669": {
+    "fault_id": "reboot_2_ssh_remote_3_ssh_remote_4_ssh_remote_1775182669",
+    "case_name": "computer_reboot",
+    "fault_type": "reboot",
+    "target": {
+      "name": [
+        "2_ssh_remote",
+        "3_ssh_remote",
+        "4_ssh_remote"
+      ],
+      "type": "computer"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-04-03 10:17:59.453621",
+    "end_time": "2026-04-03T10:20:00.811717",
+    "error_message": null
+  },
+  "reboot_1_ssh_remote_1775184640": {
+    "fault_id": "reboot_1_ssh_remote_1775184640",
+    "case_name": "computer_reboot_1",
+    "fault_type": "reboot",
+    "target": {
+      "name": [
+        "1_ssh_remote"
+      ],
+      "type": "computer"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-04-03 10:50:41.967719",
+    "end_time": "2026-04-03T10:52:41.986975",
+    "error_message": null
+  },
+  "reboot_2_ssh_remote_1775184764": {
+    "fault_id": "reboot_2_ssh_remote_1775184764",
+    "case_name": "computer_reboot_2",
+    "fault_type": "reboot",
+    "target": {
+      "name": [
+        "2_ssh_remote"
+      ],
+      "type": "computer"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-04-03 10:52:50.625143",
+    "end_time": "2026-04-03T10:54:50.715685",
+    "error_message": null
+  },
+  "reboot_3_ssh_remote_1775184892": {
+    "fault_id": "reboot_3_ssh_remote_1775184892",
+    "case_name": "computer_reboot_3",
+    "fault_type": "reboot",
+    "target": {
+      "name": [
+        "3_ssh_remote"
+      ],
+      "type": "computer"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-04-03 10:55:59.195493",
+    "end_time": "2026-04-03T10:57:59.298466",
+    "error_message": null
+  },
+  "reboot_4_ssh_remote_1775185074": {
+    "fault_id": "reboot_4_ssh_remote_1775185074",
+    "case_name": "computer_reboot_4",
+    "fault_type": "reboot",
+    "target": {
+      "name": [
+        "4_ssh_remote"
+      ],
+      "type": "computer"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-04-03 10:57:57.744441",
+    "end_time": "2026-04-03T10:59:57.834421",
+    "error_message": null
+  },
+  "reboot_3_ssh_remote_1775185985": {
+    "fault_id": "reboot_3_ssh_remote_1775185985",
+    "case_name": "computer_reboot",
+    "fault_type": "reboot",
+    "target": {
+      "name": [
+        "3_ssh_remote"
+      ],
+      "type": "computer"
+    },
+    "parameters": {},
+    "status": "running",
+    "start_time": "2026-04-03 11:13:07.015131",
+    "end_time": null,
+    "error_message": null
+  },
+  "delete_dupf-upc-789b5c4786-tkljp_ns-dupf_1775789107": {
+    "fault_id": "delete_dupf-upc-789b5c4786-tkljp_ns-dupf_1775789107",
+    "case_name": "upc_talker_failure",
+    "fault_type": "delete",
+    "target": {
+      "name": "dupf-upc-789b5c4786-tkljp",
+      "ip": "10.233.66.133",
+      "namespace": "ns-dupf"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-04-10 10:45:07.780241",
+    "end_time": "2026-04-10T10:45:35.470072",
+    "error_message": null
+  }
+}

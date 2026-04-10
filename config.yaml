@@ -1,0 +1,88 @@
+# 环境配置
+environments:
+  1_ssh_remote:
+    type: "ssh"
+    ip: "10.230.246.167"
+    port: 50163
+    user: "root"
+    passwd: "Gsta@123"
+    nodename: "dupf01"
+  
+  2_ssh_remote:
+    type: "ssh"
+    ip: "10.230.246.168"
+    port: 50163
+    user: "root"
+    passwd: "Gsta@123"
+    nodename: "dupf02"
+  
+  3_ssh_remote:
+    type: "ssh"
+    ip: "10.230.246.169"
+    port: 50163
+    user: "root"
+    passwd: "Gsta@123"
+    nodename: "dupf03"
+  
+  4_ssh_remote:
+    type: "ssh"
+    ip: "10.230.246.170"
+    port: 50163
+    user: "root"
+    passwd: "Gsta@123"
+    nodename: "dupf04"
+
+# 交换机环境配置
+sw_environments:
+  sw_ssh_remote1:
+    type: "ssh"
+    ip: "10.230.246.153"
+    port: 50163
+    user: "admin"
+    passwd: "Gsta.123yjy"
+    nodename: "tor1"
+  sw_ssh_remote2:
+    type: "ssh"
+    ip: "10.230.246.154"
+    port: 50163
+    user: "admin"
+    passwd: "Gsta.123yjy"
+    nodename: "tor2"
+  sw_ssh_remote3:
+    type: "ssh"
+    ip: "10.230.246.155"
+    port: 50163
+    user: "admin"
+    passwd: "Gsta.123yjy"
+    nodename: "eor1"
+  sw_ssh_remote4:
+    type: "ssh"
+    ip: "10.230.246.156"
+    port: 50163
+    user: "admin"
+    passwd: "Gsta.123yjy"
+    nodename: "eor2"
+
+# 默认配置
+defaults:
+  namespace: "ns-dupf"
+  wait_seconds: 30
+  cleanup: true
+
+# UPU Pod 过滤列表
+UPU_POD_FILTERS:
+  - "dupf-upu-dupf01-1"
+  - "dupf-upu-dupf01-2"
+  - "dupf-upu-dupf01-3"
+  - "dupf-upu-dupf02-5"
+  - "dupf-upu-dupf02-6"
+  - "dupf-upu-dupf03-7"
+  - "dupf-upu-dupf03-9"
+  - "dupf-upu-dupf04-10"
+  - "dupf-upu-dupf04-11"
+
+# UPU Slave Pod 过滤列表
+UPU_POD_FILTERS_SLAVE:
+  - "dupf-upu-dupf02-4"
+  - "dupf-upu-dupf03-8"
+  - "dupf-upu-dupf04-12"

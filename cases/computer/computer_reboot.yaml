@@ -1,0 +1,14 @@
+# 物理机重启 Case 示例
+name: computer_reboot
+description: Reboot physical server nodes
+type: computer
+fault_type: reboot
+computer_match:
+  name:
+    #- 1_ssh_remote
+    #- 2_ssh_remote
+    - 3_ssh_remote
+    #- 4_ssh_remote
+duration: 1200s
+loop_count: 1
+auto_clear: false

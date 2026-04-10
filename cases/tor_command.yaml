@@ -1,0 +1,13 @@
+name: sw_command_execution
+description: 在交换机上执行命令
+type: sw
+environment: sw_ssh_remote1
+fault_type: command
+sw_match:
+  commands:
+    - cmd: screen-length disable
+      wait: 2
+    - cmd: display bgp peer ipv4 vpn-instance-all
+      wait: 10
+    - cmd: display interface brief
+  loop_count: 1

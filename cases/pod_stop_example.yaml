@@ -1,0 +1,15 @@
+# Pod Stop 故障测试 Case 示例
+name: pod_stop_example
+description: Pod container stop fault test
+type: pod
+environment: 1_ssh_remote
+fault_type: stop
+pod_match:
+  name: "dupf-upu-dupf01-1"
+  namespace: ns-dupf
+duration: 30s
+loop_count: 1
+parameters:
+  action: stop
+namespace: ns-dupf
+auto_clear: false
