@@ -1913,5 +1913,26 @@
     "start_time": "2026-04-10 10:45:07.780241",
     "end_time": "2026-04-10T10:45:35.470072",
     "error_message": null
+  },
+  "delay_dupf-upu-dupf01-1-9db98947d-fp4ll_ns-dupf_1775791626": {
+    "fault_id": "delay_dupf-upu-dupf01-1-9db98947d-fp4ll_ns-dupf_1775791626",
+    "case_name": "network_delay",
+    "fault_type": "delay",
+    "target": {
+      "name": "dupf-upu-dupf01-1-9db98947d-fp4ll",
+      "ip": "10.233.81.41",
+      "namespace": "ns-dupf"
+    },
+    "parameters": {
+      "device": "eth0",
+      "time": "300ms",
+      "jitter": "100ms",
+      "correlation": "20%",
+      "distribution": "paretonormal"
+    },
+    "status": "recovered",
+    "start_time": "2026-04-10 11:27:06.537272",
+    "end_time": "2026-04-10T11:28:01.956794",
+    "error_message": null
   }
 }

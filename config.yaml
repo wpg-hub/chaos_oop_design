@@ -69,6 +69,9 @@ defaults:
   wait_seconds: 30
   cleanup: true
 
+# 网卡名称
+device: eth0
+
 # UPU Pod 过滤列表
 UPU_POD_FILTERS:
   - "dupf-upu-dupf01-1"

@@ -13,9 +13,10 @@ pod_match:
 # 所有参数均为可选，不指定时使用默认值或随机生成
 parameters:
   # device: 网卡设备名
-  # - 可选参数，默认值: eth0
+  # - 可选参数
+  # - 优先级: 参数 > config.yaml > 默认值 eth0
+  # - 不指定时从 config.yaml 的 device 字段获取
   # - 示例: eth0, eth1, ens33
-  device: eth0
   
   # time: 固定延迟基础时间
   # - 可选参数，默认值: 随机 100ms~1000ms
@@ -65,31 +66,26 @@ auto_clear: true
 
 # ============ 参数组合示例 ============
 # 
-# 示例 1: 最简配置（所有参数随机生成）
-# parameters:
-#   device: eth0
+# 示例 1: 最简配置（所有参数随机生成，device 从 config.yaml 获取）
+# parameters: {}
 #
 # 示例 2: 固定延迟（无抖动）
 # parameters:
-#   device: eth0
 #   time: 300ms
 #
 # 示例 3: 延迟 + 抖动
 # parameters:
-#   device: eth0
 #   time: 300ms
 #   jitter: 100ms
 #
 # 示例 4: 延迟 + 抖动 + 相关性
 # parameters:
-#   device: eth0
 #   time: 300ms
 #   jitter: 100ms
 #   correlation: 20%
 #
 # 示例 5: 完整参数（推荐）
 # parameters:
-#   device: eth0
 #   time: 300ms
 #   jitter: 100ms
 #   correlation: 20%
@@ -97,11 +93,15 @@ auto_clear: true
 #
 # 示例 6: 范围随机
 # parameters:
-#   device: eth0
 #   time: ["200ms", "800ms"]
 #   jitter: ["20ms", "100ms"]
 #   correlation: ["10%", "90%"]
 #   distribution: normal
+#
+# 示例 7: 指定网卡设备
+# parameters:
+#   device: eth1
+#   time: 300ms
 #
 # ============ tc 命令示例 ============
 # 

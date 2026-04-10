@@ -204,6 +204,36 @@ class TestNetworkFaultInjectorDelay(unittest.TestCase):
         result = self.injector._get_device(parameters)
         self.assertEqual(result, "eth0")
     
+    def test_get_device_from_config_manager(self):
+        """测试获取网卡设备 - 从 config_manager"""
+        mock_config_manager = Mock()
+        mock_config_manager.config = {"device": "ens33"}
+        
+        injector = NetworkFaultInjector(
+            self.mock_remote_executor,
+            self.mock_logger,
+            mock_config_manager
+        )
+        
+        parameters = {}
+        result = injector._get_device(parameters)
+        self.assertEqual(result, "ens33")
+    
+    def test_get_device_priority(self):
+        """测试获取网卡设备 - 参数优先级高于 config_manager"""
+        mock_config_manager = Mock()
+        mock_config_manager.config = {"device": "ens33"}
+        
+        injector = NetworkFaultInjector(
+            self.mock_remote_executor,
+            self.mock_logger,
+            mock_config_manager
+        )
+        
+        parameters = {"device": "eth1"}
+        result = injector._get_device(parameters)
+        self.assertEqual(result, "eth1")
+    
     @patch.object(NetworkFaultInjector, '_get_pause_container_id')
     @patch.object(NetworkFaultInjector, '_get_container_pid')
     def test_inject_delay_success(self, mock_get_pid, mock_get_container_id):

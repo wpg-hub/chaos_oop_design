@@ -60,15 +60,17 @@ class FaultInjector(ABC):
 class NetworkFaultInjector(FaultInjector):
     """网络故障注入器"""
     
-    def __init__(self, remote_executor, logger):
+    def __init__(self, remote_executor, logger, config_manager=None):
         """初始化网络故障注入器
         
         Args:
             remote_executor: 远程执行器
             logger: 日志记录器
+            config_manager: 配置管理器（可选，用于获取默认网卡设备名）
         """
         self.remote_executor = remote_executor
         self.logger = logger
+        self.config_manager = config_manager
         self.fault_id = None
     
     def inject(self, target: Dict, parameters: Dict) -> bool:
@@ -152,6 +154,11 @@ class NetworkFaultInjector(FaultInjector):
         device = parameters.get("device")
         if device:
             return device
+        
+        if self.config_manager:
+            config_device = self.config_manager.config.get("device")
+            if config_device:
+                return config_device
         
         return "eth0"
     
