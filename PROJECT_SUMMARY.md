@@ -4,7 +4,7 @@
 2026-03-24
 
 ## 最后更新时间
-2026-04-01
+2026-04-10
 
 ## 项目位置
 `/home/gsta/chaos_oop_design/`
@@ -147,6 +147,20 @@
 - `SwitchFaultInjector` - 交换机故障注入器
 - `FaultFactory` - 故障注入器工厂
 
+**网络故障注入器特性**：
+- **节点感知执行**：自动识别 Pod 所在节点，在正确的节点上执行故障注入
+- **pause 容器 ID 获取**：通过 `_get_pause_container_id_and_executor()` 方法获取 pause 容器 ID 和节点执行器
+- **容器 PID 获取**：通过 `_get_container_pid()` 方法在正确的节点上获取容器 PID
+- **支持的故障类型**：delay（延迟）、loss（丢包）、corrupt（数据包破坏）、duplicate（数据包重复）、reorder（数据包重排序）
+- **自动恢复**：通过 `recover()` 方法在正确的节点上清除网络故障
+
+**节点感知执行流程**：
+1. 通过 `PodManager.get_pod_node()` 获取 Pod 所在的节点名称
+2. 通过 `_get_executor_by_node()` 获取该节点的 SSH 执行器
+3. 在正确的节点上执行 `docker ps` 获取 pause 容器 ID
+4. 在正确的节点上执行 `docker inspect` 获取 pause 容器 PID
+5. 在正确的节点上执行 `nsenter` 和 `tc` 命令注入网络故障
+
 **Pod 故障类型**：
 | fault_type | 说明 | 恢复方式 |
 |------------|------|----------|
@@ -244,6 +258,16 @@
 - 根据节点名称过滤 Pod
 - 特殊 Pod 获取（DDB、SDB、etcd、UPC、UPU、RC）
 - Pod 名称模式匹配
+- **获取 Pod 所在节点**：通过 `get_pod_node()` 方法获取 Pod 运行的节点名称
+
+**get_pod_node 方法**：
+- **功能**：获取指定 Pod 所在的节点名称
+- **参数**：
+  - `pod_name`: Pod 名称
+  - `namespace`: 命名空间（可选，默认从配置文件获取）
+- **返回值**：节点名称（字符串）或 None
+- **实现方式**：执行 `kubectl get pod -o wide` 命令并解析输出
+- **用途**：为网络故障注入提供节点感知能力，确保在正确的节点上执行命令
 
 **特殊 Pod 过滤规则**（定义在 `constants.py`）：
 | 过滤规则 | 说明 |
@@ -260,9 +284,9 @@
 | `sdb-master` | SDB master Pod |
 | `sdb-slave` | SDB slave Pod |
 | `sdb-all` | 所有 SDB Pod |
-| `rc-leader` | RC leader Pod |
-| `rc-nonleader` | RC 非 leader Pod |
-| `rc-all` | 所有 RC Pod |
+| `rc-leader` | RC leader Pod（Registry Center）|
+| `rc-nonleader` | RC 非 leader Pod（Registry Center）|
+| `rc-all` | 所有 RC Pod（Registry Center）|
 | `upu-master` | UPU master Pod |
 | `upu-slave` | UPU slave Pod |
 | `upu-all` | 所有 UPU Pod |
@@ -570,6 +594,28 @@ success, error = PermissionManager.safe_write_file("/path/to/file", content)
 详细设计文档：`/home/gsta/chaos_oop_design.md`
 
 ## 最新实现和测试结果
+
+### 2026-04-10 更新
+
+#### 1. 网络故障注入 - 节点感知执行
+- **问题**：之前在获取 Pod 的 pause 容器 ID 时，可能在错误的节点上执行命令，导致找不到容器
+- **解决方案**：
+  - 添加 `PodManager.get_pod_node()` 方法，获取 Pod 所在的节点名称
+  - 添加 `NetworkFaultInjector._get_executor_by_node()` 方法，根据节点名称获取对应的 SSH 执行器
+  - 修改 `_get_pause_container_id_and_executor()` 方法，返回 `(container_id, node_executor)` 元组
+  - 修改 `_get_container_pid()` 方法，支持在指定节点上执行命令
+  - 所有网络故障注入（delay、loss、corrupt、duplicate、reorder）都在正确的节点上执行
+  - `recover()` 方法也在正确的节点上清除网络故障
+- **测试结果**：所有单元测试通过（176 passed）
+- **影响范围**：
+  - `chaos/fault/base.py` - NetworkFaultInjector 类
+  - `chaos/utils/pod.py` - PodManager 类
+  - `tests/test_network_*.py` - 所有网络故障类型的测试文件
+
+#### 2. 测试用例更新
+- 更新了所有网络故障类型的测试用例，使其返回正确的元组 `(container_id, node_executor)`
+- 验证了正确的执行器调用
+- 所有测试通过（176 passed）
 
 ### 2026-03-25 更新
 

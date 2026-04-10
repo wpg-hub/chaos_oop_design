@@ -975,8 +975,8 @@ class PodManager:
         namespace = self._get_namespace(namespace)
         self.logger.info(f"获取 RC Pod 列表，namespace: {namespace}, filter_type: {filter_type}")
         
-        # 获取所有 RC Pod
-        kubectl_cmd = f'kubectl get pod -n {namespace} -o wide | grep rc'
+        # 获取所有 RC Pod（Registry Center）
+        kubectl_cmd = f'kubectl get pod -n {namespace} -o wide | grep registry-center'
         
         success, output = self.remote_executor.execute(kubectl_cmd)
         

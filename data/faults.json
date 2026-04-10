@@ -2219,5 +2219,170 @@
     "start_time": "2026-04-10 17:42:34.523090",
     "end_time": "2026-04-10T17:43:02.960226",
     "error_message": null
+  },
+  "delete_dupf-ddb-shd-2-2_ns-dupf_1775814519": {
+    "fault_id": "delete_dupf-ddb-shd-2-2_ns-dupf_1775814519",
+    "case_name": "upc_talker_failure",
+    "fault_type": "delete",
+    "target": {
+      "name": "dupf-ddb-shd-2-2",
+      "ip": "10.233.69.218",
+      "namespace": "ns-dupf"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-04-10 17:48:39.489834",
+    "end_time": "2026-04-10T17:49:07.950332",
+    "error_message": null
+  },
+  "delete_dupf-etcd-0_ns-dupf_1775814731": {
+    "fault_id": "delete_dupf-etcd-0_ns-dupf_1775814731",
+    "case_name": "upc_talker_failure",
+    "fault_type": "delete",
+    "target": {
+      "name": "dupf-etcd-0",
+      "ip": "10.233.66.11",
+      "namespace": "ns-dupf"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-04-10 17:52:12.118632",
+    "end_time": "2026-04-10T17:52:40.480150",
+    "error_message": null
+  },
+  "stop_dupf-upu-dupf03-9-65654ff6b8-nhsc7_ns-dupf_1775814820": {
+    "fault_id": "stop_dupf-upu-dupf03-9-65654ff6b8-nhsc7_ns-dupf_1775814820",
+    "case_name": "pod_stop_example",
+    "fault_type": "stop",
+    "target": {
+      "name": "dupf-upu-dupf03-9-65654ff6b8-nhsc7",
+      "ip": "10.233.69.152",
+      "namespace": "ns-dupf"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-04-10 17:53:57.375130",
+    "end_time": "2026-04-10T17:54:26.251360",
+    "error_message": null
+  },
+  "stop_dupf-ddb-shd-1-2_ns-dupf_1775814978": {
+    "fault_id": "stop_dupf-ddb-shd-1-2_ns-dupf_1775814978",
+    "case_name": "pod_stop_example",
+    "fault_type": "stop",
+    "target": {
+      "name": "dupf-ddb-shd-1-2",
+      "ip": "10.233.126.254",
+      "namespace": "ns-dupf"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-04-10 17:56:22.249747",
+    "end_time": "2026-04-10T17:56:51.264285",
+    "error_message": null
+  },
+  "stop_dupf-upc-5d58cc67fc-rccbk_ns-dupf_1775815099": {
+    "fault_id": "stop_dupf-upc-5d58cc67fc-rccbk_ns-dupf_1775815099",
+    "case_name": "pod_stop_example",
+    "fault_type": "stop",
+    "target": {
+      "name": "dupf-upc-5d58cc67fc-rccbk",
+      "ip": "10.233.81.241",
+      "namespace": "ns-dupf"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-04-10 17:58:30.417016",
+    "end_time": "2026-04-10T17:58:59.218071",
+    "error_message": null
+  },
+  "stop_dupf-upc-5d58cc67fc-rccbk_ns-dupf_1775815159": {
+    "fault_id": "stop_dupf-upc-5d58cc67fc-rccbk_ns-dupf_1775815159",
+    "case_name": "pod_stop_example",
+    "fault_type": "stop",
+    "target": {
+      "name": "dupf-upc-5d58cc67fc-rccbk",
+      "ip": "10.233.81.241",
+      "namespace": "ns-dupf"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-04-10 17:59:30.492236",
+    "end_time": "2026-04-10T17:59:43.716544",
+    "error_message": null
+  },
+  "stop_dupf-ddb-shd-2-2_ns-dupf_1775815200": {
+    "fault_id": "stop_dupf-ddb-shd-2-2_ns-dupf_1775815200",
+    "case_name": "pod_stop_example",
+    "fault_type": "stop",
+    "target": {
+      "name": "dupf-ddb-shd-2-2",
+      "ip": "10.233.69.191",
+      "namespace": "ns-dupf"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-04-10 18:00:03.223079",
+    "end_time": "2026-04-10T18:00:17.188829",
+    "error_message": null
+  },
+  "stop_dupf-sdb-1_ns-dupf_1775815242": {
+    "fault_id": "stop_dupf-sdb-1_ns-dupf_1775815242",
+    "case_name": "pod_stop_example",
+    "fault_type": "stop",
+    "target": {
+      "name": "dupf-sdb-1",
+      "ip": "10.233.66.15",
+      "namespace": "ns-dupf"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-04-10 18:00:46.979709",
+    "end_time": "2026-04-10T18:01:02.450226",
+    "error_message": null
+  },
+  "stop_dupf-etcd-1_ns-dupf_1775815281": {
+    "fault_id": "stop_dupf-etcd-1_ns-dupf_1775815281",
+    "case_name": "pod_stop_example",
+    "fault_type": "stop",
+    "target": {
+      "name": "dupf-etcd-1",
+      "ip": "10.233.81.155",
+      "namespace": "ns-dupf"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-04-10 18:01:33.169912",
+    "end_time": "2026-04-10T18:01:48.859854",
+    "error_message": null
+  },
+  "stop_dupf-upc-5d58cc67fc-rccbk_ns-dupf_1775815393": {
+    "fault_id": "stop_dupf-upc-5d58cc67fc-rccbk_ns-dupf_1775815393",
+    "case_name": "pod_stop_example",
+    "fault_type": "stop",
+    "target": {
+      "name": "dupf-upc-5d58cc67fc-rccbk",
+      "ip": "10.233.81.241",
+      "namespace": "ns-dupf"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-04-10 18:03:24.699479",
+    "end_time": "2026-04-10T18:03:38.555239",
+    "error_message": null
+  },
+  "stop_dupf-registry-center-2_ns-dupf_1775815835": {
+    "fault_id": "stop_dupf-registry-center-2_ns-dupf_1775815835",
+    "case_name": "pod_stop_example",
+    "fault_type": "stop",
+    "target": {
+      "name": "dupf-registry-center-2",
+      "ip": "10.233.81.40",
+      "namespace": "ns-dupf"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-04-10 18:10:46.766600",
+    "end_time": "2026-04-10T18:11:00.759817",
+    "error_message": null
   }
 }

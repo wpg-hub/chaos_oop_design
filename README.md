@@ -209,11 +209,12 @@ pod_match:
   - `sdb-slave`：只获取 SDB Slave Pod
   - `sdb-all`：获取所有 SDB Pod
   - 示例：`name: ["sdb-master"]` 或 `name: "sdb-master"`
-- **RC 特殊过滤规则**：支持 RC（Replication Controller）Pod 的特殊过滤
+- **RC 特殊过滤规则**：支持 RC（Registry Center）Pod 的特殊过滤
   - `rc-leader`：只获取 RC Leader Pod
   - `rc-nonleader`：只获取 RC Non-Leader Pod
   - `rc-all`：获取所有 RC Pod
   - 示例：`name: ["rc-leader"]` 或 `name: "rc-leader"`
+  - 注意：RC 指 Registry Center（注册中心），Pod 名称格式为 `dupf-registry-center-*`
 - **UPU 特殊过滤规则**：支持 UPU Pod 的特殊过滤
   - `upu-master`：只获取 UPU Master Pod（根据 `config.yaml` 中的 `UPU_POD_FILTERS` 过滤）
   - `upu-slave`：只获取 UPU Slave Pod（根据 `config.yaml` 中的 `UPU_POD_FILTERS_SLAVE` 过滤）
@@ -286,9 +287,16 @@ parameters:
 
 #### 网络故障参数 (type: network)
 
+**节点感知执行**：
+- 系统会自动识别 Pod 所在的节点，并在正确的节点上执行网络故障注入
+- 通过 `kubectl get pod -o wide` 获取 Pod 所在的节点名称
+- 根据节点名称从 `config.yaml` 中找到对应的 SSH 连接信息
+- 在正确的节点上执行 `docker ps`、`docker inspect`、`nsenter` 和 `tc` 命令
+- 确保故障注入命令在 Pod 实际运行的节点上执行，避免"找不到容器"的错误
+
 ```yaml
 type: network
-fault_type: delay             # 故障类型：delay 或 loss
+fault_type: delay             # 故障类型：delay、loss、corrupt、duplicate 或 reorder
 parameters:
   delay: "1000ms"             # 延迟时间
   device: "eth0"              # 网络设备名称
@@ -300,16 +308,21 @@ parameters:
 **fault_type 可选值：**
 - `delay`: 网络延迟
 - `loss`: 网络丢包
+- `corrupt`: 网络数据包破坏
+- `duplicate`: 网络数据包重复
+- `reorder`: 网络数据包重排序
 
 **parameters 参数：**
-- `delay`: 延迟时间，如 `100ms`、`1s`
-- `loss`: 丢包率，如 `10%`、`5%`
-- `device`: 网络设备名称，默认 `eth0`
-- `direction`: 延迟方向
+- `device`: 网络设备名称，默认从 `config.yaml` 获取或 `eth0`
+- `delay`: 延迟时间，如 `100ms`、`1s`（仅 delay 类型）
+- `loss`: 丢包率，如 `10%`、`5%`（仅 loss 类型）
+- `percent`: 破坏/重复/重排序比例，如 `1%`、`5%`（corrupt、duplicate、reorder 类型）
+- `correlation`: 相关性，如 `25%`（可选）
+- `jitter`: 延迟抖动（可选，仅 delay 类型）
+- `direction`: 延迟方向（可选）
   - `both`: 双向延迟
   - `in`: 入站延迟
   - `out`: 出站延迟
-- `jitter`: 延迟抖动（可选）
 
 #### 物理机故障参数 (type: computer)
 

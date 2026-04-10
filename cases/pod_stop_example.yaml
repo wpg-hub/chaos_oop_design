@@ -5,8 +5,8 @@ type: pod
 environment: 1_ssh_remote
 fault_type: stop
 pod_match:
-  name: "dupf-upu-dupf01"
-duration: 30s
+  name: rc-all
+duration: 15s
 loop_count: 1
 namespace: ns-dupf
 auto_clear: false
