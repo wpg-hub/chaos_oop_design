@@ -1567,6 +1567,153 @@ class ComputerFaultInjector(FaultInjector):
         return self.fault_id
 
 
+@FaultInjectorRegistry.register("cmd")
+class ComputerCmdFaultInjector(FaultInjector):
+    """物理机命令执行注入器"""
+    
+    def __init__(self, config_manager, logger):
+        """初始化物理机命令执行注入器
+        
+        Args:
+            config_manager: 配置管理器
+            logger: 日志记录器
+        """
+        self.config_manager = config_manager
+        self.logger = logger
+        self.fault_id = None
+    
+    def inject(self, target: Dict, parameters: Dict) -> bool:
+        """在物理机上执行命令
+        
+        Args:
+            target: 目标信息
+                - name: 环境名称列表（如 ["1_ssh_remote", "2_ssh_remote"]）
+            parameters: 故障参数
+                - fault_type: 故障类型（computer_cmd）
+                - cmd: 命令列表（支持单个命令或命令列表）
+            
+        Returns:
+            bool: 成功标志
+        """
+        fault_type = parameters.get("fault_type", "computer_cmd")
+        env_names = target.get("name", [])
+        cmd_list = parameters.get("cmd", [])
+        
+        if not isinstance(env_names, list):
+            env_names = [env_names]
+        
+        if not isinstance(cmd_list, list):
+            cmd_list = [cmd_list]
+        
+        timestamp = int(datetime.now().timestamp())
+        self.fault_id = f"{fault_type}_{'_'.join(env_names)}_{timestamp}"
+        
+        try:
+            return self._execute_commands_on_environments(env_names, cmd_list)
+        except Exception as e:
+            self.logger.error(f"命令执行失败：{e}")
+            return False
+    
+    def _execute_commands_on_environments(self, env_names: list, cmd_list: list) -> bool:
+        """在多个环境上执行命令列表
+        
+        Args:
+            env_names: 环境名称列表
+            cmd_list: 命令列表
+            
+        Returns:
+            bool: 成功标志
+        """
+        all_success = True
+        
+        for env_name in env_names:
+            env_config = self.config_manager.get_environment(env_name)
+            if not env_config:
+                self.logger.error(f"环境不存在：{env_name}")
+                all_success = False
+                continue
+            
+            self.logger.info(f"在环境 {env_name} ({env_config.ip}) 上执行命令")
+            
+            try:
+                from chaos.utils.remote import get_ssh_pool
+                
+                pool = get_ssh_pool()
+                ssh_executor = pool.get_connection(
+                    host=env_config.ip,
+                    port=env_config.port,
+                    user=env_config.user,
+                    passwd=env_config.passwd
+                )
+                
+                if not ssh_executor.is_alive() and not ssh_executor.connect():
+                    self.logger.error(f"无法连接到环境 {env_name}")
+                    all_success = False
+                    continue
+                
+                env_success = self._execute_commands(ssh_executor, cmd_list, env_name)
+                if not env_success:
+                    all_success = False
+                    
+            except Exception as e:
+                self.logger.error(f"在环境 {env_name} 上执行命令时发生错误：{e}")
+                all_success = False
+        
+        return all_success
+    
+    def _execute_commands(self, ssh_executor, cmd_list: list, env_name: str) -> bool:
+        """执行命令列表
+        
+        Args:
+            ssh_executor: SSH 执行器
+            cmd_list: 命令列表
+            env_name: 环境名称
+            
+        Returns:
+            bool: 成功标志
+        """
+        all_success = True
+        
+        for i, cmd in enumerate(cmd_list, 1):
+            self.logger.info(f"[{env_name}] 执行命令 {i}/{len(cmd_list)}: {cmd}")
+            
+            try:
+                success, output = ssh_executor.execute(cmd)
+                
+                if output and output.strip():
+                    self.logger.info(f"[{env_name}] 命令输出:\n{output}")
+                
+                if not success:
+                    self.logger.error(f"[{env_name}] 命令执行失败: {cmd}")
+                    self.logger.error(f"[{env_name}] 错误输出: {output}")
+                    all_success = False
+                else:
+                    self.logger.info(f"[{env_name}] 命令执行成功: {cmd}")
+                    
+            except Exception as e:
+                self.logger.error(f"[{env_name}] 执行命令时发生异常: {cmd}")
+                self.logger.error(f"[{env_name}] 异常信息: {e}")
+                all_success = False
+        
+        return all_success
+    
+    def recover(self, fault_id: str) -> bool:
+        """恢复命令执行故障（命令执行完成后自动恢复）
+        
+        Args:
+            fault_id: 故障 ID
+            
+        Returns:
+            bool: 成功标志
+        """
+        self.logger.info(f"命令执行完成，自动恢复：{fault_id}")
+        return True
+    
+    def get_fault_id(self) -> Optional[str]:
+        """获取故障 ID"""
+        return self.fault_id
+
+
 @FaultInjectorRegistry.register("ipmitool")
 class IpmiToolFaultInjector(FaultInjector):
     """IPMI 工具故障注入器"""

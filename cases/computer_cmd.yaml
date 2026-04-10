@@ -1,0 +1,28 @@
+# 物理机命令执行 Case 示例
+# 本模板展示在物理节点上执行命令的场景
+
+name: computer_cmd
+description: Execute commands on physical nodes
+type: cmd
+environment: 1_ssh_remote
+fault_type: computer_cmd
+
+# 命令匹配规则
+cmd_match:
+  # cmd: 要执行的命令列表
+  # - 支持单个命令: cmd: "ls -la"
+  # - 支持命令列表: cmd: ["cmd1", "cmd2", "cmd3"]
+  # - 每个命令执行后会回显输出
+  cmd:
+    - ls -l;date
+    - sleep 10s
+    - date;ls -l
+
+# 故障持续时间
+duration: 10s
+
+# 循环执行次数
+loop_count: 1
+
+# 是否自动清除故障
+auto_clear: false

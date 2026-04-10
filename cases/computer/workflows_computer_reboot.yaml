@@ -10,8 +10,8 @@ workflow:
   timing:
     start_delay: 5              # 整体启动延迟 5 秒
     node_interval: 5          # 节点间延迟 300 秒（等待前一个节点完全恢复）
-    task_timeout: 180          # 单任务超时 30 分钟
-    global_timeout: 540        # 全局超时 2 小时
+    task_timeout: 10          # 单任务超时 30 分钟
+    global_timeout: 10        # 全局超时 2 小时
 
   tasks:
     - id: reboot_1_ssh_remote

@@ -2384,5 +2384,133 @@
     "start_time": "2026-04-10 18:10:46.766600",
     "end_time": "2026-04-10T18:11:00.759817",
     "error_message": null
+  },
+  "computer_cmd_1_ssh_remote_1775821681": {
+    "fault_id": "computer_cmd_1_ssh_remote_1775821681",
+    "case_name": "computer_cmd",
+    "fault_type": "computer_cmd",
+    "target": {
+      "name": [
+        "1_ssh_remote"
+      ],
+      "type": "cmd"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-04-10 19:48:14.590889",
+    "end_time": "2026-04-10T19:48:44.642010",
+    "error_message": null
+  },
+  "computer_cmd_1_ssh_remote_1775821767": {
+    "fault_id": "computer_cmd_1_ssh_remote_1775821767",
+    "case_name": "computer_cmd",
+    "fault_type": "computer_cmd",
+    "target": {
+      "name": [
+        "1_ssh_remote"
+      ],
+      "type": "cmd"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-04-10 19:49:39.586771",
+    "end_time": "2026-04-10T19:50:09.611009",
+    "error_message": null
+  },
+  "computer_cmd_1_ssh_remote_1775822174": {
+    "fault_id": "computer_cmd_1_ssh_remote_1775822174",
+    "case_name": "computer_cmd",
+    "fault_type": "computer_cmd",
+    "target": {
+      "name": [
+        "1_ssh_remote"
+      ],
+      "type": "cmd"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-04-10 19:56:26.266724",
+    "end_time": "2026-04-10T19:56:56.317893",
+    "error_message": null
+  },
+  "computer_cmd_1_ssh_remote_1775822344": {
+    "fault_id": "computer_cmd_1_ssh_remote_1775822344",
+    "case_name": "computer_cmd",
+    "fault_type": "computer_cmd",
+    "target": {
+      "name": [
+        "1_ssh_remote"
+      ],
+      "type": "cmd"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-04-10 19:59:16.628814",
+    "end_time": "2026-04-10T19:59:26.651625",
+    "error_message": null
+  },
+  "reboot_1_ssh_remote_1775823529": {
+    "fault_id": "reboot_1_ssh_remote_1775823529",
+    "case_name": "computer_reboot_1",
+    "fault_type": "reboot",
+    "target": {
+      "name": [
+        "1_ssh_remote"
+      ],
+      "type": "computer"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-04-10 20:18:51.840176",
+    "end_time": "2026-04-10T20:30:51.968528",
+    "error_message": null
+  },
+  "reboot_2_ssh_remote_1775823714": {
+    "fault_id": "reboot_2_ssh_remote_1775823714",
+    "case_name": "computer_reboot_2",
+    "fault_type": "reboot",
+    "target": {
+      "name": [
+        "2_ssh_remote"
+      ],
+      "type": "computer"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-04-10 20:21:58.238271",
+    "end_time": "2026-04-10T20:33:58.320292",
+    "error_message": null
+  },
+  "reboot_3_ssh_remote_1775823899": {
+    "fault_id": "reboot_3_ssh_remote_1775823899",
+    "case_name": "computer_reboot_3",
+    "fault_type": "reboot",
+    "target": {
+      "name": [
+        "3_ssh_remote"
+      ],
+      "type": "computer"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-04-10 20:25:01.763603",
+    "end_time": "2026-04-10T20:37:01.876149",
+    "error_message": null
+  },
+  "reboot_4_ssh_remote_1775824084": {
+    "fault_id": "reboot_4_ssh_remote_1775824084",
+    "case_name": "computer_reboot_4",
+    "fault_type": "reboot",
+    "target": {
+      "name": [
+        "4_ssh_remote"
+      ],
+      "type": "computer"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-04-10 20:28:08.742810",
+    "end_time": "2026-04-10T20:40:08.863832",
+    "error_message": null
   }
 }

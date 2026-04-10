@@ -40,6 +40,8 @@ class CaseConfig:
             self.pod_match = config_dict.get("sw_match", {})
         elif self.type == "computer":
             self.pod_match = config_dict.get("computer_match", {})
+        elif self.type == "cmd":
+            self.pod_match = config_dict.get("cmd_match", {})
         else:
             self.pod_match = config_dict.get("pod_match", {})
         
@@ -63,7 +65,7 @@ class CaseConfig:
             return False, "Case type 是必需的"
         
         # computer 类型的 environment 不是必需的，目标信息来自 computer_match.name
-        if self.type != "computer" and not self.environment:
+        if self.type not in ["computer", "cmd"] and not self.environment:
             return False, "Environment 是必需的"
         
         if not self.fault_type:
@@ -84,6 +86,10 @@ class CaseConfig:
         if self.type == "sw":
             sw_match = self.pod_match
             return bool(sw_match.get("commands") or sw_match.get("command"))
+        
+        if self.type == "cmd":
+            cmd_match = self.pod_match
+            return bool(cmd_match.get("cmd"))
         
         pod_match = self.pod_match
         has_name = bool(pod_match.get("name"))
@@ -205,7 +211,7 @@ class CaseExecutor:
                         time.sleep(interval)
                     
                     # 创建故障注入器
-                    if case_config.type in ["computer", "sw"]:
+                    if case_config.type in ["computer", "sw", "cmd"]:
                         injector = self.fault_factory.create_injector(
                             fault_type=case_config.type,
                             logger=self.logger,
@@ -227,6 +233,10 @@ class CaseExecutor:
                     
                     # 对于 sw 类型，添加 sw_match 参数
                     if case_config.type == "sw":
+                        inject_params.update(case_config.pod_match)
+                    
+                    # 对于 cmd 类型，添加 cmd_match 参数
+                    if case_config.type == "cmd":
                         inject_params.update(case_config.pod_match)
                     
                     success = injector.inject(target, inject_params)
@@ -361,6 +371,21 @@ class CaseExecutor:
             targets = [{
                 "name": env_names,
                 "type": "computer"
+            }]
+            return targets
+        
+        if case_config.type == "cmd":
+            cmd_match = case_config.pod_match
+            env_name = case_config.environment
+            
+            if isinstance(env_name, list):
+                env_names = env_name
+            else:
+                env_names = [env_name]
+            
+            targets = [{
+                "name": env_names,
+                "type": "cmd"
             }]
             return targets
         
