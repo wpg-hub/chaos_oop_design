@@ -1934,5 +1934,50 @@
     "start_time": "2026-04-10 11:27:06.537272",
     "end_time": "2026-04-10T11:28:01.956794",
     "error_message": null
+  },
+  "process_kill_dupf-upc-789b5c4786-mr4v8_ns-dupf_15_1_1775800907": {
+    "fault_id": "process_kill_dupf-upc-789b5c4786-mr4v8_ns-dupf_15_1_1775800907",
+    "case_name": "process_kill_example",
+    "fault_type": "kill",
+    "target": {
+      "name": "dupf-upc-789b5c4786-mr4v8",
+      "ip": "10.233.81.165",
+      "namespace": "ns-dupf"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-04-10 14:01:46.164401",
+    "end_time": "2026-04-10T14:01:56.194857",
+    "error_message": null
+  },
+  "stop_dupf-upu-dupf01-1-9db98947d-fp4ll_ns-dupf_1775801018": {
+    "fault_id": "stop_dupf-upu-dupf01-1-9db98947d-fp4ll_ns-dupf_1775801018",
+    "case_name": "pod_stop_example",
+    "fault_type": "stop",
+    "target": {
+      "name": "dupf-upu-dupf01-1-9db98947d-fp4ll",
+      "ip": "10.233.81.41",
+      "namespace": "ns-dupf"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-04-10 14:03:47.628748",
+    "end_time": "2026-04-10T14:04:18.064333",
+    "error_message": null
+  },
+  "stop_dupf-upu-dupf01-1-9db98947d-fp4ll_ns-dupf_1775801163": {
+    "fault_id": "stop_dupf-upu-dupf01-1-9db98947d-fp4ll_ns-dupf_1775801163",
+    "case_name": "pod_stop_example",
+    "fault_type": "stop",
+    "target": {
+      "name": "dupf-upu-dupf01-1-9db98947d-fp4ll",
+      "ip": "10.233.81.41",
+      "namespace": "ns-dupf"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-04-10 14:06:25.358335",
+    "end_time": "2026-04-10T14:06:53.577667",
+    "error_message": null
   }
 }

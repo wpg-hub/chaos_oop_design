@@ -8,15 +8,10 @@ pod_match:
   name:
     - dupf-upu-dupf01-1
     - dupf-upu-dupf01-2
-  namespace: ns-dupf
   labels:
     app: dupf
     component: upu
-  interval: 5   # 不同匹配规则之间的时间间隔（秒）
 duration: 30s
 loop_count: 1
-parameters:
-  action: kill
-  grace_period: 30
 namespace: ns-dupf
 auto_clear: false

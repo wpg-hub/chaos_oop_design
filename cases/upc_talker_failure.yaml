@@ -7,7 +7,6 @@ fault_type: delete
 pod_match:
   name:
     - upc-talker
-  interval: 5
 duration: 30s
 loop_count: 1
 namespace: ns-dupf

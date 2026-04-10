@@ -6,13 +6,9 @@ fault_type: kill
 pod_match:
   name: 
     - upc-talker
-  namespace: ns-dupf
   random: true
   count: 1
 duration: 10s
 loop_count: 1
-parameters:
-  signal: 11
-  main_process_pid: 1
 namespace: ns-dupf
 auto_clear: false

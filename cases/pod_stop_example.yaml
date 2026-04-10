@@ -5,11 +5,8 @@ type: pod
 environment: 1_ssh_remote
 fault_type: stop
 pod_match:
-  name: "dupf-upu-dupf01-1"
-  namespace: ns-dupf
+  name: "dupf-upu-dupf01"
 duration: 30s
 loop_count: 1
-parameters:
-  action: stop
 namespace: ns-dupf
 auto_clear: false
