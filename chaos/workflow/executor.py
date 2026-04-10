@@ -59,6 +59,13 @@ class TaskExecutor:
         start_time = datetime.now()
         self.logger.info(f"开始执行任务: {task.name} ({task.id})")
         
+        effective_timeout = self._calculate_effective_timeout(task, timeout)
+        if effective_timeout != timeout:
+            self.logger.info(
+                f"任务超时时间已调整: {timeout}s -> {effective_timeout}s "
+                f"(包含 duration: {task.case.duration})"
+            )
+        
         temp_file = None
         retry_count = 0
         
@@ -67,7 +74,7 @@ class TaskExecutor:
             
             while True:
                 try:
-                    success = self._execute_with_timeout(temp_file, timeout)
+                    success = self._execute_with_timeout(temp_file, effective_timeout)
                     
                     end_time = datetime.now()
                     status = TaskStatus.SUCCESS if success else TaskStatus.FAILED
@@ -102,7 +109,7 @@ class TaskExecutor:
                     
                 except TimeoutError:
                     end_time = datetime.now()
-                    self.logger.error(f"任务执行超时: {task.name} (超时: {timeout}s)")
+                    self.logger.error(f"任务执行超时: {task.name} (超时: {effective_timeout}s)")
                     
                     return TaskResult(
                         task_id=task.id,
@@ -111,7 +118,7 @@ class TaskExecutor:
                         start_time=start_time,
                         end_time=end_time,
                         duration=(end_time - start_time).total_seconds(),
-                        error_message=f"Task timeout after {timeout}s",
+                        error_message=f"Task timeout after {effective_timeout}s",
                         group_id=task.group,
                         retry_count=retry_count
                     )
@@ -138,6 +145,56 @@ class TaskExecutor:
                     os.remove(temp_file)
                 except Exception:
                     pass
+    
+    def _calculate_effective_timeout(self, task: Task, timeout: float) -> float:
+        """计算有效的超时时间
+        
+        自动包含 duration 时间，确保 duration 等待不会被 task_timeout 打断
+        
+        Args:
+            task: 任务对象
+            timeout: 原始超时时间（秒）
+            
+        Returns:
+            float: 有效的超时时间（秒）
+        """
+        if not task.case.duration:
+            return timeout
+        
+        duration_seconds = self._parse_duration(task.case.duration)
+        
+        execution_overhead = 60
+        
+        effective_timeout = duration_seconds + execution_overhead
+        
+        return max(timeout, effective_timeout)
+    
+    def _parse_duration(self, duration: str) -> float:
+        """解析时长字符串
+        
+        Args:
+            duration: 时长字符串（如 "60s", "5m", "2h"）
+            
+        Returns:
+            float: 秒数
+        """
+        if not duration:
+            return 0.0
+        
+        duration = duration.lower().strip()
+        
+        try:
+            if duration.endswith('s'):
+                return float(duration[:-1])
+            elif duration.endswith('m'):
+                return float(duration[:-1]) * 60
+            elif duration.endswith('h'):
+                return float(duration[:-1]) * 3600
+            else:
+                return float(duration)
+        except (ValueError, AttributeError):
+            self.logger.warning(f"无法解析 duration: {duration}，使用默认值 0")
+            return 0.0
     
     def _create_temp_case_file(self, case: Any) -> str:
         """创建临时 Case 文件

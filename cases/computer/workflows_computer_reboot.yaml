@@ -10,7 +10,7 @@ workflow:
   timing:
     start_delay: 5              # 整体启动延迟 5 秒
     node_interval: 5          # 节点间延迟 300 秒（等待前一个节点完全恢复）
-    task_timeout: 10          # 单任务超时 30 分钟
+    task_timeout: 120          # 单任务超时 30 分钟
     global_timeout: 10        # 全局超时 2 小时
 
   tasks:
@@ -23,7 +23,7 @@ workflow:
         computer_match:
           name:
             - 1_ssh_remote
-        duration: 720s
+        duration: 300s
         loop_count: 1
         auto_clear: false
 
@@ -36,7 +36,7 @@ workflow:
         computer_match:
           name:
             - 2_ssh_remote
-        duration: 720s
+        duration: 300s
         loop_count: 1
         auto_clear: false
 
@@ -49,7 +49,7 @@ workflow:
         computer_match:
           name:
             - 3_ssh_remote
-        duration: 720s
+        duration: 300s
         loop_count: 1
         auto_clear: false
 
@@ -62,6 +62,6 @@ workflow:
         computer_match:
           name:
             - 4_ssh_remote
-        duration: 720s
+        duration: 300s
         loop_count: 1
         auto_clear: false

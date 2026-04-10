@@ -1522,12 +1522,20 @@ class ComputerFaultInjector(FaultInjector):
                         all_success = False
                         
                 except Exception as e:
-                    self.logger.error(f"执行重启命令时发生错误：{e}")
-                    all_success = False
+                    error_msg = str(e)
+                    if self._is_reboot_success(error_msg):
+                        self.logger.info(f"物理机 {env_name} 重启命令已发送（连接断开）")
+                    else:
+                        self.logger.error(f"执行重启命令时发生错误：{e}")
+                        all_success = False
                     
             except Exception as e:
-                self.logger.error(f"重启物理机 {env_name} 时发生错误：{e}")
-                all_success = False
+                error_msg = str(e)
+                if self._is_reboot_success(error_msg):
+                    self.logger.info(f"物理机 {env_name} 重启命令已发送（连接断开）")
+                else:
+                    self.logger.error(f"重启物理机 {env_name} 时发生错误：{e}")
+                    all_success = False
         
         return all_success
     
