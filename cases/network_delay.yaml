@@ -1,0 +1,118 @@
+# 网络延迟故障注入 Case 模板
+# 本模板展示网络延迟故障注入的完整参数配置
+
+name: network_delay
+description: Network delay fault injection template
+type: network
+environment: 1_ssh_remote
+fault_type: delay
+pod_match:
+  name: dupf-upu-dupf01-1
+
+# 网络延迟参数配置
+# 所有参数均为可选，不指定时使用默认值或随机生成
+parameters:
+  # device: 网卡设备名
+  # - 可选参数，默认值: eth0
+  # - 示例: eth0, eth1, ens33
+  device: eth0
+  
+  # time: 固定延迟基础时间
+  # - 可选参数，默认值: 随机 100ms~1000ms
+  # - 支持格式:
+  #   1. 固定值: "300ms" 或 "2s"
+  #   2. 范围值: ["200ms", "800ms"] - 在范围内随机选择
+  #   3. 不指定: 自动随机生成 100ms~1000ms
+  time: 300ms
+  
+  # jitter: 随机抖动最大幅度
+  # - 可选参数，默认值: 随机 0ms~100ms
+  # - 支持格式:
+  #   1. 固定值: "100ms"
+  #   2. 范围值: ["20ms", "100ms"] - 在范围内随机选择
+  #   3. 不指定: 自动随机生成 0ms~100ms
+  # - 注意: jitter 必须配合 time 使用
+  jitter: 100ms
+  
+  # correlation: 相关性（延迟值之间的相关性）
+  # - 可选参数，默认值: 随机 20%~90%
+  # - 支持格式:
+  #   1. 固定值: "20%"
+  #   2. 范围值: ["10%", "90%"] - 在范围内随机选择
+  #   3. 不指定: 自动随机生成 20%~90%
+  # - 注意: correlation 必须配合 jitter 使用
+  correlation: 20%
+  
+  # distribution: 抖动值的统计分布模型
+  # - 可选参数，默认值: 随机选择
+  # - 可选值:
+  #   1. uniform - 均匀分布
+  #   2. normal - 正态分布
+  #   3. pareto - 帕累托分布
+  #   4. paretonormal - 帕累托正态分布
+  # - 不指定: 从上述四种分布中随机选择
+  # - 注意: distribution 必须配合 jitter 和 correlation 使用
+  distribution: paretonormal
+
+# 故障持续时间
+duration: 60s
+
+# 循环执行次数
+loop_count: 1
+
+# 是否自动清除故障
+auto_clear: true
+
+# ============ 参数组合示例 ============
+# 
+# 示例 1: 最简配置（所有参数随机生成）
+# parameters:
+#   device: eth0
+#
+# 示例 2: 固定延迟（无抖动）
+# parameters:
+#   device: eth0
+#   time: 300ms
+#
+# 示例 3: 延迟 + 抖动
+# parameters:
+#   device: eth0
+#   time: 300ms
+#   jitter: 100ms
+#
+# 示例 4: 延迟 + 抖动 + 相关性
+# parameters:
+#   device: eth0
+#   time: 300ms
+#   jitter: 100ms
+#   correlation: 20%
+#
+# 示例 5: 完整参数（推荐）
+# parameters:
+#   device: eth0
+#   time: 300ms
+#   jitter: 100ms
+#   correlation: 20%
+#   distribution: paretonormal
+#
+# 示例 6: 范围随机
+# parameters:
+#   device: eth0
+#   time: ["200ms", "800ms"]
+#   jitter: ["20ms", "100ms"]
+#   correlation: ["10%", "90%"]
+#   distribution: normal
+#
+# ============ tc 命令示例 ============
+# 
+# 基本延迟:
+# tc qdisc add dev eth0 root netem delay 300ms
+#
+# 延迟 + 抖动:
+# tc qdisc add dev eth0 root netem delay 300ms 100ms
+#
+# 延迟 + 抖动 + 相关性:
+# tc qdisc add dev eth0 root netem delay 300ms 100ms 20%
+#
+# 完整参数:
+# tc qdisc add dev eth0 root netem delay 300ms 100ms 20% distribution paretonormal
