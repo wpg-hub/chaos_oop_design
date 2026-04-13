@@ -6,8 +6,10 @@ environment: 1_ssh_remote
 fault_type: delete
 pod_match:
   name:
-    - etcd
+    - etcd-follower
+    - etcd-leader
+    - upc-talker
 duration: 30s
 loop_count: 1
-namespace: ns-dupf
+#namespace: ns-dupf
 auto_clear: false
