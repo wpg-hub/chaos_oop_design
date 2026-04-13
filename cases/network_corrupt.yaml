@@ -7,7 +7,7 @@ type: network
 environment: 1_ssh_remote
 fault_type: corrupt
 pod_match:
-  name: ddb-master
+  name: etcd-leader
 
 # 网络数据包破坏参数配置
 # 所有参数均为可选，不指定时使用默认值或随机生成

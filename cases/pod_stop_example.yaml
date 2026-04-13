@@ -5,7 +5,7 @@ type: pod
 environment: 1_ssh_remote
 fault_type: stop
 pod_match:
-  name: rc-all
+  name: etcd-follower
 duration: 15s
 loop_count: 1
 namespace: ns-dupf
