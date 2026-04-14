@@ -72,7 +72,12 @@ def main():
                           help="Target directory for final archive")
     
     workflow_parser = subparsers.add_parser("workflow", help="Run workflow")
-    workflow_parser.add_argument("--file", required=True, help="Workflow YAML file path")
+    
+    # 创建互斥组，--file 和 --dir 不能同时使用
+    workflow_group = workflow_parser.add_mutually_exclusive_group(required=True)
+    workflow_group.add_argument("--file", help="Workflow YAML file path")
+    workflow_group.add_argument("--dir", help="Directory containing workflow YAML files (recursive)")
+    
     workflow_parser.add_argument("--dry-run", action="store_true", help="Dry run mode (validate only)")
     workflow_parser.add_argument("--max-workers", type=int, default=10, help="Max parallel workers")
     
@@ -303,43 +308,206 @@ def handle_log_command(args, logger):
 
 def handle_workflow_command(args, logger):
     from chaos.workflow.parser import WorkflowParseError
+    from pathlib import Path
+    from datetime import datetime
     
     try:
-        parser = WorkflowParser(logger)
-        
-        if args.dry_run:
-            valid, error = parser.validate_yaml_file(args.file)
-            if valid:
-                logger.info(f"工作流配置验证通过: {args.file}")
-                sys.exit(0)
-            else:
-                logger.error(f"工作流配置验证失败: {error}")
-                sys.exit(1)
-        
-        workflow = parser.parse(args.file)
-        
-        config_manager = ConfigManager()
-        fault_factory = FaultFactory()
-        state_manager = StateManager(FileFaultRepository(), logger)
-        
-        executor = WorkflowExecutor(
-            config_manager,
-            fault_factory,
-            state_manager,
-            logger,
-            max_workers=args.max_workers
-        )
-        
-        result = executor.execute(workflow)
-        
-        sys.exit(0 if result.status.value == "success" else 1)
-        
+        # 批量执行模式
+        if args.dir:
+            handle_workflow_batch(args, logger)
+        # 单文件执行模式
+        elif args.file:
+            handle_workflow_single(args, logger)
+            
     except WorkflowParseError as e:
         logger.error(f"工作流解析错误: {e}")
         sys.exit(1)
     except Exception as e:
         logger.error(f"工作流执行错误: {e}")
         sys.exit(1)
+
+
+def handle_workflow_single(args, logger):
+    """执行单个workflow文件
+    
+    Args:
+        args: 命令行参数
+        logger: 日志器
+    """
+    parser = WorkflowParser(logger)
+    
+    if args.dry_run:
+        valid, error = parser.validate_yaml_file(args.file)
+        if valid:
+            logger.info(f"工作流配置验证通过: {args.file}")
+            sys.exit(0)
+        else:
+            logger.error(f"工作流配置验证失败: {error}")
+            sys.exit(1)
+    
+    workflow = parser.parse(args.file)
+    
+    config_manager = ConfigManager()
+    fault_factory = FaultFactory()
+    state_manager = StateManager(FileFaultRepository(), logger)
+    
+    executor = WorkflowExecutor(
+        config_manager,
+        fault_factory,
+        state_manager,
+        logger,
+        max_workers=args.max_workers
+    )
+    
+    result = executor.execute(workflow)
+    
+    sys.exit(0 if result.status.value == "success" else 1)
+
+
+def handle_workflow_batch(args, logger):
+    """批量执行目录下的workflow文件
+    
+    Args:
+        args: 命令行参数
+        logger: 日志器
+    """
+    from pathlib import Path
+    from datetime import datetime
+    
+    # 查找所有YAML文件
+    yaml_files = []
+    dir_path = Path(args.dir)
+    
+    if not dir_path.exists():
+        logger.error(f"目录不存在: {args.dir}")
+        sys.exit(1)
+    
+    if not dir_path.is_dir():
+        logger.error(f"路径不是目录: {args.dir}")
+        sys.exit(1)
+    
+    # 递归查找所有.yaml和.yml文件
+    for pattern in ["*.yaml", "*.yml"]:
+        yaml_files.extend(dir_path.rglob(pattern))
+    
+    # 按文件名排序
+    yaml_files = sorted(yaml_files, key=lambda x: str(x))
+    
+    if not yaml_files:
+        logger.warning(f"目录中没有找到YAML文件: {args.dir}")
+        sys.exit(0)
+    
+    logger.info(f"找到 {len(yaml_files)} 个workflow文件")
+    
+    # 批量执行结果
+    batch_results = []
+    
+    # 创建执行器
+    config_manager = ConfigManager()
+    fault_factory = FaultFactory()
+    state_manager = StateManager(FileFaultRepository(), logger)
+    workflow_parser = WorkflowParser(logger)
+    
+    executor = WorkflowExecutor(
+        config_manager,
+        fault_factory,
+        state_manager,
+        logger,
+        max_workers=args.max_workers
+    )
+    
+    # 串行执行每个workflow
+    for yaml_file in yaml_files:
+        logger.info(f"\n{'=' * 80}")
+        logger.info(f"执行workflow: {yaml_file}")
+        logger.info(f"{'=' * 80}")
+        
+        try:
+            workflow = workflow_parser.parse(str(yaml_file))
+            start_time = datetime.now()
+            result = executor.execute(workflow)
+            end_time = datetime.now()
+            
+            batch_results.append({
+                "file": str(yaml_file),
+                "workflow_id": workflow.id,
+                "workflow_name": workflow.name,
+                "status": result.status.value,
+                "duration": (end_time - start_time).total_seconds(),
+                "error": None
+            })
+            
+        except Exception as e:
+            end_time = datetime.now()
+            logger.error(f"Workflow执行失败: {yaml_file}, 错误: {e}")
+            
+            batch_results.append({
+                "file": str(yaml_file),
+                "workflow_id": "N/A",
+                "workflow_name": "N/A",
+                "status": "failed",
+                "duration": (end_time - start_time).total_seconds(),
+                "error": str(e)
+            })
+    
+    # 生成批量执行报告
+    generate_batch_report(batch_results, logger)
+    
+    # 根据是否有失败的workflow决定退出码
+    failed_count = sum(1 for r in batch_results if r["status"] != "success")
+    sys.exit(1 if failed_count > 0 else 0)
+
+
+def generate_batch_report(batch_results, logger):
+    """生成批量执行报告
+    
+    Args:
+        batch_results: 批量执行结果列表
+        logger: 日志器
+    """
+    total = len(batch_results)
+    success_count = sum(1 for r in batch_results if r["status"] == "success")
+    failed_count = total - success_count
+    
+    # 打印汇总报告
+    print("\n" + "=" * 80)
+    print("                    Workflow Batch Execution Report                    ")
+    print("=" * 80)
+    print(f"Total Workflows : {total}")
+    print(f"Success        : {success_count}")
+    print(f"Failed         : {failed_count}")
+    print("=" * 80)
+    
+    # 打印详细结果表格
+    print("\nWorkflow Execution Details:")
+    print("-" * 80)
+    print(f"{'ID':<30} {'Name':<25} {'Status':<10} {'Duration':<10}")
+    print("-" * 80)
+    
+    for result in batch_results:
+        print(f"{result['workflow_id']:<30} "
+              f"{result['workflow_name'][:25]:<25} "
+              f"{result['status'].upper():<10} "
+              f"{result['duration']:.1f}s")
+    
+    print("=" * 80)
+    
+    # 打印失败的workflow详情
+    if failed_count > 0:
+        print("\nFailed Workflows:")
+        print("-" * 80)
+        
+        failed_index = 1
+        for result in batch_results:
+            if result["status"] != "success":
+                print(f"{failed_index}. {result['workflow_id']} - {result['workflow_name']}")
+                print(f"   File: {result['file']}")
+                if result['error']:
+                    print(f"   Error: {result['error']}")
+                print()
+                failed_index += 1
+        
+        print("=" * 80)
 
 
 if __name__ == "__main__":
