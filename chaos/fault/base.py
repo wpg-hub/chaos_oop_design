@@ -662,36 +662,51 @@ class NetworkFaultInjector(FaultInjector):
         pod_name = target.get("name")
         namespace = target.get("namespace")
         
+        self.logger.info(f"[DEBUG] ========== 开始注入网络数据包破坏 ==========")
+        self.logger.info(f"[DEBUG] Pod名称: {pod_name}")
+        self.logger.info(f"[DEBUG] 命名空间: {namespace}")
+        
         device = self._get_device(parameters)
+        self.logger.info(f"[DEBUG] 网卡设备: {device}")
+        
         percent = self._parse_corrupt_percent_param(parameters.get("percent"))
         correlation = self._parse_corrupt_correlation_param(parameters.get("correlation"))
+        self.logger.info(f"[DEBUG] 损坏比例: {percent}, 相关性: {correlation}")
         
+        self.logger.info(f"[DEBUG] 获取 pause 容器 ID...")
         result = self._get_pause_container_id(pod_name, namespace)
         if not result:
-            self.logger.error(f"无法获取 Pod {pod_name} 的 pause 容器 ID")
+            self.logger.error(f"[DEBUG] 无法获取 Pod {pod_name} 的 pause 容器 ID")
             return False
         
         pause_container_id, node_executor = result
+        self.logger.info(f"[DEBUG] pause 容器 ID: {pause_container_id}")
         
+        self.logger.info(f"[DEBUG] 获取 pause 容器 PID...")
         pause_container_pid = self._get_container_pid(pause_container_id, node_executor)
         if not pause_container_pid:
-            self.logger.error(f"无法获取 Pod {pod_name} 的 pause 容器 PID")
+            self.logger.error(f"[DEBUG] 无法获取 Pod {pod_name} 的 pause 容器 PID")
             return False
+        
+        self.logger.info(f"[DEBUG] pause 容器 PID: {pause_container_pid}")
         
         tc_command = self._build_tc_corrupt_command(device, percent, correlation)
         command = f"nsenter -t {pause_container_pid} -n {tc_command}"
         
-        self.logger.info(f"为 Pod {pod_name} 注入网络数据包破坏")
-        self.logger.info(f"损坏比例: {percent}")
-        self.logger.info(f"相关性: {correlation}")
-        self.logger.info(f"tc 命令: {tc_command}")
+        self.logger.info(f"[DEBUG] 为 Pod {pod_name} 注入网络数据包破坏")
+        self.logger.info(f"[DEBUG] 损坏比例: {percent}")
+        self.logger.info(f"[DEBUG] 相关性: {correlation}")
+        self.logger.info(f"[DEBUG] tc 命令: {tc_command}")
+        self.logger.info(f"[DEBUG] 完整命令: {command}")
         
+        self.logger.info(f"[DEBUG] 执行 tc 命令...")
         success, output = node_executor.execute(command)
         if not success:
-            self.logger.error(f"网络数据包破坏注入失败：{output}")
+            self.logger.error(f"[DEBUG] 网络数据包破坏注入失败：{output}")
             return False
         
-        self.logger.info(f"网络数据包破坏注入成功")
+        self.logger.info(f"[DEBUG] 网络数据包破坏注入成功")
+        self.logger.info(f"[DEBUG] ========== 网络数据包破坏注入完成 ==========")
         return True
     
     def _parse_corrupt_percent_param(self, percent_param: Optional[Union[str, List[str]]]) -> str:

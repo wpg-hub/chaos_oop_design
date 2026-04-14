@@ -6,6 +6,7 @@ workflow:
   name: 混合测试工作流
   description: 分组并行 + 组内串行示例，演示混合执行模式
   execution_mode: hybrid
+  auto_clear: false
   
   timing:
     global_timeout: 3600
@@ -76,7 +77,6 @@ workflow:
               action: kill
               grace_period: 30
             namespace: ns-dupf
-            auto_clear: false
 
         - id: pod_network
           name: 网络延迟测试
@@ -100,7 +100,6 @@ workflow:
               jitter: 100ms
               loss: 0%
             namespace: ns-dupf
-            auto_clear: false
 
     # ---------- 分支3：物理机测试 ----------
     - id: branch_computer
@@ -121,7 +120,6 @@ workflow:
                 - 2_ssh_remote
             duration: 0
             loop_count: 1
-            auto_clear: false
 
   # ---------- 收尾任务（可选） ----------
   final_tasks:

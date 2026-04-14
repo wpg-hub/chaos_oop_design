@@ -177,6 +177,12 @@ class CaseExecutor:
             bool: 成功标志
         """
         try:
+            self.logger.info(f"[DEBUG] ========== 开始执行 Case ==========")
+            self.logger.info(f"[DEBUG] Case名称: {case_config.name}")
+            self.logger.info(f"[DEBUG] Case类型: {case_config.type}")
+            self.logger.info(f"[DEBUG] 故障类型: {case_config.fault_type}")
+            self.logger.info(f"[DEBUG] 环境: {case_config.environment}")
+            
             # 验证配置
             is_valid, error_msg = case_config.validate()
             if not is_valid:
@@ -192,10 +198,13 @@ class CaseExecutor:
             
             # 执行循环
             for i in range(case_config.loop_count):
-                self.logger.info(f"执行 Case 迭代 {i+1}/{case_config.loop_count}")
+                self.logger.info(f"[DEBUG] 执行 Case 迭代 {i+1}/{case_config.loop_count}")
                 
                 # 获取目标列表
+                self.logger.info(f"[DEBUG] 开始获取目标列表...")
                 targets = self._get_targets(case_config, effective_config)
+                self.logger.info(f"[DEBUG] 找到 {len(targets) if targets else 0} 个目标")
+                
                 if not targets:
                     self.logger.error(f"在第 {i+1} 次迭代未找到目标")
                     return False
@@ -205,12 +214,17 @@ class CaseExecutor:
                 
                 # 对每个目标执行故障注入
                 for index, target in enumerate(targets):
+                    self.logger.info(f"[DEBUG] ---------- 处理目标 {index+1}/{len(targets)} ----------")
+                    self.logger.info(f"[DEBUG] 目标名称: {target.get('name')}")
+                    self.logger.info(f"[DEBUG] 目标节点: {target.get('node')}")
+                    
                     # 除了第一个目标外，其他目标需要等待时间间隔
                     if index > 0 and interval > 0:
-                        self.logger.info(f"等待 {interval} 秒后执行下一个故障")
+                        self.logger.info(f"[DEBUG] 等待 {interval} 秒后执行下一个故障")
                         time.sleep(interval)
                     
                     # 创建故障注入器
+                    self.logger.info(f"[DEBUG] 创建故障注入器...")
                     if case_config.type in ["computer", "sw", "cmd"]:
                         injector = self.fault_factory.create_injector(
                             fault_type=case_config.type,
@@ -226,6 +240,7 @@ class CaseExecutor:
                         )
                     
                     # 注入故障
+                    self.logger.info(f"[DEBUG] 准备注入故障...")
                     inject_params = {
                         "fault_type": case_config.fault_type,
                         **case_config.parameters
@@ -239,14 +254,18 @@ class CaseExecutor:
                     if case_config.type == "cmd":
                         inject_params.update(case_config.pod_match)
                     
+                    self.logger.info(f"[DEBUG] 注入参数: {inject_params}")
                     success = injector.inject(target, inject_params)
                     
                     if not success:
-                        self.logger.error(f"在第 {i+1} 次迭代注入故障失败，目标：{target.get('name')}")
+                        self.logger.error(f"[DEBUG] 在第 {i+1} 次迭代注入故障失败，目标：{target.get('name')}")
                         return False
+                    
+                    self.logger.info(f"[DEBUG] 故障注入成功")
                     
                     # 记录故障
                     fault_id = injector.get_fault_id()
+                    self.logger.info(f"[DEBUG] 故障ID: {fault_id}")
                     self.state_manager.record_fault(
                         case_name=case_config.name,
                         fault_type=case_config.fault_type,
@@ -261,13 +280,18 @@ class CaseExecutor:
                     # 等待
                     if case_config.duration:
                         wait_time = self._parse_duration(case_config.duration)
+                        self.logger.info(f"[DEBUG] 开始等待 duration: {case_config.duration} ({wait_time}秒)")
                         time.sleep(wait_time)
+                        self.logger.info(f"[DEBUG] duration 等待完成")
                     
                     # 清理故障
+                    self.logger.info(f"[DEBUG] 开始清理故障: {fault_id}")
                     if not injector.recover(fault_id):
-                        self.logger.error(f"恢复故障失败：{fault_id}")
+                        self.logger.error(f"[DEBUG] 恢复故障失败：{fault_id}")
                         self.state_manager.mark_failed(fault_id, "恢复失败")
                         return False
+                    
+                    self.logger.info(f"[DEBUG] 故障清理成功: {fault_id}")
                     
                     # 标记为已恢复
                     self.state_manager.mark_recovered(fault_id)
@@ -275,8 +299,8 @@ class CaseExecutor:
                     # 移除注入器引用
                     del self._running_faults[fault_id]
             
-            # 执行 auto_clear（如果配置了）
-            if case_config.auto_clear:
+            # 执行 auto_clear（只有当明确设置为True时才执行）
+            if case_config.auto_clear is True:
                 self.logger.info(f"执行 auto_clear，清除环境 {case_config.environment} 的网络故障")
                 self._execute_auto_clear(case_config, env_config)
             

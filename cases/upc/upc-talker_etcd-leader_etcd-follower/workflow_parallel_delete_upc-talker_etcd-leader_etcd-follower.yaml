@@ -6,6 +6,7 @@ workflow:
   name: UPC 并行 Pod 删除工作流
   description: 并行删除 upc-talker, etcd-leader, etcd-follower Pod，测试系统容错能力
   execution_mode: parallel
+  auto_clear: false
   
   timing:
     start_delay: 5              # 整体启动延迟 5 秒
@@ -27,7 +28,6 @@ workflow:
         duration: 80s
         loop_count: 1
         #namespace: ns-dupf
-        auto_clear: false
 
     - id: delete_etcd_leader
       name: 删除 ETCD Leader Pod
@@ -42,7 +42,6 @@ workflow:
         duration: 80s
         loop_count: 1
         #namespace: ns-dupf
-        auto_clear: false
 
     - id: delete_etcd_follower
       name: 删除 ETCD Follower Pod
@@ -57,4 +56,3 @@ workflow:
         duration: 80s
         loop_count: 1
         #namespace: ns-dupf
-        auto_clear: false

@@ -5,6 +5,7 @@
 import paramiko
 import threading
 import time
+import logging
 from abc import ABC, abstractmethod
 from datetime import datetime
 from typing import Dict, Optional, Tuple, List, Any
@@ -77,12 +78,13 @@ class SSHExecutor(RemoteExecutor):
         self._passwd = passwd
         self._key_file = key_file
         self._connect_timeout = connect_timeout
-        self._connected = False
         self._client = None
-        self._last_used = datetime.now()
-        self._lock = threading.Lock()
+        self._connected = False
+        self._last_used = None
         self._error_count = 0
-        self._last_error: Optional[str] = None
+        self._last_error = None
+        self._lock = threading.Lock()
+        self.logger = logging.getLogger(__name__)
     
     @property
     def host(self) -> str:
@@ -181,41 +183,65 @@ class SSHExecutor(RemoteExecutor):
         self.disconnect()
         return self.connect()
     
-    def execute(self, command: str, ignore_errors: bool = False, timeout: int = 120) -> Tuple[bool, str]:
-        """执行远程命令
+    def execute(self, command: str, ignore_errors: bool = False, timeout: int = 120, 
+                max_retries: int = 3, retry_delay: float = 2.0) -> Tuple[bool, str]:
+        """执行远程命令（带重试机制）
         
         Args:
             command: 要执行的命令
             ignore_errors: 是否忽略错误，默认 False
             timeout: 超时时间（秒），默认 120
+            max_retries: 最大重试次数，默认 3
+            retry_delay: 重试延迟（秒），默认 2.0
             
         Returns:
             Tuple[bool, str]: (成功标志，输出/错误信息)
         """
-        with self._lock:
-            if not self._connected or not self.is_alive():
-                if not self.connect():
-                    return False, f"无法建立 SSH 连接: {self._last_error or '未知错误'}"
-            
-            try:
-                stdin, stdout, stderr = self._client.exec_command(command, timeout=timeout)
+        last_error = None
+        
+        for attempt in range(max_retries):
+            with self._lock:
+                # 检查连接状态
+                if not self._connected or not self.is_alive():
+                    # 尝试重连
+                    if not self.connect():
+                        last_error = f"无法建立 SSH 连接: {self._last_error or '未知错误'}"
+                        if attempt < max_retries - 1:
+                            self.logger.warning(f"连接失败，{retry_delay}秒后重试 (尝试 {attempt + 1}/{max_retries})")
+                            time.sleep(retry_delay)
+                            continue
+                        else:
+                            return False, last_error
                 
-                output = stdout.read().decode('utf-8')
-                error = stderr.read().decode('utf-8')
-                exit_status = stdout.channel.recv_exit_status()
-                
-                self._last_used = datetime.now()
-                
-                if exit_status == 0 or ignore_errors:
-                    return True, output + error
-                else:
-                    return False, error
+                try:
+                    stdin, stdout, stderr = self._client.exec_command(command, timeout=timeout)
                     
-            except Exception as e:
-                self._connected = False
-                self._last_error = str(e)
-                self._error_count += 1
-                return False, f"执行失败：{str(e)}"
+                    output = stdout.read().decode('utf-8')
+                    error = stderr.read().decode('utf-8')
+                    exit_status = stdout.channel.recv_exit_status()
+                    
+                    self._last_used = datetime.now()
+                    
+                    if exit_status == 0 or ignore_errors:
+                        return True, output + error
+                    else:
+                        return False, error
+                        
+                except Exception as e:
+                    self._connected = False
+                    self._last_error = str(e)
+                    self._error_count += 1
+                    last_error = f"执行失败：{str(e)}"
+                    
+                    if attempt < max_retries - 1:
+                        self.logger.warning(f"命令执行失败，{retry_delay}秒后重试 (尝试 {attempt + 1}/{max_retries}): {str(e)}")
+                        time.sleep(retry_delay)
+                        # 尝试重连
+                        self.connect()
+                    else:
+                        return False, last_error
+        
+        return False, last_error or "未知错误"
     
     def upload_file(self, local_path: str, remote_path: str) -> Tuple[bool, str]:
         """上传文件到远程主机
@@ -309,6 +335,7 @@ class SSHConnectionPool(metaclass=SingletonMeta):
         self._pool_lock = threading.Lock()
         self._health_check_interval = 60
         self._last_health_check = datetime.now()
+        self.logger = logging.getLogger(__name__)
     
     def _make_key(self, host: str, port: int, user: str) -> str:
         """生成连接键
@@ -326,7 +353,7 @@ class SSHConnectionPool(metaclass=SingletonMeta):
     def get_connection(self, host: str, port: int = 22, 
                        user: str = "root", passwd: str = None,
                        key_file: str = None) -> SSHExecutor:
-        """获取或创建连接
+        """获取或创建连接（优化版，避免在锁内执行耗时操作）
         
         Args:
             host: 主机 IP
@@ -340,28 +367,84 @@ class SSHConnectionPool(metaclass=SingletonMeta):
         """
         key = self._make_key(host, port, user)
         
+        # 第一步：在锁内快速检查连接状态
         with self._pool_lock:
             if key in self._connections:
                 executor = self._connections[key]
                 if executor.is_alive():
+                    self.logger.debug(f"复用现有连接: {key}")
                     return executor
+                # 连接不可用，标记需要重连
+                self.logger.info(f"连接 {key} 不可用，需要重连")
+                need_reconnect = True
+            else:
+                need_reconnect = False
+                # 检查是否需要清理旧连接
+                if len(self._connections) >= self._max_connections:
+                    self.logger.info(f"连接池已满 ({len(self._connections)}/{self._max_connections})，清理最旧连接")
+                    self._cleanup_oldest()
+        
+        # 第二步：在锁外执行重连或创建新连接
+        if need_reconnect:
+            # 重连现有连接（在锁外执行，避免阻塞其他线程）
+            self.logger.info(f"尝试重连: {key}")
+            if executor.reconnect():
+                self.logger.info(f"重连成功: {key}")
+                return executor
+            else:
+                # 重连失败，从连接池移除
+                self.logger.warning(f"重连失败: {key}，从连接池移除")
+                with self._pool_lock:
+                    if key in self._connections:
+                        del self._connections[key]
+                # 创建新连接
+                return self._create_new_connection(key, host, port, user, passwd, key_file)
+        else:
+            # 创建新连接
+            return self._create_new_connection(key, host, port, user, passwd, key_file)
+    
+    def _create_new_connection(self, key: str, host: str, port: int, 
+                               user: str, passwd: str, key_file: str) -> SSHExecutor:
+        """创建新连接（在锁外执行）
+        
+        Args:
+            key: 连接键
+            host: 主机 IP
+            port: SSH 端口
+            user: 用户名
+            passwd: 密码
+            key_file: 密钥文件路径
+            
+        Returns:
+            SSHExecutor: SSH 执行器实例
+            
+        Raises:
+            Exception: 连接失败时抛出异常
+        """
+        self.logger.info(f"创建新连接: {key}")
+        executor = SSHExecutor(
+            host=host,
+            port=port,
+            user=user,
+            passwd=passwd,
+            key_file=key_file
+        )
+        
+        if executor.connect():
+            with self._pool_lock:
+                # 再次检查，防止并发创建
+                if key not in self._connections:
+                    self._connections[key] = executor
+                    self.logger.info(f"新连接创建成功: {key}，当前连接池大小: {len(self._connections)}")
                 else:
-                    executor.reconnect()
-                    return executor
-            
-            if len(self._connections) >= self._max_connections:
-                self._cleanup_oldest()
-            
-            executor = SSHExecutor(
-                host=host,
-                port=port,
-                user=user,
-                passwd=passwd,
-                key_file=key_file
-            )
-            executor.connect()
-            self._connections[key] = executor
+                    # 其他线程已经创建了连接，使用现有的
+                    self.logger.info(f"其他线程已创建连接: {key}，使用现有连接")
+                    executor.disconnect()
+                    return self._connections[key]
             return executor
+        else:
+            self.logger.error(f"连接失败: {key}")
+            raise Exception(f"无法连接到 {key}")
     
     def get_connection_from_env(self, env_config) -> SSHExecutor:
         """从环境配置获取连接

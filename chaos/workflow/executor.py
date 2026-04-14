@@ -57,14 +57,19 @@ class TaskExecutor:
             TaskResult: 执行结果
         """
         start_time = datetime.now()
-        self.logger.info(f"开始执行任务: {task.name} ({task.id})")
+        self.logger.info(f"[DEBUG] 开始执行任务: {task.name} ({task.id})")
+        self.logger.info(f"[DEBUG] 任务类型: {task.case.type}, 故障类型: {task.case.fault_type}")
+        self.logger.info(f"[DEBUG] 目标Pod: {task.case.pod_match.get('name', 'N/A')}")
+        self.logger.info(f"[DEBUG] Duration: {task.case.duration}, Loop: {task.case.loop_count}")
         
         effective_timeout = self._calculate_effective_timeout(task, timeout)
         if effective_timeout != timeout:
             self.logger.info(
-                f"任务超时时间已调整: {timeout}s -> {effective_timeout}s "
+                f"[DEBUG] 任务超时时间已调整: {timeout}s -> {effective_timeout}s "
                 f"(包含 duration: {task.case.duration})"
             )
+        else:
+            self.logger.info(f"[DEBUG] 任务超时时间: {timeout}s")
         
         temp_file = None
         retry_count = 0
@@ -390,7 +395,107 @@ class WorkflowExecutor:
         
         self.logger.info("\n" + result.generate_report())
         
+        # 执行workflow级别的auto_clear
+        if workflow.auto_clear:
+            self._execute_workflow_auto_clear(workflow)
+        
         return result
+    
+    def _execute_workflow_auto_clear(self, workflow: WorkflowDefinition) -> None:
+        """执行workflow级别的自动清除
+        
+        Args:
+            workflow: 工作流定义对象
+        """
+        self.logger.info("=" * 60)
+        self.logger.info("执行 workflow 级别的 auto_clear")
+        self.logger.info("=" * 60)
+        
+        # 收集所有涉及的环境
+        environments = set()
+        all_tasks = workflow.get_all_tasks()
+        
+        for task in all_tasks:
+            if task.case.environment:
+                environments.add(task.case.environment)
+        
+        if not environments:
+            self.logger.info("没有需要清理的环境")
+            return
+        
+        self.logger.info(f"需要清理的环境: {', '.join(sorted(environments))}")
+        
+        # 对每个环境执行清理
+        for env_name in sorted(environments):
+            try:
+                env_config = self.config_manager.get_environment(env_name)
+                if not env_config:
+                    self.logger.warning(f"环境 {env_name} 不存在，跳过清理")
+                    continue
+                
+                self.logger.info(f"清理环境 {env_name} 的网络故障...")
+                
+                # 创建远程执行器
+                from chaos.utils.remote import get_ssh_pool
+                pool = get_ssh_pool()
+                ssh_executor = pool.get_connection_from_env(env_config)
+                
+                if not ssh_executor.connect():
+                    self.logger.error(f"无法连接到环境 {env_name}")
+                    continue
+                
+                try:
+                    # 获取 Pod 管理器
+                    from chaos.utils.pod import PodManager
+                    pod_manager = PodManager(ssh_executor, self.logger, self.config_manager)
+                    
+                    # 获取该节点上的 pod 列表
+                    namespace = self.config_manager.get_namespace()
+                    pods = pod_manager.get_pods_by_nodename(namespace, env_config.nodename)
+                    
+                    if not pods:
+                        self.logger.info(f"环境 {env_name} 的节点 {env_config.nodename} 中没有找到 pod")
+                    else:
+                        self.logger.info(f"找到 {len(pods)} 个 pod")
+                        
+                        # 创建网络故障清除器
+                        from chaos.clearer.network import NetworkFaultClearerFactory
+                        network_clearer = NetworkFaultClearerFactory.create_clearer(
+                            "pod", ssh_executor, self.logger, self.config_manager
+                        )
+                        
+                        # 清除每个 pod 的网络故障
+                        success_count = 0
+                        failure_count = 0
+                        
+                        for pod_name in pods.keys():
+                            target = {
+                                "name": pod_name,
+                                "namespace": namespace
+                            }
+                            parameters = {
+                                "device": "eth0",
+                                "namespace": namespace
+                            }
+                            
+                            if network_clearer.clear_fault(target, parameters):
+                                success_count += 1
+                            else:
+                                failure_count += 1
+                        
+                        self.logger.info(
+                            f"环境 {env_name} 网络故障清除完成：成功 {success_count}, 失败 {failure_count}"
+                        )
+                finally:
+                    # 清除完成后断开连接
+                    ssh_executor.disconnect()
+                    
+            except Exception as e:
+                self.logger.error(f"清理环境 {env_name} 时发生错误：{e}")
+        
+        self.logger.info("=" * 60)
+        self.logger.info("workflow 级别的 auto_clear 完成")
+        self.logger.info("=" * 60)
     
     def _execute_serial_layer(self, layer: List[Task], timing: TimingConfig) -> None:
         """执行串行层
@@ -442,8 +547,14 @@ class WorkflowExecutor:
                 if self._stop_event.is_set():
                     break
                 try:
-                    result = future.result()
+                    # 为 future.result() 添加超时，防止无限等待
+                    # 使用 global_timeout 作为最大等待时间
+                    result = future.result(timeout=timing.global_timeout)
                     self.monitor.record(result)
+                except TimeoutError:
+                    self.logger.error(f"并行任务等待结果超时")
+                    # 尝试取消任务
+                    future.cancel()
                 except Exception as e:
                     self.logger.error(f"并行任务执行异常: {e}")
     

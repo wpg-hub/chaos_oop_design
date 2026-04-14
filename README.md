@@ -1150,6 +1150,7 @@ workflow:
   name: 工作流名称               # 工作流名称（必填）
   description: 工作流描述        # 工作流描述（可选）
   execution_mode: serial        # 执行模式：serial、parallel、hybrid（必填）
+  auto_clear: false             # 工作流级别的自动清理（可选，默认 false）
   
   timing:                       # 时间配置（可选）
     start_delay: 5              # 整体启动延迟（秒）
@@ -1192,6 +1193,37 @@ workflow:
 | `task_timeout` | 单任务超时（秒） | 600 |
 | `global_timeout` | 全局超时（秒） | 3600 |
 | `branch_start_delay` | 分支启动延迟（秒） | 0 |
+
+#### 自动清理配置
+
+工作流支持 `auto_clear` 配置，用于在工作流执行完成后自动清理网络故障：
+
+| 参数 | 说明 | 默认值 |
+|------|------|--------|
+| `auto_clear` | 工作流级别的自动清理 | false |
+
+**使用说明：**
+
+1. **workflow级别**：在workflow执行完成后统一清理所有网络故障
+   ```yaml
+   workflow:
+     auto_clear: true  # 工作流执行完成后清理
+   ```
+
+2. **task级别**：在task执行完成后立即清理（不推荐，会导致并行任务竞争）
+   ```yaml
+   tasks:
+     - id: task_1
+       case:
+         auto_clear: true  # task执行完成后清理
+   ```
+
+3. **推荐做法**：使用workflow级别的 `auto_clear`，避免并行任务竞争资源
+
+**注意事项：**
+- workflow级别的 `auto_clear` 不会继承到task
+- task级别的 `auto_clear` 会覆盖workflow配置
+- 对于网络故障（delay、corrupt、loss等），建议使用workflow级别的清理
 
 #### 任务参数
 

@@ -6,6 +6,7 @@ workflow:
   name: UPC 并行网络延迟工作流
   description: 并行对 upc-talker, etcd-leader, etcd-follower Pod 注入网络延迟故障，测试系统容错能力
   execution_mode: parallel
+  auto_clear: true
   
   timing:
     start_delay: 5              # 整体启动延迟 5 秒
@@ -32,7 +33,6 @@ workflow:
           jitter: ["20ms", "100ms"]
           correlation: ["10%", "90%"]
           distribution: paretonormal
-        auto_clear: true
 
     - id: delay_etcd_leader
       name: ETCD Leader 网络延迟
@@ -52,7 +52,6 @@ workflow:
           jitter: ["20ms", "100ms"]
           correlation: ["10%", "90%"]
           distribution: paretonormal
-        auto_clear: true
 
     - id: delay_etcd_follower
       name: ETCD Follower 网络延迟
@@ -72,4 +71,3 @@ workflow:
           jitter: ["20ms", "100ms"]
           correlation: ["10%", "90%"]
           distribution: paretonormal
-        auto_clear: true

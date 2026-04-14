@@ -93,7 +93,7 @@ class CaseDefinition:
     duration: str = ""
     loop_count: int = 1
     namespace: str = ""
-    auto_clear: bool = True
+    auto_clear: Optional[bool] = None
     parameters: Dict[str, Any] = field(default_factory=dict)
     sw_match: Optional[Dict[str, Any]] = None
     pod_match: Optional[Dict[str, Any]] = None
@@ -289,13 +289,15 @@ class WorkflowDefinition(ABC):
         workflow_id: str,
         name: str,
         execution_mode: ExecutionMode,
-        timing: TimingConfig
+        timing: TimingConfig,
+        auto_clear: bool = False
     ):
         self.id = workflow_id
         self.name = name
         self.description = ""
         self.execution_mode = execution_mode
         self.timing = timing
+        self.auto_clear = auto_clear
         self.tasks: List[Task] = []
         self.groups: List[TaskGroup] = []
         self.final_tasks: List[Task] = []
@@ -347,6 +349,7 @@ class WorkflowDefinition(ABC):
             "description": self.description,
             "execution_mode": self.execution_mode.value,
             "timing": self.timing.to_dict(),
+            "auto_clear": self.auto_clear,
             "tasks": [t.to_dict() for t in self.tasks],
             "groups": [g.to_dict() for g in self.groups],
             "final_tasks": [t.to_dict() for t in self.final_tasks]
@@ -356,8 +359,8 @@ class WorkflowDefinition(ABC):
 class SerialWorkflow(WorkflowDefinition):
     """串行工作流"""
     
-    def __init__(self, workflow_id: str, name: str, timing: TimingConfig):
-        super().__init__(workflow_id, name, ExecutionMode.SERIAL, timing)
+    def __init__(self, workflow_id: str, name: str, timing: TimingConfig, auto_clear: bool = False):
+        super().__init__(workflow_id, name, ExecutionMode.SERIAL, timing, auto_clear)
     
     def _do_validate(self) -> Tuple[bool, str]:
         if not self.tasks:
@@ -382,8 +385,8 @@ class SerialWorkflow(WorkflowDefinition):
 class ParallelWorkflow(WorkflowDefinition):
     """并行工作流"""
     
-    def __init__(self, workflow_id: str, name: str, timing: TimingConfig):
-        super().__init__(workflow_id, name, ExecutionMode.PARALLEL, timing)
+    def __init__(self, workflow_id: str, name: str, timing: TimingConfig, auto_clear: bool = False):
+        super().__init__(workflow_id, name, ExecutionMode.PARALLEL, timing, auto_clear)
     
     def _do_validate(self) -> Tuple[bool, str]:
         if not self.tasks:
@@ -408,8 +411,8 @@ class ParallelWorkflow(WorkflowDefinition):
 class HybridWorkflow(WorkflowDefinition):
     """混合工作流"""
     
-    def __init__(self, workflow_id: str, name: str, timing: TimingConfig):
-        super().__init__(workflow_id, name, ExecutionMode.HYBRID, timing)
+    def __init__(self, workflow_id: str, name: str, timing: TimingConfig, auto_clear: bool = False):
+        super().__init__(workflow_id, name, ExecutionMode.HYBRID, timing, auto_clear)
     
     def _do_validate(self) -> Tuple[bool, str]:
         if not self.groups:

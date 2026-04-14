@@ -95,12 +95,14 @@ class WorkflowParser:
         
         timing = self._parse_timing(workflow_data.get("timing", {}))
         
+        auto_clear = workflow_data.get("auto_clear", False)
+        
         if execution_mode == ExecutionMode.SERIAL:
-            workflow = SerialWorkflow(workflow_id, name, timing)
+            workflow = SerialWorkflow(workflow_id, name, timing, auto_clear)
         elif execution_mode == ExecutionMode.PARALLEL:
-            workflow = ParallelWorkflow(workflow_id, name, timing)
+            workflow = ParallelWorkflow(workflow_id, name, timing, auto_clear)
         else:
-            workflow = HybridWorkflow(workflow_id, name, timing)
+            workflow = HybridWorkflow(workflow_id, name, timing, auto_clear)
         
         workflow.description = workflow_data.get("description", "")
         
@@ -108,15 +110,15 @@ class WorkflowParser:
             tasks_data = workflow_data.get("tasks", [])
             if not tasks_data:
                 raise WorkflowParseError(f"{execution_mode.value} workflow requires 'tasks' section")
-            workflow.tasks = self._parse_tasks(tasks_data, timing)
+            workflow.tasks = self._parse_tasks(tasks_data, timing, auto_clear)
         else:
             groups_data = workflow_data.get("groups", [])
             if not groups_data:
                 raise WorkflowParseError("Hybrid workflow requires 'groups' section")
-            workflow.groups = self._parse_groups(groups_data, timing)
+            workflow.groups = self._parse_groups(groups_data, timing, auto_clear)
             
             final_tasks_data = workflow_data.get("final_tasks", [])
-            workflow.final_tasks = self._parse_tasks(final_tasks_data, timing)
+            workflow.final_tasks = self._parse_tasks(final_tasks_data, timing, auto_clear)
         
         valid, error = workflow.validate()
         if not valid:
@@ -145,13 +147,15 @@ class WorkflowParser:
     def _parse_tasks(
         self,
         data_list: List[Dict[str, Any]],
-        parent_timing: TimingConfig
+        parent_timing: TimingConfig,
+        workflow_auto_clear: bool = False
     ) -> List[Task]:
         """解析任务列表
         
         Args:
             data_list: 任务配置列表
             parent_timing: 父级时间配置
+            workflow_auto_clear: workflow级别的auto_clear配置
             
         Returns:
             任务对象列表
@@ -168,7 +172,7 @@ class WorkflowParser:
             task = Task(
                 id=data.get("id", ""),
                 name=data.get("name", ""),
-                case=self._parse_case(case_data),
+                case=self._parse_case(case_data, workflow_auto_clear),
                 timing=merged_timing,
                 dependencies=data.get("dependencies", []),
                 retry_count=data.get("retry_count", 0),
@@ -180,13 +184,15 @@ class WorkflowParser:
     def _parse_groups(
         self,
         data_list: List[Dict[str, Any]],
-        parent_timing: TimingConfig
+        parent_timing: TimingConfig,
+        workflow_auto_clear: bool = False
     ) -> List[TaskGroup]:
         """解析分组列表
         
         Args:
             data_list: 分组配置列表
             parent_timing: 父级时间配置
+            workflow_auto_clear: workflow级别的auto_clear配置
             
         Returns:
             分组对象列表
@@ -224,7 +230,7 @@ class WorkflowParser:
                 task = Task(
                     id=task_data.get("id", ""),
                     name=task_data.get("name", ""),
-                    case=self._parse_case(case_data),
+                    case=self._parse_case(case_data, workflow_auto_clear),
                     timing=task_merged_timing,
                     dependencies=task_data.get("dependencies", []),
                     group=group.id,
@@ -236,15 +242,20 @@ class WorkflowParser:
             groups.append(group)
         return groups
     
-    def _parse_case(self, data: Dict[str, Any]) -> CaseDefinition:
+    def _parse_case(self, data: Dict[str, Any], workflow_auto_clear: bool = False) -> CaseDefinition:
         """解析 Case 定义
         
         Args:
             data: Case 配置字典
+            workflow_auto_clear: workflow级别的auto_clear配置（不继承到case）
             
         Returns:
             CaseDefinition: Case 定义对象
         """
+        # case的auto_clear不继承workflow的配置
+        # 只有当case明确指定auto_clear时才使用
+        case_auto_clear = data.get("auto_clear")
+        
         return CaseDefinition(
             name=data.get("name", ""),
             type=data.get("type", ""),
@@ -254,7 +265,7 @@ class WorkflowParser:
             duration=data.get("duration", ""),
             loop_count=data.get("loop_count", 1),
             namespace=data.get("namespace", ""),
-            auto_clear=data.get("auto_clear", True),
+            auto_clear=case_auto_clear,
             parameters=data.get("parameters", {}),
             sw_match=data.get("sw_match"),
             pod_match=data.get("pod_match"),

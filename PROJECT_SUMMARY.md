@@ -675,4 +675,33 @@ success, error = PermissionManager.safe_write_file("/path/to/file", content)
 
 1. 完善网络故障注入的具体实现
 2. 添加更多单元测试
+
+### 2026-04-13 更新
+
+#### 1. Workflow 级别 auto_clear 功能实现
+- **问题**：并行workflow中，每个task执行完成后都会执行auto_clear，导致资源竞争和卡住
+- **解决方案**：
+  - 修改 `CaseDefinition`，将 `auto_clear` 默认值改为 `None`
+  - 修改 `CaseExecutor`，只有当 `auto_clear` 明确为 `True` 时才执行清理
+  - 修改 `WorkflowParser`，case的 `auto_clear` 不再继承workflow配置
+  - 在 `WorkflowExecutor` 中添加 `_execute_workflow_auto_clear()` 方法
+  - 在workflow执行完成后统一执行一次清理，而不是每个task都清理
+- **测试结果**：
+  - 并行workflow执行成功，不会卡住
+  - workflow执行完成后统一清理所有网络故障
+  - 清理成功：16个Pod，失败：0
+- **影响范围**：
+  - `chaos/workflow/definition.py` - CaseDefinition 类
+  - `chaos/case/base.py` - CaseExecutor 类
+  - `chaos/workflow/parser.py` - WorkflowParser 类
+  - `chaos/workflow/executor.py` - WorkflowExecutor 类
+
+#### 2. YAML 文件更新
+- 移除所有task级别的 `auto_clear` 配置
+- 为所有workflow文件添加workflow级别的 `auto_clear: false` 配置
+- 更新了 `cases/upc/` 和 `workflows/` 目录下的所有YAML文件
+
+#### 3. 文档更新
+- 更新 `README.md`，添加了 `auto_clear` 配置说明
+- 更新 `PROJECT_SUMMARY.md`，记录了本次更新内容
 3. 完善文档和示例

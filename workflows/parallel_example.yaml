@@ -6,6 +6,7 @@ workflow:
   name: 并行测试工作流
   description: 多个 Case 同时执行，演示并行执行模式
   execution_mode: parallel
+  auto_clear: false
   
   timing:
     start_delay: 0              # 整体启动延迟
@@ -62,7 +63,6 @@ workflow:
           action: kill
           grace_period: 30
         namespace: ns-dupf
-        auto_clear: false
 
     - id: task_network_delay
       name: 网络延迟测试
@@ -81,4 +81,3 @@ workflow:
           device: eth0
           direction: both
         namespace: ns-dupf
-        auto_clear: false
