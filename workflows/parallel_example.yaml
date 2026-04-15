@@ -6,7 +6,7 @@ workflow:
   name: 并行测试工作流
   description: 多个 Case 同时执行，演示并行执行模式
   execution_mode: parallel
-  auto_clear: false
+  auto_clear: true
   
   timing:
     start_delay: 0              # 整体启动延迟

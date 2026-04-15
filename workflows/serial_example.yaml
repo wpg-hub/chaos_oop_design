@@ -6,7 +6,7 @@ workflow:
   name: 串行测试工作流
   description: 按顺序执行多个 Case，演示串行执行模式
   execution_mode: serial
-  auto_clear: false
+  auto_clear: true
   
   timing:
     start_delay: 5              # 整体启动延迟 5 秒

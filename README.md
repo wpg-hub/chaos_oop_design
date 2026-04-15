@@ -1406,9 +1406,48 @@ python3 chaos/main.py workflow --file workflows/hybrid_example.yaml
 
 # 指定最大并行数
 python3 chaos/main.py workflow --file workflows/parallel_example.yaml --max-workers 5
+
+# 批量执行目录下的所有工作流（串行执行）
+python3 chaos/main.py workflow --dir cases/upc/
+
+# 批量执行并指定最大并行数
+python3 chaos/main.py workflow --dir cases/upc/ --max-workers 5
 ```
 
 **参数说明**：
-- `--file`: 工作流 YAML 文件路径（必填）
-- `--dry-run`: 仅验证配置，不执行（可选）
+- `--file`: 工作流 YAML 文件路径（与 --dir 互斥）
+- `--dir`: 工作流目录路径，递归执行目录下所有 YAML 文件（与 --file 互斥）
+- `--dry-run`: 仅验证配置，不执行（可选，仅对 --file 有效）
 - `--max-workers`: 最大并行数，默认 10（可选）
+
+**批量执行输出示例**：
+
+```
+2026-04-14 - chaos - INFO - 找到 16 个workflow文件
+2026-04-14 - chaos - INFO - 执行workflow: cases/upc/workflow_parallel_corrupt.yaml
+...
+
+================================================================================
+                    Workflow Batch Execution Report                    
+================================================================================
+Total Workflows : 16
+Success        : 14
+Failed         : 2
+================================================================================
+
+Workflow Execution Details:
+--------------------------------------------------------------------------------
+ID                              Name                           Status    Duration
+--------------------------------------------------------------------------------
+upc_parallel_network_corrupt_001 UPC 并行网络数据包破坏工作流    SUCCESS   45.2s
+upc_serial_network_corrupt_001  UPC 串行网络数据包破坏工作流     FAILED    30.1s
+...
+================================================================================
+
+Failed Workflows:
+--------------------------------------------------------------------------------
+1. upc_serial_network_corrupt_001 - UPC 串行网络数据包破坏工作流
+   File: cases/upc/workflow_serial_corrupt.yaml
+   Error: Connection timeout
+================================================================================
+```

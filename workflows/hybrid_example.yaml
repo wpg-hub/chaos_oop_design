@@ -6,7 +6,7 @@ workflow:
   name: 混合测试工作流
   description: 分组并行 + 组内串行示例，演示混合执行模式
   execution_mode: hybrid
-  auto_clear: false
+  auto_clear: true
   
   timing:
     global_timeout: 3600

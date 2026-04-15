@@ -4,7 +4,7 @@
 2026-03-24
 
 ## 最后更新时间
-2026-04-10
+2026-04-14
 
 ## 项目位置
 `/home/gsta/chaos_oop_design/`
@@ -400,7 +400,22 @@ python3 chaos/main.py workflow --file workflows/serial_example.yaml --dry-run
 
 # 执行工作流
 python3 chaos/main.py workflow --file workflows/hybrid_example.yaml --max-workers 5
+
+# 批量执行目录下的所有工作流（串行执行）
+python3 chaos/main.py workflow --dir cases/upc/
+
+# 批量执行并指定最大并行数
+python3 chaos/main.py workflow --dir cases/upc/ --max-workers 5
 ```
+
+**批量执行功能**：
+- 递归遍历目录及其子目录下的所有 `.yaml` 文件
+- 串行执行所有找到的 workflow 文件
+- 错误处理：某个 workflow 失败后继续执行后续的
+- 生成详细的执行报告，包括：
+  - 汇总统计（总数、成功数、失败数）
+  - 详细表格（ID、名称、状态、耗时）
+  - 失败详情（文件路径、错误信息）
 
 ## 命令行接口
 
@@ -431,8 +446,9 @@ python3 chaos/main.py log --date <YYYY-MM-DD> --log-dir <log_dir> --target-dir <
 ```
 
 ### workflow 命令参数说明
-- `--file`: 工作流 YAML 文件路径（必填）
-- `--dry-run`: 仅验证配置，不执行（可选）
+- `--file`: 工作流 YAML 文件路径（与 --dir 互斥）
+- `--dir`: 工作流目录路径，递归执行目录下所有 YAML 文件（与 --file 互斥）
+- `--dry-run`: 仅验证配置，不执行（可选，仅对 --file 有效）
 - `--max-workers`: 最大并行数，默认 10（可选）
 
 ### clear 命令参数说明
