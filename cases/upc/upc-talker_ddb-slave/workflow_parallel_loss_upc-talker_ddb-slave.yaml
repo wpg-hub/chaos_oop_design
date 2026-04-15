@@ -25,7 +25,7 @@ workflow:
         pod_match:
           name:
             - upc-talker
-        duration: 60s
+        duration: 240s
         loop_count: 1
         namespace: ns-dupf
         parameters:
@@ -44,7 +44,7 @@ workflow:
         pod_match:
           name:
             - ddb-slave
-        duration: 60s
+        duration: 240s
         loop_count: 1
         namespace: ns-dupf
         parameters:

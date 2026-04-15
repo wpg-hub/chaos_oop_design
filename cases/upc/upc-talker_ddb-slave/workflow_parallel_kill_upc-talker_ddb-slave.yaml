@@ -27,7 +27,7 @@ workflow:
             - upc-talker
           random: true
           count: 1
-        duration: 10s
+        duration: 240s
         loop_count: 1
         namespace: ns-dupf
         parameters:
@@ -46,7 +46,7 @@ workflow:
             - ddb-slave
           random: true
           count: 1
-        duration: 10s
+        duration: 240s
         loop_count: 1
         namespace: ns-dupf
         parameters:
