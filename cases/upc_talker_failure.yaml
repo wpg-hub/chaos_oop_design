@@ -7,8 +7,6 @@ fault_type: delete
 pod_match:
   name:
     - etcd-follower
-    - etcd-leader
-    - upc-talker
 duration: 30s
 loop_count: 1
 #namespace: ns-dupf

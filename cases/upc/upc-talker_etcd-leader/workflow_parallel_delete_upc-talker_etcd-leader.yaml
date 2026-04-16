@@ -1,0 +1,44 @@
+# UPC 并行 Pod 删除工作流
+# 同时对 upc-talker, etcd-leader Pod 注入删除故障
+
+workflow:
+  id: upc_parallel_pod_delete_001
+  name: UPC 并行 Pod 删除工作流
+  description: 并行对 upc-talker, etcd-leader Pod 注入删除故障，测试系统容错能力
+  execution_mode: parallel
+  auto_clear: false
+  
+  timing:
+    start_delay: 5              # 整体启动延迟 5 秒
+    task_timeout: 300           # 单任务超时 5 分钟
+    global_timeout: 600         # 全局超时 10 分钟
+    branch_start_delay: 2       # 分支启动延迟 2 秒（错开启动）
+
+  tasks:
+    - id: delete_upc_talker
+      name: UPC Talker Pod 删除
+      case:
+        name: upc_talker_delete
+        type: pod
+        environment: 1_ssh_remote
+        fault_type: delete
+        pod_match:
+          name:
+            - upc-talker
+        duration: 240s
+        loop_count: 1
+        namespace: ns-dupf
+
+    - id: delete_etcd_leader
+      name: Etcd Leader Pod 删除
+      case:
+        name: etcd_leader_delete
+        type: pod
+        environment: 1_ssh_remote
+        fault_type: delete
+        pod_match:
+          name:
+            - etcd-leader
+        duration: 240s
+        loop_count: 1
+        namespace: ns-dupf
