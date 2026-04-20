@@ -7,6 +7,7 @@ Chaos 命令行入口
 import argparse
 import sys
 from pathlib import Path
+from datetime import datetime
 
 project_root = Path(__file__).parent.parent
 sys.path.insert(0, str(project_root))
@@ -83,7 +84,11 @@ def main():
     
     args = parser.parse_args()
     
-    logger = Logger(name="chaos")
+    log_dir = Path(__file__).parent.parent / "logs"
+    log_dir.mkdir(parents=True, exist_ok=True)
+    log_file = log_dir / f"chaos_{datetime.now().strftime('%Y%m%d_%H%M%S')}.log"
+    
+    logger = Logger(name="chaos", log_file=str(log_file))
     
     if args.command == "case":
         handle_case_command(args, logger)

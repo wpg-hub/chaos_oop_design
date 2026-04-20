@@ -6,12 +6,13 @@ workflow:
   name: 物理机串行重启工作流
   description: 按顺序依次重启物理机节点，确保服务逐步恢复
   execution_mode: serial
+  auto_clear: false
   
   timing:
     start_delay: 5              # 整体启动延迟 5 秒
-    node_interval: 5          # 节点间延迟 300 秒（等待前一个节点完全恢复）
-    task_timeout: 120          # 单任务超时 30 分钟
-    global_timeout: 10        # 全局超时 2 小时
+    node_interval: 300          # 节点间延迟 300 秒（等待前一个节点完全恢复）
+    task_timeout: 600           # 单任务超时 10 分钟
+    global_timeout: 7200        # 全局超时 2 小时
 
   tasks:
     - id: reboot_1_ssh_remote
@@ -25,7 +26,6 @@ workflow:
             - 1_ssh_remote
         duration: 300s
         loop_count: 1
-        auto_clear: false
 
     - id: reboot_2_ssh_remote
       name: 重启 2_ssh_remote
@@ -38,7 +38,6 @@ workflow:
             - 2_ssh_remote
         duration: 300s
         loop_count: 1
-        auto_clear: false
 
     - id: reboot_3_ssh_remote
       name: 重启 3_ssh_remote
@@ -51,7 +50,6 @@ workflow:
             - 3_ssh_remote
         duration: 300s
         loop_count: 1
-        auto_clear: false
 
     - id: reboot_4_ssh_remote
       name: 重启 4_ssh_remote
@@ -64,4 +62,3 @@ workflow:
             - 4_ssh_remote
         duration: 300s
         loop_count: 1
-        auto_clear: false

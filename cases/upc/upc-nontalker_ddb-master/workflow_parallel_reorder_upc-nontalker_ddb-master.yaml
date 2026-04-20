@@ -9,7 +9,7 @@ workflow:
   auto_clear: true
   
   timing:
-    start_delay: 5              # 整体启动延迟 5 秒
+    start_delay: 120              # 整体启动延迟 5 秒
     task_timeout: 300           # 单任务超时 5 分钟
     global_timeout: 600         # 全局超时 10 分钟
     branch_start_delay: 2       # 分支启动延迟 2 秒（错开启动）
