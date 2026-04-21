@@ -4,15 +4,15 @@
 name: ipmitool_computer_operator
 description: ipmitool_computer_operator
 type: ipmitool
-fault_type: soft  # soft/off/on/reset/cycle/status/warm/cold
+fault_type: "on"  # soft/off/on/reset/cycle/status/warm/cold
 
 # BMC 匹配规则
 ipmitool_match:
   name:
     - bmc_remote1  # 支持多个 BMC，配置信息从 config.yaml 的 bmc_environments 获取
-    - bmc_remote2
-    - bmc_remote3
-    - bmc_remote4
+    #- bmc_remote2
+    #- bmc_remote3
+    #- bmc_remote4
 
 # 故障持续时间
 duration: 60s

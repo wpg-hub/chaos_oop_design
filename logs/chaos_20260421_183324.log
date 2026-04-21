@@ -1,0 +1,17 @@
+2026-04-21 18:33:24 - chaos - INFO - 执行单个 Case: cases/ipmitool_computer_operator.yaml
+2026-04-21 18:33:24 - chaos - INFO - [DEBUG] ========== 开始执行 Case ==========
+2026-04-21 18:33:24 - chaos - INFO - [DEBUG] Case名称: ipmitool_computer_operator
+2026-04-21 18:33:24 - chaos - INFO - [DEBUG] Case类型: ipmitool
+2026-04-21 18:33:24 - chaos - INFO - [DEBUG] 故障类型: True
+2026-04-21 18:33:24 - chaos - INFO - [DEBUG] 环境: None
+2026-04-21 18:33:24 - chaos - INFO - [DEBUG] 执行 Case 迭代 1/1
+2026-04-21 18:33:24 - chaos - INFO - [DEBUG] 开始获取目标列表...
+2026-04-21 18:33:24 - chaos - INFO - [DEBUG] 找到 1 个目标
+2026-04-21 18:33:24 - chaos - INFO - [DEBUG] ---------- 处理目标 1/1 ----------
+2026-04-21 18:33:24 - chaos - INFO - [DEBUG] 目标名称: ['bmc_remote1']
+2026-04-21 18:33:24 - chaos - INFO - [DEBUG] 目标节点: None
+2026-04-21 18:33:24 - chaos - INFO - [DEBUG] 创建故障注入器...
+2026-04-21 18:33:24 - chaos - INFO - [DEBUG] 准备注入故障...
+2026-04-21 18:33:24 - chaos - INFO - [DEBUG] 注入参数: {'fault_type': True}
+2026-04-21 18:33:24 - chaos - ERROR - 不支持的故障类型：True
+2026-04-21 18:33:24 - chaos - ERROR - [DEBUG] 在第 1 次迭代注入故障失败，目标：['bmc_remote1']

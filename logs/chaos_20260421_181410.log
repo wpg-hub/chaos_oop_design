@@ -1,0 +1,7 @@
+2026-04-21 18:14:10 - chaos - INFO - 执行单个 Case: cases/ipmitool_computer_operator.yaml
+2026-04-21 18:14:10 - chaos - INFO - [DEBUG] ========== 开始执行 Case ==========
+2026-04-21 18:14:10 - chaos - INFO - [DEBUG] Case名称: ipmitool_computer_operator
+2026-04-21 18:14:10 - chaos - INFO - [DEBUG] Case类型: ipmitool
+2026-04-21 18:14:10 - chaos - INFO - [DEBUG] 故障类型: soft
+2026-04-21 18:14:10 - chaos - INFO - [DEBUG] 环境: None
+2026-04-21 18:14:10 - chaos - ERROR - 无效的 Case 配置：Environment 是必需的

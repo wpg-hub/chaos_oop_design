@@ -46,6 +46,32 @@ class TaskExecutor:
         self.state_manager = state_manager
         self.logger = logger
     
+    def _get_match_info(self, case: Any) -> str:
+        """获取匹配信息字符串
+        
+        Args:
+            case: Case 定义对象
+            
+        Returns:
+            str: 匹配信息描述
+        """
+        if case.type == "computer" and case.computer_match:
+            names = case.computer_match.get("name", [])
+            if isinstance(names, list):
+                return f"Computer: {', '.join(names)}"
+            return f"Computer: {names}"
+        elif case.type == "sw" and case.sw_match:
+            commands = case.sw_match.get("commands") or case.sw_match.get("command")
+            if commands:
+                return f"SW: {commands}"
+            return "SW: N/A"
+        elif case.pod_match:
+            names = case.pod_match.get("name", [])
+            if isinstance(names, list):
+                return f"Pod: {', '.join(names) if names else 'N/A'}"
+            return f"Pod: {names if names else 'N/A'}"
+        return "N/A"
+    
     def execute(self, task: Task, timeout: float) -> TaskResult:
         """执行任务
         
@@ -59,7 +85,9 @@ class TaskExecutor:
         start_time = datetime.now()
         self.logger.info(f"[DEBUG] 开始执行任务: {task.name} ({task.id})")
         self.logger.info(f"[DEBUG] 任务类型: {task.case.type}, 故障类型: {task.case.fault_type}")
-        self.logger.info(f"[DEBUG] 目标Pod: {task.case.pod_match.get('name', 'N/A')}")
+        
+        match_info = self._get_match_info(task.case)
+        self.logger.info(f"[DEBUG] 目标: {match_info}")
         self.logger.info(f"[DEBUG] Duration: {task.case.duration}, Loop: {task.case.loop_count}")
         
         effective_timeout = self._calculate_effective_timeout(task, timeout)

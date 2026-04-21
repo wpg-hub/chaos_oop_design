@@ -50,6 +50,7 @@ class ConfigManager:
         self.config = {}
         self.environments: Dict[str, EnvironmentConfig] = {}
         self.sw_environments: Dict[str, EnvironmentConfig] = {}
+        self.bmc_environments: Dict[str, EnvironmentConfig] = {}
         self.defaults: Dict = {}
         self.upu_filters: List[str] = []
         self.upu_filters_slave: List[str] = []
@@ -75,6 +76,11 @@ class ConfigManager:
         sw_environments = self.config.get("sw_environments", {})
         for name, env_config in sw_environments.items():
             self.sw_environments[name] = EnvironmentConfig(name, env_config)
+        
+        # 加载 BMC 环境配置
+        bmc_environments = self.config.get("bmc_environments", {})
+        for name, env_config in bmc_environments.items():
+            self.bmc_environments[name] = EnvironmentConfig(name, env_config)
         
         # 加载默认配置
         self.defaults = self.config.get("defaults", {})
@@ -112,6 +118,17 @@ class ConfigManager:
             EnvironmentConfig: 环境配置对象
         """
         return self.sw_environments.get(env_name)
+    
+    def get_bmc_environment(self, env_name: str) -> Optional[EnvironmentConfig]:
+        """获取 BMC 环境配置
+        
+        Args:
+            env_name: BMC 环境名称
+            
+        Returns:
+            EnvironmentConfig: 环境配置对象
+        """
+        return self.bmc_environments.get(env_name)
     
     def get_defaults(self) -> Dict:
         """获取默认配置

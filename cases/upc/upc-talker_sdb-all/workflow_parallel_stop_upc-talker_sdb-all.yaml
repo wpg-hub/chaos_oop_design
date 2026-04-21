@@ -9,7 +9,7 @@ workflow:
   auto_clear: false
   
   timing:
-    start_delay: 120              # 整体启动延迟 5 秒
+    start_delay: 10              # 整体启动延迟 5 秒
     task_timeout: 300           # 单任务超时 5 分钟
     global_timeout: 600         # 全局超时 10 分钟
     branch_start_delay: 2       # 分支启动延迟 2 秒（错开启动）
@@ -25,7 +25,7 @@ workflow:
         pod_match:
           name:
             - upc-talker
-        duration: 240s
+        duration: 30s
         loop_count: 1
         namespace: ns-dupf
 
@@ -38,7 +38,7 @@ workflow:
         fault_type: stop
         pod_match:
           name:
-            - sdb-all
-        duration: 240s
+            - sdb-0
+        duration: 30s
         loop_count: 1
         namespace: ns-dupf

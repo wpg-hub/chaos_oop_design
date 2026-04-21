@@ -42,6 +42,8 @@ class CaseConfig:
             self.pod_match = config_dict.get("computer_match", {})
         elif self.type == "cmd":
             self.pod_match = config_dict.get("cmd_match", {})
+        elif self.type == "ipmitool":
+            self.pod_match = config_dict.get("ipmitool_match", {})
         else:
             self.pod_match = config_dict.get("pod_match", {})
         
@@ -64,8 +66,8 @@ class CaseConfig:
         if not self.type:
             return False, "Case type 是必需的"
         
-        # computer 类型的 environment 不是必需的，目标信息来自 computer_match.name
-        if self.type not in ["computer", "cmd"] and not self.environment:
+        # computer, cmd, ipmitool 类型的 environment 不是必需的，目标信息来自各自的 match 配置
+        if self.type not in ["computer", "cmd", "ipmitool"] and not self.environment:
             return False, "Environment 是必需的"
         
         if not self.fault_type:
@@ -90,6 +92,10 @@ class CaseConfig:
         if self.type == "cmd":
             cmd_match = self.pod_match
             return bool(cmd_match.get("cmd"))
+        
+        if self.type == "ipmitool":
+            ipmitool_match = self.pod_match
+            return bool(ipmitool_match.get("name"))
         
         pod_match = self.pod_match
         has_name = bool(pod_match.get("name"))
@@ -225,7 +231,7 @@ class CaseExecutor:
                     
                     # 创建故障注入器
                     self.logger.info(f"[DEBUG] 创建故障注入器...")
-                    if case_config.type in ["computer", "sw", "cmd"]:
+                    if case_config.type in ["computer", "sw", "cmd", "ipmitool"]:
                         injector = self.fault_factory.create_injector(
                             fault_type=case_config.type,
                             logger=self.logger,
@@ -420,6 +426,18 @@ class CaseExecutor:
             targets = [{
                 "name": env_name,
                 "type": "sw"
+            }]
+            return targets
+        
+        if case_config.type == "ipmitool":
+            ipmitool_match = case_config.pod_match
+            bmc_names = ipmitool_match.get("name", [])
+            if not isinstance(bmc_names, list):
+                bmc_names = [bmc_names]
+            
+            targets = [{
+                "name": bmc_names,
+                "type": "ipmitool"
             }]
             return targets
         

@@ -1,0 +1,29 @@
+2026-04-21 18:30:31 - chaos - INFO - 执行单个 Case: cases/ipmitool_computer_operator.yaml
+2026-04-21 18:30:31 - chaos - INFO - [DEBUG] ========== 开始执行 Case ==========
+2026-04-21 18:30:31 - chaos - INFO - [DEBUG] Case名称: ipmitool_computer_operator
+2026-04-21 18:30:31 - chaos - INFO - [DEBUG] Case类型: ipmitool
+2026-04-21 18:30:31 - chaos - INFO - [DEBUG] 故障类型: soft
+2026-04-21 18:30:31 - chaos - INFO - [DEBUG] 环境: None
+2026-04-21 18:30:31 - chaos - INFO - [DEBUG] 执行 Case 迭代 1/1
+2026-04-21 18:30:31 - chaos - INFO - [DEBUG] 开始获取目标列表...
+2026-04-21 18:30:31 - chaos - INFO - [DEBUG] 找到 1 个目标
+2026-04-21 18:30:31 - chaos - INFO - [DEBUG] ---------- 处理目标 1/1 ----------
+2026-04-21 18:30:31 - chaos - INFO - [DEBUG] 目标名称: ['bmc_remote1']
+2026-04-21 18:30:31 - chaos - INFO - [DEBUG] 目标节点: None
+2026-04-21 18:30:31 - chaos - INFO - [DEBUG] 创建故障注入器...
+2026-04-21 18:30:31 - chaos - INFO - [DEBUG] 准备注入故障...
+2026-04-21 18:30:31 - chaos - INFO - [DEBUG] 注入参数: {'fault_type': 'soft'}
+2026-04-21 18:30:31 - chaos - INFO - 为 BMC bmc_remote1 执行 IPMI 命令
+2026-04-21 18:30:31 - chaos - INFO - 故障类型: soft
+2026-04-21 18:30:31 - chaos - INFO - 命令: ipmitool -I lanplus -H 10.230.246.175 -U admin -P admin chassis power soft
+2026-04-21 18:30:31 - chaos - INFO - BMC bmc_remote1 命令执行成功：Chassis Power Control: Soft
+
+2026-04-21 18:30:31 - chaos - INFO - [DEBUG] 故障注入成功
+2026-04-21 18:30:31 - chaos - INFO - [DEBUG] 故障ID: ipmitool_soft_bmc_remote1_1776767431
+2026-04-21 18:30:31 - chaos - INFO - 记录故障：ipmitool_soft_bmc_remote1_1776767431
+2026-04-21 18:30:31 - chaos - INFO - [DEBUG] 开始等待 duration: 60s (60.0秒)
+2026-04-21 18:31:31 - chaos - INFO - [DEBUG] duration 等待完成
+2026-04-21 18:31:31 - chaos - INFO - [DEBUG] 开始清理故障: ipmitool_soft_bmc_remote1_1776767431
+2026-04-21 18:31:31 - chaos - INFO - IPMI 故障无需恢复：ipmitool_soft_bmc_remote1_1776767431
+2026-04-21 18:31:31 - chaos - INFO - [DEBUG] 故障清理成功: ipmitool_soft_bmc_remote1_1776767431
+2026-04-21 18:31:31 - chaos - INFO - 标记故障已恢复：ipmitool_soft_bmc_remote1_1776767431
