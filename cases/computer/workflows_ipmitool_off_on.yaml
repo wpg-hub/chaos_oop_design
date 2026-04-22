@@ -1,0 +1,116 @@
+# BMC 串行关机开机工作流
+# 依次对 bmc_remote1, bmc_remote2, bmc_remote3, bmc_remote4 执行 off/on 操作
+
+workflow:
+  id: ipmitool_off_on_serial_001
+  name: BMC串行关机开机工作流
+  description: 按顺序依次对 BMC 执行关机(off)和开机(on)操作
+  execution_mode: serial
+  auto_clear: false
+  
+  timing:
+    start_delay: 120              # 整体启动延迟 120 秒
+    node_interval: 60             # 节点间延迟 60 秒
+    task_timeout: 300             # 单任务超时 5 分钟
+    global_timeout: 3600          # 全局超时 1 小时
+
+  tasks:
+    # bmc_remote1 off -> on
+    - id: bmc_remote1_off
+      name: bmc_remote1 关机
+      case:
+        name: bmc_remote1_off
+        type: ipmitool
+        fault_type: "off"
+        ipmitool_match:
+          name:
+            - bmc_remote1
+        duration: 1200s
+        loop_count: 1
+
+    - id: bmc_remote1_on
+      name: bmc_remote1 开机
+      case:
+        name: bmc_remote1_on
+        type: ipmitool
+        fault_type: "on"
+        ipmitool_match:
+          name:
+            - bmc_remote1
+        duration: 1200s
+        loop_count: 1
+
+    # bmc_remote2 off -> on
+    - id: bmc_remote2_off
+      name: bmc_remote2 关机
+      case:
+        name: bmc_remote2_off
+        type: ipmitool
+        fault_type: "off"
+        ipmitool_match:
+          name:
+            - bmc_remote2
+        duration: 1200s
+        loop_count: 1
+
+    - id: bmc_remote2_on
+      name: bmc_remote2 开机
+      case:
+        name: bmc_remote2_on
+        type: ipmitool
+        fault_type: "on"
+        ipmitool_match:
+          name:
+            - bmc_remote2
+        duration: 1200s
+        loop_count: 1
+
+    # bmc_remote3 off -> on
+    - id: bmc_remote3_off
+      name: bmc_remote3 关机
+      case:
+        name: bmc_remote3_off
+        type: ipmitool
+        fault_type: "off"
+        ipmitool_match:
+          name:
+            - bmc_remote3
+        duration: 1200s
+        loop_count: 1
+
+    - id: bmc_remote3_on
+      name: bmc_remote3 开机
+      case:
+        name: bmc_remote3_on
+        type: ipmitool
+        fault_type: "on"
+        ipmitool_match:
+          name:
+            - bmc_remote3
+        duration: 1200s
+        loop_count: 1
+
+    # bmc_remote4 off -> on
+    - id: bmc_remote4_off
+      name: bmc_remote4 关机
+      case:
+        name: bmc_remote4_off
+        type: ipmitool
+        fault_type: "off"
+        ipmitool_match:
+          name:
+            - bmc_remote4
+        duration: 1200s
+        loop_count: 1
+
+    - id: bmc_remote4_on
+      name: bmc_remote4 开机
+      case:
+        name: bmc_remote4_on
+        type: ipmitool
+        fault_type: "on"
+        ipmitool_match:
+          name:
+            - bmc_remote4
+        duration: 1200s
+        loop_count: 1

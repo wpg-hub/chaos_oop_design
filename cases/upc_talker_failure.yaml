@@ -6,7 +6,7 @@ environment: 1_ssh_remote
 fault_type: delete
 pod_match:
   name:
-    - etcd-follower
+    - rc-leader
 duration: 30s
 loop_count: 1
 #namespace: ns-dupf

@@ -1,0 +1,1474 @@
+2026-04-22 10:53:23 - chaos - INFO - 找到 16 个workflow文件
+2026-04-22 10:53:23 - chaos - INFO - 
+================================================================================
+2026-04-22 10:53:23 - chaos - INFO - 执行workflow: cases/upc/upc-talker_mq-proxy/workflow_parallel_corrupt_upc-talker_mq-proxy.yaml
+2026-04-22 10:53:23 - chaos - INFO - ================================================================================
+2026-04-22 10:53:23 - chaos - INFO - Successfully parsed workflow: upc_parallel_network_corrupt_001
+2026-04-22 10:53:23 - chaos - INFO - ============================================================
+2026-04-22 10:53:23 - chaos - INFO - 开始执行工作流: UPC 并行网络数据包破坏工作流
+2026-04-22 10:53:23 - chaos - INFO - 工作流 ID: upc_parallel_network_corrupt_001
+2026-04-22 10:53:23 - chaos - INFO - 执行模式: parallel
+2026-04-22 10:53:23 - chaos - INFO - ============================================================
+2026-04-22 10:53:23 - chaos - INFO - 启动延迟 120.0s
+2026-04-22 10:55:40 - chaos - INFO - 执行计划: 共 1 层
+2026-04-22 10:55:40 - chaos - INFO - 
+============================================================
+2026-04-22 10:55:40 - chaos - INFO - 执行第 1/1 层，共 2 个任务
+2026-04-22 10:55:40 - chaos - INFO - ============================================================
+2026-04-22 10:55:40 - chaos - INFO - [DEBUG] 开始执行任务: UPC Talker 数据包破坏 (corrupt_upc_talker)
+2026-04-22 10:55:40 - chaos - INFO - [DEBUG] 任务类型: network, 故障类型: corrupt
+2026-04-22 10:55:40 - chaos - INFO - [DEBUG] 目标: Pod: upc-talker
+2026-04-22 10:55:40 - chaos - INFO - [DEBUG] Duration: 240s, Loop: 1
+2026-04-22 10:55:40 - chaos - INFO - [DEBUG] 任务超时时间: 300.0s
+2026-04-22 10:55:40 - chaos - INFO - [DEBUG] ========== 开始执行 Case ==========
+2026-04-22 10:55:40 - chaos - INFO - [DEBUG] Case名称: upc_talker_corrupt
+2026-04-22 10:55:40 - chaos - INFO - [DEBUG] Case类型: network
+2026-04-22 10:55:40 - chaos - INFO - [DEBUG] 故障类型: corrupt
+2026-04-22 10:55:40 - chaos - INFO - [DEBUG] 环境: 1_ssh_remote
+2026-04-22 10:55:40 - chaos - INFO - [DEBUG] 执行 Case 迭代 1/1
+2026-04-22 10:55:40 - chaos - INFO - [DEBUG] 开始获取目标列表...
+2026-04-22 10:55:40 - chaos.utils.remote - INFO - 后台健康检查线程已启动
+2026-04-22 10:55:40 - chaos.utils.remote - INFO - 创建新连接: root@10.230.246.167:50163
+2026-04-22 10:55:40 - chaos.utils.remote - INFO - SSH连接建立成功: 10.230.246.167:50163, 耗时: 0.14s
+2026-04-22 10:55:40 - chaos.utils.remote - INFO - 新连接创建成功: root@10.230.246.167:50163，当前连接池大小: 1
+2026-04-22 10:55:40 - chaos - INFO - 获取 UPC Pod 列表，namespace: ns-dupf, filter_type: upc-talker
+2026-04-22 10:55:42 - chaos - INFO - [DEBUG] 开始执行任务: MQ Proxy 数据包破坏 (corrupt_mq_proxy)
+2026-04-22 10:55:42 - chaos - INFO - [DEBUG] 任务类型: network, 故障类型: corrupt
+2026-04-22 10:55:42 - chaos - INFO - [DEBUG] 目标: Pod: mq-proxy
+2026-04-22 10:55:42 - chaos - INFO - [DEBUG] Duration: 240s, Loop: 1
+2026-04-22 10:55:42 - chaos - INFO - [DEBUG] 任务超时时间: 300.0s
+2026-04-22 10:55:42 - chaos - INFO - [DEBUG] ========== 开始执行 Case ==========
+2026-04-22 10:55:42 - chaos - INFO - [DEBUG] Case名称: mq_proxy_corrupt
+2026-04-22 10:55:42 - chaos - INFO - [DEBUG] Case类型: network
+2026-04-22 10:55:42 - chaos - INFO - [DEBUG] 故障类型: corrupt
+2026-04-22 10:55:42 - chaos - INFO - [DEBUG] 环境: 1_ssh_remote
+2026-04-22 10:55:42 - chaos - INFO - [DEBUG] 执行 Case 迭代 1/1
+2026-04-22 10:55:42 - chaos - INFO - [DEBUG] 开始获取目标列表...
+2026-04-22 10:55:42 - chaos - INFO - 根据名称匹配规则获取 Pod，pattern: mq-proxy, namespace: ns-dupf
+2026-04-22 10:55:43 - chaos - INFO - 找到包含匹配的 Pod: dupf-sf-mq-proxy-0
+2026-04-22 10:55:43 - chaos - INFO - 找到包含匹配的 Pod: dupf-sf-mq-proxy-1
+2026-04-22 10:55:43 - chaos - INFO - 找到包含匹配的 Pod: dupf-sf-mq-proxy-2
+2026-04-22 10:55:43 - chaos - INFO - 找到 3 个匹配的 Pod
+2026-04-22 10:55:43 - chaos - INFO - 随机选择 Pod: dupf-sf-mq-proxy-2
+2026-04-22 10:55:43 - chaos - INFO - [DEBUG] 找到 1 个目标
+2026-04-22 10:55:43 - chaos - INFO - [DEBUG] ---------- 处理目标 1/1 ----------
+2026-04-22 10:55:43 - chaos - INFO - [DEBUG] 目标名称: dupf-sf-mq-proxy-2
+2026-04-22 10:55:43 - chaos - INFO - [DEBUG] 目标节点: None
+2026-04-22 10:55:43 - chaos - INFO - [DEBUG] 创建故障注入器...
+2026-04-22 10:55:43 - chaos - INFO - [DEBUG] 准备注入故障...
+2026-04-22 10:55:43 - chaos - INFO - [DEBUG] 注入参数: {'fault_type': 'corrupt', 'correlation': ['30%', '90%'], 'percent': ['10%', '90%']}
+2026-04-22 10:55:43 - chaos - INFO - [DEBUG] ========== 开始注入网络数据包破坏 ==========
+2026-04-22 10:55:43 - chaos - INFO - [DEBUG] Pod名称: dupf-sf-mq-proxy-2
+2026-04-22 10:55:43 - chaos - INFO - [DEBUG] 命名空间: ns-dupf
+2026-04-22 10:55:43 - chaos - INFO - [DEBUG] 网卡设备: eth0
+2026-04-22 10:55:43 - chaos - INFO - [DEBUG] 损坏比例: 43%, 相关性: 32%
+2026-04-22 10:55:43 - chaos - INFO - [DEBUG] 获取 pause 容器 ID...
+2026-04-22 10:55:43 - chaos - INFO - 获取 Pod dupf-sf-mq-proxy-2 的 pause 容器 ID
+2026-04-22 10:55:43 - chaos - INFO - 获取 Pod dupf-sf-mq-proxy-2 所在的节点，namespace: ns-dupf
+2026-04-22 10:55:43 - chaos - INFO - Pod dupf-sf-mq-proxy-2 运行在节点 dupf02
+2026-04-22 10:55:43 - chaos - INFO - Pod dupf-sf-mq-proxy-2 运行在节点 dupf02
+2026-04-22 10:55:43 - chaos - INFO - 找到节点 dupf02 对应的环境: 2_ssh_remote
+2026-04-22 10:55:43 - chaos.utils.remote - INFO - 创建新连接: root@10.230.246.168:50163
+2026-04-22 10:55:43 - chaos - INFO - 随机选择 Pod: dupf-upc-76bbbd9fbb-2tdxb
+2026-04-22 10:55:43 - chaos - INFO - [DEBUG] 找到 1 个目标
+2026-04-22 10:55:43 - chaos - INFO - [DEBUG] ---------- 处理目标 1/1 ----------
+2026-04-22 10:55:43 - chaos - INFO - [DEBUG] 目标名称: dupf-upc-76bbbd9fbb-2tdxb
+2026-04-22 10:55:43 - chaos - INFO - [DEBUG] 目标节点: None
+2026-04-22 10:55:43 - chaos - INFO - [DEBUG] 创建故障注入器...
+2026-04-22 10:55:43 - chaos - INFO - [DEBUG] 准备注入故障...
+2026-04-22 10:55:43 - chaos - INFO - [DEBUG] 注入参数: {'fault_type': 'corrupt', 'correlation': ['30%', '90%'], 'percent': ['10%', '90%']}
+2026-04-22 10:55:43 - chaos - INFO - [DEBUG] ========== 开始注入网络数据包破坏 ==========
+2026-04-22 10:55:43 - chaos - INFO - [DEBUG] Pod名称: dupf-upc-76bbbd9fbb-2tdxb
+2026-04-22 10:55:43 - chaos - INFO - [DEBUG] 命名空间: ns-dupf
+2026-04-22 10:55:43 - chaos - INFO - [DEBUG] 网卡设备: eth0
+2026-04-22 10:55:43 - chaos - INFO - [DEBUG] 损坏比例: 71%, 相关性: 75%
+2026-04-22 10:55:43 - chaos - INFO - [DEBUG] 获取 pause 容器 ID...
+2026-04-22 10:55:43 - chaos - INFO - 获取 Pod dupf-upc-76bbbd9fbb-2tdxb 的 pause 容器 ID
+2026-04-22 10:55:43 - chaos - INFO - 获取 Pod dupf-upc-76bbbd9fbb-2tdxb 所在的节点，namespace: ns-dupf
+2026-04-22 10:55:43 - chaos.utils.remote - INFO - SSH连接建立成功: 10.230.246.168:50163, 耗时: 0.09s
+2026-04-22 10:55:43 - chaos.utils.remote - INFO - 新连接创建成功: root@10.230.246.168:50163，当前连接池大小: 2
+2026-04-22 10:55:43 - chaos - INFO - Pod dupf-upc-76bbbd9fbb-2tdxb 运行在节点 dupf01
+2026-04-22 10:55:43 - chaos - INFO - Pod dupf-upc-76bbbd9fbb-2tdxb 运行在节点 dupf01
+2026-04-22 10:55:43 - chaos - INFO - 找到节点 dupf01 对应的环境: 1_ssh_remote
+2026-04-22 10:55:43 - chaos - INFO - 解析后的 pause 容器 ID: bc9c15261532
+2026-04-22 10:55:43 - chaos - INFO - [DEBUG] pause 容器 ID: bc9c15261532
+2026-04-22 10:55:43 - chaos - INFO - [DEBUG] 获取 pause 容器 PID...
+2026-04-22 10:55:43 - chaos - INFO - 获取容器的 PID
+2026-04-22 10:55:43 - chaos - INFO - 容器 ID: bc9c15261532
+2026-04-22 10:55:43 - chaos - INFO - 提取的容器 PID: 57705
+2026-04-22 10:55:43 - chaos - INFO - [DEBUG] pause 容器 PID: 57705
+2026-04-22 10:55:43 - chaos - INFO - [DEBUG] 为 Pod dupf-upc-76bbbd9fbb-2tdxb 注入网络数据包破坏
+2026-04-22 10:55:43 - chaos - INFO - [DEBUG] 损坏比例: 71%
+2026-04-22 10:55:43 - chaos - INFO - [DEBUG] 相关性: 75%
+2026-04-22 10:55:43 - chaos - INFO - [DEBUG] tc 命令: tc qdisc add dev eth0 root netem corrupt 71% 75%
+2026-04-22 10:55:43 - chaos - INFO - [DEBUG] 完整命令: nsenter -t 57705 -n tc qdisc add dev eth0 root netem corrupt 71% 75%
+2026-04-22 10:55:43 - chaos - INFO - [DEBUG] 执行 tc 命令...
+2026-04-22 10:55:43 - chaos - INFO - [DEBUG] 网络数据包破坏注入成功
+2026-04-22 10:55:43 - chaos - INFO - [DEBUG] ========== 网络数据包破坏注入完成 ==========
+2026-04-22 10:55:43 - chaos - INFO - [DEBUG] 故障注入成功
+2026-04-22 10:55:43 - chaos - INFO - [DEBUG] 故障ID: corrupt_dupf-upc-76bbbd9fbb-2tdxb_ns-dupf_1776826543
+2026-04-22 10:55:43 - chaos - INFO - 记录故障：corrupt_dupf-upc-76bbbd9fbb-2tdxb_ns-dupf_1776826543
+2026-04-22 10:55:43 - chaos - INFO - [DEBUG] 开始等待 duration: 240s (240.0秒)
+2026-04-22 10:55:45 - chaos - INFO - 解析后的 pause 容器 ID: cb4782353c3b
+2026-04-22 10:55:45 - chaos - INFO - [DEBUG] pause 容器 ID: cb4782353c3b
+2026-04-22 10:55:45 - chaos - INFO - [DEBUG] 获取 pause 容器 PID...
+2026-04-22 10:55:45 - chaos - INFO - 获取容器的 PID
+2026-04-22 10:55:45 - chaos - INFO - 容器 ID: cb4782353c3b
+2026-04-22 10:55:45 - chaos - INFO - 提取的容器 PID: 47656
+2026-04-22 10:55:45 - chaos - INFO - [DEBUG] pause 容器 PID: 47656
+2026-04-22 10:55:45 - chaos - INFO - [DEBUG] 为 Pod dupf-sf-mq-proxy-2 注入网络数据包破坏
+2026-04-22 10:55:45 - chaos - INFO - [DEBUG] 损坏比例: 43%
+2026-04-22 10:55:45 - chaos - INFO - [DEBUG] 相关性: 32%
+2026-04-22 10:55:45 - chaos - INFO - [DEBUG] tc 命令: tc qdisc add dev eth0 root netem corrupt 43% 32%
+2026-04-22 10:55:45 - chaos - INFO - [DEBUG] 完整命令: nsenter -t 47656 -n tc qdisc add dev eth0 root netem corrupt 43% 32%
+2026-04-22 10:55:45 - chaos - INFO - [DEBUG] 执行 tc 命令...
+2026-04-22 10:55:45 - chaos - INFO - [DEBUG] 网络数据包破坏注入成功
+2026-04-22 10:55:45 - chaos - INFO - [DEBUG] ========== 网络数据包破坏注入完成 ==========
+2026-04-22 10:55:45 - chaos - INFO - [DEBUG] 故障注入成功
+2026-04-22 10:55:45 - chaos - INFO - [DEBUG] 故障ID: corrupt_dupf-sf-mq-proxy-2_ns-dupf_1776826543
+2026-04-22 10:55:45 - chaos - INFO - 记录故障：corrupt_dupf-sf-mq-proxy-2_ns-dupf_1776826543
+2026-04-22 10:55:45 - chaos - INFO - [DEBUG] 开始等待 duration: 240s (240.0秒)
+2026-04-22 10:59:51 - chaos - INFO - [DEBUG] duration 等待完成
+2026-04-22 10:59:51 - chaos - INFO - [DEBUG] 开始清理故障: corrupt_dupf-upc-76bbbd9fbb-2tdxb_ns-dupf_1776826543
+2026-04-22 10:59:51 - chaos - INFO - 获取 Pod dupf-upc-76bbbd9fbb-2tdxb 的 pause 容器 ID
+2026-04-22 10:59:51 - chaos - INFO - 获取 Pod dupf-upc-76bbbd9fbb-2tdxb 所在的节点，namespace: ns-dupf
+2026-04-22 10:59:51 - chaos - INFO - Pod dupf-upc-76bbbd9fbb-2tdxb 运行在节点 dupf01
+2026-04-22 10:59:51 - chaos - INFO - Pod dupf-upc-76bbbd9fbb-2tdxb 运行在节点 dupf01
+2026-04-22 10:59:51 - chaos - INFO - 找到节点 dupf01 对应的环境: 1_ssh_remote
+2026-04-22 10:59:52 - chaos - INFO - 解析后的 pause 容器 ID: bc9c15261532
+2026-04-22 10:59:52 - chaos - INFO - 获取容器的 PID
+2026-04-22 10:59:52 - chaos - INFO - 容器 ID: bc9c15261532
+2026-04-22 10:59:52 - chaos - INFO - 提取的容器 PID: 57705
+2026-04-22 10:59:52 - chaos - INFO - 恢复网络故障：corrupt_dupf-upc-76bbbd9fbb-2tdxb_ns-dupf_1776826543
+2026-04-22 10:59:52 - chaos - INFO - [DEBUG] 故障清理成功: corrupt_dupf-upc-76bbbd9fbb-2tdxb_ns-dupf_1776826543
+2026-04-22 10:59:52 - chaos - INFO - 标记故障已恢复：corrupt_dupf-upc-76bbbd9fbb-2tdxb_ns-dupf_1776826543
+2026-04-22 10:59:52 - chaos - INFO - 任务执行成功: UPC Talker 数据包破坏 (耗时: 251.39s)
+2026-04-22 10:59:53 - chaos - INFO - [DEBUG] duration 等待完成
+2026-04-22 10:59:53 - chaos - INFO - [DEBUG] 开始清理故障: corrupt_dupf-sf-mq-proxy-2_ns-dupf_1776826543
+2026-04-22 10:59:53 - chaos - INFO - 获取 Pod dupf-sf-mq-proxy-2 的 pause 容器 ID
+2026-04-22 10:59:53 - chaos - INFO - 获取 Pod dupf-sf-mq-proxy-2 所在的节点，namespace: ns-dupf
+2026-04-22 10:59:53 - chaos - INFO - Pod dupf-sf-mq-proxy-2 运行在节点 dupf02
+2026-04-22 10:59:53 - chaos - INFO - Pod dupf-sf-mq-proxy-2 运行在节点 dupf02
+2026-04-22 10:59:53 - chaos - INFO - 找到节点 dupf02 对应的环境: 2_ssh_remote
+2026-04-22 10:59:53 - chaos - INFO - 解析后的 pause 容器 ID: cb4782353c3b
+2026-04-22 10:59:53 - chaos - INFO - 获取容器的 PID
+2026-04-22 10:59:53 - chaos - INFO - 容器 ID: cb4782353c3b
+2026-04-22 10:59:53 - chaos - INFO - 提取的容器 PID: 47656
+2026-04-22 10:59:53 - chaos - INFO - 恢复网络故障：corrupt_dupf-sf-mq-proxy-2_ns-dupf_1776826543
+2026-04-22 10:59:53 - chaos - INFO - [DEBUG] 故障清理成功: corrupt_dupf-sf-mq-proxy-2_ns-dupf_1776826543
+2026-04-22 10:59:53 - chaos - INFO - 标记故障已恢复：corrupt_dupf-sf-mq-proxy-2_ns-dupf_1776826543
+2026-04-22 10:59:53 - chaos - INFO - 任务执行成功: MQ Proxy 数据包破坏 (耗时: 250.64s)
+2026-04-22 10:59:53 - chaos - INFO - 
+================================================================================
+                           Workflow Execution Report                            
+================================================================================
+Workflow ID    : upc_parallel_network_corrupt_001
+Workflow Name  : UPC 并行网络数据包破坏工作流
+Status         : SUCCESS
+Start Time     : 2026-04-22 10:53:23
+End Time       : 2026-04-22 10:59:53
+Total Duration : 389.72s
+Success Rate   : 100.00%
+================================================================================
+
+Task Results:
+--------------------------------------------------------------------------------
+  [SUCCESS ] UPC Talker 数据包破坏               Duration: 251.39s  Group: N/A
+  [SUCCESS ] MQ Proxy 数据包破坏                 Duration: 250.64s  Group: N/A
+
+================================================================================
+Summary Statistics
+================================================================================
+Total Tasks    : 2
+Success        : 2
+Failed         : 0
+Timeout        : 0
+Skipped        : 0
+================================================================================
+2026-04-22 10:59:53 - chaos - INFO - ============================================================
+2026-04-22 10:59:53 - chaos - INFO - 执行 workflow 级别的 auto_clear
+2026-04-22 10:59:53 - chaos - INFO - ============================================================
+2026-04-22 10:59:53 - chaos - INFO - 需要清理的环境: 1_ssh_remote
+2026-04-22 10:59:53 - chaos - INFO - 清理环境 1_ssh_remote 的网络故障...
+2026-04-22 10:59:53 - chaos - INFO - 获取 Pod 列表，namespace: ns-dupf, nodename: dupf01
+2026-04-22 10:59:53 - chaos - INFO - 找到 9 个 Pod
+2026-04-22 10:59:53 - chaos - INFO - 找到 9 个 pod
+2026-04-22 10:59:53 - chaos - INFO - 清除 Pod dupf-etcd-2 的网络故障
+2026-04-22 10:59:53 - chaos - INFO - 命名空间: ns-dupf, 网络设备: eth0
+2026-04-22 10:59:53 - chaos - INFO - 获取 Pod dupf-etcd-2 的 pause 容器 ID
+2026-04-22 10:59:53 - chaos - INFO - 解析后的 pause 容器 ID: 1bb5152c1fb4
+2026-04-22 10:59:53 - chaos - INFO - 获取容器的 PID
+2026-04-22 10:59:53 - chaos - INFO - 容器 ID: 1bb5152c1fb4
+2026-04-22 10:59:53 - chaos - INFO - 提取的容器 PID: 11613
+2026-04-22 10:59:54 - chaos - INFO - Pod dupf-etcd-2 的网络故障清除成功
+2026-04-22 10:59:54 - chaos - INFO - 清除 Pod dupf-file-sync-28jxj 的网络故障
+2026-04-22 10:59:54 - chaos - INFO - 命名空间: ns-dupf, 网络设备: eth0
+2026-04-22 10:59:54 - chaos - INFO - 获取 Pod dupf-file-sync-28jxj 的 pause 容器 ID
+2026-04-22 10:59:54 - chaos - INFO - 解析后的 pause 容器 ID: 36fe0e8077e1
+2026-04-22 10:59:54 - chaos - INFO - 获取容器的 PID
+2026-04-22 10:59:54 - chaos - INFO - 容器 ID: 36fe0e8077e1
+2026-04-22 10:59:54 - chaos - INFO - 提取的容器 PID: 8777
+2026-04-22 10:59:54 - chaos - INFO - Pod dupf-file-sync-28jxj 的网络故障清除成功
+2026-04-22 10:59:54 - chaos - INFO - 清除 Pod dupf-node-monitor-bhxfz 的网络故障
+2026-04-22 10:59:54 - chaos - INFO - 命名空间: ns-dupf, 网络设备: eth0
+2026-04-22 10:59:54 - chaos - INFO - 获取 Pod dupf-node-monitor-bhxfz 的 pause 容器 ID
+2026-04-22 10:59:54 - chaos - INFO - 解析后的 pause 容器 ID: 3d5f66900124
+2026-04-22 10:59:54 - chaos - INFO - 获取容器的 PID
+2026-04-22 10:59:54 - chaos - INFO - 容器 ID: 3d5f66900124
+2026-04-22 10:59:54 - chaos - INFO - 提取的容器 PID: 8861
+2026-04-22 10:59:54 - chaos - INFO - Pod dupf-node-monitor-bhxfz 的网络故障清除成功
+2026-04-22 10:59:54 - chaos - INFO - 清除 Pod dupf-sdb-1 的网络故障
+2026-04-22 10:59:54 - chaos - INFO - 命名空间: ns-dupf, 网络设备: eth0
+2026-04-22 10:59:54 - chaos - INFO - 获取 Pod dupf-sdb-1 的 pause 容器 ID
+2026-04-22 10:59:54 - chaos - INFO - 解析后的 pause 容器 ID: 4df5dde3ef37
+2026-04-22 10:59:54 - chaos - INFO - 获取容器的 PID
+2026-04-22 10:59:54 - chaos - INFO - 容器 ID: 4df5dde3ef37
+2026-04-22 10:59:54 - chaos - INFO - 提取的容器 PID: 11627
+2026-04-22 10:59:54 - chaos - INFO - Pod dupf-sdb-1 的网络故障清除成功
+2026-04-22 10:59:54 - chaos - INFO - 清除 Pod dupf-upc-76bbbd9fbb-2tdxb 的网络故障
+2026-04-22 10:59:54 - chaos - INFO - 命名空间: ns-dupf, 网络设备: eth0
+2026-04-22 10:59:54 - chaos - INFO - 获取 Pod dupf-upc-76bbbd9fbb-2tdxb 的 pause 容器 ID
+2026-04-22 10:59:54 - chaos - INFO - 解析后的 pause 容器 ID: bc9c15261532
+2026-04-22 10:59:54 - chaos - INFO - 获取容器的 PID
+2026-04-22 10:59:54 - chaos - INFO - 容器 ID: bc9c15261532
+2026-04-22 10:59:55 - chaos - INFO - 提取的容器 PID: 57705
+2026-04-22 10:59:55 - chaos - INFO - Pod dupf-upc-76bbbd9fbb-2tdxb 的网络故障清除成功
+2026-04-22 10:59:55 - chaos - INFO - 清除 Pod dupf-upc-76bbbd9fbb-4svjq 的网络故障
+2026-04-22 10:59:55 - chaos - INFO - 命名空间: ns-dupf, 网络设备: eth0
+2026-04-22 10:59:55 - chaos - INFO - 获取 Pod dupf-upc-76bbbd9fbb-4svjq 的 pause 容器 ID
+2026-04-22 10:59:55 - chaos - INFO - 解析后的 pause 容器 ID: 56d7bdd89218
+2026-04-22 10:59:55 - chaos - INFO - 获取容器的 PID
+2026-04-22 10:59:55 - chaos - INFO - 容器 ID: 56d7bdd89218
+2026-04-22 10:59:55 - chaos - INFO - 提取的容器 PID: 43172
+2026-04-22 10:59:55 - chaos - INFO - Pod dupf-upc-76bbbd9fbb-4svjq 的网络故障清除成功
+2026-04-22 10:59:55 - chaos - INFO - 清除 Pod dupf-upu-dupf01-1-6965c9c89f-lxffq 的网络故障
+2026-04-22 10:59:55 - chaos - INFO - 命名空间: ns-dupf, 网络设备: eth0
+2026-04-22 10:59:55 - chaos - INFO - 获取 Pod dupf-upu-dupf01-1-6965c9c89f-lxffq 的 pause 容器 ID
+2026-04-22 10:59:55 - chaos - INFO - 解析后的 pause 容器 ID: 88eedc9fde73
+2026-04-22 10:59:55 - chaos - INFO - 获取容器的 PID
+2026-04-22 10:59:55 - chaos - INFO - 容器 ID: 88eedc9fde73
+2026-04-22 10:59:55 - chaos - INFO - 提取的容器 PID: 11648
+2026-04-22 10:59:55 - chaos - INFO - Pod dupf-upu-dupf01-1-6965c9c89f-lxffq 的网络故障清除成功
+2026-04-22 10:59:55 - chaos - INFO - 清除 Pod dupf-upu-dupf01-2-6f89cb4986-9tj76 的网络故障
+2026-04-22 10:59:55 - chaos - INFO - 命名空间: ns-dupf, 网络设备: eth0
+2026-04-22 10:59:55 - chaos - INFO - 获取 Pod dupf-upu-dupf01-2-6f89cb4986-9tj76 的 pause 容器 ID
+2026-04-22 10:59:55 - chaos - INFO - 解析后的 pause 容器 ID: 261918050cde
+2026-04-22 10:59:55 - chaos - INFO - 获取容器的 PID
+2026-04-22 10:59:55 - chaos - INFO - 容器 ID: 261918050cde
+2026-04-22 10:59:55 - chaos - INFO - 提取的容器 PID: 11620
+2026-04-22 10:59:55 - chaos - INFO - Pod dupf-upu-dupf01-2-6f89cb4986-9tj76 的网络故障清除成功
+2026-04-22 10:59:55 - chaos - INFO - 清除 Pod dupf-upu-dupf01-3-6d89b496f7-c58jx 的网络故障
+2026-04-22 10:59:55 - chaos - INFO - 命名空间: ns-dupf, 网络设备: eth0
+2026-04-22 10:59:55 - chaos - INFO - 获取 Pod dupf-upu-dupf01-3-6d89b496f7-c58jx 的 pause 容器 ID
+2026-04-22 10:59:56 - chaos - INFO - 解析后的 pause 容器 ID: 0a7f4ea53567
+2026-04-22 10:59:56 - chaos - INFO - 获取容器的 PID
+2026-04-22 10:59:56 - chaos - INFO - 容器 ID: 0a7f4ea53567
+2026-04-22 10:59:56 - chaos - INFO - 提取的容器 PID: 11606
+2026-04-22 10:59:56 - chaos - INFO - Pod dupf-upu-dupf01-3-6d89b496f7-c58jx 的网络故障清除成功
+2026-04-22 10:59:56 - chaos - INFO - 环境 1_ssh_remote 网络故障清除完成：成功 9, 失败 0
+2026-04-22 10:59:56 - chaos - INFO - ============================================================
+2026-04-22 10:59:56 - chaos - INFO - workflow 级别的 auto_clear 完成
+2026-04-22 10:59:56 - chaos - INFO - ============================================================
+2026-04-22 10:59:56 - chaos - INFO - 
+================================================================================
+2026-04-22 10:59:56 - chaos - INFO - 执行workflow: cases/upc/upc-talker_mq-proxy/workflow_parallel_delay_upc-talker_mq-proxy.yaml
+2026-04-22 10:59:56 - chaos - INFO - ================================================================================
+2026-04-22 10:59:56 - chaos - INFO - Successfully parsed workflow: upc_parallel_network_delay_001
+2026-04-22 10:59:56 - chaos - INFO - ============================================================
+2026-04-22 10:59:56 - chaos - INFO - 开始执行工作流: UPC 并行网络延迟工作流
+2026-04-22 10:59:56 - chaos - INFO - 工作流 ID: upc_parallel_network_delay_001
+2026-04-22 10:59:56 - chaos - INFO - 执行模式: parallel
+2026-04-22 10:59:56 - chaos - INFO - ============================================================
+2026-04-22 10:59:56 - chaos - INFO - 启动延迟 120.0s
+2026-04-22 11:02:00 - chaos - INFO - 执行计划: 共 1 层
+2026-04-22 11:02:00 - chaos - INFO - 
+============================================================
+2026-04-22 11:02:00 - chaos - INFO - 执行第 1/1 层，共 2 个任务
+2026-04-22 11:02:00 - chaos - INFO - ============================================================
+2026-04-22 11:02:00 - chaos - INFO - [DEBUG] 开始执行任务: UPC Talker 网络延迟 (delay_upc_talker)
+2026-04-22 11:02:00 - chaos - INFO - [DEBUG] 任务类型: network, 故障类型: delay
+2026-04-22 11:02:00 - chaos - INFO - [DEBUG] 目标: Pod: upc-talker
+2026-04-22 11:02:00 - chaos - INFO - [DEBUG] Duration: 240s, Loop: 1
+2026-04-22 11:02:00 - chaos - INFO - [DEBUG] 任务超时时间: 300.0s
+2026-04-22 11:02:00 - chaos - INFO - [DEBUG] ========== 开始执行 Case ==========
+2026-04-22 11:02:00 - chaos - INFO - [DEBUG] Case名称: upc_talker_delay
+2026-04-22 11:02:00 - chaos - INFO - [DEBUG] Case类型: network
+2026-04-22 11:02:00 - chaos - INFO - [DEBUG] 故障类型: delay
+2026-04-22 11:02:00 - chaos - INFO - [DEBUG] 环境: 1_ssh_remote
+2026-04-22 11:02:00 - chaos - INFO - [DEBUG] 执行 Case 迭代 1/1
+2026-04-22 11:02:00 - chaos - INFO - [DEBUG] 开始获取目标列表...
+2026-04-22 11:02:00 - chaos.utils.remote - INFO - 连接 root@10.230.246.167:50163 不可用，需要重连
+2026-04-22 11:02:00 - chaos.utils.remote - INFO - 尝试重连: root@10.230.246.167:50163
+2026-04-22 11:02:01 - chaos.utils.remote - INFO - SSH连接建立成功: 10.230.246.167:50163, 耗时: 0.10s
+2026-04-22 11:02:01 - chaos.utils.remote - INFO - 重连成功: root@10.230.246.167:50163
+2026-04-22 11:02:01 - chaos - INFO - 获取 UPC Pod 列表，namespace: ns-dupf, filter_type: upc-talker
+2026-04-22 11:02:02 - chaos - INFO - [DEBUG] 开始执行任务: MQ Proxy 网络延迟 (delay_mq_proxy)
+2026-04-22 11:02:02 - chaos - INFO - [DEBUG] 任务类型: network, 故障类型: delay
+2026-04-22 11:02:02 - chaos - INFO - [DEBUG] 目标: Pod: mq-proxy
+2026-04-22 11:02:02 - chaos - INFO - [DEBUG] Duration: 240s, Loop: 1
+2026-04-22 11:02:02 - chaos - INFO - [DEBUG] 任务超时时间: 300.0s
+2026-04-22 11:02:02 - chaos - INFO - [DEBUG] ========== 开始执行 Case ==========
+2026-04-22 11:02:02 - chaos - INFO - [DEBUG] Case名称: mq_proxy_delay
+2026-04-22 11:02:02 - chaos - INFO - [DEBUG] Case类型: network
+2026-04-22 11:02:02 - chaos - INFO - [DEBUG] 故障类型: delay
+2026-04-22 11:02:02 - chaos - INFO - [DEBUG] 环境: 1_ssh_remote
+2026-04-22 11:02:02 - chaos - INFO - [DEBUG] 执行 Case 迭代 1/1
+2026-04-22 11:02:02 - chaos - INFO - [DEBUG] 开始获取目标列表...
+2026-04-22 11:02:02 - chaos - INFO - 根据名称匹配规则获取 Pod，pattern: mq-proxy, namespace: ns-dupf
+2026-04-22 11:02:03 - chaos - INFO - 找到包含匹配的 Pod: dupf-sf-mq-proxy-0
+2026-04-22 11:02:03 - chaos - INFO - 找到包含匹配的 Pod: dupf-sf-mq-proxy-1
+2026-04-22 11:02:03 - chaos - INFO - 找到包含匹配的 Pod: dupf-sf-mq-proxy-2
+2026-04-22 11:02:03 - chaos - INFO - 找到 3 个匹配的 Pod
+2026-04-22 11:02:03 - chaos - INFO - 随机选择 Pod: dupf-sf-mq-proxy-0
+2026-04-22 11:02:03 - chaos - INFO - [DEBUG] 找到 1 个目标
+2026-04-22 11:02:03 - chaos - INFO - [DEBUG] ---------- 处理目标 1/1 ----------
+2026-04-22 11:02:03 - chaos - INFO - [DEBUG] 目标名称: dupf-sf-mq-proxy-0
+2026-04-22 11:02:03 - chaos - INFO - [DEBUG] 目标节点: None
+2026-04-22 11:02:03 - chaos - INFO - [DEBUG] 创建故障注入器...
+2026-04-22 11:02:03 - chaos - INFO - [DEBUG] 准备注入故障...
+2026-04-22 11:02:03 - chaos - INFO - [DEBUG] 注入参数: {'fault_type': 'delay', 'correlation': ['20%', '90%'], 'distribution': ['normal', 'pareto', 'paretonormal'], 'jitter': ['10ms', '100ms'], 'time': ['100ms', '1000ms']}
+2026-04-22 11:02:03 - chaos - WARNING - 无效的分布模型: ['normal', 'pareto', 'paretonormal'], 随机选择
+2026-04-22 11:02:03 - chaos - INFO - 获取 Pod dupf-sf-mq-proxy-0 的 pause 容器 ID
+2026-04-22 11:02:03 - chaos - INFO - 获取 Pod dupf-sf-mq-proxy-0 所在的节点，namespace: ns-dupf
+2026-04-22 11:02:03 - chaos - INFO - 随机选择 Pod: dupf-upc-76bbbd9fbb-2tdxb
+2026-04-22 11:02:03 - chaos - INFO - [DEBUG] 找到 1 个目标
+2026-04-22 11:02:03 - chaos - INFO - [DEBUG] ---------- 处理目标 1/1 ----------
+2026-04-22 11:02:03 - chaos - INFO - [DEBUG] 目标名称: dupf-upc-76bbbd9fbb-2tdxb
+2026-04-22 11:02:03 - chaos - INFO - [DEBUG] 目标节点: None
+2026-04-22 11:02:03 - chaos - INFO - [DEBUG] 创建故障注入器...
+2026-04-22 11:02:03 - chaos - INFO - [DEBUG] 准备注入故障...
+2026-04-22 11:02:03 - chaos - INFO - [DEBUG] 注入参数: {'fault_type': 'delay', 'correlation': ['20%', '90%'], 'distribution': ['normal', 'pareto', 'paretonormal'], 'jitter': ['10ms', '100ms'], 'time': ['100ms', '1000ms']}
+2026-04-22 11:02:03 - chaos - WARNING - 无效的分布模型: ['normal', 'pareto', 'paretonormal'], 随机选择
+2026-04-22 11:02:03 - chaos - INFO - 获取 Pod dupf-upc-76bbbd9fbb-2tdxb 的 pause 容器 ID
+2026-04-22 11:02:03 - chaos - INFO - 获取 Pod dupf-upc-76bbbd9fbb-2tdxb 所在的节点，namespace: ns-dupf
+2026-04-22 11:02:03 - chaos - INFO - Pod dupf-sf-mq-proxy-0 运行在节点 dupf03
+2026-04-22 11:02:03 - chaos - INFO - Pod dupf-sf-mq-proxy-0 运行在节点 dupf03
+2026-04-22 11:02:03 - chaos - INFO - 找到节点 dupf03 对应的环境: 3_ssh_remote
+2026-04-22 11:02:03 - chaos.utils.remote - INFO - 创建新连接: root@10.230.246.169:50163
+2026-04-22 11:02:03 - chaos.utils.remote - INFO - SSH连接建立成功: 10.230.246.169:50163, 耗时: 0.09s
+2026-04-22 11:02:03 - chaos.utils.remote - INFO - 新连接创建成功: root@10.230.246.169:50163，当前连接池大小: 3
+2026-04-22 11:02:03 - chaos - INFO - Pod dupf-upc-76bbbd9fbb-2tdxb 运行在节点 dupf01
+2026-04-22 11:02:03 - chaos - INFO - Pod dupf-upc-76bbbd9fbb-2tdxb 运行在节点 dupf01
+2026-04-22 11:02:03 - chaos - INFO - 找到节点 dupf01 对应的环境: 1_ssh_remote
+2026-04-22 11:02:03 - chaos - INFO - 解析后的 pause 容器 ID: bc9c15261532
+2026-04-22 11:02:03 - chaos - INFO - 获取容器的 PID
+2026-04-22 11:02:03 - chaos - INFO - 容器 ID: bc9c15261532
+2026-04-22 11:02:03 - chaos - INFO - 提取的容器 PID: 57705
+2026-04-22 11:02:03 - chaos - INFO - 为 Pod dupf-upc-76bbbd9fbb-2tdxb 注入网络延迟
+2026-04-22 11:02:03 - chaos - INFO - 延迟参数: {'time': '994ms', 'jitter': '10ms', 'correlation': '73%', 'distribution': 'uniform'}
+2026-04-22 11:02:03 - chaos - INFO - tc 命令: tc qdisc add dev eth0 root netem delay 994ms 10ms 73% distribution uniform
+2026-04-22 11:02:04 - chaos - ERROR - 网络延迟注入失败：No distribution data for uniform (/usr/lib/x86_64-linux-gnu/tc//uniform.dist: No such file or directory)
+
+2026-04-22 11:02:04 - chaos - ERROR - [DEBUG] 在第 1 次迭代注入故障失败，目标：dupf-upc-76bbbd9fbb-2tdxb
+2026-04-22 11:02:04 - chaos - ERROR - 任务执行失败: UPC Talker 网络延迟
+2026-04-22 11:02:05 - chaos - INFO - 解析后的 pause 容器 ID: a9a9a9c13cb5
+2026-04-22 11:02:05 - chaos - INFO - 获取容器的 PID
+2026-04-22 11:02:05 - chaos - INFO - 容器 ID: a9a9a9c13cb5
+2026-04-22 11:02:05 - chaos - INFO - 提取的容器 PID: 42990
+2026-04-22 11:02:05 - chaos - INFO - 为 Pod dupf-sf-mq-proxy-0 注入网络延迟
+2026-04-22 11:02:05 - chaos - INFO - 延迟参数: {'time': '827ms', 'jitter': '92ms', 'correlation': '27%', 'distribution': 'normal'}
+2026-04-22 11:02:05 - chaos - INFO - tc 命令: tc qdisc add dev eth0 root netem delay 827ms 92ms 27% distribution normal
+2026-04-22 11:02:05 - chaos - INFO - 网络延迟注入成功
+2026-04-22 11:02:05 - chaos - INFO - [DEBUG] 故障注入成功
+2026-04-22 11:02:05 - chaos - INFO - [DEBUG] 故障ID: delay_dupf-sf-mq-proxy-0_ns-dupf_1776826923
+2026-04-22 11:02:05 - chaos - INFO - 记录故障：delay_dupf-sf-mq-proxy-0_ns-dupf_1776826923
+2026-04-22 11:02:05 - chaos - INFO - [DEBUG] 开始等待 duration: 240s (240.0秒)
+2026-04-22 11:06:14 - chaos - INFO - [DEBUG] duration 等待完成
+2026-04-22 11:06:14 - chaos - INFO - [DEBUG] 开始清理故障: delay_dupf-sf-mq-proxy-0_ns-dupf_1776826923
+2026-04-22 11:06:14 - chaos - INFO - 获取 Pod dupf-sf-mq-proxy-0 的 pause 容器 ID
+2026-04-22 11:06:14 - chaos - INFO - 获取 Pod dupf-sf-mq-proxy-0 所在的节点，namespace: ns-dupf
+2026-04-22 11:06:15 - chaos - INFO - Pod dupf-sf-mq-proxy-0 运行在节点 dupf03
+2026-04-22 11:06:15 - chaos - INFO - Pod dupf-sf-mq-proxy-0 运行在节点 dupf03
+2026-04-22 11:06:15 - chaos - INFO - 找到节点 dupf03 对应的环境: 3_ssh_remote
+2026-04-22 11:06:15 - chaos - INFO - 解析后的 pause 容器 ID: a9a9a9c13cb5
+2026-04-22 11:06:15 - chaos - INFO - 获取容器的 PID
+2026-04-22 11:06:15 - chaos - INFO - 容器 ID: a9a9a9c13cb5
+2026-04-22 11:06:15 - chaos - INFO - 提取的容器 PID: 42990
+2026-04-22 11:06:15 - chaos - INFO - 恢复网络故障：delay_dupf-sf-mq-proxy-0_ns-dupf_1776826923
+2026-04-22 11:06:15 - chaos - INFO - [DEBUG] 故障清理成功: delay_dupf-sf-mq-proxy-0_ns-dupf_1776826923
+2026-04-22 11:06:15 - chaos - INFO - 标记故障已恢复：delay_dupf-sf-mq-proxy-0_ns-dupf_1776826923
+2026-04-22 11:06:15 - chaos - INFO - 任务执行成功: MQ Proxy 网络延迟 (耗时: 252.55s)
+2026-04-22 11:06:15 - chaos - INFO - 
+================================================================================
+                           Workflow Execution Report                            
+================================================================================
+Workflow ID    : upc_parallel_network_delay_001
+Workflow Name  : UPC 并行网络延迟工作流
+Status         : FAILED
+Start Time     : 2026-04-22 10:59:56
+End Time       : 2026-04-22 11:06:15
+Total Duration : 379.21s
+Success Rate   : 50.00%
+================================================================================
+
+Task Results:
+--------------------------------------------------------------------------------
+  [FAILED  ] UPC Talker 网络延迟                Duration:   3.10s  Group: N/A
+  [SUCCESS ] MQ Proxy 网络延迟                  Duration: 252.55s  Group: N/A
+
+================================================================================
+Summary Statistics
+================================================================================
+Total Tasks    : 2
+Success        : 1
+Failed         : 1
+Timeout        : 0
+Skipped        : 0
+================================================================================
+2026-04-22 11:06:15 - chaos - INFO - ============================================================
+2026-04-22 11:06:15 - chaos - INFO - 执行 workflow 级别的 auto_clear
+2026-04-22 11:06:15 - chaos - INFO - ============================================================
+2026-04-22 11:06:15 - chaos - INFO - 需要清理的环境: 1_ssh_remote
+2026-04-22 11:06:15 - chaos - INFO - 清理环境 1_ssh_remote 的网络故障...
+2026-04-22 11:06:15 - chaos - INFO - 获取 Pod 列表，namespace: ns-dupf, nodename: dupf01
+2026-04-22 11:06:15 - chaos - INFO - 找到 9 个 Pod
+2026-04-22 11:06:15 - chaos - INFO - 找到 9 个 pod
+2026-04-22 11:06:15 - chaos - INFO - 清除 Pod dupf-etcd-2 的网络故障
+2026-04-22 11:06:15 - chaos - INFO - 命名空间: ns-dupf, 网络设备: eth0
+2026-04-22 11:06:15 - chaos - INFO - 获取 Pod dupf-etcd-2 的 pause 容器 ID
+2026-04-22 11:06:15 - chaos - INFO - 解析后的 pause 容器 ID: 1bb5152c1fb4
+2026-04-22 11:06:15 - chaos - INFO - 获取容器的 PID
+2026-04-22 11:06:15 - chaos - INFO - 容器 ID: 1bb5152c1fb4
+2026-04-22 11:06:16 - chaos - INFO - 提取的容器 PID: 11613
+2026-04-22 11:06:16 - chaos - INFO - Pod dupf-etcd-2 的网络故障清除成功
+2026-04-22 11:06:16 - chaos - INFO - 清除 Pod dupf-file-sync-28jxj 的网络故障
+2026-04-22 11:06:16 - chaos - INFO - 命名空间: ns-dupf, 网络设备: eth0
+2026-04-22 11:06:16 - chaos - INFO - 获取 Pod dupf-file-sync-28jxj 的 pause 容器 ID
+2026-04-22 11:06:16 - chaos - INFO - 解析后的 pause 容器 ID: 36fe0e8077e1
+2026-04-22 11:06:16 - chaos - INFO - 获取容器的 PID
+2026-04-22 11:06:16 - chaos - INFO - 容器 ID: 36fe0e8077e1
+2026-04-22 11:06:16 - chaos - INFO - 提取的容器 PID: 8777
+2026-04-22 11:06:16 - chaos - INFO - Pod dupf-file-sync-28jxj 的网络故障清除成功
+2026-04-22 11:06:16 - chaos - INFO - 清除 Pod dupf-node-monitor-bhxfz 的网络故障
+2026-04-22 11:06:16 - chaos - INFO - 命名空间: ns-dupf, 网络设备: eth0
+2026-04-22 11:06:16 - chaos - INFO - 获取 Pod dupf-node-monitor-bhxfz 的 pause 容器 ID
+2026-04-22 11:06:16 - chaos - INFO - 解析后的 pause 容器 ID: 3d5f66900124
+2026-04-22 11:06:16 - chaos - INFO - 获取容器的 PID
+2026-04-22 11:06:16 - chaos - INFO - 容器 ID: 3d5f66900124
+2026-04-22 11:06:16 - chaos - INFO - 提取的容器 PID: 8861
+2026-04-22 11:06:16 - chaos - INFO - Pod dupf-node-monitor-bhxfz 的网络故障清除成功
+2026-04-22 11:06:16 - chaos - INFO - 清除 Pod dupf-sdb-1 的网络故障
+2026-04-22 11:06:16 - chaos - INFO - 命名空间: ns-dupf, 网络设备: eth0
+2026-04-22 11:06:16 - chaos - INFO - 获取 Pod dupf-sdb-1 的 pause 容器 ID
+2026-04-22 11:06:16 - chaos - INFO - 解析后的 pause 容器 ID: 4df5dde3ef37
+2026-04-22 11:06:16 - chaos - INFO - 获取容器的 PID
+2026-04-22 11:06:16 - chaos - INFO - 容器 ID: 4df5dde3ef37
+2026-04-22 11:06:16 - chaos - INFO - 提取的容器 PID: 11627
+2026-04-22 11:06:16 - chaos - INFO - Pod dupf-sdb-1 的网络故障清除成功
+2026-04-22 11:06:16 - chaos - INFO - 清除 Pod dupf-upc-76bbbd9fbb-2tdxb 的网络故障
+2026-04-22 11:06:16 - chaos - INFO - 命名空间: ns-dupf, 网络设备: eth0
+2026-04-22 11:06:16 - chaos - INFO - 获取 Pod dupf-upc-76bbbd9fbb-2tdxb 的 pause 容器 ID
+2026-04-22 11:06:17 - chaos - INFO - 解析后的 pause 容器 ID: bc9c15261532
+2026-04-22 11:06:17 - chaos - INFO - 获取容器的 PID
+2026-04-22 11:06:17 - chaos - INFO - 容器 ID: bc9c15261532
+2026-04-22 11:06:17 - chaos - INFO - 提取的容器 PID: 57705
+2026-04-22 11:06:17 - chaos - INFO - Pod dupf-upc-76bbbd9fbb-2tdxb 的网络故障清除成功
+2026-04-22 11:06:17 - chaos - INFO - 清除 Pod dupf-upc-76bbbd9fbb-4svjq 的网络故障
+2026-04-22 11:06:17 - chaos - INFO - 命名空间: ns-dupf, 网络设备: eth0
+2026-04-22 11:06:17 - chaos - INFO - 获取 Pod dupf-upc-76bbbd9fbb-4svjq 的 pause 容器 ID
+2026-04-22 11:06:17 - chaos - INFO - 解析后的 pause 容器 ID: 56d7bdd89218
+2026-04-22 11:06:17 - chaos - INFO - 获取容器的 PID
+2026-04-22 11:06:17 - chaos - INFO - 容器 ID: 56d7bdd89218
+2026-04-22 11:06:17 - chaos - INFO - 提取的容器 PID: 43172
+2026-04-22 11:06:17 - chaos - INFO - Pod dupf-upc-76bbbd9fbb-4svjq 的网络故障清除成功
+2026-04-22 11:06:17 - chaos - INFO - 清除 Pod dupf-upu-dupf01-1-6965c9c89f-lxffq 的网络故障
+2026-04-22 11:06:17 - chaos - INFO - 命名空间: ns-dupf, 网络设备: eth0
+2026-04-22 11:06:17 - chaos - INFO - 获取 Pod dupf-upu-dupf01-1-6965c9c89f-lxffq 的 pause 容器 ID
+2026-04-22 11:06:17 - chaos - INFO - 解析后的 pause 容器 ID: 88eedc9fde73
+2026-04-22 11:06:17 - chaos - INFO - 获取容器的 PID
+2026-04-22 11:06:17 - chaos - INFO - 容器 ID: 88eedc9fde73
+2026-04-22 11:06:17 - chaos - INFO - 提取的容器 PID: 11648
+2026-04-22 11:06:17 - chaos - INFO - Pod dupf-upu-dupf01-1-6965c9c89f-lxffq 的网络故障清除成功
+2026-04-22 11:06:17 - chaos - INFO - 清除 Pod dupf-upu-dupf01-2-6f89cb4986-9tj76 的网络故障
+2026-04-22 11:06:17 - chaos - INFO - 命名空间: ns-dupf, 网络设备: eth0
+2026-04-22 11:06:17 - chaos - INFO - 获取 Pod dupf-upu-dupf01-2-6f89cb4986-9tj76 的 pause 容器 ID
+2026-04-22 11:06:17 - chaos - INFO - 解析后的 pause 容器 ID: 261918050cde
+2026-04-22 11:06:17 - chaos - INFO - 获取容器的 PID
+2026-04-22 11:06:17 - chaos - INFO - 容器 ID: 261918050cde
+2026-04-22 11:06:18 - chaos - INFO - 提取的容器 PID: 11620
+2026-04-22 11:06:18 - chaos - INFO - Pod dupf-upu-dupf01-2-6f89cb4986-9tj76 的网络故障清除成功
+2026-04-22 11:06:18 - chaos - INFO - 清除 Pod dupf-upu-dupf01-3-6d89b496f7-c58jx 的网络故障
+2026-04-22 11:06:18 - chaos - INFO - 命名空间: ns-dupf, 网络设备: eth0
+2026-04-22 11:06:18 - chaos - INFO - 获取 Pod dupf-upu-dupf01-3-6d89b496f7-c58jx 的 pause 容器 ID
+2026-04-22 11:06:18 - chaos - INFO - 解析后的 pause 容器 ID: 0a7f4ea53567
+2026-04-22 11:06:18 - chaos - INFO - 获取容器的 PID
+2026-04-22 11:06:18 - chaos - INFO - 容器 ID: 0a7f4ea53567
+2026-04-22 11:06:18 - chaos - INFO - 提取的容器 PID: 11606
+2026-04-22 11:06:18 - chaos - INFO - Pod dupf-upu-dupf01-3-6d89b496f7-c58jx 的网络故障清除成功
+2026-04-22 11:06:18 - chaos - INFO - 环境 1_ssh_remote 网络故障清除完成：成功 9, 失败 0
+2026-04-22 11:06:18 - chaos - INFO - ============================================================
+2026-04-22 11:06:18 - chaos - INFO - workflow 级别的 auto_clear 完成
+2026-04-22 11:06:18 - chaos - INFO - ============================================================
+2026-04-22 11:06:18 - chaos - INFO - 
+================================================================================
+2026-04-22 11:06:18 - chaos - INFO - 执行workflow: cases/upc/upc-talker_mq-proxy/workflow_parallel_delete_upc-talker_mq-proxy.yaml
+2026-04-22 11:06:18 - chaos - INFO - ================================================================================
+2026-04-22 11:06:18 - chaos - INFO - Successfully parsed workflow: upc_parallel_pod_delete_001
+2026-04-22 11:06:18 - chaos - INFO - ============================================================
+2026-04-22 11:06:18 - chaos - INFO - 开始执行工作流: UPC 并行 Pod 删除工作流
+2026-04-22 11:06:18 - chaos - INFO - 工作流 ID: upc_parallel_pod_delete_001
+2026-04-22 11:06:18 - chaos - INFO - 执行模式: parallel
+2026-04-22 11:06:18 - chaos - INFO - ============================================================
+2026-04-22 11:06:18 - chaos - INFO - 启动延迟 120.0s
+2026-04-22 11:08:23 - chaos - INFO - 执行计划: 共 1 层
+2026-04-22 11:08:23 - chaos - INFO - 
+============================================================
+2026-04-22 11:08:23 - chaos - INFO - 执行第 1/1 层，共 2 个任务
+2026-04-22 11:08:23 - chaos - INFO - ============================================================
+2026-04-22 11:08:23 - chaos - INFO - [DEBUG] 开始执行任务: UPC Talker Pod 删除 (delete_upc_talker)
+2026-04-22 11:08:23 - chaos - INFO - [DEBUG] 任务类型: pod, 故障类型: delete
+2026-04-22 11:08:23 - chaos - INFO - [DEBUG] 目标: Pod: upc-talker
+2026-04-22 11:08:23 - chaos - INFO - [DEBUG] Duration: 240s, Loop: 1
+2026-04-22 11:08:23 - chaos - INFO - [DEBUG] 任务超时时间: 300.0s
+2026-04-22 11:08:23 - chaos - INFO - [DEBUG] ========== 开始执行 Case ==========
+2026-04-22 11:08:23 - chaos - INFO - [DEBUG] Case名称: upc_talker_delete
+2026-04-22 11:08:23 - chaos - INFO - [DEBUG] Case类型: pod
+2026-04-22 11:08:23 - chaos - INFO - [DEBUG] 故障类型: delete
+2026-04-22 11:08:23 - chaos - INFO - [DEBUG] 环境: 1_ssh_remote
+2026-04-22 11:08:23 - chaos - INFO - [DEBUG] 执行 Case 迭代 1/1
+2026-04-22 11:08:23 - chaos - INFO - [DEBUG] 开始获取目标列表...
+2026-04-22 11:08:23 - chaos.utils.remote - INFO - 连接 root@10.230.246.167:50163 不可用，需要重连
+2026-04-22 11:08:23 - chaos.utils.remote - INFO - 尝试重连: root@10.230.246.167:50163
+2026-04-22 11:08:23 - chaos.utils.remote - INFO - SSH连接建立成功: 10.230.246.167:50163, 耗时: 0.10s
+2026-04-22 11:08:23 - chaos.utils.remote - INFO - 重连成功: root@10.230.246.167:50163
+2026-04-22 11:08:23 - chaos - INFO - 获取 UPC Pod 列表，namespace: ns-dupf, filter_type: upc-talker
+2026-04-22 11:08:25 - chaos - INFO - [DEBUG] 开始执行任务: MQ Proxy Pod 删除 (delete_mq_proxy)
+2026-04-22 11:08:25 - chaos - INFO - [DEBUG] 任务类型: pod, 故障类型: delete
+2026-04-22 11:08:25 - chaos - INFO - [DEBUG] 目标: Pod: mq-proxy
+2026-04-22 11:08:25 - chaos - INFO - [DEBUG] Duration: 240s, Loop: 1
+2026-04-22 11:08:25 - chaos - INFO - [DEBUG] 任务超时时间: 300.0s
+2026-04-22 11:08:25 - chaos - INFO - [DEBUG] ========== 开始执行 Case ==========
+2026-04-22 11:08:25 - chaos - INFO - [DEBUG] Case名称: mq_proxy_delete
+2026-04-22 11:08:25 - chaos - INFO - [DEBUG] Case类型: pod
+2026-04-22 11:08:25 - chaos - INFO - [DEBUG] 故障类型: delete
+2026-04-22 11:08:25 - chaos - INFO - [DEBUG] 环境: 1_ssh_remote
+2026-04-22 11:08:25 - chaos - INFO - [DEBUG] 执行 Case 迭代 1/1
+2026-04-22 11:08:25 - chaos - INFO - [DEBUG] 开始获取目标列表...
+2026-04-22 11:08:25 - chaos - INFO - 根据名称匹配规则获取 Pod，pattern: mq-proxy, namespace: ns-dupf
+2026-04-22 11:08:25 - chaos - INFO - 随机选择 Pod: dupf-upc-76bbbd9fbb-2tdxb
+2026-04-22 11:08:25 - chaos - INFO - [DEBUG] 找到 1 个目标
+2026-04-22 11:08:25 - chaos - INFO - [DEBUG] ---------- 处理目标 1/1 ----------
+2026-04-22 11:08:25 - chaos - INFO - [DEBUG] 目标名称: dupf-upc-76bbbd9fbb-2tdxb
+2026-04-22 11:08:25 - chaos - INFO - [DEBUG] 目标节点: None
+2026-04-22 11:08:25 - chaos - INFO - [DEBUG] 创建故障注入器...
+2026-04-22 11:08:25 - chaos - INFO - [DEBUG] 准备注入故障...
+2026-04-22 11:08:25 - chaos - INFO - [DEBUG] 注入参数: {'fault_type': 'delete'}
+2026-04-22 11:08:25 - chaos - INFO - 删除 Pod: dupf-upc-76bbbd9fbb-2tdxb (namespace: ns-dupf)
+2026-04-22 11:08:26 - chaos - INFO - 找到包含匹配的 Pod: dupf-sf-mq-proxy-0
+2026-04-22 11:08:26 - chaos - INFO - 找到包含匹配的 Pod: dupf-sf-mq-proxy-1
+2026-04-22 11:08:26 - chaos - INFO - 找到包含匹配的 Pod: dupf-sf-mq-proxy-2
+2026-04-22 11:08:26 - chaos - INFO - 找到 3 个匹配的 Pod
+2026-04-22 11:08:26 - chaos - INFO - 随机选择 Pod: dupf-sf-mq-proxy-0
+2026-04-22 11:08:26 - chaos - INFO - [DEBUG] 找到 1 个目标
+2026-04-22 11:08:26 - chaos - INFO - [DEBUG] ---------- 处理目标 1/1 ----------
+2026-04-22 11:08:26 - chaos - INFO - [DEBUG] 目标名称: dupf-sf-mq-proxy-0
+2026-04-22 11:08:26 - chaos - INFO - [DEBUG] 目标节点: None
+2026-04-22 11:08:26 - chaos - INFO - [DEBUG] 创建故障注入器...
+2026-04-22 11:08:26 - chaos - INFO - [DEBUG] 准备注入故障...
+2026-04-22 11:08:26 - chaos - INFO - [DEBUG] 注入参数: {'fault_type': 'delete'}
+2026-04-22 11:08:26 - chaos - INFO - 删除 Pod: dupf-sf-mq-proxy-0 (namespace: ns-dupf)
+2026-04-22 11:08:26 - chaos - INFO - Pod dupf-upc-76bbbd9fbb-2tdxb 删除成功
+2026-04-22 11:08:26 - chaos - INFO - [DEBUG] 故障注入成功
+2026-04-22 11:08:26 - chaos - INFO - [DEBUG] 故障ID: delete_dupf-upc-76bbbd9fbb-2tdxb_ns-dupf_1776827305
+2026-04-22 11:08:26 - chaos - INFO - 记录故障：delete_dupf-upc-76bbbd9fbb-2tdxb_ns-dupf_1776827305
+2026-04-22 11:08:26 - chaos - INFO - [DEBUG] 开始等待 duration: 240s (240.0秒)
+2026-04-22 11:08:26 - chaos - INFO - Pod dupf-sf-mq-proxy-0 删除成功
+2026-04-22 11:08:26 - chaos - INFO - [DEBUG] 故障注入成功
+2026-04-22 11:08:26 - chaos - INFO - [DEBUG] 故障ID: delete_dupf-sf-mq-proxy-0_ns-dupf_1776827306
+2026-04-22 11:08:26 - chaos - INFO - 记录故障：delete_dupf-sf-mq-proxy-0_ns-dupf_1776827306
+2026-04-22 11:08:26 - chaos - INFO - [DEBUG] 开始等待 duration: 240s (240.0秒)
+2026-04-22 11:12:36 - chaos - INFO - [DEBUG] duration 等待完成
+2026-04-22 11:12:36 - chaos - INFO - [DEBUG] 开始清理故障: delete_dupf-upc-76bbbd9fbb-2tdxb_ns-dupf_1776827305
+2026-04-22 11:12:36 - chaos - INFO - Pod 故障自动恢复：delete_dupf-upc-76bbbd9fbb-2tdxb_ns-dupf_1776827305
+2026-04-22 11:12:36 - chaos - INFO - [DEBUG] 故障清理成功: delete_dupf-upc-76bbbd9fbb-2tdxb_ns-dupf_1776827305
+2026-04-22 11:12:36 - chaos - INFO - 标记故障已恢复：delete_dupf-upc-76bbbd9fbb-2tdxb_ns-dupf_1776827305
+2026-04-22 11:12:36 - chaos - INFO - 任务执行成功: UPC Talker Pod 删除 (耗时: 252.32s)
+2026-04-22 11:12:36 - chaos - INFO - [DEBUG] duration 等待完成
+2026-04-22 11:12:36 - chaos - INFO - [DEBUG] 开始清理故障: delete_dupf-sf-mq-proxy-0_ns-dupf_1776827306
+2026-04-22 11:12:36 - chaos - INFO - Pod 故障自动恢复：delete_dupf-sf-mq-proxy-0_ns-dupf_1776827306
+2026-04-22 11:12:36 - chaos - INFO - [DEBUG] 故障清理成功: delete_dupf-sf-mq-proxy-0_ns-dupf_1776827306
+2026-04-22 11:12:36 - chaos - INFO - 标记故障已恢复：delete_dupf-sf-mq-proxy-0_ns-dupf_1776827306
+2026-04-22 11:12:36 - chaos - INFO - 任务执行成功: MQ Proxy Pod 删除 (耗时: 250.53s)
+2026-04-22 11:12:36 - chaos - INFO - 
+================================================================================
+                           Workflow Execution Report                            
+================================================================================
+Workflow ID    : upc_parallel_pod_delete_001
+Workflow Name  : UPC 并行 Pod 删除工作流
+Status         : SUCCESS
+Start Time     : 2026-04-22 11:06:18
+End Time       : 2026-04-22 11:12:36
+Total Duration : 378.01s
+Success Rate   : 100.00%
+================================================================================
+
+Task Results:
+--------------------------------------------------------------------------------
+  [SUCCESS ] UPC Talker Pod 删除              Duration: 252.32s  Group: N/A
+  [SUCCESS ] MQ Proxy Pod 删除                Duration: 250.53s  Group: N/A
+
+================================================================================
+Summary Statistics
+================================================================================
+Total Tasks    : 2
+Success        : 2
+Failed         : 0
+Timeout        : 0
+Skipped        : 0
+================================================================================
+2026-04-22 11:12:36 - chaos - INFO - 
+================================================================================
+2026-04-22 11:12:36 - chaos - INFO - 执行workflow: cases/upc/upc-talker_mq-proxy/workflow_parallel_duplicate_upc-talker_mq-proxy.yaml
+2026-04-22 11:12:36 - chaos - INFO - ================================================================================
+2026-04-22 11:12:36 - chaos - INFO - Successfully parsed workflow: upc_parallel_network_duplicate_001
+2026-04-22 11:12:36 - chaos - INFO - ============================================================
+2026-04-22 11:12:36 - chaos - INFO - 开始执行工作流: UPC 并行网络数据包重复工作流
+2026-04-22 11:12:36 - chaos - INFO - 工作流 ID: upc_parallel_network_duplicate_001
+2026-04-22 11:12:36 - chaos - INFO - 执行模式: parallel
+2026-04-22 11:12:36 - chaos - INFO - ============================================================
+2026-04-22 11:12:36 - chaos - INFO - 启动延迟 120.0s
+2026-04-22 11:14:41 - chaos - INFO - 执行计划: 共 1 层
+2026-04-22 11:14:41 - chaos - INFO - 
+============================================================
+2026-04-22 11:14:41 - chaos - INFO - 执行第 1/1 层，共 2 个任务
+2026-04-22 11:14:41 - chaos - INFO - ============================================================
+2026-04-22 11:14:41 - chaos - INFO - [DEBUG] 开始执行任务: UPC Talker 数据包重复 (duplicate_upc_talker)
+2026-04-22 11:14:41 - chaos - INFO - [DEBUG] 任务类型: network, 故障类型: duplicate
+2026-04-22 11:14:41 - chaos - INFO - [DEBUG] 目标: Pod: upc-talker
+2026-04-22 11:14:41 - chaos - INFO - [DEBUG] Duration: 240s, Loop: 1
+2026-04-22 11:14:41 - chaos - INFO - [DEBUG] 任务超时时间: 300.0s
+2026-04-22 11:14:41 - chaos - INFO - [DEBUG] ========== 开始执行 Case ==========
+2026-04-22 11:14:41 - chaos - INFO - [DEBUG] Case名称: upc_talker_duplicate
+2026-04-22 11:14:41 - chaos - INFO - [DEBUG] Case类型: network
+2026-04-22 11:14:41 - chaos - INFO - [DEBUG] 故障类型: duplicate
+2026-04-22 11:14:41 - chaos - INFO - [DEBUG] 环境: 1_ssh_remote
+2026-04-22 11:14:41 - chaos - INFO - [DEBUG] 执行 Case 迭代 1/1
+2026-04-22 11:14:41 - chaos - INFO - [DEBUG] 开始获取目标列表...
+2026-04-22 11:14:41 - chaos - INFO - 获取 UPC Pod 列表，namespace: ns-dupf, filter_type: upc-talker
+2026-04-22 11:14:42 - chaos - INFO - 随机选择 Pod: dupf-upc-76bbbd9fbb-9m6n7
+2026-04-22 11:14:42 - chaos - INFO - [DEBUG] 找到 1 个目标
+2026-04-22 11:14:42 - chaos - INFO - [DEBUG] ---------- 处理目标 1/1 ----------
+2026-04-22 11:14:42 - chaos - INFO - [DEBUG] 目标名称: dupf-upc-76bbbd9fbb-9m6n7
+2026-04-22 11:14:42 - chaos - INFO - [DEBUG] 目标节点: None
+2026-04-22 11:14:42 - chaos - INFO - [DEBUG] 创建故障注入器...
+2026-04-22 11:14:42 - chaos - INFO - [DEBUG] 准备注入故障...
+2026-04-22 11:14:42 - chaos - INFO - [DEBUG] 注入参数: {'fault_type': 'duplicate', 'correlation': ['30%', '90%'], 'percent': ['10%', '90%']}
+2026-04-22 11:14:42 - chaos - INFO - 获取 Pod dupf-upc-76bbbd9fbb-9m6n7 的 pause 容器 ID
+2026-04-22 11:14:42 - chaos - INFO - 获取 Pod dupf-upc-76bbbd9fbb-9m6n7 所在的节点，namespace: ns-dupf
+2026-04-22 11:14:42 - chaos - INFO - Pod dupf-upc-76bbbd9fbb-9m6n7 运行在节点 dupf04
+2026-04-22 11:14:42 - chaos - INFO - Pod dupf-upc-76bbbd9fbb-9m6n7 运行在节点 dupf04
+2026-04-22 11:14:42 - chaos - INFO - 找到节点 dupf04 对应的环境: 4_ssh_remote
+2026-04-22 11:14:42 - chaos.utils.remote - INFO - 创建新连接: root@10.230.246.170:50163
+2026-04-22 11:14:42 - chaos.utils.remote - INFO - SSH连接建立成功: 10.230.246.170:50163, 耗时: 0.10s
+2026-04-22 11:14:42 - chaos.utils.remote - INFO - 新连接创建成功: root@10.230.246.170:50163，当前连接池大小: 4
+2026-04-22 11:14:43 - chaos - INFO - [DEBUG] 开始执行任务: MQ Proxy 数据包重复 (duplicate_mq_proxy)
+2026-04-22 11:14:43 - chaos - INFO - [DEBUG] 任务类型: network, 故障类型: duplicate
+2026-04-22 11:14:43 - chaos - INFO - [DEBUG] 目标: Pod: mq-proxy
+2026-04-22 11:14:43 - chaos - INFO - [DEBUG] Duration: 240s, Loop: 1
+2026-04-22 11:14:43 - chaos - INFO - [DEBUG] 任务超时时间: 300.0s
+2026-04-22 11:14:43 - chaos - INFO - [DEBUG] ========== 开始执行 Case ==========
+2026-04-22 11:14:43 - chaos - INFO - [DEBUG] Case名称: mq_proxy_duplicate
+2026-04-22 11:14:43 - chaos - INFO - [DEBUG] Case类型: network
+2026-04-22 11:14:43 - chaos - INFO - [DEBUG] 故障类型: duplicate
+2026-04-22 11:14:43 - chaos - INFO - [DEBUG] 环境: 1_ssh_remote
+2026-04-22 11:14:43 - chaos - INFO - [DEBUG] 执行 Case 迭代 1/1
+2026-04-22 11:14:43 - chaos - INFO - [DEBUG] 开始获取目标列表...
+2026-04-22 11:14:43 - chaos - INFO - 根据名称匹配规则获取 Pod，pattern: mq-proxy, namespace: ns-dupf
+2026-04-22 11:14:43 - chaos - INFO - 找到包含匹配的 Pod: dupf-sf-mq-proxy-0
+2026-04-22 11:14:43 - chaos - INFO - 找到包含匹配的 Pod: dupf-sf-mq-proxy-1
+2026-04-22 11:14:43 - chaos - INFO - 找到包含匹配的 Pod: dupf-sf-mq-proxy-2
+2026-04-22 11:14:43 - chaos - INFO - 找到 3 个匹配的 Pod
+2026-04-22 11:14:43 - chaos - INFO - 随机选择 Pod: dupf-sf-mq-proxy-2
+2026-04-22 11:14:43 - chaos - INFO - [DEBUG] 找到 1 个目标
+2026-04-22 11:14:43 - chaos - INFO - [DEBUG] ---------- 处理目标 1/1 ----------
+2026-04-22 11:14:43 - chaos - INFO - [DEBUG] 目标名称: dupf-sf-mq-proxy-2
+2026-04-22 11:14:43 - chaos - INFO - [DEBUG] 目标节点: None
+2026-04-22 11:14:43 - chaos - INFO - [DEBUG] 创建故障注入器...
+2026-04-22 11:14:43 - chaos - INFO - [DEBUG] 准备注入故障...
+2026-04-22 11:14:43 - chaos - INFO - [DEBUG] 注入参数: {'fault_type': 'duplicate', 'correlation': ['30%', '90%'], 'percent': ['10%', '90%']}
+2026-04-22 11:14:43 - chaos - INFO - 获取 Pod dupf-sf-mq-proxy-2 的 pause 容器 ID
+2026-04-22 11:14:43 - chaos - INFO - 获取 Pod dupf-sf-mq-proxy-2 所在的节点，namespace: ns-dupf
+2026-04-22 11:14:43 - chaos - INFO - 解析后的 pause 容器 ID: bd0980982c58
+2026-04-22 11:14:43 - chaos - INFO - 获取容器的 PID
+2026-04-22 11:14:43 - chaos - INFO - 容器 ID: bd0980982c58
+2026-04-22 11:14:43 - chaos - INFO - Pod dupf-sf-mq-proxy-2 运行在节点 dupf02
+2026-04-22 11:14:43 - chaos - INFO - Pod dupf-sf-mq-proxy-2 运行在节点 dupf02
+2026-04-22 11:14:43 - chaos - INFO - 找到节点 dupf02 对应的环境: 2_ssh_remote
+2026-04-22 11:14:44 - chaos - INFO - 提取的容器 PID: 59383
+2026-04-22 11:14:44 - chaos - INFO - 为 Pod dupf-upc-76bbbd9fbb-9m6n7 注入网络数据包重复
+2026-04-22 11:14:44 - chaos - INFO - 重复比例: 89%
+2026-04-22 11:14:44 - chaos - INFO - 相关性: 69%
+2026-04-22 11:14:44 - chaos - INFO - tc 命令: tc qdisc add dev eth0 root netem duplicate 89% 69%
+2026-04-22 11:14:44 - chaos - INFO - 解析后的 pause 容器 ID: cb4782353c3b
+2026-04-22 11:14:44 - chaos - INFO - 获取容器的 PID
+2026-04-22 11:14:44 - chaos - INFO - 容器 ID: cb4782353c3b
+2026-04-22 11:14:44 - chaos - INFO - 网络数据包重复注入成功
+2026-04-22 11:14:44 - chaos - INFO - [DEBUG] 故障注入成功
+2026-04-22 11:14:44 - chaos - INFO - [DEBUG] 故障ID: duplicate_dupf-upc-76bbbd9fbb-9m6n7_ns-dupf_1776827682
+2026-04-22 11:14:44 - chaos - INFO - 记录故障：duplicate_dupf-upc-76bbbd9fbb-9m6n7_ns-dupf_1776827682
+2026-04-22 11:14:44 - chaos - INFO - [DEBUG] 开始等待 duration: 240s (240.0秒)
+2026-04-22 11:14:44 - chaos - INFO - 提取的容器 PID: 47656
+2026-04-22 11:14:44 - chaos - INFO - 为 Pod dupf-sf-mq-proxy-2 注入网络数据包重复
+2026-04-22 11:14:44 - chaos - INFO - 重复比例: 53%
+2026-04-22 11:14:44 - chaos - INFO - 相关性: 49%
+2026-04-22 11:14:44 - chaos - INFO - tc 命令: tc qdisc add dev eth0 root netem duplicate 53% 49%
+2026-04-22 11:14:44 - chaos - INFO - 网络数据包重复注入成功
+2026-04-22 11:14:44 - chaos - INFO - [DEBUG] 故障注入成功
+2026-04-22 11:14:44 - chaos - INFO - [DEBUG] 故障ID: duplicate_dupf-sf-mq-proxy-2_ns-dupf_1776827683
+2026-04-22 11:14:44 - chaos - INFO - 记录故障：duplicate_dupf-sf-mq-proxy-2_ns-dupf_1776827683
+2026-04-22 11:14:44 - chaos - INFO - [DEBUG] 开始等待 duration: 240s (240.0秒)
+2026-04-22 11:18:50 - chaos - INFO - [DEBUG] duration 等待完成
+2026-04-22 11:18:50 - chaos - INFO - [DEBUG] 开始清理故障: duplicate_dupf-upc-76bbbd9fbb-9m6n7_ns-dupf_1776827682
+2026-04-22 11:18:50 - chaos - INFO - 获取 Pod dupf-upc-76bbbd9fbb-9m6n7 的 pause 容器 ID
+2026-04-22 11:18:50 - chaos - INFO - 获取 Pod dupf-upc-76bbbd9fbb-9m6n7 所在的节点，namespace: ns-dupf
+2026-04-22 11:18:50 - chaos - INFO - [DEBUG] duration 等待完成
+2026-04-22 11:18:50 - chaos - INFO - [DEBUG] 开始清理故障: duplicate_dupf-sf-mq-proxy-2_ns-dupf_1776827683
+2026-04-22 11:18:50 - chaos - INFO - 获取 Pod dupf-sf-mq-proxy-2 的 pause 容器 ID
+2026-04-22 11:18:50 - chaos - INFO - 获取 Pod dupf-sf-mq-proxy-2 所在的节点，namespace: ns-dupf
+2026-04-22 11:18:51 - chaos - INFO - Pod dupf-upc-76bbbd9fbb-9m6n7 运行在节点 dupf04
+2026-04-22 11:18:51 - chaos - INFO - Pod dupf-upc-76bbbd9fbb-9m6n7 运行在节点 dupf04
+2026-04-22 11:18:51 - chaos - INFO - 找到节点 dupf04 对应的环境: 4_ssh_remote
+2026-04-22 11:18:51 - chaos - INFO - 解析后的 pause 容器 ID: bd0980982c58
+2026-04-22 11:18:51 - chaos - INFO - 获取容器的 PID
+2026-04-22 11:18:51 - chaos - INFO - 容器 ID: bd0980982c58
+2026-04-22 11:18:51 - chaos - INFO - Pod dupf-sf-mq-proxy-2 运行在节点 dupf02
+2026-04-22 11:18:51 - chaos - INFO - Pod dupf-sf-mq-proxy-2 运行在节点 dupf02
+2026-04-22 11:18:51 - chaos - INFO - 找到节点 dupf02 对应的环境: 2_ssh_remote
+2026-04-22 11:18:51 - chaos - INFO - 提取的容器 PID: 59383
+2026-04-22 11:18:51 - chaos - INFO - 恢复网络故障：duplicate_dupf-upc-76bbbd9fbb-9m6n7_ns-dupf_1776827682
+2026-04-22 11:18:51 - chaos - INFO - [DEBUG] 故障清理成功: duplicate_dupf-upc-76bbbd9fbb-9m6n7_ns-dupf_1776827682
+2026-04-22 11:18:51 - chaos - INFO - 标记故障已恢复：duplicate_dupf-upc-76bbbd9fbb-9m6n7_ns-dupf_1776827682
+2026-04-22 11:18:51 - chaos - INFO - 任务执行成功: UPC Talker 数据包重复 (耗时: 249.90s)
+2026-04-22 11:18:51 - chaos - INFO - 解析后的 pause 容器 ID: cb4782353c3b
+2026-04-22 11:18:51 - chaos - INFO - 获取容器的 PID
+2026-04-22 11:18:51 - chaos - INFO - 容器 ID: cb4782353c3b
+2026-04-22 11:18:51 - chaos - INFO - 提取的容器 PID: 47656
+2026-04-22 11:18:51 - chaos - INFO - 恢复网络故障：duplicate_dupf-sf-mq-proxy-2_ns-dupf_1776827683
+2026-04-22 11:18:51 - chaos - INFO - [DEBUG] 故障清理成功: duplicate_dupf-sf-mq-proxy-2_ns-dupf_1776827683
+2026-04-22 11:18:51 - chaos - INFO - 标记故障已恢复：duplicate_dupf-sf-mq-proxy-2_ns-dupf_1776827683
+2026-04-22 11:18:51 - chaos - INFO - 任务执行成功: MQ Proxy 数据包重复 (耗时: 248.06s)
+2026-04-22 11:18:51 - chaos - INFO - 
+================================================================================
+                           Workflow Execution Report                            
+================================================================================
+Workflow ID    : upc_parallel_network_duplicate_001
+Workflow Name  : UPC 并行网络数据包重复工作流
+Status         : SUCCESS
+Start Time     : 2026-04-22 11:12:36
+End Time       : 2026-04-22 11:18:51
+Total Duration : 375.04s
+Success Rate   : 100.00%
+================================================================================
+
+Task Results:
+--------------------------------------------------------------------------------
+  [SUCCESS ] UPC Talker 数据包重复               Duration: 249.90s  Group: N/A
+  [SUCCESS ] MQ Proxy 数据包重复                 Duration: 248.06s  Group: N/A
+
+================================================================================
+Summary Statistics
+================================================================================
+Total Tasks    : 2
+Success        : 2
+Failed         : 0
+Timeout        : 0
+Skipped        : 0
+================================================================================
+2026-04-22 11:18:51 - chaos - INFO - ============================================================
+2026-04-22 11:18:51 - chaos - INFO - 执行 workflow 级别的 auto_clear
+2026-04-22 11:18:51 - chaos - INFO - ============================================================
+2026-04-22 11:18:51 - chaos - INFO - 需要清理的环境: 1_ssh_remote
+2026-04-22 11:18:51 - chaos - INFO - 清理环境 1_ssh_remote 的网络故障...
+2026-04-22 11:18:51 - chaos - INFO - 获取 Pod 列表，namespace: ns-dupf, nodename: dupf01
+2026-04-22 11:18:51 - chaos - INFO - 找到 9 个 Pod
+2026-04-22 11:18:51 - chaos - INFO - 找到 9 个 pod
+2026-04-22 11:18:51 - chaos - INFO - 清除 Pod dupf-etcd-2 的网络故障
+2026-04-22 11:18:51 - chaos - INFO - 命名空间: ns-dupf, 网络设备: eth0
+2026-04-22 11:18:51 - chaos - INFO - 获取 Pod dupf-etcd-2 的 pause 容器 ID
+2026-04-22 11:18:51 - chaos - INFO - 解析后的 pause 容器 ID: 1bb5152c1fb4
+2026-04-22 11:18:51 - chaos - INFO - 获取容器的 PID
+2026-04-22 11:18:51 - chaos - INFO - 容器 ID: 1bb5152c1fb4
+2026-04-22 11:18:51 - chaos - INFO - 提取的容器 PID: 11613
+2026-04-22 11:18:52 - chaos - INFO - Pod dupf-etcd-2 的网络故障清除成功
+2026-04-22 11:18:52 - chaos - INFO - 清除 Pod dupf-file-sync-28jxj 的网络故障
+2026-04-22 11:18:52 - chaos - INFO - 命名空间: ns-dupf, 网络设备: eth0
+2026-04-22 11:18:52 - chaos - INFO - 获取 Pod dupf-file-sync-28jxj 的 pause 容器 ID
+2026-04-22 11:18:52 - chaos - INFO - 解析后的 pause 容器 ID: 36fe0e8077e1
+2026-04-22 11:18:52 - chaos - INFO - 获取容器的 PID
+2026-04-22 11:18:52 - chaos - INFO - 容器 ID: 36fe0e8077e1
+2026-04-22 11:18:52 - chaos - INFO - 提取的容器 PID: 8777
+2026-04-22 11:18:52 - chaos - INFO - Pod dupf-file-sync-28jxj 的网络故障清除成功
+2026-04-22 11:18:52 - chaos - INFO - 清除 Pod dupf-node-monitor-bhxfz 的网络故障
+2026-04-22 11:18:52 - chaos - INFO - 命名空间: ns-dupf, 网络设备: eth0
+2026-04-22 11:18:52 - chaos - INFO - 获取 Pod dupf-node-monitor-bhxfz 的 pause 容器 ID
+2026-04-22 11:18:52 - chaos - INFO - 解析后的 pause 容器 ID: 3d5f66900124
+2026-04-22 11:18:52 - chaos - INFO - 获取容器的 PID
+2026-04-22 11:18:52 - chaos - INFO - 容器 ID: 3d5f66900124
+2026-04-22 11:18:52 - chaos - INFO - 提取的容器 PID: 8861
+2026-04-22 11:18:52 - chaos - INFO - Pod dupf-node-monitor-bhxfz 的网络故障清除成功
+2026-04-22 11:18:52 - chaos - INFO - 清除 Pod dupf-sdb-1 的网络故障
+2026-04-22 11:18:52 - chaos - INFO - 命名空间: ns-dupf, 网络设备: eth0
+2026-04-22 11:18:52 - chaos - INFO - 获取 Pod dupf-sdb-1 的 pause 容器 ID
+2026-04-22 11:18:52 - chaos - INFO - 解析后的 pause 容器 ID: 4df5dde3ef37
+2026-04-22 11:18:52 - chaos - INFO - 获取容器的 PID
+2026-04-22 11:18:52 - chaos - INFO - 容器 ID: 4df5dde3ef37
+2026-04-22 11:18:52 - chaos - INFO - 提取的容器 PID: 11627
+2026-04-22 11:18:52 - chaos - INFO - Pod dupf-sdb-1 的网络故障清除成功
+2026-04-22 11:18:52 - chaos - INFO - 清除 Pod dupf-upc-76bbbd9fbb-4svjq 的网络故障
+2026-04-22 11:18:52 - chaos - INFO - 命名空间: ns-dupf, 网络设备: eth0
+2026-04-22 11:18:52 - chaos - INFO - 获取 Pod dupf-upc-76bbbd9fbb-4svjq 的 pause 容器 ID
+2026-04-22 11:18:53 - chaos - INFO - 解析后的 pause 容器 ID: 56d7bdd89218
+2026-04-22 11:18:53 - chaos - INFO - 获取容器的 PID
+2026-04-22 11:18:53 - chaos - INFO - 容器 ID: 56d7bdd89218
+2026-04-22 11:18:53 - chaos - INFO - 提取的容器 PID: 43172
+2026-04-22 11:18:53 - chaos - INFO - Pod dupf-upc-76bbbd9fbb-4svjq 的网络故障清除成功
+2026-04-22 11:18:53 - chaos - INFO - 清除 Pod dupf-upc-76bbbd9fbb-zdkhc 的网络故障
+2026-04-22 11:18:53 - chaos - INFO - 命名空间: ns-dupf, 网络设备: eth0
+2026-04-22 11:18:53 - chaos - INFO - 获取 Pod dupf-upc-76bbbd9fbb-zdkhc 的 pause 容器 ID
+2026-04-22 11:18:53 - chaos - INFO - 解析后的 pause 容器 ID: ec4a2ea114d9
+2026-04-22 11:18:53 - chaos - INFO - 获取容器的 PID
+2026-04-22 11:18:53 - chaos - INFO - 容器 ID: ec4a2ea114d9
+2026-04-22 11:18:53 - chaos - INFO - 提取的容器 PID: 55971
+2026-04-22 11:18:53 - chaos - INFO - Pod dupf-upc-76bbbd9fbb-zdkhc 的网络故障清除成功
+2026-04-22 11:18:53 - chaos - INFO - 清除 Pod dupf-upu-dupf01-1-6965c9c89f-lxffq 的网络故障
+2026-04-22 11:18:53 - chaos - INFO - 命名空间: ns-dupf, 网络设备: eth0
+2026-04-22 11:18:53 - chaos - INFO - 获取 Pod dupf-upu-dupf01-1-6965c9c89f-lxffq 的 pause 容器 ID
+2026-04-22 11:18:53 - chaos - INFO - 解析后的 pause 容器 ID: 88eedc9fde73
+2026-04-22 11:18:53 - chaos - INFO - 获取容器的 PID
+2026-04-22 11:18:53 - chaos - INFO - 容器 ID: 88eedc9fde73
+2026-04-22 11:18:53 - chaos - INFO - 提取的容器 PID: 11648
+2026-04-22 11:18:53 - chaos - INFO - Pod dupf-upu-dupf01-1-6965c9c89f-lxffq 的网络故障清除成功
+2026-04-22 11:18:53 - chaos - INFO - 清除 Pod dupf-upu-dupf01-2-6f89cb4986-9tj76 的网络故障
+2026-04-22 11:18:53 - chaos - INFO - 命名空间: ns-dupf, 网络设备: eth0
+2026-04-22 11:18:53 - chaos - INFO - 获取 Pod dupf-upu-dupf01-2-6f89cb4986-9tj76 的 pause 容器 ID
+2026-04-22 11:18:53 - chaos - INFO - 解析后的 pause 容器 ID: 261918050cde
+2026-04-22 11:18:53 - chaos - INFO - 获取容器的 PID
+2026-04-22 11:18:53 - chaos - INFO - 容器 ID: 261918050cde
+2026-04-22 11:18:53 - chaos - INFO - 提取的容器 PID: 11620
+2026-04-22 11:18:53 - chaos - INFO - Pod dupf-upu-dupf01-2-6f89cb4986-9tj76 的网络故障清除成功
+2026-04-22 11:18:53 - chaos - INFO - 清除 Pod dupf-upu-dupf01-3-6d89b496f7-c58jx 的网络故障
+2026-04-22 11:18:53 - chaos - INFO - 命名空间: ns-dupf, 网络设备: eth0
+2026-04-22 11:18:53 - chaos - INFO - 获取 Pod dupf-upu-dupf01-3-6d89b496f7-c58jx 的 pause 容器 ID
+2026-04-22 11:18:54 - chaos - INFO - 解析后的 pause 容器 ID: 0a7f4ea53567
+2026-04-22 11:18:54 - chaos - INFO - 获取容器的 PID
+2026-04-22 11:18:54 - chaos - INFO - 容器 ID: 0a7f4ea53567
+2026-04-22 11:18:54 - chaos - INFO - 提取的容器 PID: 11606
+2026-04-22 11:18:54 - chaos - INFO - Pod dupf-upu-dupf01-3-6d89b496f7-c58jx 的网络故障清除成功
+2026-04-22 11:18:54 - chaos - INFO - 环境 1_ssh_remote 网络故障清除完成：成功 9, 失败 0
+2026-04-22 11:18:54 - chaos - INFO - ============================================================
+2026-04-22 11:18:54 - chaos - INFO - workflow 级别的 auto_clear 完成
+2026-04-22 11:18:54 - chaos - INFO - ============================================================
+2026-04-22 11:18:54 - chaos - INFO - 
+================================================================================
+2026-04-22 11:18:54 - chaos - INFO - 执行workflow: cases/upc/upc-talker_mq-proxy/workflow_parallel_kill_upc-talker_mq-proxy.yaml
+2026-04-22 11:18:54 - chaos - INFO - ================================================================================
+2026-04-22 11:18:54 - chaos - INFO - Successfully parsed workflow: upc_parallel_process_kill_001
+2026-04-22 11:18:54 - chaos - INFO - ============================================================
+2026-04-22 11:18:54 - chaos - INFO - 开始执行工作流: UPC 并行进程杀除工作流
+2026-04-22 11:18:54 - chaos - INFO - 工作流 ID: upc_parallel_process_kill_001
+2026-04-22 11:18:54 - chaos - INFO - 执行模式: parallel
+2026-04-22 11:18:54 - chaos - INFO - ============================================================
+2026-04-22 11:18:54 - chaos - INFO - 启动延迟 120.0s
+2026-04-22 11:20:57 - chaos - INFO - 执行计划: 共 1 层
+2026-04-22 11:20:57 - chaos - INFO - 
+============================================================
+2026-04-22 11:20:57 - chaos - INFO - 执行第 1/1 层，共 2 个任务
+2026-04-22 11:20:57 - chaos - INFO - ============================================================
+2026-04-22 11:20:57 - chaos - INFO - [DEBUG] 开始执行任务: UPC Talker 进程杀除 (kill_upc_talker)
+2026-04-22 11:20:57 - chaos - INFO - [DEBUG] 任务类型: process, 故障类型: kill
+2026-04-22 11:20:57 - chaos - INFO - [DEBUG] 目标: Pod: upc-talker
+2026-04-22 11:20:57 - chaos - INFO - [DEBUG] Duration: 240s, Loop: 1
+2026-04-22 11:20:57 - chaos - INFO - [DEBUG] 任务超时时间: 300.0s
+2026-04-22 11:20:57 - chaos - INFO - [DEBUG] ========== 开始执行 Case ==========
+2026-04-22 11:20:57 - chaos - INFO - [DEBUG] Case名称: upc_talker_kill
+2026-04-22 11:20:57 - chaos - INFO - [DEBUG] Case类型: process
+2026-04-22 11:20:57 - chaos - INFO - [DEBUG] 故障类型: kill
+2026-04-22 11:20:57 - chaos - INFO - [DEBUG] 环境: 1_ssh_remote
+2026-04-22 11:20:57 - chaos - INFO - [DEBUG] 执行 Case 迭代 1/1
+2026-04-22 11:20:57 - chaos - INFO - [DEBUG] 开始获取目标列表...
+2026-04-22 11:20:57 - chaos.utils.remote - INFO - 连接 root@10.230.246.167:50163 不可用，需要重连
+2026-04-22 11:20:57 - chaos.utils.remote - INFO - 尝试重连: root@10.230.246.167:50163
+2026-04-22 11:20:58 - chaos.utils.remote - INFO - SSH连接建立成功: 10.230.246.167:50163, 耗时: 0.09s
+2026-04-22 11:20:58 - chaos.utils.remote - INFO - 重连成功: root@10.230.246.167:50163
+2026-04-22 11:20:58 - chaos - INFO - 获取 UPC Pod 列表，namespace: ns-dupf, filter_type: upc-talker
+2026-04-22 11:20:59 - chaos - INFO - [DEBUG] 开始执行任务: MQ Proxy 进程杀除 (kill_mq_proxy)
+2026-04-22 11:20:59 - chaos - INFO - [DEBUG] 任务类型: process, 故障类型: kill
+2026-04-22 11:20:59 - chaos - INFO - [DEBUG] 目标: Pod: mq-proxy
+2026-04-22 11:20:59 - chaos - INFO - [DEBUG] Duration: 240s, Loop: 1
+2026-04-22 11:20:59 - chaos - INFO - [DEBUG] 任务超时时间: 300.0s
+2026-04-22 11:20:59 - chaos - INFO - [DEBUG] ========== 开始执行 Case ==========
+2026-04-22 11:20:59 - chaos - INFO - [DEBUG] Case名称: mq_proxy_kill
+2026-04-22 11:20:59 - chaos - INFO - [DEBUG] Case类型: process
+2026-04-22 11:20:59 - chaos - INFO - [DEBUG] 故障类型: kill
+2026-04-22 11:20:59 - chaos - INFO - [DEBUG] 环境: 1_ssh_remote
+2026-04-22 11:20:59 - chaos - INFO - [DEBUG] 执行 Case 迭代 1/1
+2026-04-22 11:20:59 - chaos - INFO - [DEBUG] 开始获取目标列表...
+2026-04-22 11:20:59 - chaos - INFO - 根据名称匹配规则获取 Pod，pattern: mq-proxy, namespace: ns-dupf
+2026-04-22 11:21:00 - chaos - INFO - 随机选择 Pod: dupf-upc-76bbbd9fbb-9m6n7
+2026-04-22 11:21:00 - chaos - INFO - [DEBUG] 找到 1 个目标
+2026-04-22 11:21:00 - chaos - INFO - [DEBUG] ---------- 处理目标 1/1 ----------
+2026-04-22 11:21:00 - chaos - INFO - [DEBUG] 目标名称: dupf-upc-76bbbd9fbb-9m6n7
+2026-04-22 11:21:00 - chaos - INFO - [DEBUG] 目标节点: None
+2026-04-22 11:21:00 - chaos - INFO - [DEBUG] 创建故障注入器...
+2026-04-22 11:21:00 - chaos - INFO - [DEBUG] 准备注入故障...
+2026-04-22 11:21:00 - chaos - INFO - [DEBUG] 注入参数: {'fault_type': 'kill', 'main_process_pid': 1, 'signal': 15}
+2026-04-22 11:21:00 - chaos - INFO - Kill 进程: Pod=dupf-upc-76bbbd9fbb-9m6n7, Namespace=ns-dupf, Signal=15, PID=1
+2026-04-22 11:21:00 - chaos - INFO - 找到包含匹配的 Pod: dupf-sf-mq-proxy-0
+2026-04-22 11:21:00 - chaos - INFO - 找到包含匹配的 Pod: dupf-sf-mq-proxy-1
+2026-04-22 11:21:00 - chaos - INFO - 找到包含匹配的 Pod: dupf-sf-mq-proxy-2
+2026-04-22 11:21:00 - chaos - INFO - 找到 3 个匹配的 Pod
+2026-04-22 11:21:00 - chaos - INFO - 随机选择 Pod: dupf-sf-mq-proxy-0
+2026-04-22 11:21:00 - chaos - INFO - [DEBUG] 找到 1 个目标
+2026-04-22 11:21:00 - chaos - INFO - [DEBUG] ---------- 处理目标 1/1 ----------
+2026-04-22 11:21:00 - chaos - INFO - [DEBUG] 目标名称: dupf-sf-mq-proxy-0
+2026-04-22 11:21:00 - chaos - INFO - [DEBUG] 目标节点: None
+2026-04-22 11:21:00 - chaos - INFO - [DEBUG] 创建故障注入器...
+2026-04-22 11:21:00 - chaos - INFO - [DEBUG] 准备注入故障...
+2026-04-22 11:21:00 - chaos - INFO - [DEBUG] 注入参数: {'fault_type': 'kill', 'main_process_pid': 1, 'signal': 15}
+2026-04-22 11:21:00 - chaos - INFO - Kill 进程: Pod=dupf-sf-mq-proxy-0, Namespace=ns-dupf, Signal=15, PID=1
+2026-04-22 11:21:00 - chaos - INFO - 进程 kill 成功: Signal=15, PID=1
+2026-04-22 11:21:00 - chaos - INFO - [DEBUG] 故障注入成功
+2026-04-22 11:21:00 - chaos - INFO - [DEBUG] 故障ID: process_kill_dupf-upc-76bbbd9fbb-9m6n7_ns-dupf_15_1_1776828060
+2026-04-22 11:21:00 - chaos - INFO - 记录故障：process_kill_dupf-upc-76bbbd9fbb-9m6n7_ns-dupf_15_1_1776828060
+2026-04-22 11:21:00 - chaos - INFO - [DEBUG] 开始等待 duration: 240s (240.0秒)
+2026-04-22 11:21:01 - chaos - INFO - 进程 kill 成功: Signal=15, PID=1
+2026-04-22 11:21:01 - chaos - INFO - [DEBUG] 故障注入成功
+2026-04-22 11:21:01 - chaos - INFO - [DEBUG] 故障ID: process_kill_dupf-sf-mq-proxy-0_ns-dupf_15_1_1776828060
+2026-04-22 11:21:01 - chaos - INFO - 记录故障：process_kill_dupf-sf-mq-proxy-0_ns-dupf_15_1_1776828060
+2026-04-22 11:21:01 - chaos - INFO - [DEBUG] 开始等待 duration: 240s (240.0秒)
+2026-04-22 11:25:08 - chaos - INFO - [DEBUG] duration 等待完成
+2026-04-22 11:25:08 - chaos - INFO - [DEBUG] 开始清理故障: process_kill_dupf-upc-76bbbd9fbb-9m6n7_ns-dupf_15_1_1776828060
+2026-04-22 11:25:08 - chaos - INFO - 进程故障自动恢复（进程守护自动拉起）: process_kill_dupf-upc-76bbbd9fbb-9m6n7_ns-dupf_15_1_1776828060
+2026-04-22 11:25:08 - chaos - INFO - [DEBUG] 故障清理成功: process_kill_dupf-upc-76bbbd9fbb-9m6n7_ns-dupf_15_1_1776828060
+2026-04-22 11:25:08 - chaos - INFO - 标记故障已恢复：process_kill_dupf-upc-76bbbd9fbb-9m6n7_ns-dupf_15_1_1776828060
+2026-04-22 11:25:08 - chaos - INFO - 任务执行成功: UPC Talker 进程杀除 (耗时: 250.28s)
+2026-04-22 11:25:08 - chaos - INFO - [DEBUG] duration 等待完成
+2026-04-22 11:25:08 - chaos - INFO - [DEBUG] 开始清理故障: process_kill_dupf-sf-mq-proxy-0_ns-dupf_15_1_1776828060
+2026-04-22 11:25:08 - chaos - INFO - 进程故障自动恢复（进程守护自动拉起）: process_kill_dupf-sf-mq-proxy-0_ns-dupf_15_1_1776828060
+2026-04-22 11:25:08 - chaos - INFO - [DEBUG] 故障清理成功: process_kill_dupf-sf-mq-proxy-0_ns-dupf_15_1_1776828060
+2026-04-22 11:25:08 - chaos - INFO - 标记故障已恢复：process_kill_dupf-sf-mq-proxy-0_ns-dupf_15_1_1776828060
+2026-04-22 11:25:08 - chaos - INFO - 任务执行成功: MQ Proxy 进程杀除 (耗时: 248.61s)
+2026-04-22 11:25:08 - chaos - INFO - 
+================================================================================
+                           Workflow Execution Report                            
+================================================================================
+Workflow ID    : upc_parallel_process_kill_001
+Workflow Name  : UPC 并行进程杀除工作流
+Status         : SUCCESS
+Start Time     : 2026-04-22 11:18:54
+End Time       : 2026-04-22 11:25:08
+Total Duration : 374.26s
+Success Rate   : 100.00%
+================================================================================
+
+Task Results:
+--------------------------------------------------------------------------------
+  [SUCCESS ] UPC Talker 进程杀除                Duration: 250.28s  Group: N/A
+  [SUCCESS ] MQ Proxy 进程杀除                  Duration: 248.61s  Group: N/A
+
+================================================================================
+Summary Statistics
+================================================================================
+Total Tasks    : 2
+Success        : 2
+Failed         : 0
+Timeout        : 0
+Skipped        : 0
+================================================================================
+2026-04-22 11:25:08 - chaos - INFO - 
+================================================================================
+2026-04-22 11:25:08 - chaos - INFO - 执行workflow: cases/upc/upc-talker_mq-proxy/workflow_parallel_loss_upc-talker_mq-proxy.yaml
+2026-04-22 11:25:08 - chaos - INFO - ================================================================================
+2026-04-22 11:25:08 - chaos - INFO - Successfully parsed workflow: upc_parallel_network_loss_001
+2026-04-22 11:25:08 - chaos - INFO - ============================================================
+2026-04-22 11:25:08 - chaos - INFO - 开始执行工作流: UPC 并行网络丢包工作流
+2026-04-22 11:25:08 - chaos - INFO - 工作流 ID: upc_parallel_network_loss_001
+2026-04-22 11:25:08 - chaos - INFO - 执行模式: parallel
+2026-04-22 11:25:08 - chaos - INFO - ============================================================
+2026-04-22 11:25:08 - chaos - INFO - 启动延迟 120.0s
+2026-04-22 11:27:13 - chaos - INFO - 执行计划: 共 1 层
+2026-04-22 11:27:13 - chaos - INFO - 
+============================================================
+2026-04-22 11:27:13 - chaos - INFO - 执行第 1/1 层，共 2 个任务
+2026-04-22 11:27:13 - chaos - INFO - ============================================================
+2026-04-22 11:27:13 - chaos - INFO - [DEBUG] 开始执行任务: UPC Talker 网络丢包 (loss_upc_talker)
+2026-04-22 11:27:13 - chaos - INFO - [DEBUG] 任务类型: network, 故障类型: loss
+2026-04-22 11:27:13 - chaos - INFO - [DEBUG] 目标: Pod: upc-talker
+2026-04-22 11:27:13 - chaos - INFO - [DEBUG] Duration: 240s, Loop: 1
+2026-04-22 11:27:13 - chaos - INFO - [DEBUG] 任务超时时间: 300.0s
+2026-04-22 11:27:13 - chaos - INFO - [DEBUG] ========== 开始执行 Case ==========
+2026-04-22 11:27:13 - chaos - INFO - [DEBUG] Case名称: upc_talker_loss
+2026-04-22 11:27:13 - chaos - INFO - [DEBUG] Case类型: network
+2026-04-22 11:27:13 - chaos - INFO - [DEBUG] 故障类型: loss
+2026-04-22 11:27:13 - chaos - INFO - [DEBUG] 环境: 1_ssh_remote
+2026-04-22 11:27:13 - chaos - INFO - [DEBUG] 执行 Case 迭代 1/1
+2026-04-22 11:27:13 - chaos - INFO - [DEBUG] 开始获取目标列表...
+2026-04-22 11:27:13 - chaos - INFO - 获取 UPC Pod 列表，namespace: ns-dupf, filter_type: upc-talker
+2026-04-22 11:27:14 - chaos - INFO - 随机选择 Pod: dupf-upc-76bbbd9fbb-9m6n7
+2026-04-22 11:27:14 - chaos - INFO - [DEBUG] 找到 1 个目标
+2026-04-22 11:27:14 - chaos - INFO - [DEBUG] ---------- 处理目标 1/1 ----------
+2026-04-22 11:27:14 - chaos - INFO - [DEBUG] 目标名称: dupf-upc-76bbbd9fbb-9m6n7
+2026-04-22 11:27:14 - chaos - INFO - [DEBUG] 目标节点: None
+2026-04-22 11:27:14 - chaos - INFO - [DEBUG] 创建故障注入器...
+2026-04-22 11:27:14 - chaos - INFO - [DEBUG] 准备注入故障...
+2026-04-22 11:27:14 - chaos - INFO - [DEBUG] 注入参数: {'fault_type': 'loss', 'correlation': ['30%', '90%'], 'percent': ['10%', '90%']}
+2026-04-22 11:27:14 - chaos - INFO - 获取 Pod dupf-upc-76bbbd9fbb-9m6n7 的 pause 容器 ID
+2026-04-22 11:27:14 - chaos - INFO - 获取 Pod dupf-upc-76bbbd9fbb-9m6n7 所在的节点，namespace: ns-dupf
+2026-04-22 11:27:14 - chaos - INFO - Pod dupf-upc-76bbbd9fbb-9m6n7 运行在节点 dupf04
+2026-04-22 11:27:14 - chaos - INFO - Pod dupf-upc-76bbbd9fbb-9m6n7 运行在节点 dupf04
+2026-04-22 11:27:14 - chaos - INFO - 找到节点 dupf04 对应的环境: 4_ssh_remote
+2026-04-22 11:27:14 - chaos - INFO - 解析后的 pause 容器 ID: bd0980982c58
+2026-04-22 11:27:14 - chaos - INFO - 获取容器的 PID
+2026-04-22 11:27:14 - chaos - INFO - 容器 ID: bd0980982c58
+2026-04-22 11:27:14 - chaos - INFO - 提取的容器 PID: 59383
+2026-04-22 11:27:14 - chaos - INFO - 为 Pod dupf-upc-76bbbd9fbb-9m6n7 注入网络丢包
+2026-04-22 11:27:14 - chaos - INFO - 丢包模型: random
+2026-04-22 11:27:14 - chaos - INFO - 丢包参数: {'percent': '16%'}
+2026-04-22 11:27:14 - chaos - INFO - ECN: False
+2026-04-22 11:27:14 - chaos - INFO - tc 命令: tc qdisc add dev eth0 root netem loss random 16%
+2026-04-22 11:27:14 - chaos - INFO - 网络丢包注入成功
+2026-04-22 11:27:14 - chaos - INFO - [DEBUG] 故障注入成功
+2026-04-22 11:27:14 - chaos - INFO - [DEBUG] 故障ID: loss_dupf-upc-76bbbd9fbb-9m6n7_ns-dupf_1776828434
+2026-04-22 11:27:14 - chaos - INFO - 记录故障：loss_dupf-upc-76bbbd9fbb-9m6n7_ns-dupf_1776828434
+2026-04-22 11:27:14 - chaos - INFO - [DEBUG] 开始等待 duration: 240s (240.0秒)
+2026-04-22 11:27:15 - chaos - INFO - [DEBUG] 开始执行任务: MQ Proxy 网络丢包 (loss_mq_proxy)
+2026-04-22 11:27:15 - chaos - INFO - [DEBUG] 任务类型: network, 故障类型: loss
+2026-04-22 11:27:15 - chaos - INFO - [DEBUG] 目标: Pod: mq-proxy
+2026-04-22 11:27:15 - chaos - INFO - [DEBUG] Duration: 240s, Loop: 1
+2026-04-22 11:27:15 - chaos - INFO - [DEBUG] 任务超时时间: 300.0s
+2026-04-22 11:27:15 - chaos - INFO - [DEBUG] ========== 开始执行 Case ==========
+2026-04-22 11:27:15 - chaos - INFO - [DEBUG] Case名称: mq_proxy_loss
+2026-04-22 11:27:15 - chaos - INFO - [DEBUG] Case类型: network
+2026-04-22 11:27:15 - chaos - INFO - [DEBUG] 故障类型: loss
+2026-04-22 11:27:15 - chaos - INFO - [DEBUG] 环境: 1_ssh_remote
+2026-04-22 11:27:15 - chaos - INFO - [DEBUG] 执行 Case 迭代 1/1
+2026-04-22 11:27:15 - chaos - INFO - [DEBUG] 开始获取目标列表...
+2026-04-22 11:27:15 - chaos - INFO - 根据名称匹配规则获取 Pod，pattern: mq-proxy, namespace: ns-dupf
+2026-04-22 11:27:15 - chaos - INFO - 找到包含匹配的 Pod: dupf-sf-mq-proxy-0
+2026-04-22 11:27:15 - chaos - INFO - 找到包含匹配的 Pod: dupf-sf-mq-proxy-1
+2026-04-22 11:27:15 - chaos - INFO - 找到包含匹配的 Pod: dupf-sf-mq-proxy-2
+2026-04-22 11:27:15 - chaos - INFO - 找到 3 个匹配的 Pod
+2026-04-22 11:27:15 - chaos - INFO - 随机选择 Pod: dupf-sf-mq-proxy-0
+2026-04-22 11:27:15 - chaos - INFO - [DEBUG] 找到 1 个目标
+2026-04-22 11:27:15 - chaos - INFO - [DEBUG] ---------- 处理目标 1/1 ----------
+2026-04-22 11:27:15 - chaos - INFO - [DEBUG] 目标名称: dupf-sf-mq-proxy-0
+2026-04-22 11:27:15 - chaos - INFO - [DEBUG] 目标节点: None
+2026-04-22 11:27:15 - chaos - INFO - [DEBUG] 创建故障注入器...
+2026-04-22 11:27:15 - chaos - INFO - [DEBUG] 准备注入故障...
+2026-04-22 11:27:15 - chaos - INFO - [DEBUG] 注入参数: {'fault_type': 'loss', 'correlation': ['30%', '90%'], 'percent': ['10%', '90%']}
+2026-04-22 11:27:15 - chaos - INFO - 获取 Pod dupf-sf-mq-proxy-0 的 pause 容器 ID
+2026-04-22 11:27:15 - chaos - INFO - 获取 Pod dupf-sf-mq-proxy-0 所在的节点，namespace: ns-dupf
+2026-04-22 11:27:15 - chaos - INFO - Pod dupf-sf-mq-proxy-0 运行在节点 dupf03
+2026-04-22 11:27:15 - chaos - INFO - Pod dupf-sf-mq-proxy-0 运行在节点 dupf03
+2026-04-22 11:27:15 - chaos - INFO - 找到节点 dupf03 对应的环境: 3_ssh_remote
+2026-04-22 11:27:15 - chaos - INFO - 解析后的 pause 容器 ID: d86b7ee1732f
+2026-04-22 11:27:15 - chaos - INFO - 获取容器的 PID
+2026-04-22 11:27:15 - chaos - INFO - 容器 ID: d86b7ee1732f
+2026-04-22 11:27:16 - chaos - INFO - 提取的容器 PID: 24411
+2026-04-22 11:27:16 - chaos - INFO - 为 Pod dupf-sf-mq-proxy-0 注入网络丢包
+2026-04-22 11:27:16 - chaos - INFO - 丢包模型: gemodel
+2026-04-22 11:27:16 - chaos - INFO - 丢包参数: {'p': '58%', 'pr': '76%', 'pr1-h': '68%', 'pr1-h1-k': '0.30%'}
+2026-04-22 11:27:16 - chaos - INFO - ECN: False
+2026-04-22 11:27:16 - chaos - INFO - tc 命令: tc qdisc add dev eth0 root netem loss gemodel 58% 76% 68% 0.30%
+2026-04-22 11:27:16 - chaos - INFO - 网络丢包注入成功
+2026-04-22 11:27:16 - chaos - INFO - [DEBUG] 故障注入成功
+2026-04-22 11:27:16 - chaos - INFO - [DEBUG] 故障ID: loss_dupf-sf-mq-proxy-0_ns-dupf_1776828435
+2026-04-22 11:27:16 - chaos - INFO - 记录故障：loss_dupf-sf-mq-proxy-0_ns-dupf_1776828435
+2026-04-22 11:27:16 - chaos - INFO - [DEBUG] 开始等待 duration: 240s (240.0秒)
+2026-04-22 11:31:24 - chaos - INFO - [DEBUG] duration 等待完成
+2026-04-22 11:31:24 - chaos - INFO - [DEBUG] 开始清理故障: loss_dupf-upc-76bbbd9fbb-9m6n7_ns-dupf_1776828434
+2026-04-22 11:31:24 - chaos - INFO - 获取 Pod dupf-upc-76bbbd9fbb-9m6n7 的 pause 容器 ID
+2026-04-22 11:31:24 - chaos - INFO - 获取 Pod dupf-upc-76bbbd9fbb-9m6n7 所在的节点，namespace: ns-dupf
+2026-04-22 11:31:24 - chaos - INFO - Pod dupf-upc-76bbbd9fbb-9m6n7 运行在节点 dupf04
+2026-04-22 11:31:24 - chaos - INFO - Pod dupf-upc-76bbbd9fbb-9m6n7 运行在节点 dupf04
+2026-04-22 11:31:24 - chaos - INFO - 找到节点 dupf04 对应的环境: 4_ssh_remote
+2026-04-22 11:31:24 - chaos - INFO - 解析后的 pause 容器 ID: bd0980982c58
+2026-04-22 11:31:24 - chaos - INFO - 获取容器的 PID
+2026-04-22 11:31:24 - chaos - INFO - 容器 ID: bd0980982c58
+2026-04-22 11:31:24 - chaos - INFO - 提取的容器 PID: 59383
+2026-04-22 11:31:24 - chaos - INFO - 恢复网络故障：loss_dupf-upc-76bbbd9fbb-9m6n7_ns-dupf_1776828434
+2026-04-22 11:31:24 - chaos - INFO - [DEBUG] 故障清理成功: loss_dupf-upc-76bbbd9fbb-9m6n7_ns-dupf_1776828434
+2026-04-22 11:31:24 - chaos - INFO - 标记故障已恢复：loss_dupf-upc-76bbbd9fbb-9m6n7_ns-dupf_1776828434
+2026-04-22 11:31:24 - chaos - INFO - 任务执行成功: UPC Talker 网络丢包 (耗时: 251.27s)
+2026-04-22 11:31:25 - chaos - INFO - [DEBUG] duration 等待完成
+2026-04-22 11:31:25 - chaos - INFO - [DEBUG] 开始清理故障: loss_dupf-sf-mq-proxy-0_ns-dupf_1776828435
+2026-04-22 11:31:25 - chaos - INFO - 获取 Pod dupf-sf-mq-proxy-0 的 pause 容器 ID
+2026-04-22 11:31:25 - chaos - INFO - 获取 Pod dupf-sf-mq-proxy-0 所在的节点，namespace: ns-dupf
+2026-04-22 11:31:25 - chaos - INFO - Pod dupf-sf-mq-proxy-0 运行在节点 dupf03
+2026-04-22 11:31:25 - chaos - INFO - Pod dupf-sf-mq-proxy-0 运行在节点 dupf03
+2026-04-22 11:31:25 - chaos - INFO - 找到节点 dupf03 对应的环境: 3_ssh_remote
+2026-04-22 11:31:26 - chaos - INFO - 解析后的 pause 容器 ID: d86b7ee1732f
+2026-04-22 11:31:26 - chaos - INFO - 获取容器的 PID
+2026-04-22 11:31:26 - chaos - INFO - 容器 ID: d86b7ee1732f
+2026-04-22 11:31:26 - chaos - INFO - 提取的容器 PID: 24411
+2026-04-22 11:31:26 - chaos - INFO - 恢复网络故障：loss_dupf-sf-mq-proxy-0_ns-dupf_1776828435
+2026-04-22 11:31:26 - chaos - INFO - [DEBUG] 故障清理成功: loss_dupf-sf-mq-proxy-0_ns-dupf_1776828435
+2026-04-22 11:31:26 - chaos - INFO - 标记故障已恢复：loss_dupf-sf-mq-proxy-0_ns-dupf_1776828435
+2026-04-22 11:31:26 - chaos - INFO - 任务执行成功: MQ Proxy 网络丢包 (耗时: 250.89s)
+2026-04-22 11:31:26 - chaos - INFO - 
+================================================================================
+                           Workflow Execution Report                            
+================================================================================
+Workflow ID    : upc_parallel_network_loss_001
+Workflow Name  : UPC 并行网络丢包工作流
+Status         : SUCCESS
+Start Time     : 2026-04-22 11:25:08
+End Time       : 2026-04-22 11:31:26
+Total Duration : 377.62s
+Success Rate   : 100.00%
+================================================================================
+
+Task Results:
+--------------------------------------------------------------------------------
+  [SUCCESS ] UPC Talker 网络丢包                Duration: 251.27s  Group: N/A
+  [SUCCESS ] MQ Proxy 网络丢包                  Duration: 250.89s  Group: N/A
+
+================================================================================
+Summary Statistics
+================================================================================
+Total Tasks    : 2
+Success        : 2
+Failed         : 0
+Timeout        : 0
+Skipped        : 0
+================================================================================
+2026-04-22 11:31:26 - chaos - INFO - ============================================================
+2026-04-22 11:31:26 - chaos - INFO - 执行 workflow 级别的 auto_clear
+2026-04-22 11:31:26 - chaos - INFO - ============================================================
+2026-04-22 11:31:26 - chaos - INFO - 需要清理的环境: 1_ssh_remote
+2026-04-22 11:31:26 - chaos - INFO - 清理环境 1_ssh_remote 的网络故障...
+2026-04-22 11:31:26 - chaos - INFO - 获取 Pod 列表，namespace: ns-dupf, nodename: dupf01
+2026-04-22 11:31:26 - chaos - INFO - 找到 9 个 Pod
+2026-04-22 11:31:26 - chaos - INFO - 找到 9 个 pod
+2026-04-22 11:31:26 - chaos - INFO - 清除 Pod dupf-etcd-2 的网络故障
+2026-04-22 11:31:26 - chaos - INFO - 命名空间: ns-dupf, 网络设备: eth0
+2026-04-22 11:31:26 - chaos - INFO - 获取 Pod dupf-etcd-2 的 pause 容器 ID
+2026-04-22 11:31:26 - chaos - INFO - 解析后的 pause 容器 ID: 1bb5152c1fb4
+2026-04-22 11:31:26 - chaos - INFO - 获取容器的 PID
+2026-04-22 11:31:26 - chaos - INFO - 容器 ID: 1bb5152c1fb4
+2026-04-22 11:31:26 - chaos - INFO - 提取的容器 PID: 11613
+2026-04-22 11:31:26 - chaos - INFO - Pod dupf-etcd-2 的网络故障清除成功
+2026-04-22 11:31:26 - chaos - INFO - 清除 Pod dupf-file-sync-28jxj 的网络故障
+2026-04-22 11:31:26 - chaos - INFO - 命名空间: ns-dupf, 网络设备: eth0
+2026-04-22 11:31:26 - chaos - INFO - 获取 Pod dupf-file-sync-28jxj 的 pause 容器 ID
+2026-04-22 11:31:26 - chaos - INFO - 解析后的 pause 容器 ID: 36fe0e8077e1
+2026-04-22 11:31:26 - chaos - INFO - 获取容器的 PID
+2026-04-22 11:31:26 - chaos - INFO - 容器 ID: 36fe0e8077e1
+2026-04-22 11:31:27 - chaos - INFO - 提取的容器 PID: 8777
+2026-04-22 11:31:27 - chaos - INFO - Pod dupf-file-sync-28jxj 的网络故障清除成功
+2026-04-22 11:31:27 - chaos - INFO - 清除 Pod dupf-node-monitor-bhxfz 的网络故障
+2026-04-22 11:31:27 - chaos - INFO - 命名空间: ns-dupf, 网络设备: eth0
+2026-04-22 11:31:27 - chaos - INFO - 获取 Pod dupf-node-monitor-bhxfz 的 pause 容器 ID
+2026-04-22 11:31:27 - chaos - INFO - 解析后的 pause 容器 ID: 3d5f66900124
+2026-04-22 11:31:27 - chaos - INFO - 获取容器的 PID
+2026-04-22 11:31:27 - chaos - INFO - 容器 ID: 3d5f66900124
+2026-04-22 11:31:27 - chaos - INFO - 提取的容器 PID: 8861
+2026-04-22 11:31:27 - chaos - INFO - Pod dupf-node-monitor-bhxfz 的网络故障清除成功
+2026-04-22 11:31:27 - chaos - INFO - 清除 Pod dupf-sdb-1 的网络故障
+2026-04-22 11:31:27 - chaos - INFO - 命名空间: ns-dupf, 网络设备: eth0
+2026-04-22 11:31:27 - chaos - INFO - 获取 Pod dupf-sdb-1 的 pause 容器 ID
+2026-04-22 11:31:27 - chaos - INFO - 解析后的 pause 容器 ID: 4df5dde3ef37
+2026-04-22 11:31:27 - chaos - INFO - 获取容器的 PID
+2026-04-22 11:31:27 - chaos - INFO - 容器 ID: 4df5dde3ef37
+2026-04-22 11:31:27 - chaos - INFO - 提取的容器 PID: 11627
+2026-04-22 11:31:27 - chaos - INFO - Pod dupf-sdb-1 的网络故障清除成功
+2026-04-22 11:31:27 - chaos - INFO - 清除 Pod dupf-upc-76bbbd9fbb-4svjq 的网络故障
+2026-04-22 11:31:27 - chaos - INFO - 命名空间: ns-dupf, 网络设备: eth0
+2026-04-22 11:31:27 - chaos - INFO - 获取 Pod dupf-upc-76bbbd9fbb-4svjq 的 pause 容器 ID
+2026-04-22 11:31:27 - chaos - INFO - 解析后的 pause 容器 ID: 56d7bdd89218
+2026-04-22 11:31:27 - chaos - INFO - 获取容器的 PID
+2026-04-22 11:31:27 - chaos - INFO - 容器 ID: 56d7bdd89218
+2026-04-22 11:31:27 - chaos - INFO - 提取的容器 PID: 43172
+2026-04-22 11:31:27 - chaos - INFO - Pod dupf-upc-76bbbd9fbb-4svjq 的网络故障清除成功
+2026-04-22 11:31:27 - chaos - INFO - 清除 Pod dupf-upc-76bbbd9fbb-zdkhc 的网络故障
+2026-04-22 11:31:27 - chaos - INFO - 命名空间: ns-dupf, 网络设备: eth0
+2026-04-22 11:31:27 - chaos - INFO - 获取 Pod dupf-upc-76bbbd9fbb-zdkhc 的 pause 容器 ID
+2026-04-22 11:31:28 - chaos - INFO - 解析后的 pause 容器 ID: ec4a2ea114d9
+2026-04-22 11:31:28 - chaos - INFO - 获取容器的 PID
+2026-04-22 11:31:28 - chaos - INFO - 容器 ID: ec4a2ea114d9
+2026-04-22 11:31:28 - chaos - INFO - 提取的容器 PID: 55971
+2026-04-22 11:31:28 - chaos - INFO - Pod dupf-upc-76bbbd9fbb-zdkhc 的网络故障清除成功
+2026-04-22 11:31:28 - chaos - INFO - 清除 Pod dupf-upu-dupf01-1-6965c9c89f-lxffq 的网络故障
+2026-04-22 11:31:28 - chaos - INFO - 命名空间: ns-dupf, 网络设备: eth0
+2026-04-22 11:31:28 - chaos - INFO - 获取 Pod dupf-upu-dupf01-1-6965c9c89f-lxffq 的 pause 容器 ID
+2026-04-22 11:31:28 - chaos - INFO - 解析后的 pause 容器 ID: 88eedc9fde73
+2026-04-22 11:31:28 - chaos - INFO - 获取容器的 PID
+2026-04-22 11:31:28 - chaos - INFO - 容器 ID: 88eedc9fde73
+2026-04-22 11:31:28 - chaos - INFO - 提取的容器 PID: 11648
+2026-04-22 11:31:28 - chaos - INFO - Pod dupf-upu-dupf01-1-6965c9c89f-lxffq 的网络故障清除成功
+2026-04-22 11:31:28 - chaos - INFO - 清除 Pod dupf-upu-dupf01-2-6f89cb4986-9tj76 的网络故障
+2026-04-22 11:31:28 - chaos - INFO - 命名空间: ns-dupf, 网络设备: eth0
+2026-04-22 11:31:28 - chaos - INFO - 获取 Pod dupf-upu-dupf01-2-6f89cb4986-9tj76 的 pause 容器 ID
+2026-04-22 11:31:28 - chaos - INFO - 解析后的 pause 容器 ID: 261918050cde
+2026-04-22 11:31:28 - chaos - INFO - 获取容器的 PID
+2026-04-22 11:31:28 - chaos - INFO - 容器 ID: 261918050cde
+2026-04-22 11:31:28 - chaos - INFO - 提取的容器 PID: 11620
+2026-04-22 11:31:28 - chaos - INFO - Pod dupf-upu-dupf01-2-6f89cb4986-9tj76 的网络故障清除成功
+2026-04-22 11:31:28 - chaos - INFO - 清除 Pod dupf-upu-dupf01-3-6d89b496f7-c58jx 的网络故障
+2026-04-22 11:31:28 - chaos - INFO - 命名空间: ns-dupf, 网络设备: eth0
+2026-04-22 11:31:28 - chaos - INFO - 获取 Pod dupf-upu-dupf01-3-6d89b496f7-c58jx 的 pause 容器 ID
+2026-04-22 11:31:28 - chaos - INFO - 解析后的 pause 容器 ID: 0a7f4ea53567
+2026-04-22 11:31:28 - chaos - INFO - 获取容器的 PID
+2026-04-22 11:31:28 - chaos - INFO - 容器 ID: 0a7f4ea53567
+2026-04-22 11:31:28 - chaos - INFO - 提取的容器 PID: 11606
+2026-04-22 11:31:29 - chaos - INFO - Pod dupf-upu-dupf01-3-6d89b496f7-c58jx 的网络故障清除成功
+2026-04-22 11:31:29 - chaos - INFO - 环境 1_ssh_remote 网络故障清除完成：成功 9, 失败 0
+2026-04-22 11:31:29 - chaos - INFO - ============================================================
+2026-04-22 11:31:29 - chaos - INFO - workflow 级别的 auto_clear 完成
+2026-04-22 11:31:29 - chaos - INFO - ============================================================
+2026-04-22 11:31:29 - chaos - INFO - 
+================================================================================
+2026-04-22 11:31:29 - chaos - INFO - 执行workflow: cases/upc/upc-talker_mq-proxy/workflow_parallel_reorder_upc-talker_mq-proxy.yaml
+2026-04-22 11:31:29 - chaos - INFO - ================================================================================
+2026-04-22 11:31:29 - chaos - INFO - Successfully parsed workflow: upc_parallel_network_reorder_001
+2026-04-22 11:31:29 - chaos - INFO - ============================================================
+2026-04-22 11:31:29 - chaos - INFO - 开始执行工作流: UPC 并行网络数据包重排序工作流
+2026-04-22 11:31:29 - chaos - INFO - 工作流 ID: upc_parallel_network_reorder_001
+2026-04-22 11:31:29 - chaos - INFO - 执行模式: parallel
+2026-04-22 11:31:29 - chaos - INFO - ============================================================
+2026-04-22 11:31:29 - chaos - INFO - 启动延迟 120.0s
+2026-04-22 11:33:33 - chaos - INFO - 执行计划: 共 1 层
+2026-04-22 11:33:33 - chaos - INFO - 
+============================================================
+2026-04-22 11:33:33 - chaos - INFO - 执行第 1/1 层，共 2 个任务
+2026-04-22 11:33:33 - chaos - INFO - ============================================================
+2026-04-22 11:33:33 - chaos - INFO - [DEBUG] 开始执行任务: UPC Talker 数据包重排序 (reorder_upc_talker)
+2026-04-22 11:33:33 - chaos - INFO - [DEBUG] 任务类型: network, 故障类型: reorder
+2026-04-22 11:33:33 - chaos - INFO - [DEBUG] 目标: Pod: upc-talker
+2026-04-22 11:33:33 - chaos - INFO - [DEBUG] Duration: 240s, Loop: 1
+2026-04-22 11:33:33 - chaos - INFO - [DEBUG] 任务超时时间: 300.0s
+2026-04-22 11:33:33 - chaos - INFO - [DEBUG] ========== 开始执行 Case ==========
+2026-04-22 11:33:33 - chaos - INFO - [DEBUG] Case名称: upc_talker_reorder
+2026-04-22 11:33:33 - chaos - INFO - [DEBUG] Case类型: network
+2026-04-22 11:33:33 - chaos - INFO - [DEBUG] 故障类型: reorder
+2026-04-22 11:33:33 - chaos - INFO - [DEBUG] 环境: 1_ssh_remote
+2026-04-22 11:33:33 - chaos - INFO - [DEBUG] 执行 Case 迭代 1/1
+2026-04-22 11:33:33 - chaos - INFO - [DEBUG] 开始获取目标列表...
+2026-04-22 11:33:33 - chaos.utils.remote - INFO - 连接 root@10.230.246.167:50163 不可用，需要重连
+2026-04-22 11:33:33 - chaos.utils.remote - INFO - 尝试重连: root@10.230.246.167:50163
+2026-04-22 11:33:33 - chaos.utils.remote - INFO - SSH连接建立成功: 10.230.246.167:50163, 耗时: 0.10s
+2026-04-22 11:33:33 - chaos.utils.remote - INFO - 重连成功: root@10.230.246.167:50163
+2026-04-22 11:33:33 - chaos - INFO - 获取 UPC Pod 列表，namespace: ns-dupf, filter_type: upc-talker
+2026-04-22 11:33:35 - chaos - INFO - [DEBUG] 开始执行任务: MQ Proxy 数据包重排序 (reorder_mq_proxy)
+2026-04-22 11:33:35 - chaos - INFO - [DEBUG] 任务类型: network, 故障类型: reorder
+2026-04-22 11:33:35 - chaos - INFO - [DEBUG] 目标: Pod: mq-proxy
+2026-04-22 11:33:35 - chaos - INFO - [DEBUG] Duration: 240s, Loop: 1
+2026-04-22 11:33:35 - chaos - INFO - [DEBUG] 任务超时时间: 300.0s
+2026-04-22 11:33:35 - chaos - INFO - [DEBUG] ========== 开始执行 Case ==========
+2026-04-22 11:33:35 - chaos - INFO - [DEBUG] Case名称: mq_proxy_reorder
+2026-04-22 11:33:35 - chaos - INFO - [DEBUG] Case类型: network
+2026-04-22 11:33:35 - chaos - INFO - [DEBUG] 故障类型: reorder
+2026-04-22 11:33:35 - chaos - INFO - [DEBUG] 环境: 1_ssh_remote
+2026-04-22 11:33:35 - chaos - INFO - [DEBUG] 执行 Case 迭代 1/1
+2026-04-22 11:33:35 - chaos - INFO - [DEBUG] 开始获取目标列表...
+2026-04-22 11:33:35 - chaos - INFO - 根据名称匹配规则获取 Pod，pattern: mq-proxy, namespace: ns-dupf
+2026-04-22 11:33:35 - chaos - INFO - 随机选择 Pod: dupf-upc-76bbbd9fbb-9m6n7
+2026-04-22 11:33:35 - chaos - INFO - [DEBUG] 找到 1 个目标
+2026-04-22 11:33:35 - chaos - INFO - [DEBUG] ---------- 处理目标 1/1 ----------
+2026-04-22 11:33:35 - chaos - INFO - [DEBUG] 目标名称: dupf-upc-76bbbd9fbb-9m6n7
+2026-04-22 11:33:35 - chaos - INFO - [DEBUG] 目标节点: None
+2026-04-22 11:33:35 - chaos - INFO - [DEBUG] 创建故障注入器...
+2026-04-22 11:33:35 - chaos - INFO - [DEBUG] 准备注入故障...
+2026-04-22 11:33:35 - chaos - INFO - [DEBUG] 注入参数: {'fault_type': 'reorder', 'correlation': ['10%', '90%'], 'gap': [1, 10], 'percent': ['0.5%', '10%']}
+2026-04-22 11:33:35 - chaos - INFO - 获取 Pod dupf-upc-76bbbd9fbb-9m6n7 的 pause 容器 ID
+2026-04-22 11:33:35 - chaos - INFO - 获取 Pod dupf-upc-76bbbd9fbb-9m6n7 所在的节点，namespace: ns-dupf
+2026-04-22 11:33:35 - chaos - INFO - 找到包含匹配的 Pod: dupf-sf-mq-proxy-0
+2026-04-22 11:33:35 - chaos - INFO - 找到包含匹配的 Pod: dupf-sf-mq-proxy-1
+2026-04-22 11:33:35 - chaos - INFO - 找到包含匹配的 Pod: dupf-sf-mq-proxy-2
+2026-04-22 11:33:35 - chaos - INFO - 找到 3 个匹配的 Pod
+2026-04-22 11:33:35 - chaos - INFO - 随机选择 Pod: dupf-sf-mq-proxy-2
+2026-04-22 11:33:35 - chaos - INFO - [DEBUG] 找到 1 个目标
+2026-04-22 11:33:35 - chaos - INFO - [DEBUG] ---------- 处理目标 1/1 ----------
+2026-04-22 11:33:35 - chaos - INFO - [DEBUG] 目标名称: dupf-sf-mq-proxy-2
+2026-04-22 11:33:35 - chaos - INFO - [DEBUG] 目标节点: None
+2026-04-22 11:33:35 - chaos - INFO - [DEBUG] 创建故障注入器...
+2026-04-22 11:33:35 - chaos - INFO - [DEBUG] 准备注入故障...
+2026-04-22 11:33:35 - chaos - INFO - [DEBUG] 注入参数: {'fault_type': 'reorder', 'correlation': ['10%', '90%'], 'gap': [1, 10], 'percent': ['0.5%', '10%']}
+2026-04-22 11:33:35 - chaos - INFO - 获取 Pod dupf-sf-mq-proxy-2 的 pause 容器 ID
+2026-04-22 11:33:35 - chaos - INFO - 获取 Pod dupf-sf-mq-proxy-2 所在的节点，namespace: ns-dupf
+2026-04-22 11:33:35 - chaos - INFO - Pod dupf-upc-76bbbd9fbb-9m6n7 运行在节点 dupf04
+2026-04-22 11:33:35 - chaos - INFO - Pod dupf-upc-76bbbd9fbb-9m6n7 运行在节点 dupf04
+2026-04-22 11:33:35 - chaos - INFO - 找到节点 dupf04 对应的环境: 4_ssh_remote
+2026-04-22 11:33:35 - chaos - INFO - 解析后的 pause 容器 ID: bd0980982c58
+2026-04-22 11:33:35 - chaos - INFO - 获取容器的 PID
+2026-04-22 11:33:35 - chaos - INFO - 容器 ID: bd0980982c58
+2026-04-22 11:33:35 - chaos - INFO - Pod dupf-sf-mq-proxy-2 运行在节点 dupf02
+2026-04-22 11:33:35 - chaos - INFO - Pod dupf-sf-mq-proxy-2 运行在节点 dupf02
+2026-04-22 11:33:35 - chaos - INFO - 找到节点 dupf02 对应的环境: 2_ssh_remote
+2026-04-22 11:33:35 - chaos - INFO - 提取的容器 PID: 59383
+2026-04-22 11:33:35 - chaos - INFO - 为 Pod dupf-upc-76bbbd9fbb-9m6n7 注入网络数据包重排序
+2026-04-22 11:33:35 - chaos - INFO - 重排序比例: 5.29%
+2026-04-22 11:33:35 - chaos - INFO - 相关性: 77%
+2026-04-22 11:33:35 - chaos - INFO - Gap: 2
+2026-04-22 11:33:35 - chaos - INFO - tc 命令: tc qdisc add dev eth0 root netem delay 100ms reorder 5.29% 77% gap 2
+2026-04-22 11:33:35 - chaos - INFO - 网络数据包重排序注入成功
+2026-04-22 11:33:35 - chaos - INFO - [DEBUG] 故障注入成功
+2026-04-22 11:33:35 - chaos - INFO - [DEBUG] 故障ID: reorder_dupf-upc-76bbbd9fbb-9m6n7_ns-dupf_1776828815
+2026-04-22 11:33:35 - chaos - INFO - 记录故障：reorder_dupf-upc-76bbbd9fbb-9m6n7_ns-dupf_1776828815
+2026-04-22 11:33:35 - chaos - INFO - [DEBUG] 开始等待 duration: 240s (240.0秒)
+2026-04-22 11:33:35 - chaos - INFO - 解析后的 pause 容器 ID: cb4782353c3b
+2026-04-22 11:33:35 - chaos - INFO - 获取容器的 PID
+2026-04-22 11:33:35 - chaos - INFO - 容器 ID: cb4782353c3b
+2026-04-22 11:33:35 - chaos - INFO - 提取的容器 PID: 47656
+2026-04-22 11:33:35 - chaos - INFO - 为 Pod dupf-sf-mq-proxy-2 注入网络数据包重排序
+2026-04-22 11:33:35 - chaos - INFO - 重排序比例: 5.61%
+2026-04-22 11:33:35 - chaos - INFO - 相关性: 32%
+2026-04-22 11:33:35 - chaos - INFO - Gap: 5
+2026-04-22 11:33:35 - chaos - INFO - tc 命令: tc qdisc add dev eth0 root netem delay 100ms reorder 5.61% 32% gap 5
+2026-04-22 11:33:36 - chaos - INFO - 网络数据包重排序注入成功
+2026-04-22 11:33:36 - chaos - INFO - [DEBUG] 故障注入成功
+2026-04-22 11:33:36 - chaos - INFO - [DEBUG] 故障ID: reorder_dupf-sf-mq-proxy-2_ns-dupf_1776828815
+2026-04-22 11:33:36 - chaos - INFO - 记录故障：reorder_dupf-sf-mq-proxy-2_ns-dupf_1776828815
+2026-04-22 11:33:36 - chaos - INFO - [DEBUG] 开始等待 duration: 240s (240.0秒)
+2026-04-22 11:37:45 - chaos - INFO - [DEBUG] duration 等待完成
+2026-04-22 11:37:45 - chaos - INFO - [DEBUG] 开始清理故障: reorder_dupf-upc-76bbbd9fbb-9m6n7_ns-dupf_1776828815
+2026-04-22 11:37:45 - chaos - INFO - 获取 Pod dupf-upc-76bbbd9fbb-9m6n7 的 pause 容器 ID
+2026-04-22 11:37:45 - chaos - INFO - 获取 Pod dupf-upc-76bbbd9fbb-9m6n7 所在的节点，namespace: ns-dupf
+2026-04-22 11:37:45 - chaos - INFO - [DEBUG] duration 等待完成
+2026-04-22 11:37:45 - chaos - INFO - [DEBUG] 开始清理故障: reorder_dupf-sf-mq-proxy-2_ns-dupf_1776828815
+2026-04-22 11:37:45 - chaos - INFO - 获取 Pod dupf-sf-mq-proxy-2 的 pause 容器 ID
+2026-04-22 11:37:45 - chaos - INFO - 获取 Pod dupf-sf-mq-proxy-2 所在的节点，namespace: ns-dupf
+2026-04-22 11:37:45 - chaos - INFO - Pod dupf-upc-76bbbd9fbb-9m6n7 运行在节点 dupf04
+2026-04-22 11:37:45 - chaos - INFO - Pod dupf-upc-76bbbd9fbb-9m6n7 运行在节点 dupf04
+2026-04-22 11:37:45 - chaos - INFO - 找到节点 dupf04 对应的环境: 4_ssh_remote
+2026-04-22 11:37:45 - chaos - INFO - 解析后的 pause 容器 ID: bd0980982c58
+2026-04-22 11:37:45 - chaos - INFO - 获取容器的 PID
+2026-04-22 11:37:45 - chaos - INFO - 容器 ID: bd0980982c58
+2026-04-22 11:37:45 - chaos - INFO - Pod dupf-sf-mq-proxy-2 运行在节点 dupf02
+2026-04-22 11:37:45 - chaos - INFO - Pod dupf-sf-mq-proxy-2 运行在节点 dupf02
+2026-04-22 11:37:45 - chaos - INFO - 找到节点 dupf02 对应的环境: 2_ssh_remote
+2026-04-22 11:37:45 - chaos - INFO - 提取的容器 PID: 59383
+2026-04-22 11:37:45 - chaos - INFO - 恢复网络故障：reorder_dupf-upc-76bbbd9fbb-9m6n7_ns-dupf_1776828815
+2026-04-22 11:37:46 - chaos - INFO - [DEBUG] 故障清理成功: reorder_dupf-upc-76bbbd9fbb-9m6n7_ns-dupf_1776828815
+2026-04-22 11:37:46 - chaos - INFO - 标记故障已恢复：reorder_dupf-upc-76bbbd9fbb-9m6n7_ns-dupf_1776828815
+2026-04-22 11:37:46 - chaos - INFO - 任务执行成功: UPC Talker 数据包重排序 (耗时: 253.01s)
+2026-04-22 11:37:46 - chaos - INFO - 解析后的 pause 容器 ID: cb4782353c3b
+2026-04-22 11:37:46 - chaos - INFO - 获取容器的 PID
+2026-04-22 11:37:46 - chaos - INFO - 容器 ID: cb4782353c3b
+2026-04-22 11:37:46 - chaos - INFO - 提取的容器 PID: 47656
+2026-04-22 11:37:46 - chaos - INFO - 恢复网络故障：reorder_dupf-sf-mq-proxy-2_ns-dupf_1776828815
+2026-04-22 11:37:46 - chaos - INFO - [DEBUG] 故障清理成功: reorder_dupf-sf-mq-proxy-2_ns-dupf_1776828815
+2026-04-22 11:37:46 - chaos - INFO - 标记故障已恢复：reorder_dupf-sf-mq-proxy-2_ns-dupf_1776828815
+2026-04-22 11:37:46 - chaos - INFO - 任务执行成功: MQ Proxy 数据包重排序 (耗时: 251.18s)
+2026-04-22 11:37:46 - chaos - INFO - 
+================================================================================
+                           Workflow Execution Report                            
+================================================================================
+Workflow ID    : upc_parallel_network_reorder_001
+Workflow Name  : UPC 并行网络数据包重排序工作流
+Status         : SUCCESS
+Start Time     : 2026-04-22 11:31:29
+End Time       : 2026-04-22 11:37:46
+Total Duration : 377.19s
+Success Rate   : 100.00%
+================================================================================
+
+Task Results:
+--------------------------------------------------------------------------------
+  [SUCCESS ] UPC Talker 数据包重排序              Duration: 253.01s  Group: N/A
+  [SUCCESS ] MQ Proxy 数据包重排序                Duration: 251.18s  Group: N/A
+
+================================================================================
+Summary Statistics
+================================================================================
+Total Tasks    : 2
+Success        : 2
+Failed         : 0
+Timeout        : 0
+Skipped        : 0
+================================================================================
+2026-04-22 11:37:46 - chaos - INFO - ============================================================
+2026-04-22 11:37:46 - chaos - INFO - 执行 workflow 级别的 auto_clear
+2026-04-22 11:37:46 - chaos - INFO - ============================================================
+2026-04-22 11:37:46 - chaos - INFO - 需要清理的环境: 1_ssh_remote
+2026-04-22 11:37:46 - chaos - INFO - 清理环境 1_ssh_remote 的网络故障...
+2026-04-22 11:37:46 - chaos - INFO - 获取 Pod 列表，namespace: ns-dupf, nodename: dupf01
+2026-04-22 11:37:46 - chaos - INFO - 找到 9 个 Pod
+2026-04-22 11:37:46 - chaos - INFO - 找到 9 个 pod
+2026-04-22 11:37:46 - chaos - INFO - 清除 Pod dupf-etcd-2 的网络故障
+2026-04-22 11:37:46 - chaos - INFO - 命名空间: ns-dupf, 网络设备: eth0
+2026-04-22 11:37:46 - chaos - INFO - 获取 Pod dupf-etcd-2 的 pause 容器 ID
+2026-04-22 11:37:46 - chaos - INFO - 解析后的 pause 容器 ID: 1bb5152c1fb4
+2026-04-22 11:37:46 - chaos - INFO - 获取容器的 PID
+2026-04-22 11:37:46 - chaos - INFO - 容器 ID: 1bb5152c1fb4
+2026-04-22 11:37:46 - chaos - INFO - 提取的容器 PID: 11613
+2026-04-22 11:37:46 - chaos - INFO - Pod dupf-etcd-2 的网络故障清除成功
+2026-04-22 11:37:46 - chaos - INFO - 清除 Pod dupf-file-sync-28jxj 的网络故障
+2026-04-22 11:37:46 - chaos - INFO - 命名空间: ns-dupf, 网络设备: eth0
+2026-04-22 11:37:46 - chaos - INFO - 获取 Pod dupf-file-sync-28jxj 的 pause 容器 ID
+2026-04-22 11:37:46 - chaos - INFO - 解析后的 pause 容器 ID: 36fe0e8077e1
+2026-04-22 11:37:46 - chaos - INFO - 获取容器的 PID
+2026-04-22 11:37:46 - chaos - INFO - 容器 ID: 36fe0e8077e1
+2026-04-22 11:37:47 - chaos - INFO - 提取的容器 PID: 8777
+2026-04-22 11:37:47 - chaos - INFO - Pod dupf-file-sync-28jxj 的网络故障清除成功
+2026-04-22 11:37:47 - chaos - INFO - 清除 Pod dupf-node-monitor-bhxfz 的网络故障
+2026-04-22 11:37:47 - chaos - INFO - 命名空间: ns-dupf, 网络设备: eth0
+2026-04-22 11:37:47 - chaos - INFO - 获取 Pod dupf-node-monitor-bhxfz 的 pause 容器 ID
+2026-04-22 11:37:47 - chaos - INFO - 解析后的 pause 容器 ID: 3d5f66900124
+2026-04-22 11:37:47 - chaos - INFO - 获取容器的 PID
+2026-04-22 11:37:47 - chaos - INFO - 容器 ID: 3d5f66900124
+2026-04-22 11:37:47 - chaos - INFO - 提取的容器 PID: 8861
+2026-04-22 11:37:47 - chaos - INFO - Pod dupf-node-monitor-bhxfz 的网络故障清除成功
+2026-04-22 11:37:47 - chaos - INFO - 清除 Pod dupf-sdb-1 的网络故障
+2026-04-22 11:37:47 - chaos - INFO - 命名空间: ns-dupf, 网络设备: eth0
+2026-04-22 11:37:47 - chaos - INFO - 获取 Pod dupf-sdb-1 的 pause 容器 ID
+2026-04-22 11:37:47 - chaos - INFO - 解析后的 pause 容器 ID: 4df5dde3ef37
+2026-04-22 11:37:47 - chaos - INFO - 获取容器的 PID
+2026-04-22 11:37:47 - chaos - INFO - 容器 ID: 4df5dde3ef37
+2026-04-22 11:37:47 - chaos - INFO - 提取的容器 PID: 11627
+2026-04-22 11:37:47 - chaos - INFO - Pod dupf-sdb-1 的网络故障清除成功
+2026-04-22 11:37:47 - chaos - INFO - 清除 Pod dupf-upc-76bbbd9fbb-4svjq 的网络故障
+2026-04-22 11:37:47 - chaos - INFO - 命名空间: ns-dupf, 网络设备: eth0
+2026-04-22 11:37:47 - chaos - INFO - 获取 Pod dupf-upc-76bbbd9fbb-4svjq 的 pause 容器 ID
+2026-04-22 11:37:47 - chaos - INFO - 解析后的 pause 容器 ID: 56d7bdd89218
+2026-04-22 11:37:47 - chaos - INFO - 获取容器的 PID
+2026-04-22 11:37:47 - chaos - INFO - 容器 ID: 56d7bdd89218
+2026-04-22 11:37:47 - chaos - INFO - 提取的容器 PID: 43172
+2026-04-22 11:37:47 - chaos - INFO - Pod dupf-upc-76bbbd9fbb-4svjq 的网络故障清除成功
+2026-04-22 11:37:47 - chaos - INFO - 清除 Pod dupf-upc-76bbbd9fbb-zdkhc 的网络故障
+2026-04-22 11:37:47 - chaos - INFO - 命名空间: ns-dupf, 网络设备: eth0
+2026-04-22 11:37:47 - chaos - INFO - 获取 Pod dupf-upc-76bbbd9fbb-zdkhc 的 pause 容器 ID
+2026-04-22 11:37:48 - chaos - INFO - 解析后的 pause 容器 ID: ec4a2ea114d9
+2026-04-22 11:37:48 - chaos - INFO - 获取容器的 PID
+2026-04-22 11:37:48 - chaos - INFO - 容器 ID: ec4a2ea114d9
+2026-04-22 11:37:48 - chaos - INFO - 提取的容器 PID: 55971
+2026-04-22 11:37:48 - chaos - INFO - Pod dupf-upc-76bbbd9fbb-zdkhc 的网络故障清除成功
+2026-04-22 11:37:48 - chaos - INFO - 清除 Pod dupf-upu-dupf01-1-6965c9c89f-lxffq 的网络故障
+2026-04-22 11:37:48 - chaos - INFO - 命名空间: ns-dupf, 网络设备: eth0
+2026-04-22 11:37:48 - chaos - INFO - 获取 Pod dupf-upu-dupf01-1-6965c9c89f-lxffq 的 pause 容器 ID
+2026-04-22 11:37:48 - chaos - INFO - 解析后的 pause 容器 ID: 88eedc9fde73
+2026-04-22 11:37:48 - chaos - INFO - 获取容器的 PID
+2026-04-22 11:37:48 - chaos - INFO - 容器 ID: 88eedc9fde73
+2026-04-22 11:37:48 - chaos - INFO - 提取的容器 PID: 11648
+2026-04-22 11:37:48 - chaos - INFO - Pod dupf-upu-dupf01-1-6965c9c89f-lxffq 的网络故障清除成功
+2026-04-22 11:37:48 - chaos - INFO - 清除 Pod dupf-upu-dupf01-2-6f89cb4986-9tj76 的网络故障
+2026-04-22 11:37:48 - chaos - INFO - 命名空间: ns-dupf, 网络设备: eth0
+2026-04-22 11:37:48 - chaos - INFO - 获取 Pod dupf-upu-dupf01-2-6f89cb4986-9tj76 的 pause 容器 ID
+2026-04-22 11:37:48 - chaos - INFO - 解析后的 pause 容器 ID: 261918050cde
+2026-04-22 11:37:48 - chaos - INFO - 获取容器的 PID
+2026-04-22 11:37:48 - chaos - INFO - 容器 ID: 261918050cde
+2026-04-22 11:37:48 - chaos - INFO - 提取的容器 PID: 11620
+2026-04-22 11:37:48 - chaos - INFO - Pod dupf-upu-dupf01-2-6f89cb4986-9tj76 的网络故障清除成功
+2026-04-22 11:37:48 - chaos - INFO - 清除 Pod dupf-upu-dupf01-3-6d89b496f7-c58jx 的网络故障
+2026-04-22 11:37:48 - chaos - INFO - 命名空间: ns-dupf, 网络设备: eth0
+2026-04-22 11:37:48 - chaos - INFO - 获取 Pod dupf-upu-dupf01-3-6d89b496f7-c58jx 的 pause 容器 ID
+2026-04-22 11:37:48 - chaos - INFO - 解析后的 pause 容器 ID: 0a7f4ea53567
+2026-04-22 11:37:48 - chaos - INFO - 获取容器的 PID
+2026-04-22 11:37:48 - chaos - INFO - 容器 ID: 0a7f4ea53567
+2026-04-22 11:37:48 - chaos - INFO - 提取的容器 PID: 11606
+2026-04-22 11:37:49 - chaos - INFO - Pod dupf-upu-dupf01-3-6d89b496f7-c58jx 的网络故障清除成功
+2026-04-22 11:37:49 - chaos - INFO - 环境 1_ssh_remote 网络故障清除完成：成功 9, 失败 0
+2026-04-22 11:37:49 - chaos - INFO - ============================================================
+2026-04-22 11:37:49 - chaos - INFO - workflow 级别的 auto_clear 完成
+2026-04-22 11:37:49 - chaos - INFO - ============================================================
+2026-04-22 11:37:49 - chaos - INFO - 
+================================================================================
+2026-04-22 11:37:49 - chaos - INFO - 执行workflow: cases/upc/upc-talker_mq-proxy/workflow_parallel_stop_upc-talker_mq-proxy.yaml
+2026-04-22 11:37:49 - chaos - INFO - ================================================================================
+2026-04-22 11:37:49 - chaos - INFO - Successfully parsed workflow: upc_parallel_pod_stop_001
+2026-04-22 11:37:49 - chaos - INFO - ============================================================
+2026-04-22 11:37:49 - chaos - INFO - 开始执行工作流: UPC 并行 Pod 停止工作流
+2026-04-22 11:37:49 - chaos - INFO - 工作流 ID: upc_parallel_pod_stop_001
+2026-04-22 11:37:49 - chaos - INFO - 执行模式: parallel
+2026-04-22 11:37:49 - chaos - INFO - ============================================================
+2026-04-22 11:37:49 - chaos - INFO - 启动延迟 120.0s
