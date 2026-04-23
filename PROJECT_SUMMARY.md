@@ -4,7 +4,7 @@
 2026-03-24
 
 ## 最后更新时间
-2026-04-14
+2026-04-22
 
 ## 项目位置
 `/home/gsta/chaos_oop_design/`
@@ -720,4 +720,45 @@ success, error = PermissionManager.safe_write_file("/path/to/file", content)
 #### 3. 文档更新
 - 更新 `README.md`，添加了 `auto_clear` 配置说明
 - 更新 `PROJECT_SUMMARY.md`，记录了本次更新内容
-3. 完善文档和示例
+
+### 2026-04-22 更新
+
+#### 1. IPMI 工具支持
+- **新增故障类型**：`ipmitool`，支持通过 BMC 远程控制服务器电源
+- **支持的故障类型**：
+  - `soft`: 软关机（ACPI 关机）
+  - `off`: 强制关机
+  - `on`: 开机
+  - `reset`: 重启
+  - `cycle`: 电源循环
+  - `status`: 查询电源状态
+  - `warm`: BMC 热重启
+  - `cold`: BMC 冷重启
+- **配置支持**：
+  - 在 `config.yaml` 中添加 `bmc_environments` 配置
+  - 在 `ConfigManager` 中添加 `get_bmc_environment()` 方法
+  - 在 `CaseConfig` 中添加 `ipmitool` 类型支持
+- **新增文件**：
+  - `cases/computer/workflows_ipmitool_off_on.yaml` - BMC 串行关机开机工作流
+  - `cases/computer/workflows_ipmitool_soft_on.yaml` - BMC 串行软关机开机工作流
+- **影响范围**：
+  - `chaos/config.py` - 添加 BMC 环境配置支持
+  - `chaos/case/base.py` - 添加 ipmitool 类型验证
+  - `chaos/workflow/executor.py` - 添加 ipmitool_match 匹配逻辑
+
+#### 2. SSH 连接池优化
+- **连接超时双重保护**：Socket 级 + Paramiko 级超时控制
+- **熔断器机制**：防止故障级联，支持 CLOSED/OPEN/HALF_OPEN 三种状态
+- **后台健康检查线程**：定期检测连接健康状态
+- **心跳保活机制**：防止 SSH 连接因空闲被断开
+- **连接时间监控**：记录连接建立耗时
+- **连接池预热功能**：提前建立连接，减少首次使用延迟
+- **单元测试**：`tests/test_remote_optimized.py`
+
+#### 3. YAML 解析问题修复
+- **问题**：YAML 中 `on` 和 `off` 被解析为布尔值 `True` 和 `False`
+- **解决方案**：在 YAML 文件中使用引号包裹：`fault_type: "on"` 或 `fault_type: "off"`
+
+#### 4. 文档更新
+- 更新 `README.md`，添加 IPMI 工具故障参数说明
+- 更新 `PROJECT_SUMMARY.md`，记录本次更新内容

@@ -349,6 +349,50 @@ computer_match:
 - 建议在测试环境中谨慎使用
 - 支持同时重启多台物理服务器
 
+#### IPMI 工具故障参数 (type: ipmitool)
+
+```yaml
+type: ipmitool
+fault_type: "on"              # 故障类型：soft/off/on/reset/cycle/status/warm/cold
+ipmitool_match:
+  name:                       # BMC 名称列表（对应 config.yaml 中的 bmc_environments）
+    - bmc_remote1
+    - bmc_remote2
+```
+
+**fault_type 可选值：**
+| 故障类型 | 说明 | 命令 |
+|----------|------|------|
+| `soft` | 软关机（ACPI 关机） | `ipmitool chassis power soft` |
+| `off` | 强制关机 | `ipmitool chassis power off` |
+| `on` | 开机 | `ipmitool chassis power on` |
+| `reset` | 重启 | `ipmitool chassis power reset` |
+| `cycle` | 电源循环 | `ipmitool chassis power cycle` |
+| `status` | 查询电源状态 | `ipmitool chassis power status` |
+| `warm` | BMC 热重启 | `ipmitool mc reset warm` |
+| `cold` | BMC 冷重启 | `ipmitool mc reset cold` |
+
+**ipmitool_match 参数：**
+- `name`: BMC 名称列表，对应 `config.yaml` 中 `bmc_environments` 定义的 BMC 配置
+  - 支持单个 BMC：`name: bmc_remote1`
+  - 支持多个 BMC：`name: [bmc_remote1, bmc_remote2]`
+
+**BMC 环境配置 (config.yaml)：**
+```yaml
+bmc_environments:
+  bmc_remote1:
+    ip: "10.230.246.175"      # BMC IP 地址
+    user: "admin"             # BMC 用户名
+    passwd: "admin"           # BMC 密码
+```
+
+**注意事项：**
+- `on` 和 `off` 在 YAML 中是布尔值别名，需要用引号包裹：`fault_type: "on"` 或 `fault_type: "off"`
+- `off` 操作会立即切断电源，可能导致数据丢失
+- `soft` 操作发送 ACPI 关机信号，让操作系统优雅关闭
+- 多个 BMC 会并发执行命令
+- 确保本地已安装 ipmitool 工具
+
 #### 进程故障参数 (type: process)
 
 ```yaml

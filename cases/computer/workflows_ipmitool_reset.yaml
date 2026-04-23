@@ -1,0 +1,64 @@
+# BMC 串行重置工作流
+# 依次对 bmc_remote1, bmc_remote2, bmc_remote3, bmc_remote4 执行 reset 操作
+
+workflow:
+  id: ipmitool_reset_serial_001
+  name: BMC串行重置工作流
+  description: 按顺序依次对 BMC 执行重置(reset)操作
+  execution_mode: serial
+  auto_clear: false
+  
+  timing:
+    start_delay: 120              # 整体启动延迟 120 秒
+    node_interval: 60             # 节点间延迟 60 秒
+    task_timeout: 300             # 单任务超时 5 分钟
+    global_timeout: 3600          # 全局超时 1 小时
+
+  tasks:
+    - id: bmc_remote1_reset
+      name: bmc_remote1 重置
+      case:
+        name: bmc_remote1_reset
+        type: ipmitool
+        fault_type: reset
+        ipmitool_match:
+          name:
+            - bmc_remote1
+        duration: 1200s
+        loop_count: 1
+
+    - id: bmc_remote2_reset
+      name: bmc_remote2 重置
+      case:
+        name: bmc_remote2_reset
+        type: ipmitool
+        fault_type: reset
+        ipmitool_match:
+          name:
+            - bmc_remote2
+        duration: 1200s
+        loop_count: 1
+
+    - id: bmc_remote3_reset
+      name: bmc_remote3 重置
+      case:
+        name: bmc_remote3_reset
+        type: ipmitool
+        fault_type: reset
+        ipmitool_match:
+          name:
+            - bmc_remote3
+        duration: 1200s
+        loop_count: 1
+
+    - id: bmc_remote4_reset
+      name: bmc_remote4 重置
+      case:
+        name: bmc_remote4_reset
+        type: ipmitool
+        fault_type: reset
+        ipmitool_match:
+          name:
+            - bmc_remote4
+        duration: 1200s
+        loop_count: 1
