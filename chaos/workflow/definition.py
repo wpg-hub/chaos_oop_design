@@ -98,6 +98,7 @@ class CaseDefinition:
     sw_match: Optional[Dict[str, Any]] = None
     pod_match: Optional[Dict[str, Any]] = None
     computer_match: Optional[Dict[str, Any]] = None
+    ipmitool_match: Optional[Dict[str, Any]] = None
     
     def to_case_dict(self) -> Dict[str, Any]:
         """转换为 Case 字典格式
@@ -123,6 +124,8 @@ class CaseDefinition:
             result["pod_match"] = self.pod_match
         if self.computer_match:
             result["computer_match"] = self.computer_match
+        if self.ipmitool_match:
+            result["ipmitool_match"] = self.ipmitool_match
             
         return result
     
@@ -138,7 +141,8 @@ class CaseDefinition:
         match_count = sum([
             self.sw_match is not None,
             self.pod_match is not None,
-            self.computer_match is not None
+            self.computer_match is not None,
+            self.ipmitool_match is not None
         ])
         if match_count == 0:
             return False, "At least one match config is required"
@@ -167,6 +171,8 @@ class CaseDefinition:
             result["pod_match"] = self.pod_match
         if self.computer_match:
             result["computer_match"] = self.computer_match
+        if self.ipmitool_match:
+            result["ipmitool_match"] = self.ipmitool_match
         return result
 
 

@@ -269,7 +269,8 @@ class WorkflowParser:
             parameters=data.get("parameters", {}),
             sw_match=data.get("sw_match"),
             pod_match=data.get("pod_match"),
-            computer_match=data.get("computer_match")
+            computer_match=data.get("computer_match"),
+            ipmitool_match=data.get("ipmitool_match")
         )
     
     def validate_yaml_file(self, yaml_file: str) -> tuple[bool, str]:

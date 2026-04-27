@@ -7554,8 +7554,883 @@
         "90%"
       ]
     },
-    "status": "running",
+    "status": "recovered",
     "start_time": "2026-04-24 16:27:59.012200",
+    "end_time": "2026-04-24T16:32:18.474487",
+    "error_message": null
+  },
+  "process_kill_dupf-upc-76bbbd9fbb-wlns9_ns-dupf_15_1_1777019675": {
+    "fault_id": "process_kill_dupf-upc-76bbbd9fbb-wlns9_ns-dupf_15_1_1777019675",
+    "case_name": "upc_talker_kill",
+    "fault_type": "kill",
+    "target": {
+      "name": "dupf-upc-76bbbd9fbb-wlns9",
+      "ip": "10.233.81.180",
+      "namespace": "ns-dupf"
+    },
+    "parameters": {
+      "main_process_pid": 1,
+      "signal": 15
+    },
+    "status": "recovered",
+    "start_time": "2026-04-24 16:34:35.927117",
+    "end_time": "2026-04-24T16:38:54.701822",
+    "error_message": null
+  },
+  "process_kill_dupf-ddb-shd-2-2_ns-dupf_15_1_1777019945": {
+    "fault_id": "process_kill_dupf-ddb-shd-2-2_ns-dupf_15_1_1777019945",
+    "case_name": "ddb_master_kill",
+    "fault_type": "kill",
+    "target": {
+      "name": "dupf-ddb-shd-2-2",
+      "ip": "10.233.66.181",
+      "namespace": "ns-dupf"
+    },
+    "parameters": {
+      "main_process_pid": 1,
+      "signal": 15
+    },
+    "status": "recovered",
+    "start_time": "2026-04-24 16:39:06.082151",
+    "end_time": "2026-04-24T16:43:30.621360",
+    "error_message": null
+  },
+  "process_kill_dupf-ddb-shd-0-2_ns-dupf_15_1_1777020221": {
+    "fault_id": "process_kill_dupf-ddb-shd-0-2_ns-dupf_15_1_1777020221",
+    "case_name": "ddb_slave_kill",
+    "fault_type": "kill",
+    "target": {
+      "name": "dupf-ddb-shd-0-2",
+      "ip": "10.233.81.187",
+      "namespace": "ns-dupf"
+    },
+    "parameters": {
+      "main_process_pid": 1,
+      "signal": 15
+    },
+    "status": "recovered",
+    "start_time": "2026-04-24 16:43:41.991717",
+    "end_time": "2026-04-24T16:48:02.759826",
+    "error_message": null
+  },
+  "loss_dupf-upc-76bbbd9fbb-wlns9_ns-dupf_1777020611": {
+    "fault_id": "loss_dupf-upc-76bbbd9fbb-wlns9_ns-dupf_1777020611",
+    "case_name": "upc_talker_loss",
+    "fault_type": "loss",
+    "target": {
+      "name": "dupf-upc-76bbbd9fbb-wlns9",
+      "ip": "10.233.81.180",
+      "namespace": "ns-dupf"
+    },
+    "parameters": {
+      "correlation": [
+        "30%",
+        "90%"
+      ],
+      "percent": [
+        "10%",
+        "90%"
+      ]
+    },
+    "status": "recovered",
+    "start_time": "2026-04-24 16:50:12.249986",
+    "end_time": "2026-04-24T16:54:35.584659",
+    "error_message": null
+  },
+  "loss_dupf-ddb-shd-2-0_ns-dupf_1777020886": {
+    "fault_id": "loss_dupf-ddb-shd-2-0_ns-dupf_1777020886",
+    "case_name": "ddb_master_loss",
+    "fault_type": "loss",
+    "target": {
+      "name": "dupf-ddb-shd-2-0",
+      "ip": "10.233.81.170",
+      "namespace": "ns-dupf"
+    },
+    "parameters": {
+      "correlation": [
+        "30%",
+        "90%"
+      ],
+      "percent": [
+        "10%",
+        "90%"
+      ]
+    },
+    "status": "recovered",
+    "start_time": "2026-04-24 16:54:47.135924",
+    "end_time": "2026-04-24T16:59:12.001273",
+    "error_message": null
+  },
+  "loss_dupf-ddb-shd-0-2_ns-dupf_1777021163": {
+    "fault_id": "loss_dupf-ddb-shd-0-2_ns-dupf_1777021163",
+    "case_name": "ddb_slave_loss",
+    "fault_type": "loss",
+    "target": {
+      "name": "dupf-ddb-shd-0-2",
+      "ip": "10.233.81.187",
+      "namespace": "ns-dupf"
+    },
+    "parameters": {
+      "correlation": [
+        "30%",
+        "90%"
+      ],
+      "percent": [
+        "10%",
+        "90%"
+      ]
+    },
+    "status": "recovered",
+    "start_time": "2026-04-24 16:59:23.600349",
+    "end_time": "2026-04-24T17:03:45.667413",
+    "error_message": null
+  },
+  "reorder_dupf-upc-76bbbd9fbb-wlns9_ns-dupf_1777021565": {
+    "fault_id": "reorder_dupf-upc-76bbbd9fbb-wlns9_ns-dupf_1777021565",
+    "case_name": "upc_talker_reorder",
+    "fault_type": "reorder",
+    "target": {
+      "name": "dupf-upc-76bbbd9fbb-wlns9",
+      "ip": "10.233.81.180",
+      "namespace": "ns-dupf"
+    },
+    "parameters": {
+      "correlation": [
+        "10%",
+        "90%"
+      ],
+      "gap": [
+        1,
+        10
+      ],
+      "percent": [
+        "0.5%",
+        "10%"
+      ]
+    },
+    "status": "recovered",
+    "start_time": "2026-04-24 17:06:05.772483",
+    "end_time": "2026-04-24T17:10:27.267797",
+    "error_message": null
+  },
+  "reorder_dupf-ddb-shd-1-1_ns-dupf_1777021838": {
+    "fault_id": "reorder_dupf-ddb-shd-1-1_ns-dupf_1777021838",
+    "case_name": "ddb_master_reorder",
+    "fault_type": "reorder",
+    "target": {
+      "name": "dupf-ddb-shd-1-1",
+      "ip": "10.233.66.183",
+      "namespace": "ns-dupf"
+    },
+    "parameters": {
+      "correlation": [
+        "10%",
+        "90%"
+      ],
+      "gap": [
+        1,
+        10
+      ],
+      "percent": [
+        "0.5%",
+        "10%"
+      ]
+    },
+    "status": "recovered",
+    "start_time": "2026-04-24 17:10:39.147371",
+    "end_time": "2026-04-24T17:15:05.431539",
+    "error_message": null
+  },
+  "reorder_dupf-ddb-shd-0-1_ns-dupf_1777022116": {
+    "fault_id": "reorder_dupf-ddb-shd-0-1_ns-dupf_1777022116",
+    "case_name": "ddb_slave_reorder",
+    "fault_type": "reorder",
+    "target": {
+      "name": "dupf-ddb-shd-0-1",
+      "ip": "10.233.66.182",
+      "namespace": "ns-dupf"
+    },
+    "parameters": {
+      "correlation": [
+        "10%",
+        "90%"
+      ],
+      "gap": [
+        1,
+        10
+      ],
+      "percent": [
+        "0.5%",
+        "10%"
+      ]
+    },
+    "status": "recovered",
+    "start_time": "2026-04-24 17:15:16.958734",
+    "end_time": "2026-04-24T17:19:39.364181",
+    "error_message": null
+  },
+  "stop_dupf-upc-76bbbd9fbb-wlns9_ns-dupf_1777022515": {
+    "fault_id": "stop_dupf-upc-76bbbd9fbb-wlns9_ns-dupf_1777022515",
+    "case_name": "upc_talker_stop",
+    "fault_type": "stop",
+    "target": {
+      "name": "dupf-upc-76bbbd9fbb-wlns9",
+      "ip": "10.233.81.180",
+      "namespace": "ns-dupf"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-04-24 17:22:05.163935",
+    "end_time": "2026-04-24T17:26:29.751834",
+    "error_message": null
+  },
+  "stop_dupf-ddb-shd-0-0_ns-dupf_1777022800": {
+    "fault_id": "stop_dupf-ddb-shd-0-0_ns-dupf_1777022800",
+    "case_name": "ddb_master_stop",
+    "fault_type": "stop",
+    "target": {
+      "name": "dupf-ddb-shd-0-0",
+      "ip": "10.233.69.195",
+      "namespace": "ns-dupf"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-04-24 17:26:41.446659",
+    "end_time": "2026-04-24T17:31:02.164347",
+    "error_message": null
+  },
+  "stop_dupf-ddb-shd-0-0_ns-dupf_1777023075": {
+    "fault_id": "stop_dupf-ddb-shd-0-0_ns-dupf_1777023075",
+    "case_name": "ddb_slave_stop",
+    "fault_type": "stop",
+    "target": {
+      "name": "dupf-ddb-shd-0-0",
+      "ip": "10.233.69.195",
+      "namespace": "ns-dupf"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-04-24 17:31:16.411223",
+    "end_time": "2026-04-24T17:35:38.500400",
+    "error_message": null
+  },
+  "reboot_1_ssh_remote_1777024798": {
+    "fault_id": "reboot_1_ssh_remote_1777024798",
+    "case_name": "computer_reboot_1",
+    "fault_type": "reboot",
+    "target": {
+      "name": [
+        "1_ssh_remote"
+      ],
+      "type": "computer"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-04-24 18:00:02.820862",
+    "end_time": "2026-04-24T18:05:25.042774",
+    "error_message": null
+  },
+  "reboot_2_ssh_remote_1777025443": {
+    "fault_id": "reboot_2_ssh_remote_1777025443",
+    "case_name": "computer_reboot_2",
+    "fault_type": "reboot",
+    "target": {
+      "name": [
+        "2_ssh_remote"
+      ],
+      "type": "computer"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-04-24 18:10:46.176914",
+    "end_time": "2026-04-24T18:16:08.358996",
+    "error_message": null
+  },
+  "reboot_3_ssh_remote_1777026089": {
+    "fault_id": "reboot_3_ssh_remote_1777026089",
+    "case_name": "computer_reboot_3",
+    "fault_type": "reboot",
+    "target": {
+      "name": [
+        "3_ssh_remote"
+      ],
+      "type": "computer"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-04-24 18:21:34.960219",
+    "end_time": "2026-04-24T18:26:54.275050",
+    "error_message": null
+  },
+  "reboot_4_ssh_remote_1777026736": {
+    "fault_id": "reboot_4_ssh_remote_1777026736",
+    "case_name": "computer_reboot_4",
+    "fault_type": "reboot",
+    "target": {
+      "name": [
+        "4_ssh_remote"
+      ],
+      "type": "computer"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-04-24 18:32:18.417525",
+    "end_time": "2026-04-24T18:37:40.425033",
+    "error_message": null
+  },
+  "corrupt_dupf-upc-76bbbd9fbb-cx6rh_ns-dupf_1777254827": {
+    "fault_id": "corrupt_dupf-upc-76bbbd9fbb-cx6rh_ns-dupf_1777254827",
+    "case_name": "upc_talker_corrupt",
+    "fault_type": "corrupt",
+    "target": {
+      "name": "dupf-upc-76bbbd9fbb-cx6rh",
+      "ip": "10.233.81.233",
+      "namespace": "ns-dupf"
+    },
+    "parameters": {
+      "correlation": [
+        "30%",
+        "90%"
+      ],
+      "percent": [
+        "10%",
+        "90%"
+      ]
+    },
+    "status": "recovered",
+    "start_time": "2026-04-27 09:53:48.096982",
+    "end_time": "2026-04-27T09:57:48.666439",
+    "error_message": null
+  },
+  "corrupt_dupf-ddb-shd-2-1_ns-dupf_1777254828": {
+    "fault_id": "corrupt_dupf-ddb-shd-2-1_ns-dupf_1777254828",
+    "case_name": "ddb_slave_corrupt",
+    "fault_type": "corrupt",
+    "target": {
+      "name": "dupf-ddb-shd-2-1",
+      "ip": "10.233.69.45",
+      "namespace": "ns-dupf"
+    },
+    "parameters": {
+      "correlation": [
+        "30%",
+        "90%"
+      ],
+      "percent": [
+        "10%",
+        "90%"
+      ]
+    },
+    "status": "recovered",
+    "start_time": "2026-04-27 09:53:50.905723",
+    "end_time": "2026-04-27T09:57:51.354933",
+    "error_message": null
+  },
+  "delay_dupf-upc-76bbbd9fbb-cx6rh_ns-dupf_1777255200": {
+    "fault_id": "delay_dupf-upc-76bbbd9fbb-cx6rh_ns-dupf_1777255200",
+    "case_name": "upc_talker_delay",
+    "fault_type": "delay",
+    "target": {
+      "name": "dupf-upc-76bbbd9fbb-cx6rh",
+      "ip": "10.233.81.233",
+      "namespace": "ns-dupf"
+    },
+    "parameters": {
+      "correlation": [
+        "20%",
+        "90%"
+      ],
+      "distribution": [
+        "normal",
+        "pareto",
+        "paretonormal"
+      ],
+      "jitter": [
+        "10ms",
+        "100ms"
+      ],
+      "time": [
+        "100ms",
+        "1000ms"
+      ]
+    },
+    "status": "recovered",
+    "start_time": "2026-04-27 10:00:01.615791",
+    "end_time": "2026-04-27T10:04:02.337229",
+    "error_message": null
+  },
+  "delay_dupf-ddb-shd-1-0_ns-dupf_1777255201": {
+    "fault_id": "delay_dupf-ddb-shd-1-0_ns-dupf_1777255201",
+    "case_name": "ddb_slave_delay",
+    "fault_type": "delay",
+    "target": {
+      "name": "dupf-ddb-shd-1-0",
+      "ip": "10.233.69.20",
+      "namespace": "ns-dupf"
+    },
+    "parameters": {
+      "correlation": [
+        "20%",
+        "90%"
+      ],
+      "distribution": [
+        "normal",
+        "pareto",
+        "paretonormal"
+      ],
+      "jitter": [
+        "10ms",
+        "100ms"
+      ],
+      "time": [
+        "100ms",
+        "1000ms"
+      ]
+    },
+    "status": "recovered",
+    "start_time": "2026-04-27 10:00:01.714124",
+    "end_time": "2026-04-27T10:04:02.297907",
+    "error_message": null
+  },
+  "delete_dupf-upc-76bbbd9fbb-cx6rh_ns-dupf_1777255571": {
+    "fault_id": "delete_dupf-upc-76bbbd9fbb-cx6rh_ns-dupf_1777255571",
+    "case_name": "upc_talker_delete",
+    "fault_type": "delete",
+    "target": {
+      "name": "dupf-upc-76bbbd9fbb-cx6rh",
+      "ip": "10.233.81.233",
+      "namespace": "ns-dupf"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-04-27 10:06:12.008808",
+    "end_time": "2026-04-27T10:10:12.137299",
+    "error_message": null
+  },
+  "delete_dupf-ddb-shd-1-2_ns-dupf_1777255572": {
+    "fault_id": "delete_dupf-ddb-shd-1-2_ns-dupf_1777255572",
+    "case_name": "ddb_slave_delete",
+    "fault_type": "delete",
+    "target": {
+      "name": "dupf-ddb-shd-1-2",
+      "ip": "10.233.66.37",
+      "namespace": "ns-dupf"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-04-27 10:06:12.364239",
+    "end_time": "2026-04-27T10:10:12.465245",
+    "error_message": null
+  },
+  "duplicate_dupf-upc-76bbbd9fbb-blxm6_ns-dupf_1777255933": {
+    "fault_id": "duplicate_dupf-upc-76bbbd9fbb-blxm6_ns-dupf_1777255933",
+    "case_name": "upc_talker_duplicate",
+    "fault_type": "duplicate",
+    "target": {
+      "name": "dupf-upc-76bbbd9fbb-blxm6",
+      "ip": "10.233.81.32",
+      "namespace": "ns-dupf"
+    },
+    "parameters": {
+      "correlation": [
+        "10%",
+        "90%"
+      ],
+      "percent": [
+        "0.5%",
+        "10%"
+      ]
+    },
+    "status": "recovered",
+    "start_time": "2026-04-27 10:12:14.227166",
+    "end_time": "2026-04-27T10:16:14.805885",
+    "error_message": null
+  },
+  "duplicate_dupf-ddb-shd-0-2_ns-dupf_1777255936": {
+    "fault_id": "duplicate_dupf-ddb-shd-0-2_ns-dupf_1777255936",
+    "case_name": "ddb_slave_duplicate",
+    "fault_type": "duplicate",
+    "target": {
+      "name": "dupf-ddb-shd-0-2",
+      "ip": "10.233.66.41",
+      "namespace": "ns-dupf"
+    },
+    "parameters": {
+      "correlation": [
+        "10%",
+        "90%"
+      ],
+      "percent": [
+        "0.5%",
+        "10%"
+      ]
+    },
+    "status": "recovered",
+    "start_time": "2026-04-27 10:12:18.912678",
+    "end_time": "2026-04-27T10:16:19.410855",
+    "error_message": null
+  },
+  "process_kill_dupf-upc-76bbbd9fbb-blxm6_ns-dupf_15_1_1777256308": {
+    "fault_id": "process_kill_dupf-upc-76bbbd9fbb-blxm6_ns-dupf_15_1_1777256308",
+    "case_name": "upc_talker_kill",
+    "fault_type": "kill",
+    "target": {
+      "name": "dupf-upc-76bbbd9fbb-blxm6",
+      "ip": "10.233.81.32",
+      "namespace": "ns-dupf"
+    },
+    "parameters": {
+      "main_process_pid": 1,
+      "signal": 15
+    },
+    "status": "recovered",
+    "start_time": "2026-04-27 10:18:29.187151",
+    "end_time": "2026-04-27T10:22:29.454413",
+    "error_message": null
+  },
+  "process_kill_dupf-ddb-shd-1-0_ns-dupf_15_1_1777256309": {
+    "fault_id": "process_kill_dupf-ddb-shd-1-0_ns-dupf_15_1_1777256309",
+    "case_name": "ddb_slave_kill",
+    "fault_type": "kill",
+    "target": {
+      "name": "dupf-ddb-shd-1-0",
+      "ip": "10.233.69.20",
+      "namespace": "ns-dupf"
+    },
+    "parameters": {
+      "main_process_pid": 1,
+      "signal": 15
+    },
+    "status": "recovered",
+    "start_time": "2026-04-27 10:18:29.750746",
+    "end_time": "2026-04-27T10:22:29.775333",
+    "error_message": null
+  },
+  "loss_dupf-upc-76bbbd9fbb-blxm6_ns-dupf_1777256671": {
+    "fault_id": "loss_dupf-upc-76bbbd9fbb-blxm6_ns-dupf_1777256671",
+    "case_name": "upc_talker_loss",
+    "fault_type": "loss",
+    "target": {
+      "name": "dupf-upc-76bbbd9fbb-blxm6",
+      "ip": "10.233.81.32",
+      "namespace": "ns-dupf"
+    },
+    "parameters": {
+      "ecn": "random",
+      "model": {
+        "random": {
+          "percent": [
+            "10%",
+            "80%"
+          ]
+        }
+      }
+    },
+    "status": "recovered",
+    "start_time": "2026-04-27 10:24:31.468750",
+    "end_time": "2026-04-27T10:28:31.940406",
+    "error_message": null
+  },
+  "loss_dupf-ddb-shd-1-2_ns-dupf_1777256673": {
+    "fault_id": "loss_dupf-ddb-shd-1-2_ns-dupf_1777256673",
+    "case_name": "ddb_slave_loss",
+    "fault_type": "loss",
+    "target": {
+      "name": "dupf-ddb-shd-1-2",
+      "ip": "10.233.66.27",
+      "namespace": "ns-dupf"
+    },
+    "parameters": {
+      "ecn": "random",
+      "model": {
+        "random": {
+          "percent": [
+            "10%",
+            "80%"
+          ]
+        }
+      }
+    },
+    "status": "recovered",
+    "start_time": "2026-04-27 10:24:33.767604",
+    "end_time": "2026-04-27T10:28:34.291424",
+    "error_message": null
+  },
+  "reorder_dupf-upc-76bbbd9fbb-blxm6_ns-dupf_1777257043": {
+    "fault_id": "reorder_dupf-upc-76bbbd9fbb-blxm6_ns-dupf_1777257043",
+    "case_name": "upc_talker_reorder",
+    "fault_type": "reorder",
+    "target": {
+      "name": "dupf-upc-76bbbd9fbb-blxm6",
+      "ip": "10.233.81.32",
+      "namespace": "ns-dupf"
+    },
+    "parameters": {
+      "correlation": [
+        "10%",
+        "90%"
+      ],
+      "gap": [
+        1,
+        10
+      ],
+      "percent": [
+        "0.5%",
+        "10%"
+      ]
+    },
+    "status": "recovered",
+    "start_time": "2026-04-27 10:30:44.425636",
+    "end_time": "2026-04-27T10:34:45.176769",
+    "error_message": null
+  },
+  "reorder_dupf-ddb-shd-2-1_ns-dupf_1777257044": {
+    "fault_id": "reorder_dupf-ddb-shd-2-1_ns-dupf_1777257044",
+    "case_name": "ddb_slave_reorder",
+    "fault_type": "reorder",
+    "target": {
+      "name": "dupf-ddb-shd-2-1",
+      "ip": "10.233.69.45",
+      "namespace": "ns-dupf"
+    },
+    "parameters": {
+      "correlation": [
+        "10%",
+        "90%"
+      ],
+      "gap": [
+        1,
+        10
+      ],
+      "percent": [
+        "0.5%",
+        "10%"
+      ]
+    },
+    "status": "recovered",
+    "start_time": "2026-04-27 10:30:44.854022",
+    "end_time": "2026-04-27T10:34:45.370545",
+    "error_message": null
+  },
+  "stop_dupf-upc-76bbbd9fbb-blxm6_ns-dupf_1777257415": {
+    "fault_id": "stop_dupf-upc-76bbbd9fbb-blxm6_ns-dupf_1777257415",
+    "case_name": "upc_talker_stop",
+    "fault_type": "stop",
+    "target": {
+      "name": "dupf-upc-76bbbd9fbb-blxm6",
+      "ip": "10.233.81.32",
+      "namespace": "ns-dupf"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-04-27 10:37:06.155755",
+    "end_time": "2026-04-27T10:41:06.596756",
+    "error_message": null
+  },
+  "stop_dupf-ddb-shd-0-2_ns-dupf_1777257415": {
+    "fault_id": "stop_dupf-ddb-shd-0-2_ns-dupf_1777257415",
+    "case_name": "ddb_slave_stop",
+    "fault_type": "stop",
+    "target": {
+      "name": "dupf-ddb-shd-0-2",
+      "ip": "10.233.66.41",
+      "namespace": "ns-dupf"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-04-27 10:37:06.991347",
+    "end_time": "2026-04-27T10:41:07.299979",
+    "error_message": null
+  },
+  "corrupt_dupf-upc-76bbbd9fbb-gbg8n_ns-dupf_1777257788": {
+    "fault_id": "corrupt_dupf-upc-76bbbd9fbb-gbg8n_ns-dupf_1777257788",
+    "case_name": "upc_talker_corrupt",
+    "fault_type": "corrupt",
+    "target": {
+      "name": "dupf-upc-76bbbd9fbb-gbg8n",
+      "ip": "10.233.126.125",
+      "namespace": "ns-dupf"
+    },
+    "parameters": {
+      "correlation": [
+        "30%",
+        "90%"
+      ],
+      "percent": [
+        "10%",
+        "90%"
+      ]
+    },
+    "status": "recovered",
+    "start_time": "2026-04-27 10:43:11.278798",
+    "end_time": "2026-04-27T10:47:11.824260",
+    "error_message": null
+  },
+  "corrupt_dupf-ddb-shd-1-2_ns-dupf_1777258043": {
+    "fault_id": "corrupt_dupf-ddb-shd-1-2_ns-dupf_1777258043",
+    "case_name": "ddb_slave_corrupt",
+    "fault_type": "corrupt",
+    "target": {
+      "name": "dupf-ddb-shd-1-2",
+      "ip": "10.233.66.27",
+      "namespace": "ns-dupf"
+    },
+    "parameters": {
+      "correlation": [
+        "30%",
+        "90%"
+      ],
+      "percent": [
+        "10%",
+        "90%"
+      ]
+    },
+    "status": "recovered",
+    "start_time": "2026-04-27 10:47:23.554996",
+    "end_time": "2026-04-27T10:51:24.109303",
+    "error_message": null
+  },
+  "delay_dupf-upc-76bbbd9fbb-gbg8n_ns-dupf_1777258412": {
+    "fault_id": "delay_dupf-upc-76bbbd9fbb-gbg8n_ns-dupf_1777258412",
+    "case_name": "upc_talker_delay",
+    "fault_type": "delay",
+    "target": {
+      "name": "dupf-upc-76bbbd9fbb-gbg8n",
+      "ip": "10.233.126.125",
+      "namespace": "ns-dupf"
+    },
+    "parameters": {
+      "correlation": [
+        "20%",
+        "90%"
+      ],
+      "distribution": [
+        "normal",
+        "pareto",
+        "paretonormal"
+      ],
+      "jitter": [
+        "10ms",
+        "100ms"
+      ],
+      "time": [
+        "100ms",
+        "1000ms"
+      ]
+    },
+    "status": "recovered",
+    "start_time": "2026-04-27 10:53:33.084816",
+    "end_time": "2026-04-27T10:57:33.531220",
+    "error_message": null
+  },
+  "delay_dupf-ddb-shd-0-1_ns-dupf_1777258664": {
+    "fault_id": "delay_dupf-ddb-shd-0-1_ns-dupf_1777258664",
+    "case_name": "ddb_slave_delay",
+    "fault_type": "delay",
+    "target": {
+      "name": "dupf-ddb-shd-0-1",
+      "ip": "10.233.126.128",
+      "namespace": "ns-dupf"
+    },
+    "parameters": {
+      "correlation": [
+        "20%",
+        "90%"
+      ],
+      "distribution": [
+        "normal",
+        "pareto",
+        "paretonormal"
+      ],
+      "jitter": [
+        "10ms",
+        "100ms"
+      ],
+      "time": [
+        "100ms",
+        "1000ms"
+      ]
+    },
+    "status": "recovered",
+    "start_time": "2026-04-27 10:57:45.205847",
+    "end_time": "2026-04-27T11:01:45.713862",
+    "error_message": null
+  },
+  "delete_dupf-upc-76bbbd9fbb-gbg8n_ns-dupf_1777259035": {
+    "fault_id": "delete_dupf-upc-76bbbd9fbb-gbg8n_ns-dupf_1777259035",
+    "case_name": "upc_talker_delete",
+    "fault_type": "delete",
+    "target": {
+      "name": "dupf-upc-76bbbd9fbb-gbg8n",
+      "ip": "10.233.126.125",
+      "namespace": "ns-dupf"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-04-27 11:03:55.361504",
+    "end_time": "2026-04-27T11:07:55.481070",
+    "error_message": null
+  },
+  "delete_dupf-ddb-shd-1-0_ns-dupf_1777259286": {
+    "fault_id": "delete_dupf-ddb-shd-1-0_ns-dupf_1777259286",
+    "case_name": "ddb_slave_delete",
+    "fault_type": "delete",
+    "target": {
+      "name": "dupf-ddb-shd-1-0",
+      "ip": "10.233.69.20",
+      "namespace": "ns-dupf"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-04-27 11:08:06.936978",
+    "end_time": "2026-04-27T11:12:07.004682",
+    "error_message": null
+  },
+  "duplicate_dupf-upc-76bbbd9fbb-thcg7_ns-dupf_1777259648": {
+    "fault_id": "duplicate_dupf-upc-76bbbd9fbb-thcg7_ns-dupf_1777259648",
+    "case_name": "upc_talker_duplicate",
+    "fault_type": "duplicate",
+    "target": {
+      "name": "dupf-upc-76bbbd9fbb-thcg7",
+      "ip": "10.233.81.223",
+      "namespace": "ns-dupf"
+    },
+    "parameters": {
+      "correlation": [
+        "10%",
+        "90%"
+      ],
+      "percent": [
+        "0.5%",
+        "10%"
+      ]
+    },
+    "status": "recovered",
+    "start_time": "2026-04-27 11:14:08.672536",
+    "end_time": "2026-04-27T11:18:09.212617",
+    "error_message": null
+  },
+  "duplicate_dupf-ddb-shd-0-1_ns-dupf_1777259900": {
+    "fault_id": "duplicate_dupf-ddb-shd-0-1_ns-dupf_1777259900",
+    "case_name": "ddb_slave_duplicate",
+    "fault_type": "duplicate",
+    "target": {
+      "name": "dupf-ddb-shd-0-1",
+      "ip": "10.233.126.128",
+      "namespace": "ns-dupf"
+    },
+    "parameters": {
+      "correlation": [
+        "10%",
+        "90%"
+      ],
+      "percent": [
+        "0.5%",
+        "10%"
+      ]
+    },
+    "status": "running",
+    "start_time": "2026-04-27 11:18:20.841108",
     "end_time": null,
     "error_message": null
   }

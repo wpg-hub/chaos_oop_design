@@ -762,3 +762,18 @@ success, error = PermissionManager.safe_write_file("/path/to/file", content)
 #### 4. 文档更新
 - 更新 `README.md`，添加 IPMI 工具故障参数说明
 - 更新 `PROJECT_SUMMARY.md`，记录本次更新内容
+
+### 2026-04-24 更新
+
+#### 1. CaseDefinition 类支持 ipmitool_match
+- **问题**：workflow 文件中使用 `ipmitool_match` 时报错 "At least one match config is required"
+- **原因**：`CaseDefinition` 类（用于 workflow 中的嵌入式 case 定义）缺少 `ipmitool_match` 字段支持
+- **解决方案**：
+  - 在 `chaos/workflow/definition.py` 的 `CaseDefinition` 类中添加 `ipmitool_match` 字段
+  - 更新 `validate()` 方法检查 `ipmitool_match`
+  - 更新 `to_case_dict()` 和 `to_dict()` 方法输出 `ipmitool_match`
+  - 在 `chaos/workflow/parser.py` 的 `_parse_case()` 方法中解析 `ipmitool_match`
+- **影响范围**：
+  - `chaos/workflow/definition.py` - CaseDefinition 类
+  - `chaos/workflow/parser.py` - _parse_case 方法
+- **测试结果**：231 个单元测试全部通过

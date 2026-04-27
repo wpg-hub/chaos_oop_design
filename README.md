@@ -1287,7 +1287,7 @@ Case 直接定义在工作流中，无需引用外部 YAML 文件：
 ```yaml
 case:
   name: case_name               # Case 名称
-  type: sw                      # 类型：sw、pod、network、computer、process
+  type: sw                      # 类型：sw、pod、network、computer、process、ipmitool
   environment: sw_ssh_remote1   # 执行环境
   fault_type: command           # 故障类型
   sw_match:                     # 匹配规则（根据类型选择）
@@ -1295,6 +1295,30 @@ case:
       - cmd: display version
         wait: 2
     loop_count: 1
+```
+
+**支持的匹配规则：**
+| 类型 | 匹配规则 | 说明 |
+|------|----------|------|
+| `sw` | `sw_match` | 交换机匹配 |
+| `pod` | `pod_match` | Pod 匹配 |
+| `network` | `pod_match` | 网络 Pod 匹配 |
+| `computer` | `computer_match` | 物理机匹配 |
+| `process` | `pod_match` | 进程 Pod 匹配 |
+| `ipmitool` | `ipmitool_match` | BMC 匹配 |
+
+**ipmitool 类型示例：**
+```yaml
+case:
+  name: bmc_reboot
+  type: ipmitool
+  fault_type: cold
+  ipmitool_match:
+    name:
+      - bmc_remote1
+      - bmc_remote2
+  duration: 1200s
+  loop_count: 1
 ```
 
 ### 工作流示例
