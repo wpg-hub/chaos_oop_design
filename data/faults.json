@@ -9760,5 +9760,20 @@
     "start_time": "2026-04-27 18:58:45.888807",
     "end_time": "2026-04-27T19:02:50.230373",
     "error_message": null
+  },
+  "delete_dupf-etcd-2_ns-dupf_1777291997": {
+    "fault_id": "delete_dupf-etcd-2_ns-dupf_1777291997",
+    "case_name": "upc_talker_failure",
+    "fault_type": "delete",
+    "target": {
+      "name": "dupf-etcd-2",
+      "ip": "10.233.81.9",
+      "namespace": "ns-dupf"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-04-27 20:13:17.361350",
+    "end_time": "2026-04-27T20:13:48.019650",
+    "error_message": null
   }
 }

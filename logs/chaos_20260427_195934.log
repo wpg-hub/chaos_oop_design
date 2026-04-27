@@ -1,34 +1,0 @@
-2026-04-27 19:59:34 - chaos - INFO - Pod 操作：action=rc, namespace=ns-dupf
-2026-04-27 19:59:34 - chaos.utils.remote - INFO - 后台健康检查线程已启动
-2026-04-27 19:59:34 - chaos - INFO - 尝试从环境 1_ssh_remote 获取信息
-2026-04-27 19:59:34 - chaos.utils.remote - INFO - 创建新连接: root@10.230.246.167:50163
-2026-04-27 19:59:34 - chaos.utils.remote - INFO - SSH连接建立成功: 10.230.246.167:50163, 耗时: 0.10s
-2026-04-27 19:59:34 - chaos.utils.remote - INFO - 新连接创建成功: root@10.230.246.167:50163，当前连接池大小: 1
-2026-04-27 19:59:34 - chaos - INFO - 获取 RC Pod 列表，namespace: ns-dupf, filter_type: None
-2026-04-27 19:59:36 - chaos - INFO - 找到 3 个 RC Pod（过滤类型：默认）
-2026-04-27 19:59:36 - chaos - INFO - 环境中的 RC Pod：
-2026-04-27 19:59:36 - chaos - INFO - 获取 RC Leader Pod，namespace: ns-dupf
-2026-04-27 19:59:36 - chaos - INFO - 获取 RC Service IP，namespace: ns-dupf
-2026-04-27 19:59:36 - chaos - INFO - 找到 RC Service IP: 10.233.50.22
-2026-04-27 19:59:36 - chaos - INFO - 获取 RC 集群信息，service_ip: 10.233.50.22
-2026-04-27 19:59:36 - chaos - ERROR - 解析 RC 集群信息 JSON 失败: Expecting value: line 1 column 1 (char 0)
-2026-04-27 19:59:36 - chaos - ERROR - 原始输出: % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100  1784  100  1784    0     0   100k      0 --:--:-- --:--:-- --:--:--  102k
-{"etcd_cluster_info":{"Endpoints":[{"Endpoint":"dupf-etcd-0.dupf-etcd-headless:2379","Version":"3.5.21","DBSize":28250112,"RaftTerm":32,"Leader":0,"MemberID":"4967d3b108915236","TimeSpe
-2026-04-27 19:59:36 - chaos - INFO - 找到 RC Leader: dupf-registry-center-2
-2026-04-27 19:59:36 - chaos - INFO - RC Leader: dupf-registry-center-2
-2026-04-27 19:59:36 - chaos - INFO - 获取 RC Non-Leader Pod 列表，namespace: ns-dupf
-2026-04-27 19:59:36 - chaos - INFO - 获取 RC Service IP，namespace: ns-dupf
-2026-04-27 19:59:37 - chaos - INFO - 找到 RC Service IP: 10.233.50.22
-2026-04-27 19:59:37 - chaos - INFO - 获取 RC 集群信息，service_ip: 10.233.50.22
-2026-04-27 19:59:37 - chaos - ERROR - 解析 RC 集群信息 JSON 失败: Expecting value: line 1 column 1 (char 0)
-2026-04-27 19:59:37 - chaos - ERROR - 原始输出: % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100  1781  100  1781    0     0  97104      0 --:--:-- --:--:-- --:--:-- 98944
-{"etcd_cluster_info":{"Endpoints":[{"Endpoint":"dupf-etcd-1.dupf-etcd-headless:2379","Version":"3.5.21","DBSize":28229632,"RaftTerm":32,"Leader":0,"MemberID":"909301537940bda","TimeSpen
-2026-04-27 19:59:37 - chaos - INFO - 找到 2 个 RC Non-Leader
-2026-04-27 19:59:37 - chaos - INFO - RC Non-Leaders:
-2026-04-27 19:59:37 - chaos - INFO -   dupf-registry-center-1
-2026-04-27 19:59:37 - chaos - INFO -   dupf-registry-center-0
-2026-04-27 19:59:37 - chaos - INFO - 从环境 1_ssh_remote 成功获取信息
