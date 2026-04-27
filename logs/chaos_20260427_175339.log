@@ -1,0 +1,16 @@
+2026-04-27 17:53:39 - chaos - INFO - 执行单个 Case: cases/upc_talker_failure.yaml
+2026-04-27 17:53:39 - chaos - INFO - [DEBUG] ========== 开始执行 Case ==========
+2026-04-27 17:53:39 - chaos - INFO - [DEBUG] Case名称: upc_talker_failure
+2026-04-27 17:53:39 - chaos - INFO - [DEBUG] Case类型: pod
+2026-04-27 17:53:39 - chaos - INFO - [DEBUG] 故障类型: delete
+2026-04-27 17:53:39 - chaos - INFO - [DEBUG] 环境: 1_ssh_remote
+2026-04-27 17:53:39 - chaos - INFO - [DEBUG] 执行 Case 迭代 1/1
+2026-04-27 17:53:39 - chaos - INFO - [DEBUG] 开始获取目标列表...
+2026-04-27 17:53:39 - chaos.utils.remote - INFO - 后台健康检查线程已启动
+2026-04-27 17:53:39 - chaos.utils.remote - INFO - 创建新连接: root@10.230.246.167:50163
+2026-04-27 17:53:39 - chaos.utils.remote - INFO - SSH连接建立成功: 10.230.246.167:50163, 耗时: 0.10s
+2026-04-27 17:53:39 - chaos.utils.remote - INFO - 新连接创建成功: root@10.230.246.167:50163，当前连接池大小: 1
+2026-04-27 17:53:39 - chaos - INFO - 根据名称匹配规则获取 Pod，pattern: etcd-nontalker, namespace: ns-dupf
+2026-04-27 17:53:41 - chaos - WARNING - 未找到匹配 etcd-nontalker 的 Pod
+2026-04-27 17:53:41 - chaos - INFO - [DEBUG] 找到 0 个目标
+2026-04-27 17:53:41 - chaos - ERROR - 在第 1 次迭代未找到目标

@@ -259,7 +259,6 @@ pod_match:
 type: pod
 fault_type: delete            # 故障类型：delete、restart 或 stop
 parameters:
-  action: delete              # 动作：delete（删除）、restart（重启）或 stop（停止容器）
   grace_period: 30            # 优雅终止时间（秒），0 表示立即强制删除
 ```
 
@@ -269,10 +268,6 @@ parameters:
 - `stop`: 停止 Pod 容器（不删除 Pod）
 
 **parameters 参数：**
-- `action`: 故障动作
-  - `delete`: 删除 Pod
-  - `restart`: 重启 Pod
-  - `stop`: 停止容器
 - `grace_period`: 优雅终止时间（秒）
   - `> 0`: 等待指定时间让 Pod 优雅关闭
   - `= 0`: 立即强制删除 Pod
@@ -790,8 +785,9 @@ python3 chaos/main.py pod --action <动作> [选项]
   - 在获取 etcd Leader 和 Follower 时，系统通过 registry-center 服务获取角色信息
   - 使用命令：`kubectl get svc -A | grep registry-center | grep -v headless` 获取 registry-center IP
   - 使用 curl 命令调用 registry-center API 获取 etcd 集群健康状态
-  - Leader 端点：`curl -X GET http://{ip}:8158/api/paas/v1/maintenance/db/health | jq '.Endpoints[] | select(.Leader == 1) | .Endpoint'`
-  - Follower 端点：`curl -X GET http://{ip}:8158/api/paas/v1/maintenance/db/health | jq '.Endpoints[] | select(.Leader == 0) | .Endpoint'`
+  - API 端点：`curl -X GET http://{ip}:8158/api/paas/v1/maintenance/rc/cluster -H 'Content-Type: application/json' -k`
+  - Leader 端点：`jq '.etcd_cluster_info.Endpoints[] | select(.Leader == 1) | .Endpoint'`
+  - Follower 端点：`jq '.etcd_cluster_info.Endpoints[] | select(.Leader == 0) | .Endpoint'`
   - 这种方法比直接执行 etcdctl 命令更可靠，避免了权限和网络问题
 - **DDB 操作的特殊处理**：
   - 在获取 DDB 主从信息时，系统通过 DDB Service API 获取角色信息
@@ -804,7 +800,9 @@ python3 chaos/main.py pod --action <动作> [选项]
   - 使用命令：`kubectl get svc -A | grep registry-center | grep -v headless` 获取 registry-center IP
   - 使用 curl 命令调用 registry-center API 获取 RC 集群信息
   - API 端点：`curl -X GET http://{ip}:8158/api/paas/v1/maintenance/rc/cluster -H 'Content-Type: application/json' -k`
-  - 从返回的 JSON 数据中提取 Leader 和 Non-Leader Pod 名称
+  - 从返回的 JSON 数据中的 `rc_cluster_info.rc_info` 字段提取角色信息
+  - Pod 名称从 `svcInstID` 字段提取（如 `dupf-registry-center-1`）
+  - Leader 判断：`role == "Leader"`，Follower 判断：`role == "Follower"`
   - 支持识别 RC Leader 和多个 Non-Leader 节点
 
 **示例：**

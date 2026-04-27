@@ -24,7 +24,7 @@ workflow:
         fault_type: kill
         pod_match:
           name:
-            - upc-nontalker
+            - upc-lb
           random: true
           count: 1
         duration: 240s

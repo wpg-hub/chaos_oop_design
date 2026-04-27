@@ -1,0 +1,2 @@
+2026-04-27 18:04:21 - chaos - INFO - 执行单个 Case: cases/upc-lb/upc-lb/
+2026-04-27 18:04:21 - chaos - ERROR - 加载 Case 文件失败：[Errno 21] Is a directory: 'cases/upc-lb/upc-lb/'

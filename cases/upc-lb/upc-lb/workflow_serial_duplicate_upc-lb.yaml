@@ -24,7 +24,7 @@ workflow:
         fault_type: duplicate
         pod_match:
           name:
-            - upc-nontalker
+            - upc-lb
         duration: 240s
         loop_count: 5
         namespace: ns-dupf

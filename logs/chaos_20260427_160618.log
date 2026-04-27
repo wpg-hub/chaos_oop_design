@@ -1,0 +1,179 @@
+2026-04-27 16:06:18 - chaos - INFO - 找到 16 个workflow文件
+2026-04-27 16:06:18 - chaos - INFO - 
+================================================================================
+2026-04-27 16:06:18 - chaos - INFO - 执行workflow: cases/upc/upc-talker_etcd-leader/workflow_parallel_corrupt_upc-talker_etcd-leader.yaml
+2026-04-27 16:06:18 - chaos - INFO - ================================================================================
+2026-04-27 16:06:18 - chaos - INFO - Successfully parsed workflow: upc_parallel_network_corrupt_001
+2026-04-27 16:06:18 - chaos - INFO - ============================================================
+2026-04-27 16:06:18 - chaos - INFO - 开始执行工作流: UPC 并行网络数据包破坏工作流
+2026-04-27 16:06:18 - chaos - INFO - 工作流 ID: upc_parallel_network_corrupt_001
+2026-04-27 16:06:18 - chaos - INFO - 执行模式: parallel
+2026-04-27 16:06:18 - chaos - INFO - ============================================================
+2026-04-27 16:06:18 - chaos - INFO - 启动延迟 120.0s
+2026-04-27 16:06:45 - chaos - INFO - 收到信号 2，准备停止工作流...
+2026-04-27 16:06:45 - chaos - INFO - 工作流执行已请求停止
+2026-04-27 16:06:46 - chaos - INFO - 
+================================================================================
+2026-04-27 16:06:46 - chaos - INFO - 执行workflow: cases/upc/upc-talker_etcd-leader/workflow_parallel_delay_upc-talker_etcd-leader.yaml
+2026-04-27 16:06:46 - chaos - INFO - ================================================================================
+2026-04-27 16:06:46 - chaos - INFO - Successfully parsed workflow: upc_parallel_network_delay_001
+2026-04-27 16:06:46 - chaos - INFO - ============================================================
+2026-04-27 16:06:46 - chaos - INFO - 开始执行工作流: UPC 并行网络延迟工作流
+2026-04-27 16:06:46 - chaos - INFO - 工作流 ID: upc_parallel_network_delay_001
+2026-04-27 16:06:46 - chaos - INFO - 执行模式: parallel
+2026-04-27 16:06:46 - chaos - INFO - ============================================================
+2026-04-27 16:06:46 - chaos - INFO - 启动延迟 120.0s
+2026-04-27 16:06:46 - chaos - INFO - 
+================================================================================
+2026-04-27 16:06:46 - chaos - INFO - 执行workflow: cases/upc/upc-talker_etcd-leader/workflow_parallel_delete_upc-talker_etcd-leader.yaml
+2026-04-27 16:06:46 - chaos - INFO - ================================================================================
+2026-04-27 16:06:46 - chaos - INFO - Successfully parsed workflow: upc_parallel_pod_delete_001
+2026-04-27 16:06:46 - chaos - INFO - ============================================================
+2026-04-27 16:06:46 - chaos - INFO - 开始执行工作流: UPC 并行 Pod 删除工作流
+2026-04-27 16:06:46 - chaos - INFO - 工作流 ID: upc_parallel_pod_delete_001
+2026-04-27 16:06:46 - chaos - INFO - 执行模式: parallel
+2026-04-27 16:06:46 - chaos - INFO - ============================================================
+2026-04-27 16:06:46 - chaos - INFO - 启动延迟 120.0s
+2026-04-27 16:06:46 - chaos - INFO - 
+================================================================================
+2026-04-27 16:06:46 - chaos - INFO - 执行workflow: cases/upc/upc-talker_etcd-leader/workflow_parallel_duplicate_upc-talker_etcd-leader.yaml
+2026-04-27 16:06:46 - chaos - INFO - ================================================================================
+2026-04-27 16:06:46 - chaos - INFO - Successfully parsed workflow: upc_parallel_network_duplicate_001
+2026-04-27 16:06:46 - chaos - INFO - ============================================================
+2026-04-27 16:06:46 - chaos - INFO - 开始执行工作流: UPC 并行网络数据包重复工作流
+2026-04-27 16:06:46 - chaos - INFO - 工作流 ID: upc_parallel_network_duplicate_001
+2026-04-27 16:06:46 - chaos - INFO - 执行模式: parallel
+2026-04-27 16:06:46 - chaos - INFO - ============================================================
+2026-04-27 16:06:46 - chaos - INFO - 启动延迟 120.0s
+2026-04-27 16:06:46 - chaos - INFO - 
+================================================================================
+2026-04-27 16:06:46 - chaos - INFO - 执行workflow: cases/upc/upc-talker_etcd-leader/workflow_parallel_kill_upc-talker_etcd-leader.yaml
+2026-04-27 16:06:46 - chaos - INFO - ================================================================================
+2026-04-27 16:06:46 - chaos - INFO - Successfully parsed workflow: upc_parallel_process_kill_001
+2026-04-27 16:06:46 - chaos - INFO - ============================================================
+2026-04-27 16:06:46 - chaos - INFO - 开始执行工作流: UPC 并行进程杀除工作流
+2026-04-27 16:06:46 - chaos - INFO - 工作流 ID: upc_parallel_process_kill_001
+2026-04-27 16:06:46 - chaos - INFO - 执行模式: parallel
+2026-04-27 16:06:46 - chaos - INFO - ============================================================
+2026-04-27 16:06:46 - chaos - INFO - 启动延迟 120.0s
+2026-04-27 16:06:46 - chaos - INFO - 
+================================================================================
+2026-04-27 16:06:46 - chaos - INFO - 执行workflow: cases/upc/upc-talker_etcd-leader/workflow_parallel_loss_upc-talker_etcd-leader.yaml
+2026-04-27 16:06:46 - chaos - INFO - ================================================================================
+2026-04-27 16:06:46 - chaos - INFO - Successfully parsed workflow: upc_parallel_network_loss_001
+2026-04-27 16:06:46 - chaos - INFO - ============================================================
+2026-04-27 16:06:46 - chaos - INFO - 开始执行工作流: UPC 并行网络丢包工作流
+2026-04-27 16:06:46 - chaos - INFO - 工作流 ID: upc_parallel_network_loss_001
+2026-04-27 16:06:46 - chaos - INFO - 执行模式: parallel
+2026-04-27 16:06:46 - chaos - INFO - ============================================================
+2026-04-27 16:06:46 - chaos - INFO - 启动延迟 120.0s
+2026-04-27 16:06:46 - chaos - INFO - 
+================================================================================
+2026-04-27 16:06:46 - chaos - INFO - 执行workflow: cases/upc/upc-talker_etcd-leader/workflow_parallel_reorder_upc-talker_etcd-leader.yaml
+2026-04-27 16:06:46 - chaos - INFO - ================================================================================
+2026-04-27 16:06:46 - chaos - INFO - Successfully parsed workflow: upc_parallel_network_reorder_001
+2026-04-27 16:06:46 - chaos - INFO - ============================================================
+2026-04-27 16:06:46 - chaos - INFO - 开始执行工作流: UPC 并行网络数据包重排序工作流
+2026-04-27 16:06:46 - chaos - INFO - 工作流 ID: upc_parallel_network_reorder_001
+2026-04-27 16:06:46 - chaos - INFO - 执行模式: parallel
+2026-04-27 16:06:46 - chaos - INFO - ============================================================
+2026-04-27 16:06:46 - chaos - INFO - 启动延迟 120.0s
+2026-04-27 16:06:46 - chaos - INFO - 
+================================================================================
+2026-04-27 16:06:46 - chaos - INFO - 执行workflow: cases/upc/upc-talker_etcd-leader/workflow_parallel_stop_upc-talker_etcd-leader.yaml
+2026-04-27 16:06:46 - chaos - INFO - ================================================================================
+2026-04-27 16:06:46 - chaos - INFO - Successfully parsed workflow: upc_parallel_pod_stop_001
+2026-04-27 16:06:46 - chaos - INFO - ============================================================
+2026-04-27 16:06:46 - chaos - INFO - 开始执行工作流: UPC 并行 Pod 停止工作流
+2026-04-27 16:06:46 - chaos - INFO - 工作流 ID: upc_parallel_pod_stop_001
+2026-04-27 16:06:46 - chaos - INFO - 执行模式: parallel
+2026-04-27 16:06:46 - chaos - INFO - ============================================================
+2026-04-27 16:06:46 - chaos - INFO - 启动延迟 120.0s
+2026-04-27 16:06:46 - chaos - INFO - 
+================================================================================
+2026-04-27 16:06:46 - chaos - INFO - 执行workflow: cases/upc/upc-talker_etcd-leader/workflow_serial_corrupt_upc-talker_etcd-leader.yaml
+2026-04-27 16:06:46 - chaos - INFO - ================================================================================
+2026-04-27 16:06:46 - chaos - INFO - Successfully parsed workflow: upc_serial_network_corrupt_001
+2026-04-27 16:06:46 - chaos - INFO - ============================================================
+2026-04-27 16:06:46 - chaos - INFO - 开始执行工作流: UPC 串行网络数据包破坏工作流
+2026-04-27 16:06:46 - chaos - INFO - 工作流 ID: upc_serial_network_corrupt_001
+2026-04-27 16:06:46 - chaos - INFO - 执行模式: serial
+2026-04-27 16:06:46 - chaos - INFO - ============================================================
+2026-04-27 16:06:46 - chaos - INFO - 启动延迟 120.0s
+2026-04-27 16:06:46 - chaos - INFO - 
+================================================================================
+2026-04-27 16:06:46 - chaos - INFO - 执行workflow: cases/upc/upc-talker_etcd-leader/workflow_serial_delay_upc-talker_etcd-leader.yaml
+2026-04-27 16:06:46 - chaos - INFO - ================================================================================
+2026-04-27 16:06:46 - chaos - INFO - Successfully parsed workflow: upc_serial_network_delay_001
+2026-04-27 16:06:46 - chaos - INFO - ============================================================
+2026-04-27 16:06:46 - chaos - INFO - 开始执行工作流: UPC 串行网络延迟工作流
+2026-04-27 16:06:46 - chaos - INFO - 工作流 ID: upc_serial_network_delay_001
+2026-04-27 16:06:46 - chaos - INFO - 执行模式: serial
+2026-04-27 16:06:46 - chaos - INFO - ============================================================
+2026-04-27 16:06:46 - chaos - INFO - 启动延迟 120.0s
+2026-04-27 16:06:46 - chaos - INFO - 
+================================================================================
+2026-04-27 16:06:46 - chaos - INFO - 执行workflow: cases/upc/upc-talker_etcd-leader/workflow_serial_delete_upc-talker_etcd-leader.yaml
+2026-04-27 16:06:46 - chaos - INFO - ================================================================================
+2026-04-27 16:06:46 - chaos - INFO - Successfully parsed workflow: upc_serial_pod_delete_001
+2026-04-27 16:06:46 - chaos - INFO - ============================================================
+2026-04-27 16:06:46 - chaos - INFO - 开始执行工作流: UPC 串行 Pod 删除工作流
+2026-04-27 16:06:46 - chaos - INFO - 工作流 ID: upc_serial_pod_delete_001
+2026-04-27 16:06:46 - chaos - INFO - 执行模式: serial
+2026-04-27 16:06:46 - chaos - INFO - ============================================================
+2026-04-27 16:06:46 - chaos - INFO - 启动延迟 120.0s
+2026-04-27 16:06:46 - chaos - INFO - 
+================================================================================
+2026-04-27 16:06:46 - chaos - INFO - 执行workflow: cases/upc/upc-talker_etcd-leader/workflow_serial_duplicate_upc-talker_etcd-leader.yaml
+2026-04-27 16:06:46 - chaos - INFO - ================================================================================
+2026-04-27 16:06:46 - chaos - INFO - Successfully parsed workflow: upc_serial_network_duplicate_001
+2026-04-27 16:06:46 - chaos - INFO - ============================================================
+2026-04-27 16:06:46 - chaos - INFO - 开始执行工作流: UPC 串行网络数据包重复工作流
+2026-04-27 16:06:46 - chaos - INFO - 工作流 ID: upc_serial_network_duplicate_001
+2026-04-27 16:06:46 - chaos - INFO - 执行模式: serial
+2026-04-27 16:06:46 - chaos - INFO - ============================================================
+2026-04-27 16:06:46 - chaos - INFO - 启动延迟 120.0s
+2026-04-27 16:06:46 - chaos - INFO - 
+================================================================================
+2026-04-27 16:06:46 - chaos - INFO - 执行workflow: cases/upc/upc-talker_etcd-leader/workflow_serial_kill_upc-talker_etcd-leader.yaml
+2026-04-27 16:06:46 - chaos - INFO - ================================================================================
+2026-04-27 16:06:46 - chaos - INFO - Successfully parsed workflow: upc_serial_process_kill_001
+2026-04-27 16:06:46 - chaos - INFO - ============================================================
+2026-04-27 16:06:46 - chaos - INFO - 开始执行工作流: UPC 串行进程杀除工作流
+2026-04-27 16:06:46 - chaos - INFO - 工作流 ID: upc_serial_process_kill_001
+2026-04-27 16:06:46 - chaos - INFO - 执行模式: serial
+2026-04-27 16:06:46 - chaos - INFO - ============================================================
+2026-04-27 16:06:46 - chaos - INFO - 启动延迟 120.0s
+2026-04-27 16:06:46 - chaos - INFO - 
+================================================================================
+2026-04-27 16:06:46 - chaos - INFO - 执行workflow: cases/upc/upc-talker_etcd-leader/workflow_serial_loss_upc-talker_etcd-leader.yaml
+2026-04-27 16:06:46 - chaos - INFO - ================================================================================
+2026-04-27 16:06:46 - chaos - INFO - Successfully parsed workflow: upc_serial_network_loss_001
+2026-04-27 16:06:46 - chaos - INFO - ============================================================
+2026-04-27 16:06:46 - chaos - INFO - 开始执行工作流: UPC 串行网络丢包工作流
+2026-04-27 16:06:46 - chaos - INFO - 工作流 ID: upc_serial_network_loss_001
+2026-04-27 16:06:46 - chaos - INFO - 执行模式: serial
+2026-04-27 16:06:46 - chaos - INFO - ============================================================
+2026-04-27 16:06:46 - chaos - INFO - 启动延迟 120.0s
+2026-04-27 16:06:46 - chaos - INFO - 
+================================================================================
+2026-04-27 16:06:46 - chaos - INFO - 执行workflow: cases/upc/upc-talker_etcd-leader/workflow_serial_reorder_upc-talker_etcd-leader.yaml
+2026-04-27 16:06:46 - chaos - INFO - ================================================================================
+2026-04-27 16:06:46 - chaos - INFO - Successfully parsed workflow: upc_serial_network_reorder_001
+2026-04-27 16:06:46 - chaos - INFO - ============================================================
+2026-04-27 16:06:46 - chaos - INFO - 开始执行工作流: UPC 串行网络数据包重排序工作流
+2026-04-27 16:06:46 - chaos - INFO - 工作流 ID: upc_serial_network_reorder_001
+2026-04-27 16:06:46 - chaos - INFO - 执行模式: serial
+2026-04-27 16:06:46 - chaos - INFO - ============================================================
+2026-04-27 16:06:46 - chaos - INFO - 启动延迟 120.0s
+2026-04-27 16:06:46 - chaos - INFO - 
+================================================================================
+2026-04-27 16:06:46 - chaos - INFO - 执行workflow: cases/upc/upc-talker_etcd-leader/workflow_serial_stop_upc-talker_etcd-leader.yaml
+2026-04-27 16:06:46 - chaos - INFO - ================================================================================
+2026-04-27 16:06:46 - chaos - INFO - Successfully parsed workflow: upc_serial_pod_stop_001
+2026-04-27 16:06:46 - chaos - INFO - ============================================================
+2026-04-27 16:06:46 - chaos - INFO - 开始执行工作流: UPC 串行 Pod 停止工作流
+2026-04-27 16:06:46 - chaos - INFO - 工作流 ID: upc_serial_pod_stop_001
+2026-04-27 16:06:46 - chaos - INFO - 执行模式: serial
+2026-04-27 16:06:46 - chaos - INFO - ============================================================
+2026-04-27 16:06:46 - chaos - INFO - 启动延迟 120.0s

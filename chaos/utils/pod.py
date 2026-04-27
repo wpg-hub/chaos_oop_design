@@ -558,8 +558,9 @@ class PodManager:
         
         self.logger.info(f"获取到 registry-center IP: {registry_center_ip}")
         
-        # 获取 etcd leader
-        leader_command = f"curl -X GET http://{registry_center_ip}:8158/api/paas/v1/maintenance/db/health | jq '.Endpoints[] | select(.Leader == 1) | .Endpoint'"
+        # 获取 etcd leader（使用统一的 rc/cluster API）
+        # 先获取完整JSON，再用jq解析
+        leader_command = f"curl -s -X GET http://{registry_center_ip}:8158/api/paas/v1/maintenance/rc/cluster -H 'Content-Type: application/json' -k | jq -r '.etcd_cluster_info.Endpoints[] | select(.Leader == 1) | .Endpoint'"
         success, leader_output = self.remote_executor.execute(leader_command)
         
         if not success or not leader_output:
@@ -572,8 +573,9 @@ class PodManager:
             self.logger.error("etcd leader endpoint 为空")
             return None
         
-        # 从 "dupf-etcd-1.dupf-etcd-headless:2379" 中提取 "dupf-etcd-1"
-        leader_pod_name = leader_endpoint.replace('"', '').split('.')[0]
+        # 从 "dupf-etcd-2.dupf-etcd-headless:2379" 中提取 "dupf-etcd-2"
+        # jq -r 输出已经没有引号，直接分割即可
+        leader_pod_name = leader_endpoint.split('.')[0]
         
         # 获取 leader pod 的 IP
         pods = self.get_etcd_pods(namespace)
@@ -613,8 +615,9 @@ class PodManager:
         
         self.logger.info(f"获取到 registry-center IP: {registry_center_ip}")
         
-        # 获取 etcd followers
-        follower_command = f"curl -X GET http://{registry_center_ip}:8158/api/paas/v1/maintenance/db/health | jq '.Endpoints[] | select(.Leader == 0) | .Endpoint'"
+        # 获取 etcd followers（使用统一的 rc/cluster API）
+        # 先获取完整JSON，再用jq解析
+        follower_command = f"curl -s -X GET http://{registry_center_ip}:8158/api/paas/v1/maintenance/rc/cluster -H 'Content-Type: application/json' -k | jq -r '.etcd_cluster_info.Endpoints[] | select(.Leader == 0) | .Endpoint'"
         success, follower_output = self.remote_executor.execute(follower_command)
         
         if not success or not follower_output:
@@ -630,7 +633,8 @@ class PodManager:
         for endpoint in follower_endpoints:
             if endpoint:
                 # 从 "dupf-etcd-0.dupf-etcd-headless:2379" 中提取 "dupf-etcd-0"
-                pod_name = endpoint.replace('"', '').split('.')[0]
+                # jq -r 输出已经没有引号，直接分割即可
+                pod_name = endpoint.split('.')[0]
                 pod_ip = pods.get(pod_name)
                 
                 if pod_name and pod_ip:
@@ -917,11 +921,14 @@ class PodManager:
                     elif "pod_name" in node:
                         return node["pod_name"]
         
-        # 检查是否有 rc_info 字段
+        # 检查是否有 rc_info 字段（实际API返回格式）
+        # 从 svcInstID 字段提取 Pod 名称（如 "dupf-registry-center-1"）
         if "rc_info" in rc_cluster_info:
             for item in rc_cluster_info["rc_info"]:
                 if isinstance(item, dict) and item.get("role") == "Leader":
-                    if "pod" in item:
+                    if "svcInstID" in item:
+                        return item["svcInstID"]
+                    elif "pod" in item:
                         return item["pod"]
                     elif "pod_name" in item:
                         return item["pod_name"]
@@ -951,11 +958,14 @@ class PodManager:
                     elif "pod_name" in node:
                         non_leader_names.append(node["pod_name"])
         
-        # 检查是否有 rc_info 字段
+        # 检查是否有 rc_info 字段（实际API返回格式）
+        # 从 svcInstID 字段提取 Pod 名称（如 "dupf-registry-center-0"）
         if "rc_info" in rc_cluster_info:
             for item in rc_cluster_info["rc_info"]:
                 if isinstance(item, dict) and item.get("role") != "Leader":
-                    if "pod" in item:
+                    if "svcInstID" in item:
+                        non_leader_names.append(item["svcInstID"])
+                    elif "pod" in item:
                         non_leader_names.append(item["pod"])
                     elif "pod_name" in item:
                         non_leader_names.append(item["pod_name"])
