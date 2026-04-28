@@ -99,10 +99,8 @@ class CaseConfig:
         
         pod_match = self.pod_match
         has_name = bool(pod_match.get("name"))
-        has_labels = bool(pod_match.get("labels"))
-        is_special = pod_match.get("type") == "special"
-        
-        return has_name or has_labels or is_special
+
+        return has_name
     
     def get_effective_config(self, env_config, defaults: Dict) -> Dict:
         """获取有效配置（合并优先级）
@@ -444,33 +442,7 @@ class CaseExecutor:
         pod_match = case_config.pod_match
         namespace = effective_config.get("namespace")
         targets = []
-        
-        if pod_match.get("type") == "special":
-            special_type = pod_match.get("special_type")
-            role = pod_match.get("role")
-            
-            from ..utils.pod import PodManager
-            pod_manager = PodManager(
-                self._get_remote_executor(
-                    self.config_manager.get_environment(case_config.environment)
-                ),
-                self.logger,
-                self.config_manager
-            )
-            
-            special_pod = pod_manager.get_special_pod(
-                special_type, role, namespace
-            )
-            
-            if special_pod:
-                targets.append({
-                    "name": special_pod["name"],
-                    "ip": special_pod["ip"],
-                    "namespace": namespace
-                })
-            
-            return targets
-        
+
         pod_name = pod_match.get("name")
         if pod_name:
             from ..utils.pod import PodManager

@@ -14883,5 +14883,80 @@
     "start_time": "2026-04-28 11:33:23.901353",
     "end_time": null,
     "error_message": null
+  },
+  "delete_dupf-upu-dupf01-1-7c9b66cbbf-tq4xs_ns-dupf_1777355731": {
+    "fault_id": "delete_dupf-upu-dupf01-1-7c9b66cbbf-tq4xs_ns-dupf_1777355731",
+    "case_name": "pod_delete",
+    "fault_type": "delete",
+    "target": {
+      "name": "dupf-upu-dupf01-1-7c9b66cbbf-tq4xs",
+      "ip": "10.233.81.11",
+      "namespace": "ns-dupf"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-04-28 13:55:31.707007",
+    "end_time": "2026-04-28T13:55:41.757951",
+    "error_message": null
+  },
+  "delete_dupf-ddb-shd-0-2_ns-dupf_1777355778": {
+    "fault_id": "delete_dupf-ddb-shd-0-2_ns-dupf_1777355778",
+    "case_name": "pod_delete",
+    "fault_type": "delete",
+    "target": {
+      "name": "dupf-ddb-shd-0-2",
+      "ip": "10.233.69.100",
+      "namespace": "ns-dupf"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-04-28 13:56:19.091841",
+    "end_time": "2026-04-28T13:56:30.861817",
+    "error_message": null
+  },
+  "delete_dupf-etcd-1_ns-dupf_1777355819": {
+    "fault_id": "delete_dupf-etcd-1_ns-dupf_1777355819",
+    "case_name": "pod_delete",
+    "fault_type": "delete",
+    "target": {
+      "name": "dupf-etcd-1",
+      "ip": "10.233.69.117",
+      "namespace": "ns-dupf"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-04-28 13:56:59.902831",
+    "end_time": "2026-04-28T13:57:11.694202",
+    "error_message": null
+  },
+  "delete_dupf-etcd-2_ns-dupf_1777355847": {
+    "fault_id": "delete_dupf-etcd-2_ns-dupf_1777355847",
+    "case_name": "pod_delete",
+    "fault_type": "delete",
+    "target": {
+      "name": "dupf-etcd-2",
+      "ip": "10.233.81.66",
+      "namespace": "ns-dupf"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-04-28 13:57:27.276657",
+    "end_time": "2026-04-28T13:57:39.038815",
+    "error_message": null
+  },
+  "stop_dupf-etcd-2_ns-dupf_1777355931": {
+    "fault_id": "stop_dupf-etcd-2_ns-dupf_1777355931",
+    "case_name": "pod_stop_example",
+    "fault_type": "stop",
+    "target": {
+      "name": "dupf-etcd-2",
+      "ip": "10.233.81.37",
+      "namespace": "ns-dupf"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-04-28 13:58:57.849438",
+    "end_time": "2026-04-28T13:59:13.134202",
+    "error_message": null
   }
 }

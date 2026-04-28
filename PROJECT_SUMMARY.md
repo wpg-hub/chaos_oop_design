@@ -4,7 +4,7 @@
 2026-03-24
 
 ## 最后更新时间
-2026-04-22
+2026-04-28
 
 ## 项目位置
 `/home/gsta/chaos_oop_design/`
@@ -54,17 +54,17 @@
 ├── cases/                         # Case YAML 文件目录
 │   ├── examples/                  # 示例 Case 文件
 │   │   ├── computer_cmd.yaml     # 物理机命令执行示例
+│   │   ├── computer_reboot.yaml  # 物理机重启示例
 │   │   ├── ipmitool_computer_operator.yaml # IPMITOOL 示例
 │   │   ├── network_delay.yaml     # 网络延迟示例
-│   │   ├── network_corrupt.yaml   # 网络丢包示例
-│   │   ├── network_duplicate.yaml # 网络重复示例
+│   │   ├── network_corrupt.yaml   # 网络数据包破坏示例
+│   │   ├── network_duplicate.yaml # 网络数据包重复示例
 │   │   ├── network_loss.yaml      # 网络丢包示例
-│   │   ├── network_reorder.yaml   # 网络重排序示例
-│   │   ├── pod_failure.yaml       # Pod 故障示例
+│   │   ├── network_reorder.yaml   # 网络数据包重排序示例
+│   │   ├── pod_delete.yaml        # Pod 删除示例
 │   │   ├── pod_stop_example.yaml  # Pod 停止示例
 │   │   ├── process_kill.yaml      # 进程 kill 示例
-│   │   ├── tor_command.yaml       # TOR 命令示例
-│   │   └── upc_talker_failure.yaml # UPC Talker 故障示例
+│   │   └── tor_command.yaml       # TOR 命令示例
 │   ├── computer/                  # 物理机相关 Case
 │   ├── upc/                       # UPC 相关 Case
 │   ├── upu/                       # UPU 相关 Case
@@ -533,9 +533,8 @@ python3 chaos/main.py log --date <YYYY-MM-DD> --log-dir <log_dir> --target-dir <
 - `fault_type`: 具体故障类型
 - `pod_match`: Pod 匹配规则
   - `name`: Pod 名称（支持数组形式，可匹配多个 Pod）
-  - `labels`: Pod 标签
-  - `random_select`: 是否随机选择（默认：false）
-  - `select_count`: 随机选择数量（默认：1）
+  - `random`: 是否随机选择（默认：true）
+  - `count`: 选择数量（默认：1）
   - `interval`: Pod 之间的故障间隔（秒）
 - `duration`: 故障持续时间
 - `loop_count`: 循环次数
@@ -787,3 +786,33 @@ success, error = PermissionManager.safe_write_file("/path/to/file", content)
   - `chaos/workflow/definition.py` - CaseDefinition 类
   - `chaos/workflow/parser.py` - _parse_case 方法
 - **测试结果**：231 个单元测试全部通过
+
+### 2026-04-28 更新
+
+#### 1. 代码清理 - 移除不支持的功能
+- **移除的字段**：
+  - `labels`：Pod 标签选择器（已从 `pod_match` 中移除）
+  - `grace_period`：优雅终止参数（已从 Pod 删除操作中移除）
+  - `parameters`：故障参数字段（已从 Case 配置中移除）
+  - `type: special`、`special_type`、`role`：特殊 Pod 匹配字段（已移除，改用 `name` 字段直接匹配）
+- **影响范围**：
+  - `chaos/case/base.py` - 移除相关字段处理逻辑
+  - `chaos/utils/pod.py` - 移除 `get_special_pod` 方法和 `labels` 参数
+  - `chaos/fault/base.py` - 移除 `grace_period` 参数处理
+- **文档更新**：
+  - `README.md` - 移除不支持的字段说明，精简冗余内容
+  - `PROJECT_SUMMARY.md` - 更新项目结构和字段说明
+
+#### 2. 文档优化
+- **README.md 优化**：
+  - 精简重复的 `nodename` 说明
+  - 精简重复的 `auto_clear` 说明
+  - 精简 SSH 连接池说明
+  - 精简工作流示例，引用外部 examples 目录
+  - 合并冗余的参数表格
+  - 删除批量执行输出示例
+  - 总行数从 ~1325 行减少到 1119 行（减少 15.5%）
+- **PROJECT_SUMMARY.md 更新**：
+  - 更新最后更新时间
+  - 更新 examples 目录文件列表
+  - 更新 `pod_match` 字段说明

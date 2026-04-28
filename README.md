@@ -173,9 +173,9 @@ UPU_POD_FILTERS_SLAVE:        # UPU 备节点 Pod 列表
 ##### 普通 Pod 匹配
 
 ```yaml
+namespace: "ns-dupf"        # 命名空间（可选，不填则使用配置文件默认值）
 pod_match:
   name: "dupf-upu-dupf01-1"   # Pod 名称（支持通配符、前缀匹配和数组形式）
-  namespace: "ns-dupf"        # 命名空间
   random: true                # 是否随机选择（可选，默认 true）
   count: 1                    # 选择数量（可选，默认 1）
 ```
@@ -228,47 +228,17 @@ pod_match:
   - 如果 interval = 0，所有匹配规则同时开始故障
   - 如果 interval > 0，按顺序执行故障，每个故障之间等待指定的时间间隔
 
-##### 特殊 Pod 匹配
-
-```yaml
-pod_match:
-  type: "special"             # 指定为特殊 Pod
-  special_type: "ddb"         # 特殊 Pod 类型
-  role: "master"              # 角色
-  namespace: "ns-dupf"        # 命名空间
-```
-
-**支持的 special_type 和 role：**
-
-| special_type | role | 说明 |
-|--------------|------|------|
-| `ddb` | `master` | DDB 主节点 |
-| `ddb` | `slave` | DDB 从节点 |
-| `sdb` | `master` | SDB 主节点 |
-| `sdb` | `slave` | SDB 从节点 |
-| `etcd` | `leader` | etcd Leader 节点 |
-| `etcd` | `follower` | etcd Follower 节点 |
-| `upc` | `talker` | UPC Talker Pod |
-
 #### Pod 故障参数 (type: pod)
 
 ```yaml
 type: pod
 fault_type: delete            # 故障类型：delete、restart 或 stop
-parameters:
-  grace_period: 30            # 优雅终止时间（秒），0 表示立即强制删除
 ```
 
 **fault_type 可选值：**
 - `delete`: 删除 Pod
 - `restart`: 重启 Pod
 - `stop`: 停止 Pod 容器（不删除 Pod）
-
-**parameters 参数：**
-- `grace_period`: 优雅终止时间（秒）
-  - `> 0`: 等待指定时间让 Pod 优雅关闭
-  - `= 0`: 立即强制删除 Pod
-  - 注意：仅适用于 `delete` 操作
 
 **stop 操作说明：**
 - 停止 Pod 内容器的运行，但不删除 Pod 对象
@@ -279,22 +249,15 @@ parameters:
 
 #### 网络故障参数 (type: network)
 
-**节点感知执行**：
-- 系统会自动识别 Pod 所在的节点，并在正确的节点上执行网络故障注入
-- 通过 `kubectl get pod -o wide` 获取 Pod 所在的节点名称
-- 根据节点名称从 `config.yaml` 中找到对应的 SSH 连接信息
-- 在正确的节点上执行 `docker ps`、`docker inspect`、`nsenter` 和 `tc` 命令
-- 确保故障注入命令在 Pod 实际运行的节点上执行，避免"找不到容器"的错误
-
 ```yaml
 type: network
 fault_type: delay             # 故障类型：delay、loss、corrupt、duplicate 或 reorder
 parameters:
-  delay: "1000ms"             # 延迟时间
-  device: "eth0"              # 网络设备名称
-  direction: "both"           # 方向：both、in、out
-  jitter: "100ms"             # 抖动（可选）
-  loss: "0%"                  # 丢包率（可选）
+  device: "eth0"              # 网络设备名称（可选）
+  time: "300ms"               # 延迟时间（delay 类型）
+  jitter: "100ms"             # 抖动（可选，delay 类型）
+  correlation: "20%"          # 相关性（可选）
+  distribution: "paretonormal"  # 分布模型（可选，delay 类型）
 ```
 
 **fault_type 可选值：**
@@ -304,17 +267,39 @@ parameters:
 - `duplicate`: 网络数据包重复
 - `reorder`: 网络数据包重排序
 
-**parameters 参数：**
-- `device`: 网络设备名称，默认从 `config.yaml` 获取或 `eth0`
-- `delay`: 延迟时间，如 `100ms`、`1s`（仅 delay 类型）
-- `loss`: 丢包率，如 `10%`、`5%`（仅 loss 类型）
-- `percent`: 破坏/重复/重排序比例，如 `1%`、`5%`（corrupt、duplicate、reorder 类型）
-- `correlation`: 相关性，如 `25%`（可选）
-- `jitter`: 延迟抖动（可选，仅 delay 类型）
-- `direction`: 延迟方向（可选）
-  - `both`: 双向延迟
-  - `in`: 入站延迟
-  - `out`: 出站延迟
+**delay 参数：**
+- `device`: 网卡名，默认从 `config.yaml` 获取或 `eth0`
+- `time`: 固定延迟基础时间，如 `300ms`，默认随机 100ms~1000ms
+- `jitter`: 随机抖动最大幅度，如 `100ms`，默认随机 0ms~100ms
+- `correlation`: 相关性，如 `20%`，默认随机 20%~90%
+- `distribution`: 分布模型，如 `paretonormal`，默认随机选择
+
+**loss 参数：**
+- `device`: 网卡名
+- `ecn`: ECN 标志，`true`/`false`/`random`，默认 `random`
+- `model`: 丢包模型配置（可选，不填则随机选择模型）
+  - `random`: 独立随机丢包模型
+    - `percent`: 丢包率，默认随机 10%~50%
+  - `state`: 状态马尔可夫模型
+    - `p13`, `p31`, `p23`, `p32`, `p14`: 各状态转移概率
+  - `gemodel`: 吉尔伯特‑埃利奥特模型
+    - `p`, `pr`, `pr1-h`, `pr1-h1-k`: 模型参数
+
+**corrupt 参数：**
+- `device`: 网卡名
+- `percent`: 损坏比例，默认随机 1%~90%
+- `correlation`: 相关性，默认随机 1%~90%
+
+**duplicate 参数：**
+- `device`: 网卡名
+- `percent`: 被复制的数据包所占比例，默认随机 0.5%~10%
+- `correlation`: 重复事件之间的相关性，默认随机 1%~90%
+
+**reorder 参数：**
+- `device`: 网卡名
+- `percent`: 立即发送（不延迟）的包所占比例，默认随机 0.5%~10%
+- `correlation`: 重排序事件的相关性，默认随机 1%~90%
+- `gap`: 指定重排序的周期性模式，默认随机 1~100
 
 #### 物理机故障参数 (type: computer)
 
@@ -390,11 +375,11 @@ bmc_environments:
 ```yaml
 type: process
 fault_type: kill            # 故障类型：kill
+namespace: ns-dupf          # 命名空间（可选，不填则使用配置文件默认值）
 pod_match:
   name:                     # Pod 名称列表
     - upc-talker
     - ddb-master
-  namespace: ns-dupf        # 命名空间
   random: true              # 是否随机选择
   count: 1                  # 选择数量
 parameters:
@@ -490,172 +475,7 @@ sw_match:
 
 ### 3. 完整示例
 
-#### Pod 故障用例示例
-
-```yaml
-# Pod 故障 Case 示例
-name: pod_failure
-description: Pod failure fault test
-type: pod
-environment: 1_ssh_remote
-fault_type: delete
-pod_match:
-  name: dupf-upu-dupf01-1
-  namespace: ns-dupf
-  labels:
-    app: dupf
-    component: upu
-duration: 60s
-loop_count: 2
-parameters:
-  action: delete
-  grace_period: 30
-namespace: ns-dupf
-auto_clear: false  # 在 duration 结束后不执行 clear 操作
-```
-
-#### 多 Pod 故障用例示例
-
-```yaml
-# 多 Pod 故障 Case 示例
-name: multi_pod_failure
-description: Multiple pod failure fault test
-type: pod
-environment: 1_ssh_remote
-fault_type: delete
-pod_match:
-  name:
-    - dupf-upu-dupf01-1
-    - dupf-upu-dupf01-2
-  namespace: ns-dupf
-  labels:
-    app: dupf
-    component: upu
-  random: true  # 随机选择
-  count: 1      # 每个名称模式选择 1 个 Pod
-duration: 30s
-loop_count: 1
-parameters:
-  action: delete
-  grace_period: 30
-namespace: ns-dupf
-```
-
-#### 多 Pod 随机选择示例
-
-```yaml
-# 多 Pod 随机选择示例
-name: multi_pod_random_select
-description: Multiple pod random selection test
-type: pod
-environment: 1_ssh_remote
-fault_type: delete
-pod_match:
-  name: dupf-upu-dupf01-*
-  namespace: ns-dupf
-  labels:
-    app: dupf
-    component: upu
-  random: true  # 随机选择
-  count: 2      # 选择 2 个 Pod
-duration: 30s
-loop_count: 1
-parameters:
-  action: delete
-  grace_period: 30
-namespace: ns-dupf
-```
-
-#### DDB Master 故障用例示例
-
-```yaml
-# 特殊 Pod 故障 Case 示例（DDB Master）
-name: ddb_master_failure
-description: DDB master pod failure test
-type: pod
-environment: 1_ssh_remote
-fault_type: delete
-pod_match:
-  type: special
-  special_type: ddb
-  role: master
-  namespace: ns-dupf
-duration: 60s
-loop_count: 1
-parameters:
-  action: delete
-  grace_period: 30
-```
-
-#### 网络延迟用例示例
-
-```yaml
-# 网络延迟 Case 示例
-name: network_delay
-description: Network delay fault test
-type: network
-environment: 1_ssh_remote
-fault_type: delay
-pod_match:
-  name: dupf-upu-dupf01-1
-  namespace: ns-dupf
-  labels:
-    app: dupf
-    component: upu
-duration: 60s
-loop_count: 3
-parameters:
-  delay: 1000ms
-  device: eth0
-  direction: both
-  jitter: 100ms
-  loss: 0%
-namespace: ns-dupf
-```
-
-#### 网络延迟用例示例（带 auto_clear）
-
-```yaml
-# 网络延迟 Case 示例（带 auto_clear）
-name: network_delay_with_clear
-description: Network delay fault test with auto clear
-type: network
-environment: 1_ssh_remote
-fault_type: delay
-pod_match:
-  name: dupf-upu-dupf01-1
-  namespace: ns-dupf
-  labels:
-    app: dupf
-    component: upu
-duration: 60s
-loop_count: 1
-parameters:
-  delay: 1000ms
-  device: eth0
-  direction: both
-  jitter: 100ms
-  loss: 0%
-namespace: ns-dupf
-auto_clear: true  # 在 duration 结束后自动清除网络故障
-```
-
-#### 物理机重启用例示例
-
-```yaml
-# 物理机重启 Case 示例
-name: computer_reboot
-description: Reboot physical server nodes
-type: computer
-fault_type: reboot
-computer_match:
-  name:
-    - 1_ssh_remote
-    - 2_ssh_remote
-duration: 0
-loop_count: 1
-auto_clear: false
-```
+更多完整示例请参考 [cases/examples/](cases/examples/) 目录下的 YAML 文件。
 
 ### 4. 配置优先级
 
@@ -719,8 +539,6 @@ python3 chaos/main.py clear [选项]
 - 网络故障清除采用 OOP 设计，通过 `NetworkFaultClearer` 类实现
 - 支持逐个 Pod 清除网络故障，使用 `nsenter` 进入容器网络命名空间执行 `tc` 命令
 - **节点过滤**：根据环境配置中的 `nodename` 字段自动过滤 Pod，只清除指定节点上的 Pod 故障
-  - 例如：`1_ssh_remote` 环境配置的 `nodename` 为 `dupf01`，则只清除 `dupf01` 节点上的 Pod 网络故障
-  - 例如：`2_ssh_remote` 环境配置的 `nodename` 为 `dupf02`，则只清除 `dupf02` 节点上的 Pod 网络故障
 
 **示例：**
 ```bash
@@ -955,17 +773,9 @@ python3 chaos/main.py log --date 2024-01-15 --target-dir /home/user/logs
 | `default_namespace` | string | 默认命名空间（可选） |
 
 **说明：**
-- `nodename`：节点名称，用于 clear 命令中过滤 Pod
-  - 当执行 clear 命令时，系统会根据环境的 `nodename` 字段自动过滤 Pod
-  - 例如：`1_ssh_remote` 环境的 `nodename` 为 `dupf01`，则只清除 `dupf01` 节点上的 Pod 网络故障
-  - 例如：`2_ssh_remote` 环境的 `nodename` 为 `dupf02`，则只清除 `dupf02` 节点上的 Pod 网络故障
-  - 这样可以避免在多节点环境中清除所有 Pod 的故障，提高清除效率
-- **SSH 连接超时**：SSH 连接建立的超时时间为 10 秒
-  - 如果在 10 秒内无法建立连接，系统会自动重试或报告错误
-- **命令执行超时**：远程命令执行的超时时间为 120 秒
-  - 适用于 `kubectl get pod`、`docker ps` 等可能需要较长时间的命令
-  - 如果命令执行超过 120 秒，系统会自动终止命令并报告超时错误
-  - 这个超时时间可以避免在某些节点响应慢时导致整个操作卡住
+- `nodename`：节点名称，用于 clear 命令过滤 Pod（如 `dupf01`、`dupf02`）
+- **SSH 连接超时**：10 秒
+- **命令执行超时**：120 秒
 
 ### 3. Case 配置参数
 
@@ -987,70 +797,18 @@ Case 配置对象包含以下属性：
 | `auto_clear` | boolean | 否 | 故障持续时间结束后是否执行 clear 操作，默认 `false` |
 
 **说明：**
-- `auto_clear`：布尔类型字段，用于控制在故障持续时间结束后是否自动执行 clear 操作
-  - `true`：在 duration 时间结束后，自动清除该环境节点上的网络故障
-  - `false`：在 duration 时间结束后，不执行 clear 操作（默认值）
-  - 该功能适用于网络故障类型，可以确保故障测试完成后自动清理网络配置
-  - clear 操作会根据环境配置中的 `nodename` 字段过滤 Pod，只清除指定节点上的网络故障
+- `auto_clear`：布尔类型，控制故障持续时间结束后是否自动执行 clear 操作
+  - `true`：自动清除网络故障
+  - `false`：不执行 clear 操作（默认值）
 
-### 4. 网络设备参数
-
-网络故障注入支持以下设备参数：
-
-| 参数 | 默认值 | 说明 |
-|------|--------|------|
-| `device` | `eth0` | 网络设备名称 |
-| `direction` | `both` | 延迟方向：`both`、`in`、`out` |
-
-### 5. 优雅终止参数
-
-Pod 删除操作支持以下参数：
-
-| 参数 | 默认值 | 说明 |
-|------|--------|------|
-| `grace_period` | `0` | 优雅终止时间（秒） |
-| - | `> 0` | 等待 Pod 优雅关闭 |
-| - | `= 0` | 立即强制删除 |
-
-### 6. 日志参数
-
-日志系统支持以下参数：
-
-| 参数 | 默认值 | 说明 |
-|------|--------|------|
-| `name` | `chaos` | 日志记录器名称 |
-| `level` | `INFO` | 日志级别 |
-| `format` | 见代码 | 日志格式 |
-| `output` | 控制台 | 日志输出位置 |
-
-### 7. 备份参数
-
-版本备份支持以下参数：
-
-| 参数 | 默认值 | 说明 |
-|------|--------|------|
-| `backup_dir` | `backups` | 备份目录 |
-| `version_file` | `VERSION` | 版本文件路径 |
-| `backup_format` | `tar.gz` | 备份文件格式 |
-
-### 8. 网络故障清除参数
-
-网络故障清除支持以下参数：
+### 4. 其他参数
 
 | 参数 | 默认值 | 说明 |
 |------|--------|------|
 | `device` | `eth0` | 网络设备名称 |
 | `namespace` | `ns-dupf` | Kubernetes 命名空间 |
-| `nodename` | 从环境配置获取 | 节点名称（用于过滤 Pod） |
-
-**说明：**
-- `device`：指定要清除网络故障的网络设备名称
-- `namespace`：指定要清除网络故障的 Kubernetes 命名空间
-- `nodename`：节点名称，从环境配置中自动获取，用于过滤 Pod
-  - 例如：`1_ssh_remote` 环境的 `nodename` 为 `dupf01`，则只清除 `dupf01` 节点上的 Pod 网络故障
-  - 例如：`2_ssh_remote` 环境的 `nodename` 为 `dupf02`，则只清除 `dupf02` 节点上的 Pod 网络故障
-- 网络故障清除使用 `nsenter` 进入容器网络命名空间执行 `tc` 命令
-- 支持逐个 Pod 清除网络故障，提供详细的清除结果统计
+| `backup_dir` | `backups` | 备份目录 |
+| `log_level` | `INFO` | 日志级别 |
 
 ## 核心功能
 
@@ -1060,15 +818,7 @@ Pod 删除操作支持以下参数：
 - 支持交换机环境配置
 - 支持默认配置和 UPU Pod 过滤列表
 - 配置优先级：Case YAML > 环境配置 > 默认配置
-- **SSH 连接池管理**：采用单例模式的连接池，提供高效的连接复用
-  - **连接复用**：相同环境的多次操作复用同一连接，减少连接建立开销
-  - **自动重连**：连接断开时自动检测并重新建立连接
-  - **空闲清理**：自动清理超过 300 秒未使用的空闲连接
-  - **连接限制**：最大支持 10 个并发连接，超出时自动清理最旧连接
-  - **线程安全**：使用线程锁保护共享资源，支持多线程环境
-  - **连接健康检查**：每次使用前检查连接状态，确保连接可用
-  - 支持连接超时配置，默认 10 秒
-  - 支持命令执行超时配置，默认 120 秒
+- **SSH 连接池**：连接复用、自动重连、空闲清理、线程安全
 
 ### 故障注入
 
@@ -1082,23 +832,15 @@ Pod 删除操作支持以下参数：
 - 支持单个和批量执行
 - 支持循环执行和故障时长控制
 - 自动故障恢复和状态记录
-- **自动清除功能**：支持在故障持续时间结束后自动执行 clear 操作
-  - 通过 `auto_clear` 字段控制，默认为 `false`
-  - 当设置为 `true` 时，在 duration 时间结束后自动清除该环境节点上的网络故障
-  - 适用于网络故障类型，可以确保故障测试完成后自动清理网络配置
+- **自动清除功能**：通过 `auto_clear` 字段控制故障持续时间结束后是否自动清除网络故障
 
 ### 故障清除
 
 - **网络故障清除**：采用 OOP 设计，支持逐个 Pod 清除网络故障
-  - 使用 `NetworkFaultClearer` 抽象类定义清除器接口
-  - 通过 `PodNetworkFaultClearer` 实现具体的 Pod 网络故障清除
   - 使用 `nsenter` 进入容器网络命名空间执行 `tc` 命令
   - 支持自定义网络设备名称（默认：`eth0`）
   - 支持自定义 Kubernetes 命名空间（默认：`ns-dupf`）
-  - **节点过滤**：根据环境配置中的 `nodename` 字段自动过滤 Pod，只清除指定节点上的 Pod 故障
-    - 例如：`1_ssh_remote` 环境配置的 `nodename` 为 `dupf01`，则只清除 `dupf01` 节点上的 Pod 网络故障
-    - 例如：`2_ssh_remote` 环境配置的 `nodename` 为 `dupf02`，则只清除 `dupf02` 节点上的 Pod 网络故障
-    - 这样可以避免在多节点环境中清除所有 Pod 的故障，提高清除效率
+  - **节点过滤**：根据环境配置中的 `nodename` 字段自动过滤 Pod
 - **状态记录清除**：清除所有故障状态记录
 
 ### 状态管理
@@ -1318,22 +1060,16 @@ case:
 
 ### 工作流示例
 
-#### 串行工作流示例
-
 ```yaml
 workflow:
   id: serial_example_001
   name: 串行测试工作流
   execution_mode: serial
-  timing:
-    start_delay: 5
-    node_interval: 10
-  
   tasks:
-    - id: task_sw_command
+    - id: task_1
       name: 交换机命令执行
       case:
-        name: sw_command_execution
+        name: sw_command
         type: sw
         environment: sw_ssh_remote1
         fault_type: command
@@ -1342,121 +1078,20 @@ workflow:
             - cmd: display interface brief
               wait: 5
           loop_count: 1
-
-    - id: task_pod_failure
+    - id: task_2
       name: Pod 故障测试
       case:
-        name: upc_pod_failure
+        name: pod_failure
         type: pod
         environment: 1_ssh_remote
         fault_type: delete
         pod_match:
           name: upc-talker
-          namespace: ns-dupf
         duration: 30s
-        loop_count: 0
+        loop_count: 1
 ```
 
-#### 并行工作流示例
-
-```yaml
-workflow:
-  id: parallel_example_001
-  name: 并行测试工作流
-  execution_mode: parallel
-  timing:
-    branch_start_delay: 5       # 分支启动延迟 5 秒
-  
-  tasks:
-    - id: task_sw_1
-      name: 交换机命令执行 1
-      case:
-        name: sw_command_1
-        type: sw
-        environment: sw_ssh_remote1
-        fault_type: command
-        sw_match:
-          commands:
-            - cmd: display interface brief
-              wait: 5
-          loop_count: 1
-
-    - id: task_sw_2
-      name: 交换机命令执行 2
-      case:
-        name: sw_command_2
-        type: sw
-        environment: sw_ssh_remote2
-        fault_type: command
-        sw_match:
-          commands:
-            - cmd: display bgp peer
-              wait: 5
-          loop_count: 1
-```
-
-#### 混合工作流示例
-
-```yaml
-workflow:
-  id: hybrid_example_001
-  name: 混合测试工作流
-  execution_mode: hybrid
-  timing:
-    branch_start_delay: 10
-  
-  groups:
-    - id: branch_sw
-      name: 交换机测试分支
-      execution_mode: serial
-      timing:
-        node_interval: 5
-      tasks:
-        - id: sw_1
-          name: SW1 命令测试
-          case:
-            name: sw1_command
-            type: sw
-            environment: sw_ssh_remote1
-            fault_type: command
-            sw_match:
-              commands:
-                - cmd: display interface brief
-                  wait: 5
-              loop_count: 1
-
-    - id: branch_pod
-      name: Pod 故障测试分支
-      execution_mode: serial
-      start_delay: 10
-      tasks:
-        - id: pod_upc
-          name: UPC Pod 故障
-          case:
-            name: upc_pod_failure
-            type: pod
-            environment: 1_ssh_remote
-            fault_type: delete
-            pod_match:
-              name: upc-talker
-              namespace: ns-dupf
-            duration: 30s
-            loop_count: 0
-
-  final_tasks:
-    - id: cleanup
-      name: 清理环境
-      case:
-        name: cleanup_all
-        type: sw
-        environment: sw_ssh_remote1
-        fault_type: command
-        sw_match:
-          commands:
-            - cmd: display current-configuration
-              wait: 2
-          loop_count: 1
-```
+更多完整示例请参考 [cases/examples/](cases/examples/) 目录。
 
 ### 工作流命令行
 
@@ -1482,35 +1117,3 @@ python3 chaos/main.py workflow --dir cases/upc/ --max-workers 5
 - `--dir`: 工作流目录路径，递归执行目录下所有 YAML 文件（与 --file 互斥）
 - `--dry-run`: 仅验证配置，不执行（可选，仅对 --file 有效）
 - `--max-workers`: 最大并行数，默认 10（可选）
-
-**批量执行输出示例**：
-
-```
-2026-04-14 - chaos - INFO - 找到 16 个workflow文件
-2026-04-14 - chaos - INFO - 执行workflow: cases/upc/workflow_parallel_corrupt.yaml
-...
-
-================================================================================
-                    Workflow Batch Execution Report                    
-================================================================================
-Total Workflows : 16
-Success        : 14
-Failed         : 2
-================================================================================
-
-Workflow Execution Details:
---------------------------------------------------------------------------------
-ID                              Name                           Status    Duration
---------------------------------------------------------------------------------
-upc_parallel_network_corrupt_001 UPC 并行网络数据包破坏工作流    SUCCESS   45.2s
-upc_serial_network_corrupt_001  UPC 串行网络数据包破坏工作流     FAILED    30.1s
-...
-================================================================================
-
-Failed Workflows:
---------------------------------------------------------------------------------
-1. upc_serial_network_corrupt_001 - UPC 串行网络数据包破坏工作流
-   File: cases/upc/workflow_serial_corrupt.yaml
-   Error: Connection timeout
-================================================================================
-```

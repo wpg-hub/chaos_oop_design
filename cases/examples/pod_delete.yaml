@@ -5,7 +5,7 @@ type: pod
 environment: 1_ssh_remote
 fault_type: delete
 pod_match:
-  name: dupf-upu-dupf01-1
+  name: etcd
 duration: 10s
 loop_count: 1
 # namespace: ns-dupf

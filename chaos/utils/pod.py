@@ -1083,40 +1083,7 @@ class PodManager:
         self.logger.info(f"找到 {len(non_leader_names)} 个 RC Non-Leader")
         
         return non_leader_names
-    
-    def get_special_pod(self, pod_type: str, role: str, namespace: str = None) -> Optional[Dict[str, str]]:
-        """获取特殊 Pod
-        
-        Args:
-            pod_type: Pod 类型 (ddb/sdb/etcd/upc/upu)
-            role: 角色 (master/slave/leader/talker/non-talker)
-            namespace: 命名空间
-            
-        Returns:
-            Optional[Dict[str, str]]: Pod 信息
-        """
-        namespace = self._get_namespace(namespace)
-        if pod_type == "ddb":
-            if role == "master":
-                return self.get_ddb_master(namespace)
-            elif role == "slave":
-                slaves = self.get_ddb_slaves(namespace)
-                return slaves[0] if slaves else None
-        elif pod_type == "sdb":
-            if role == "master":
-                return self.get_sdb_master(namespace)
-            elif role == "slave":
-                slaves = self.get_sdb_slaves(namespace)
-                return slaves[0] if slaves else None
-        elif pod_type == "etcd":
-            if role == "leader":
-                return self.get_etcd_leader(namespace)
-        elif pod_type == "upc":
-            if role == "talker":
-                return self.get_upc_talker(namespace)
-        
-        return None
-    
+
     def get_pod_by_name_pattern(self, name_pattern: str, namespace: str = None) -> Optional[Dict[str, str]]:
         """根据名称匹配规则获取 Pod
         

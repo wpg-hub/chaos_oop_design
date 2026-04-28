@@ -1240,16 +1240,10 @@ class PodFaultInjector(FaultInjector):
         """删除 Pod"""
         pod_name = target.get("name")
         namespace = target.get("namespace")
-        grace_period = parameters.get("grace_period", 0)
-        
+
         try:
-            # 构建 kubectl 命令
-            # kubectl不允许同时使用--force和大于0的--grace-period
-            if grace_period > 0:
-                command = f"kubectl delete pod {pod_name} -n {namespace} --grace-period={grace_period}"
-            else:
-                command = f"kubectl delete pod {pod_name} -n {namespace} --grace-period=0 --force"
-            
+            command = f"kubectl delete pod {pod_name} -n {namespace} --grace-period=0 --force"
+
             self.logger.info(f"删除 Pod: {pod_name} (namespace: {namespace})")
             
             # 执行命令
