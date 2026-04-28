@@ -69,7 +69,7 @@ cd /home/gsta/chaos_oop_design
 
 ```bash
 # 执行单个 Case
-python3 chaos/main.py case --name cases/network_delay.yaml
+python3 chaos/main.py case --name cases/examples/network_delay.yaml
 
 # 批量执行目录下的所有 Case
 python3 chaos/main.py case --dir cases/
@@ -176,9 +176,6 @@ UPU_POD_FILTERS_SLAVE:        # UPU 备节点 Pod 列表
 pod_match:
   name: "dupf-upu-dupf01-1"   # Pod 名称（支持通配符、前缀匹配和数组形式）
   namespace: "ns-dupf"        # 命名空间
-  labels:                     # 标签选择器（可选）
-    app: dupf
-    component: upu
   random: true                # 是否随机选择（可选，默认 true）
   count: 1                    # 选择数量（可选，默认 1）
 ```
@@ -694,13 +691,13 @@ python3 chaos/main.py case [选项]
 **示例：**
 ```bash
 # 执行单个 Case
-python3 chaos/main.py case --name cases/pod_failure.yaml
+python3 chaos/main.py case --name cases/examples/pod_failure.yaml
 
 # 批量执行目录下的所有 Case
 python3 chaos/main.py case --dir cases/ --timeout 600
 
 # 指定环境和命名空间
-python3 chaos/main.py case --name cases/network_delay.yaml --env 1_ssh_remote --namespace ns-test
+python3 chaos/main.py case --name cases/examples/network_delay.yaml --env 1_ssh_remote --namespace ns-test
 ```
 
 ### 2. clear 子命令 - 清除故障

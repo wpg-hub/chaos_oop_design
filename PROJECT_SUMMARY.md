@@ -51,14 +51,24 @@
 │       ├── version.py           # 版本管理器
 │       ├── pod.py              # Pod 管理器
 │       └── log_collector.py    # 日志收集器
-├── cases/                         # Case YAML 文件
-│   ├── network_delay.yaml        # 网络延迟 Case
-│   ├── pod_failure.yaml          # Pod 故障 Case
-│   ├── multi_pod_failure.yaml   # 多 Pod 故障 Case
-│   ├── multi_pod_random_select.yaml # 多 Pod 随机选择 Case
-│   ├── pod_stop_example.yaml    # Pod 停止容器 Case
-│   ├── process_kill.yaml        # 进程 kill Case
-│   └── sw_command.yaml          # 交换机命令执行 Case
+├── cases/                         # Case YAML 文件目录
+│   ├── examples/                  # 示例 Case 文件
+│   │   ├── computer_cmd.yaml     # 物理机命令执行示例
+│   │   ├── ipmitool_computer_operator.yaml # IPMITOOL 示例
+│   │   ├── network_delay.yaml     # 网络延迟示例
+│   │   ├── network_corrupt.yaml   # 网络丢包示例
+│   │   ├── network_duplicate.yaml # 网络重复示例
+│   │   ├── network_loss.yaml      # 网络丢包示例
+│   │   ├── network_reorder.yaml   # 网络重排序示例
+│   │   ├── pod_failure.yaml       # Pod 故障示例
+│   │   ├── pod_stop_example.yaml  # Pod 停止示例
+│   │   ├── process_kill.yaml      # 进程 kill 示例
+│   │   ├── tor_command.yaml       # TOR 命令示例
+│   │   └── upc_talker_failure.yaml # UPC Talker 故障示例
+│   ├── computer/                  # 物理机相关 Case
+│   ├── upc/                       # UPC 相关 Case
+│   ├── upu/                       # UPU 相关 Case
+│   └── ddb/                       # DDB 相关 Case
 ├── tests/                         # 单元测试目录
 │   ├── test_pod_fault_injector.py # Pod 故障注入器测试
 │   ├── test_computer_fault_injector.py # 物理机故障注入器测试

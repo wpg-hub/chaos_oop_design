@@ -26337,3 +26337,180 @@ Skipped        : 0
 2026-04-28 11:18:19 - chaos - INFO - [DEBUG] 故障ID: delete_dupf-upc-76bbbd9fbb-76v6c_ns-dupf_1777346298
 2026-04-28 11:18:19 - chaos - INFO - 记录故障：delete_dupf-upc-76bbbd9fbb-76v6c_ns-dupf_1777346298
 2026-04-28 11:18:19 - chaos - INFO - [DEBUG] 开始等待 duration: 240s (240.0秒)
+2026-04-28 11:22:33 - chaos - INFO - [DEBUG] duration 等待完成
+2026-04-28 11:22:33 - chaos - INFO - [DEBUG] 开始清理故障: delete_dupf-upc-76bbbd9fbb-76v6c_ns-dupf_1777346298
+2026-04-28 11:22:33 - chaos - INFO - Pod 故障自动恢复：delete_dupf-upc-76bbbd9fbb-76v6c_ns-dupf_1777346298
+2026-04-28 11:22:33 - chaos - INFO - [DEBUG] 故障清理成功: delete_dupf-upc-76bbbd9fbb-76v6c_ns-dupf_1777346298
+2026-04-28 11:22:33 - chaos - INFO - 标记故障已恢复：delete_dupf-upc-76bbbd9fbb-76v6c_ns-dupf_1777346298
+2026-04-28 11:22:33 - chaos - INFO - 任务执行成功: UPC Talker Pod 删除 (耗时: 256.64s)
+2026-04-28 11:22:33 - chaos - INFO - 层间等待 10.0s
+2026-04-28 11:22:45 - chaos - INFO - 
+============================================================
+2026-04-28 11:22:45 - chaos - INFO - 执行第 2/3 层，共 1 个任务
+2026-04-28 11:22:45 - chaos - INFO - ============================================================
+2026-04-28 11:22:45 - chaos - INFO - [DEBUG] 开始执行任务: DDB Master Pod 删除 (delete_ddb_master)
+2026-04-28 11:22:45 - chaos - INFO - [DEBUG] 任务类型: pod, 故障类型: delete
+2026-04-28 11:22:45 - chaos - INFO - [DEBUG] 目标: Pod: ddb-master
+2026-04-28 11:22:45 - chaos - INFO - [DEBUG] Duration: 240s, Loop: 1
+2026-04-28 11:22:45 - chaos - INFO - [DEBUG] 任务超时时间: 300.0s
+2026-04-28 11:22:45 - chaos - INFO - [DEBUG] ========== 开始执行 Case ==========
+2026-04-28 11:22:45 - chaos - INFO - [DEBUG] Case名称: ddb_master_delete
+2026-04-28 11:22:45 - chaos - INFO - [DEBUG] Case类型: pod
+2026-04-28 11:22:45 - chaos - INFO - [DEBUG] 故障类型: delete
+2026-04-28 11:22:45 - chaos - INFO - [DEBUG] 环境: 1_ssh_remote
+2026-04-28 11:22:45 - chaos - INFO - [DEBUG] 执行 Case 迭代 1/1
+2026-04-28 11:22:45 - chaos - INFO - [DEBUG] 开始获取目标列表...
+2026-04-28 11:22:45 - chaos - INFO - 获取 DDB Pod 列表，namespace: ns-dupf, filter_type: ddb-master
+2026-04-28 11:22:45 - chaos - INFO - 获取 DDB Master Pod 列表，namespace: ns-dupf
+2026-04-28 11:22:45 - chaos - INFO - 获取 DB Service IP，namespace: ns-dupf，端口: 8082
+2026-04-28 11:22:45 - chaos - INFO - 找到 Service IP: 10.233.50.15
+2026-04-28 11:22:45 - chaos - INFO - 获取 DDB Pod 列表，namespace: ns-dupf, filter_type: None
+2026-04-28 11:22:45 - chaos - INFO - 找到 9 个 DDB Pod（过滤类型：默认）
+2026-04-28 11:22:46 - chaos - INFO - 找到 3 个 DDB Master
+2026-04-28 11:22:46 - chaos - INFO - 随机选择 Pod: dupf-ddb-shd-1-1
+2026-04-28 11:22:46 - chaos - INFO - [DEBUG] 找到 1 个目标
+2026-04-28 11:22:46 - chaos - INFO - [DEBUG] ---------- 处理目标 1/1 ----------
+2026-04-28 11:22:46 - chaos - INFO - [DEBUG] 目标名称: dupf-ddb-shd-1-1
+2026-04-28 11:22:46 - chaos - INFO - [DEBUG] 目标节点: None
+2026-04-28 11:22:46 - chaos - INFO - [DEBUG] 创建故障注入器...
+2026-04-28 11:22:46 - chaos - INFO - [DEBUG] 准备注入故障...
+2026-04-28 11:22:46 - chaos - INFO - [DEBUG] 注入参数: {'fault_type': 'delete'}
+2026-04-28 11:22:46 - chaos - INFO - 删除 Pod: dupf-ddb-shd-1-1 (namespace: ns-dupf)
+2026-04-28 11:22:46 - chaos - INFO - Pod dupf-ddb-shd-1-1 删除成功
+2026-04-28 11:22:46 - chaos - INFO - [DEBUG] 故障注入成功
+2026-04-28 11:22:46 - chaos - INFO - [DEBUG] 故障ID: delete_dupf-ddb-shd-1-1_ns-dupf_1777346566
+2026-04-28 11:22:46 - chaos - INFO - 记录故障：delete_dupf-ddb-shd-1-1_ns-dupf_1777346566
+2026-04-28 11:22:46 - chaos - INFO - [DEBUG] 开始等待 duration: 240s (240.0秒)
+2026-04-28 11:26:55 - chaos - INFO - [DEBUG] duration 等待完成
+2026-04-28 11:26:55 - chaos - INFO - [DEBUG] 开始清理故障: delete_dupf-ddb-shd-1-1_ns-dupf_1777346566
+2026-04-28 11:26:55 - chaos - INFO - Pod 故障自动恢复：delete_dupf-ddb-shd-1-1_ns-dupf_1777346566
+2026-04-28 11:26:55 - chaos - INFO - [DEBUG] 故障清理成功: delete_dupf-ddb-shd-1-1_ns-dupf_1777346566
+2026-04-28 11:26:55 - chaos - INFO - 标记故障已恢复：delete_dupf-ddb-shd-1-1_ns-dupf_1777346566
+2026-04-28 11:26:55 - chaos - INFO - 任务执行成功: DDB Master Pod 删除 (耗时: 249.88s)
+2026-04-28 11:26:55 - chaos - INFO - 层间等待 10.0s
+2026-04-28 11:27:05 - chaos - INFO - 
+============================================================
+2026-04-28 11:27:05 - chaos - INFO - 执行第 3/3 层，共 1 个任务
+2026-04-28 11:27:05 - chaos - INFO - ============================================================
+2026-04-28 11:27:05 - chaos - INFO - [DEBUG] 开始执行任务: DDB Slave Pod 删除 (delete_ddb_slave)
+2026-04-28 11:27:05 - chaos - INFO - [DEBUG] 任务类型: pod, 故障类型: delete
+2026-04-28 11:27:05 - chaos - INFO - [DEBUG] 目标: Pod: ddb-slave
+2026-04-28 11:27:05 - chaos - INFO - [DEBUG] Duration: 240s, Loop: 1
+2026-04-28 11:27:05 - chaos - INFO - [DEBUG] 任务超时时间: 300.0s
+2026-04-28 11:27:05 - chaos - INFO - [DEBUG] ========== 开始执行 Case ==========
+2026-04-28 11:27:05 - chaos - INFO - [DEBUG] Case名称: ddb_slave_delete
+2026-04-28 11:27:05 - chaos - INFO - [DEBUG] Case类型: pod
+2026-04-28 11:27:05 - chaos - INFO - [DEBUG] 故障类型: delete
+2026-04-28 11:27:05 - chaos - INFO - [DEBUG] 环境: 1_ssh_remote
+2026-04-28 11:27:05 - chaos - INFO - [DEBUG] 执行 Case 迭代 1/1
+2026-04-28 11:27:05 - chaos - INFO - [DEBUG] 开始获取目标列表...
+2026-04-28 11:27:05 - chaos - INFO - 获取 DDB Pod 列表，namespace: ns-dupf, filter_type: ddb-slave
+2026-04-28 11:27:05 - chaos - INFO - 获取 DDB Slave Pod 列表，namespace: ns-dupf
+2026-04-28 11:27:05 - chaos - INFO - 获取 DB Service IP，namespace: ns-dupf，端口: 8082
+2026-04-28 11:27:05 - chaos - INFO - 找到 Service IP: 10.233.50.15
+2026-04-28 11:27:05 - chaos - INFO - 获取 DDB Pod 列表，namespace: ns-dupf, filter_type: None
+2026-04-28 11:27:05 - chaos - INFO - 找到 9 个 DDB Pod（过滤类型：默认）
+2026-04-28 11:27:07 - chaos - INFO - 找到 6 个 DDB Slave
+2026-04-28 11:27:07 - chaos - INFO - 随机选择 Pod: dupf-ddb-shd-1-1
+2026-04-28 11:27:07 - chaos - INFO - [DEBUG] 找到 1 个目标
+2026-04-28 11:27:07 - chaos - INFO - [DEBUG] ---------- 处理目标 1/1 ----------
+2026-04-28 11:27:07 - chaos - INFO - [DEBUG] 目标名称: dupf-ddb-shd-1-1
+2026-04-28 11:27:07 - chaos - INFO - [DEBUG] 目标节点: None
+2026-04-28 11:27:07 - chaos - INFO - [DEBUG] 创建故障注入器...
+2026-04-28 11:27:07 - chaos - INFO - [DEBUG] 准备注入故障...
+2026-04-28 11:27:07 - chaos - INFO - [DEBUG] 注入参数: {'fault_type': 'delete'}
+2026-04-28 11:27:07 - chaos - INFO - 删除 Pod: dupf-ddb-shd-1-1 (namespace: ns-dupf)
+2026-04-28 11:27:07 - chaos - INFO - Pod dupf-ddb-shd-1-1 删除成功
+2026-04-28 11:27:07 - chaos - INFO - [DEBUG] 故障注入成功
+2026-04-28 11:27:07 - chaos - INFO - [DEBUG] 故障ID: delete_dupf-ddb-shd-1-1_ns-dupf_1777346827
+2026-04-28 11:27:07 - chaos - INFO - 记录故障：delete_dupf-ddb-shd-1-1_ns-dupf_1777346827
+2026-04-28 11:27:07 - chaos - INFO - [DEBUG] 开始等待 duration: 240s (240.0秒)
+2026-04-28 11:31:16 - chaos - INFO - [DEBUG] duration 等待完成
+2026-04-28 11:31:16 - chaos - INFO - [DEBUG] 开始清理故障: delete_dupf-ddb-shd-1-1_ns-dupf_1777346827
+2026-04-28 11:31:16 - chaos - INFO - Pod 故障自动恢复：delete_dupf-ddb-shd-1-1_ns-dupf_1777346827
+2026-04-28 11:31:16 - chaos - INFO - [DEBUG] 故障清理成功: delete_dupf-ddb-shd-1-1_ns-dupf_1777346827
+2026-04-28 11:31:16 - chaos - INFO - 标记故障已恢复：delete_dupf-ddb-shd-1-1_ns-dupf_1777346827
+2026-04-28 11:31:16 - chaos - INFO - 任务执行成功: DDB Slave Pod 删除 (耗时: 251.79s)
+2026-04-28 11:31:16 - chaos - INFO - 
+================================================================================
+                           Workflow Execution Report                            
+================================================================================
+Workflow ID    : upc_serial_pod_delete_001
+Workflow Name  : UPC 串行 Pod 删除工作流
+Status         : SUCCESS
+Start Time     : 2026-04-28 11:16:10
+End Time       : 2026-04-28 11:31:16
+Total Duration : 906.74s
+Success Rate   : 100.00%
+================================================================================
+
+Task Results:
+--------------------------------------------------------------------------------
+  [SUCCESS ] UPC Talker Pod 删除              Duration: 256.64s  Group: N/A
+  [SUCCESS ] DDB Master Pod 删除              Duration: 249.88s  Group: N/A
+  [SUCCESS ] DDB Slave Pod 删除               Duration: 251.79s  Group: N/A
+
+================================================================================
+Summary Statistics
+================================================================================
+Total Tasks    : 3
+Success        : 3
+Failed         : 0
+Timeout        : 0
+Skipped        : 0
+================================================================================
+2026-04-28 11:31:16 - chaos - INFO - 
+================================================================================
+2026-04-28 11:31:16 - chaos - INFO - 执行workflow: cases/upc/upc-talker_ddb-master_ddb-slave/workflow_serial_duplicate_upc-talker_ddb-master_ddb-slave.yaml
+2026-04-28 11:31:16 - chaos - INFO - ================================================================================
+2026-04-28 11:31:16 - chaos - INFO - Successfully parsed workflow: upc_serial_network_duplicate_001
+2026-04-28 11:31:16 - chaos - INFO - ============================================================
+2026-04-28 11:31:16 - chaos - INFO - 开始执行工作流: UPC 串行网络数据包重复工作流
+2026-04-28 11:31:16 - chaos - INFO - 工作流 ID: upc_serial_network_duplicate_001
+2026-04-28 11:31:16 - chaos - INFO - 执行模式: serial
+2026-04-28 11:31:16 - chaos - INFO - ============================================================
+2026-04-28 11:31:16 - chaos - INFO - 启动延迟 120.0s
+2026-04-28 11:33:22 - chaos - INFO - 执行计划: 共 3 层
+2026-04-28 11:33:22 - chaos - INFO - 
+============================================================
+2026-04-28 11:33:22 - chaos - INFO - 执行第 1/3 层，共 1 个任务
+2026-04-28 11:33:22 - chaos - INFO - ============================================================
+2026-04-28 11:33:22 - chaos - INFO - [DEBUG] 开始执行任务: UPC Talker 数据包重复 (duplicate_upc_talker)
+2026-04-28 11:33:22 - chaos - INFO - [DEBUG] 任务类型: network, 故障类型: duplicate
+2026-04-28 11:33:22 - chaos - INFO - [DEBUG] 目标: Pod: upc-talker
+2026-04-28 11:33:22 - chaos - INFO - [DEBUG] Duration: 240s, Loop: 1
+2026-04-28 11:33:22 - chaos - INFO - [DEBUG] 任务超时时间: 300.0s
+2026-04-28 11:33:22 - chaos - INFO - [DEBUG] ========== 开始执行 Case ==========
+2026-04-28 11:33:22 - chaos - INFO - [DEBUG] Case名称: upc_talker_duplicate
+2026-04-28 11:33:22 - chaos - INFO - [DEBUG] Case类型: network
+2026-04-28 11:33:22 - chaos - INFO - [DEBUG] 故障类型: duplicate
+2026-04-28 11:33:22 - chaos - INFO - [DEBUG] 环境: 1_ssh_remote
+2026-04-28 11:33:22 - chaos - INFO - [DEBUG] 执行 Case 迭代 1/1
+2026-04-28 11:33:22 - chaos - INFO - [DEBUG] 开始获取目标列表...
+2026-04-28 11:33:22 - chaos - INFO - 获取 UPC Pod 列表，namespace: ns-dupf, filter_type: upc-talker
+2026-04-28 11:33:23 - chaos - INFO - 随机选择 Pod: dupf-upc-76bbbd9fbb-zgzf4
+2026-04-28 11:33:23 - chaos - INFO - [DEBUG] 找到 1 个目标
+2026-04-28 11:33:23 - chaos - INFO - [DEBUG] ---------- 处理目标 1/1 ----------
+2026-04-28 11:33:23 - chaos - INFO - [DEBUG] 目标名称: dupf-upc-76bbbd9fbb-zgzf4
+2026-04-28 11:33:23 - chaos - INFO - [DEBUG] 目标节点: None
+2026-04-28 11:33:23 - chaos - INFO - [DEBUG] 创建故障注入器...
+2026-04-28 11:33:23 - chaos - INFO - [DEBUG] 准备注入故障...
+2026-04-28 11:33:23 - chaos - INFO - [DEBUG] 注入参数: {'fault_type': 'duplicate', 'correlation': ['30%', '90%'], 'percent': ['10%', '90%']}
+2026-04-28 11:33:23 - chaos - INFO - 获取 Pod dupf-upc-76bbbd9fbb-zgzf4 的 pause 容器 ID
+2026-04-28 11:33:23 - chaos - INFO - 获取 Pod dupf-upc-76bbbd9fbb-zgzf4 所在的节点，namespace: ns-dupf
+2026-04-28 11:33:23 - chaos - INFO - Pod dupf-upc-76bbbd9fbb-zgzf4 运行在节点 dupf01
+2026-04-28 11:33:23 - chaos - INFO - Pod dupf-upc-76bbbd9fbb-zgzf4 运行在节点 dupf01
+2026-04-28 11:33:23 - chaos - INFO - 找到节点 dupf01 对应的环境: 1_ssh_remote
+2026-04-28 11:33:23 - chaos - INFO - 解析后的 pause 容器 ID: 8249258a625c
+2026-04-28 11:33:23 - chaos - INFO - 获取容器的 PID
+2026-04-28 11:33:23 - chaos - INFO - 容器 ID: 8249258a625c
+2026-04-28 11:33:23 - chaos - INFO - 提取的容器 PID: 56465
+2026-04-28 11:33:23 - chaos - INFO - 为 Pod dupf-upc-76bbbd9fbb-zgzf4 注入网络数据包重复
+2026-04-28 11:33:23 - chaos - INFO - 重复比例: 47%
+2026-04-28 11:33:23 - chaos - INFO - 相关性: 64%
+2026-04-28 11:33:23 - chaos - INFO - tc 命令: tc qdisc add dev eth0 root netem duplicate 47% 64%
+2026-04-28 11:33:23 - chaos - INFO - 网络数据包重复注入成功
+2026-04-28 11:33:23 - chaos - INFO - [DEBUG] 故障注入成功
+2026-04-28 11:33:23 - chaos - INFO - [DEBUG] 故障ID: duplicate_dupf-upc-76bbbd9fbb-zgzf4_ns-dupf_1777347203
+2026-04-28 11:33:23 - chaos - INFO - 记录故障：duplicate_dupf-upc-76bbbd9fbb-zgzf4_ns-dupf_1777347203
+2026-04-28 11:33:23 - chaos - INFO - [DEBUG] 开始等待 duration: 240s (240.0秒)

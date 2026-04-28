@@ -14810,8 +14810,77 @@
       "namespace": "ns-dupf"
     },
     "parameters": {},
-    "status": "running",
+    "status": "recovered",
     "start_time": "2026-04-28 11:18:19.096609",
+    "end_time": "2026-04-28T11:22:33.037228",
+    "error_message": null
+  },
+  "delete_dupf-ddb-shd-1-1_ns-dupf_1777346566": {
+    "fault_id": "delete_dupf-ddb-shd-1-1_ns-dupf_1777346566",
+    "case_name": "ddb_master_delete",
+    "fault_type": "delete",
+    "target": {
+      "name": "dupf-ddb-shd-1-1",
+      "ip": "10.233.126.66",
+      "namespace": "ns-dupf"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-04-28 11:22:46.487532",
+    "end_time": "2026-04-28T11:26:55.033000",
+    "error_message": null
+  },
+  "delete_dupf-upu-dupf01-1-7c9b66cbbf-8zdwp_ns-dupf_1777346821": {
+    "fault_id": "delete_dupf-upu-dupf01-1-7c9b66cbbf-8zdwp_ns-dupf_1777346821",
+    "case_name": "pod_delete",
+    "fault_type": "delete",
+    "target": {
+      "name": "dupf-upu-dupf01-1-7c9b66cbbf-8zdwp",
+      "ip": "10.233.81.78",
+      "namespace": "ns-dupf"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-04-28 11:27:02.177111",
+    "end_time": "2026-04-28T11:27:13.627774",
+    "error_message": null
+  },
+  "delete_dupf-ddb-shd-1-1_ns-dupf_1777346827": {
+    "fault_id": "delete_dupf-ddb-shd-1-1_ns-dupf_1777346827",
+    "case_name": "ddb_slave_delete",
+    "fault_type": "delete",
+    "target": {
+      "name": "dupf-ddb-shd-1-1",
+      "ip": "10.233.126.228",
+      "namespace": "ns-dupf"
+    },
+    "parameters": {},
+    "status": "recovered",
+    "start_time": "2026-04-28 11:27:07.865753",
+    "end_time": "2026-04-28T11:31:16.843223",
+    "error_message": null
+  },
+  "duplicate_dupf-upc-76bbbd9fbb-zgzf4_ns-dupf_1777347203": {
+    "fault_id": "duplicate_dupf-upc-76bbbd9fbb-zgzf4_ns-dupf_1777347203",
+    "case_name": "upc_talker_duplicate",
+    "fault_type": "duplicate",
+    "target": {
+      "name": "dupf-upc-76bbbd9fbb-zgzf4",
+      "ip": "10.233.81.38",
+      "namespace": "ns-dupf"
+    },
+    "parameters": {
+      "correlation": [
+        "30%",
+        "90%"
+      ],
+      "percent": [
+        "10%",
+        "90%"
+      ]
+    },
+    "status": "running",
+    "start_time": "2026-04-28 11:33:23.901353",
     "end_time": null,
     "error_message": null
   }
