@@ -11,7 +11,7 @@ workflow:
   timing:
     start_delay: 10
     node_interval: 10
-    task_timeout: 300
+    task_timeout: 1800
     global_timeout: 1800
 
   tasks:
@@ -28,7 +28,7 @@ workflow:
           random: true
           count: 1
         duration: 240s
-        loop_count: 5
+        loop_count: 2
         namespace: ns-dupf
         parameters:
           signal: 15

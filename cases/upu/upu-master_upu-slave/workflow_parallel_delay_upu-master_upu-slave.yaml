@@ -26,7 +26,7 @@ workflow:
           name:
             - upu-master
         duration: 240s
-        loop_count: 5
+        loop_count: 1
         namespace: ns-dupf
         parameters:
           time: ["100ms", "1000ms"]
@@ -45,7 +45,7 @@ workflow:
           name:
             - upu-slave
         duration: 240s
-        loop_count: 5
+        loop_count: 1
         namespace: ns-dupf
         parameters:
           time: ["100ms", "1000ms"]

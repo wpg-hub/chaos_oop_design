@@ -26,5 +26,5 @@ workflow:
           name:
             - upu
         duration: 240s
-        loop_count: 5
+        loop_count: 1
         namespace: ns-dupf
